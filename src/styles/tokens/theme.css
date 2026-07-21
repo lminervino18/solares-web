@@ -1,0 +1,40 @@
+:root {
+  --color-canvas: var(--palette-neutral-950);
+
+  --color-surface: color-mix(in oklab, var(--palette-violet-950) 54%, var(--palette-neutral-950));
+
+  --color-surface-elevated: color-mix(
+    in oklab,
+    var(--palette-violet-900) 38%,
+    var(--palette-neutral-900)
+  );
+
+  --color-brand: var(--palette-violet-500);
+  --color-brand-hover: var(--palette-violet-400);
+  --color-brand-active: var(--palette-violet-600);
+  --color-brand-contrast: var(--palette-neutral-0);
+
+  --color-text-primary: var(--palette-neutral-0);
+  --color-text-secondary: var(--palette-neutral-300);
+  --color-text-muted: var(--palette-neutral-500);
+
+  --color-border: color-mix(in oklab, var(--palette-violet-300) 22%, transparent);
+  --color-border-strong: color-mix(in oklab, var(--palette-violet-300) 40%, transparent);
+
+  --color-focus-ring: var(--palette-violet-400);
+
+  --color-success: var(--palette-green-500);
+  --color-success-hover: var(--palette-green-400);
+  --color-success-active: var(--palette-green-600);
+
+  --color-warning: var(--palette-amber-500);
+  --color-warning-hover: var(--palette-amber-400);
+  --color-warning-active: var(--palette-amber-600);
+
+  --color-danger: var(--palette-red-500);
+  --color-danger-hover: var(--palette-red-400);
+  --color-danger-active: var(--palette-red-600);
+
+  --color-on-brand: var(--palette-neutral-0);
+  --color-on-accent: var(--palette-neutral-0);
+}
