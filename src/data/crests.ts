@@ -1,15 +1,15 @@
 import type { Crest } from '@/types/brand'
 import { invariant } from '@/lib/invariant'
 
-import crest1Jpg from '@/assets/solares/crests/crest-1.jpg'
+import crest1Png from '@/assets/solares/crests/crest-1.png'
 import crest1Webp from '@/assets/solares/crests/crest-1.webp'
-import crest2Jpg from '@/assets/solares/crests/crest-2.jpg'
+import crest2Png from '@/assets/solares/crests/crest-2.png'
 import crest2Webp from '@/assets/solares/crests/crest-2.webp'
-import crest3Jpg from '@/assets/solares/crests/crest-3.jpg'
+import crest3Png from '@/assets/solares/crests/crest-3.png'
 import crest3Webp from '@/assets/solares/crests/crest-3.webp'
-import crest4Jpg from '@/assets/solares/crests/crest-4.jpg'
+import crest4Png from '@/assets/solares/crests/crest-4.png'
 import crest4Webp from '@/assets/solares/crests/crest-4.webp'
-import crest5Jpg from '@/assets/solares/crests/crest-5.jpg'
+import crest5Png from '@/assets/solares/crests/crest-5.png'
 import crest5Webp from '@/assets/solares/crests/crest-5.webp'
 
 export const crests: readonly Crest[] = [
@@ -18,10 +18,10 @@ export const crests: readonly Crest[] = [
     stageLabel: 'Primera etapa',
     isCurrent: false,
     image: {
-      src: crest1Jpg,
+      src: crest1Png,
       webp: crest1Webp,
-      width: 640,
-      height: 640,
+      width: 688,
+      height: 708,
       alt: 'Escudo de Solares con la letra S en verde y una franja amarilla.',
     },
   },
@@ -30,10 +30,10 @@ export const crests: readonly Crest[] = [
     stageLabel: 'Segunda etapa',
     isCurrent: false,
     image: {
-      src: crest2Jpg,
+      src: crest2Png,
       webp: crest2Webp,
-      width: 500,
-      height: 500,
+      width: 458,
+      height: 395,
       alt: 'Escudo de Solares con forma de hexágono amarillo y negro con una cabeza de animal.',
     },
   },
@@ -42,10 +42,10 @@ export const crests: readonly Crest[] = [
     stageLabel: 'Tercera etapa',
     isCurrent: false,
     image: {
-      src: crest3Jpg,
+      src: crest3Png,
       webp: crest3Webp,
-      width: 640,
-      height: 640,
+      width: 782,
+      height: 800,
       alt: 'Escudo circular violeta de Solares de la Falda con una cabeza de toro.',
     },
   },
@@ -54,10 +54,10 @@ export const crests: readonly Crest[] = [
     stageLabel: 'Cuarta etapa',
     isCurrent: false,
     image: {
-      src: crest4Jpg,
+      src: crest4Png,
       webp: crest4Webp,
-      width: 640,
-      height: 640,
+      width: 604,
+      height: 800,
       alt: 'Escudo circular violeta de Solares de la Falda con dos estrellas y el año 2014.',
     },
   },
@@ -66,10 +66,10 @@ export const crests: readonly Crest[] = [
     stageLabel: 'Escudo actual',
     isCurrent: true,
     image: {
-      src: crest5Jpg,
+      src: crest5Png,
       webp: crest5Webp,
-      width: 414,
-      height: 485,
+      width: 395,
+      height: 439,
       alt: 'Escudo actual de Solares: un escudo violeta con una cabeza de toro, dos estrellas y laureles dorados.',
     },
   },
