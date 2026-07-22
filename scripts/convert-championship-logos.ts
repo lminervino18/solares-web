@@ -24,7 +24,7 @@ type LogoJob = {
 const LOGOS: readonly LogoJob[] = [
   { source: 'DePrimera.jpeg', target: 'deprimera.png' },
   { source: 'TdeA.jpeg', target: 'tdea.png' },
-  { source: 'Torneos_Indiana.jpeg', target: 'torneos-indiana.png' },
+  { source: 'Torneos_Indiana.jpeg.png', target: 'torneos-indiana.png' },
 ]
 
 async function convertLogo(
