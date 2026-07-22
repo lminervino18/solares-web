@@ -65,12 +65,12 @@ test.describe('championships', () => {
     await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()
   })
 
-  test('reveals a match goalscorers with the ball toggle', async ({ page }) => {
+  test('reveals a match goalscorers on interaction', async ({ page }) => {
     await page.goto('/campeonatos')
-    const ball = page.getByRole('button', { name: /Ver goleadores contra/ }).first()
-    await expect(ball).toBeVisible()
-    await ball.click()
-    await expect(ball).toHaveAttribute('aria-expanded', 'true')
+    const row = page.getByRole('button', { name: /Goleadores contra/ }).first()
+    await expect(row).toBeVisible()
+    await row.click()
+    await expect(row).toHaveAttribute('aria-expanded', 'true')
   })
 
   test('reveals all matches on demand', async ({ page }) => {

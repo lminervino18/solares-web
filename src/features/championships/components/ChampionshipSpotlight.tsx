@@ -73,17 +73,10 @@ export function ChampionshipSpotlight({
         <ChampionshipStats stats={stats} hasMatches={matches.length > 0} />
       </section>
 
-      <div className="mx-auto w-full max-w-xl">
-        <ChampionshipTeamPhoto championship={championship} priority />
-      </div>
-
-      <div className="grid gap-8 lg:grid-cols-2">
-        <section aria-label="Goleadores">
-          <Heading as="h3" size="lg" className="mb-3">
-            Goleadores
-          </Heading>
-          <ScorersTable key={`${championship.id}-scorers`} scorers={scorers} />
-        </section>
+      <div className="grid items-start gap-8 lg:grid-cols-2">
+        <div>
+          <ChampionshipTeamPhoto championship={championship} priority />
+        </div>
         <section aria-label="Resultados">
           <Heading as="h3" size="lg" className="mb-3">
             Resultados
@@ -91,6 +84,13 @@ export function ChampionshipSpotlight({
           <MatchResults key={`${championship.id}-matches`} matches={matches} />
         </section>
       </div>
+
+      <section aria-label="Goleadores" className="mx-auto w-full max-w-2xl">
+        <Heading as="h3" size="lg" className="mb-3">
+          Goleadores
+        </Heading>
+        <ScorersTable key={`${championship.id}-scorers`} scorers={scorers} />
+      </section>
 
       {finalVideo && (
         <section aria-label="Video de la final">
