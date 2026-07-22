@@ -65,6 +65,26 @@ test.describe('championships', () => {
     await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()
   })
 
+  test('keeps the scroll position when switching championships', async ({ page }) => {
+    await page.goto('/campeonatos')
+    await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()
+
+    // Click via the DOM so Playwright does not auto-scroll the button into view,
+    // which would move the page itself and mask the behaviour under test.
+    await page.evaluate(() => {
+      window.scrollTo(0, 600)
+      const button = [...document.querySelectorAll('button')].find(
+        (element) => element.getAttribute('aria-label') === 'Campeonato siguiente',
+      )
+      button?.click()
+    })
+
+    await expect(page).toHaveURL(/torneo=/)
+    // The page keeps its position (settling to the target) instead of jumping to
+    // the top; a reset would leave scrollY at 0.
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(300)
+  })
+
   test('reveals a match goalscorers on interaction', async ({ page }) => {
     await page.goto('/campeonatos')
     const row = page.getByRole('button', { name: /Goleadores contra/ }).first()

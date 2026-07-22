@@ -60,7 +60,9 @@ export function useChampionshipsUrlState(): ChampionshipsUrlState {
           params.set(TORNEO_PARAM, slug)
           return params
         },
-        { replace: false },
+        // Keep the scroll position when switching championships so parts of the
+        // section can be compared quickly without the page jumping to the top.
+        { replace: false, preventScrollReset: true },
       )
     },
     [setSearchParams],
