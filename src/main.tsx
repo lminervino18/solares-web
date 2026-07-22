@@ -9,7 +9,7 @@ import '@fontsource/barlow-condensed/600.css'
 import '@fontsource/barlow-condensed/700.css'
 
 import './styles/globals.css'
-import App from './App.tsx'
+import { App } from '@/app/App'
 
 const rootElement = document.getElementById('root')
 

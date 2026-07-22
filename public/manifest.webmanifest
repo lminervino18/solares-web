@@ -1,0 +1,19 @@
+{
+  "name": "Solares",
+  "short_name": "Solares",
+  "description": "Sitio oficial del equipo de fútbol Solares.",
+  "lang": "es-AR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#070609",
+  "theme_color": "#25064f",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
