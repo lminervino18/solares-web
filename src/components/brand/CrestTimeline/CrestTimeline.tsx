@@ -6,7 +6,6 @@ import { cn } from '@/lib/cn'
 import { crests } from '@/data/crests'
 import { Picture } from '@/components/media/Picture/Picture'
 import { Badge } from '@/components/primitives/Badge/Badge'
-import { Text } from '@/components/primitives/Text/Text'
 import { Lightbox } from '@/components/media/Lightbox/Lightbox'
 
 export function CrestTimeline() {
@@ -44,16 +43,11 @@ export function CrestTimeline() {
                 <ZoomIn aria-hidden="true" className="size-6" />
               </span>
             </button>
-            <div className="flex flex-col items-center gap-1">
-              {crest.isCurrent ? (
-                <Badge tone="brand" variant="solid" size="sm">
-                  Escudo actual
-                </Badge>
-              ) : null}
-              <Text size="sm" tone={crest.isCurrent ? 'primary' : 'secondary'} weight="medium">
-                {crest.stageLabel}
-              </Text>
-            </div>
+            {crest.isCurrent ? (
+              <Badge tone="brand" variant="solid" size="sm">
+                Escudo actual
+              </Badge>
+            ) : null}
           </motion.li>
         ))}
       </ul>
