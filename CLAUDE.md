@@ -203,6 +203,33 @@ The Championships page contains two football formats: F8 and F5. See
   preserves every part of the original design (no automatic background removal).
 - Videos must be unmounted when changing format or championship; never autoplay.
 
+## Statistics (F8 and F5)
+
+The Estadísticas page (`/estadisticas`) consumes the shared normalized football dataset from
+the Championships feature — there is no second Google Sheets integration.
+
+- The Statistics page has ONLY two scopes, F8 and F5, defaulting to F8 (`?modalidad=f5` for
+  F5). There is NO combined "General" view: F8 and F5 are different sports and their
+  statistics are never mixed or summed.
+- Every statistic is derived from the normalized championships, matches and scorers via pure
+  selectors in `src/features/statistics/selectors`. Do not compute statistics inside
+  presentation components.
+- Pending, cancelled and invalid matches do not count as played. Penalty shootout goals do not
+  count toward GF or GC. Tournament honors represent the final achieved stage and are counted
+  once; a title with an unknown tier is not classified as gold.
+- Player, opponent and venue aliases are explicit (`src/features/statistics/data/*-aliases.ts`).
+  Never merge entities through fuzzy matching. Historical scorer rankings use competitive
+  (deterministic) tie handling.
+- Knockout goals use match-level scorer attribution (available because scorers are stored per
+  match). Do not estimate knockout goals from tournament totals. Rate rankings require the
+  documented minimum sample (`MIN_MATCHES_FOR_RATE_RANKING`).
+- Charts use Apache ECharts (dynamically imported, SVG renderer) and always include an
+  accessible textual/tabular alternative. Chart colors come from `--color-chart-*` design
+  tokens resolved via `useChartThemeTokens`; never hardcode chart colors. Do not use 3D charts.
+- Do not compute universal historical points; competitions use different point systems.
+- New valid sheet data affects statistics automatically after revalidation. Default tests use
+  the committed snapshot and fixtures, never the live spreadsheet.
+
 ## Known accepted lint warnings
 
 `react-refresh/only-export-components` warns on files that export a component together with
