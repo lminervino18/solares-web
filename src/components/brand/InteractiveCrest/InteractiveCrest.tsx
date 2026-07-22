@@ -1,95 +1,86 @@
-import { useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
-import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
+import { useRef, type PointerEvent as ReactPointerEvent } from 'react'
+import { animate, motion, useMotionValue } from 'motion/react'
 
 import { cn } from '@/lib/cn'
 import { Picture } from '@/components/media/Picture/Picture'
 import { useReducedMotionPreference } from '@/hooks/useReducedMotionPreference'
 import type { PictureSource } from '@/types/brand'
 
-const MAX_TILT = 14
-const SPRING = { stiffness: 220, damping: 20 }
+const MAX_ROTATE_Y = 55
+const MAX_ROTATE_X = 35
+const DRAG_SENSITIVITY = 0.5
+
+const CREST_SHADOW =
+  'drop-shadow(0 16px 20px color-mix(in oklab, var(--palette-neutral-950) 65%, transparent)) drop-shadow(0 8px 26px color-mix(in oklab, var(--color-brand) 34%, transparent))'
+
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max)
+}
 
 export type InteractiveCrestProps = {
   crest: PictureSource
   className?: string
 }
 
-function CrestMedallion({ crest, className }: { crest: PictureSource; className?: string }) {
-  return (
-    <div
-      className={cn(
-        'overflow-hidden rounded-(--radius-xl) border border-line bg-plaque p-4 shadow-[var(--shadow-lg)]',
-        className,
-      )}
-    >
-      <Picture image={crest} loading="eager" fetchPriority="high" imgClassName="w-full" />
-    </div>
-  )
-}
-
 export function InteractiveCrest({ crest, className }: InteractiveCrestProps) {
   const prefersReducedMotion = useReducedMotionPreference()
-  const [isFlipped, setIsFlipped] = useState(false)
-  const buttonRef = useRef<HTMLButtonElement>(null)
-
-  const pointerX = useMotionValue(0)
-  const pointerY = useMotionValue(0)
-  const rotateX = useSpring(useTransform(pointerY, [-0.5, 0.5], [MAX_TILT, -MAX_TILT]), SPRING)
-  const rotateYTilt = useSpring(useTransform(pointerX, [-0.5, 0.5], [-MAX_TILT, MAX_TILT]), SPRING)
+  const rotateX = useMotionValue(0)
+  const rotateY = useMotionValue(0)
+  const isDragging = useRef(false)
+  const lastPointer = useRef({ x: 0, y: 0 })
 
   if (prefersReducedMotion) {
     return (
       <div className={cn('mx-auto w-full max-w-[18rem]', className)}>
-        <CrestMedallion crest={crest} />
+        <div style={{ filter: CREST_SHADOW }}>
+          <Picture image={crest} loading="eager" fetchPriority="high" imgClassName="w-full" />
+        </div>
       </div>
     )
   }
 
-  function handlePointerMove(event: ReactPointerEvent<HTMLButtonElement>) {
-    const element = buttonRef.current
-    if (!element) {
-      return
-    }
-    const rect = element.getBoundingClientRect()
-    pointerX.set((event.clientX - rect.left) / rect.width - 0.5)
-    pointerY.set((event.clientY - rect.top) / rect.height - 0.5)
+  function handlePointerDown(event: ReactPointerEvent<HTMLDivElement>) {
+    isDragging.current = true
+    lastPointer.current = { x: event.clientX, y: event.clientY }
+    event.currentTarget.setPointerCapture(event.pointerId)
   }
 
-  function resetTilt() {
-    pointerX.set(0)
-    pointerY.set(0)
+  function handlePointerMove(event: ReactPointerEvent<HTMLDivElement>) {
+    if (!isDragging.current) {
+      return
+    }
+    const deltaX = event.clientX - lastPointer.current.x
+    const deltaY = event.clientY - lastPointer.current.y
+    lastPointer.current = { x: event.clientX, y: event.clientY }
+    rotateY.set(clamp(rotateY.get() + deltaX * DRAG_SENSITIVITY, -MAX_ROTATE_Y, MAX_ROTATE_Y))
+    rotateX.set(clamp(rotateX.get() - deltaY * DRAG_SENSITIVITY, -MAX_ROTATE_X, MAX_ROTATE_X))
+  }
+
+  function releasePointer() {
+    if (!isDragging.current) {
+      return
+    }
+    isDragging.current = false
+    const spring = { type: 'spring', stiffness: 140, damping: 15 } as const
+    animate(rotateX, 0, spring)
+    animate(rotateY, 0, spring)
   }
 
   return (
     <div className={cn('mx-auto w-full max-w-[18rem] [perspective:1100px]', className)}>
-      <motion.button
-        ref={buttonRef}
-        type="button"
-        aria-pressed={isFlipped}
-        aria-label="Girar el escudo de Solares"
+      <div
+        onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
-        onPointerLeave={resetTilt}
-        onBlur={resetTilt}
-        onClick={() => {
-          setIsFlipped((value) => !value)
-        }}
-        style={{ rotateX, rotateY: rotateYTilt, transformStyle: 'preserve-3d' }}
-        whileTap={{ scale: 0.97 }}
-        className="block w-full rounded-(--radius-xl) focus-visible:ring-2 focus-visible:ring-(--color-focus-ring) focus-visible:ring-offset-4 focus-visible:ring-offset-(--color-canvas) focus-visible:outline-none"
+        onPointerUp={releasePointer}
+        onPointerLeave={releasePointer}
+        className="cursor-grab touch-none active:cursor-grabbing"
       >
         <motion.div
-          className="relative [transform-style:preserve-3d]"
-          animate={{ rotateY: isFlipped ? 180 : 0 }}
-          transition={{ type: 'spring', stiffness: 160, damping: 20 }}
+          style={{ rotateX, rotateY, transformStyle: 'preserve-3d', filter: CREST_SHADOW }}
         >
-          <div className="[backface-visibility:hidden]">
-            <CrestMedallion crest={crest} />
-          </div>
-          <div className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden]">
-            <CrestMedallion crest={crest} />
-          </div>
+          <Picture image={crest} loading="eager" fetchPriority="high" imgClassName="w-full" />
         </motion.div>
-      </motion.button>
+      </div>
     </div>
   )
 }
