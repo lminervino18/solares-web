@@ -66,14 +66,16 @@ export function ChampionshipSpotlight({
         className="self-start"
       />
 
-      <ChampionshipTeamPhoto championship={championship} priority />
-
       <section aria-label="Estadísticas del campeonato">
         <Heading as="h3" size="lg" className="mb-3">
           Estadísticas
         </Heading>
         <ChampionshipStats stats={stats} hasMatches={matches.length > 0} />
       </section>
+
+      <div className="mx-auto w-full max-w-xl">
+        <ChampionshipTeamPhoto championship={championship} priority />
+      </div>
 
       <div className="grid gap-8 lg:grid-cols-2">
         <section aria-label="Goleadores">

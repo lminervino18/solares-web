@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
@@ -33,7 +33,7 @@ export function ChampionshipCarousel({
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: 'center',
     loop: false,
-    containScroll: 'trimSnaps',
+    containScroll: false,
     duration: prefersReducedMotion ? 0 : 22,
   })
 
@@ -42,25 +42,50 @@ export function ChampionshipCarousel({
     championships.findIndex((c) => c.id === selectedChampionshipId),
   )
 
-  const [current, setCurrent] = useState(selectedIndex)
+  // Selection is authoritative and prop-driven: clicking a card or a control
+  // selects a championship directly, independent of whether Embla can center
+  // that slide (with few wide slides some snaps are unreachable). Embla is used
+  // only for the visual scroll. `pendingRef` dedupes the direct call and the
+  // Embla 'select' event that a programmatic scroll triggers, so a single
+  // selection produces a single history entry.
+  const pendingRef = useRef<string | null>(null)
+
+  useEffect(() => {
+    pendingRef.current = null
+  }, [selectedChampionshipId])
+
+  const applySelection = useCallback(
+    (championship: Championship | undefined) => {
+      if (!championship) return
+      if (championship.id === selectedChampionshipId || pendingRef.current === championship.id) {
+        return
+      }
+      pendingRef.current = championship.id
+      onSelectionChange(championship.id)
+    },
+    [selectedChampionshipId, onSelectionChange],
+  )
+
+  const select = useCallback(
+    (index: number) => {
+      const championship = championships[index]
+      if (!championship) return
+      emblaApi?.scrollTo(index, prefersReducedMotion)
+      applySelection(championship)
+    },
+    [championships, emblaApi, prefersReducedMotion, applySelection],
+  )
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return
-    const index = emblaApi.selectedScrollSnap()
-    setCurrent(index)
-    const championship = championships[index]
-    if (championship && championship.id !== selectedChampionshipId) {
-      onSelectionChange(championship.id)
-    }
-  }, [emblaApi, championships, selectedChampionshipId, onSelectionChange])
+    applySelection(championships[emblaApi.selectedScrollSnap()])
+  }, [emblaApi, championships, applySelection])
 
   useEffect(() => {
     if (!emblaApi) return
     emblaApi.on('select', onSelect)
-    emblaApi.on('reInit', onSelect)
     return () => {
       emblaApi.off('select', onSelect)
-      emblaApi.off('reInit', onSelect)
     }
   }, [emblaApi, onSelect])
 
@@ -71,9 +96,10 @@ export function ChampionshipCarousel({
     }
   }, [emblaApi, selectedIndex, prefersReducedMotion])
 
+  const current = selectedIndex
   const canPrev = current > 0
   const canNext = current < championships.length - 1
-  const selected = championships[current] ?? championships[selectedIndex]
+  const selected = championships[current]
 
   return (
     <section
@@ -93,7 +119,7 @@ export function ChampionshipCarousel({
               >
                 <button
                   type="button"
-                  onClick={() => emblaApi?.scrollTo(index, prefersReducedMotion)}
+                  onClick={() => select(index)}
                   aria-current={isActive ? 'true' : undefined}
                   className={cn(
                     'flex h-full w-full items-center gap-3 rounded-(--radius-xl) border p-4 text-left transition-all',
@@ -133,7 +159,7 @@ export function ChampionshipCarousel({
           tone="neutral"
           variant="outline"
           disabled={!canPrev}
-          onClick={() => emblaApi?.scrollPrev()}
+          onClick={() => select(current - 1)}
           icon={<ChevronLeft className="size-4" aria-hidden="true" />}
         />
         <p className="text-[length:var(--font-size-sm)] text-secondary tabular-nums">
@@ -146,7 +172,7 @@ export function ChampionshipCarousel({
           tone="neutral"
           variant="outline"
           disabled={!canNext}
-          onClick={() => emblaApi?.scrollNext()}
+          onClick={() => select(current + 1)}
           icon={<ChevronRight className="size-4" aria-hidden="true" />}
         />
       </div>
