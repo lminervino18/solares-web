@@ -42,4 +42,6 @@
   --color-control-hover: var(--palette-neutral-0);
   --color-control-active: var(--palette-neutral-300);
   --color-on-control: var(--palette-neutral-950);
+
+  --color-plaque: var(--palette-neutral-0);
 }
