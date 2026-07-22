@@ -1,51 +1,51 @@
-import { ArrowRight } from 'lucide-react'
-
 import { routes } from '@/constants/routes'
-import { siteConfig } from '@/config/site.config'
 import { Seo } from '@/components/seo/Seo/Seo'
-import { PageLayout } from '@/components/layout/PageLayout/PageLayout'
+import { Section } from '@/components/layout/Section/Section'
 import { Container } from '@/components/layout/Container/Container'
 import { Heading } from '@/components/primitives/Heading/Heading'
 import { Text } from '@/components/primitives/Text/Text'
-import { Badge } from '@/components/primitives/Badge/Badge'
-import { LinkButton } from '@/components/primitives/LinkButton/LinkButton'
-import { EmptyState } from '@/components/feedback/EmptyState/EmptyState'
+import { HomeIntro } from '@/features/home/HomeIntro'
+import { CrestTimeline } from '@/components/brand/CrestTimeline/CrestTimeline'
+import { KitGallery } from '@/components/brand/KitGallery/KitGallery'
 
 export function HomePage() {
   return (
     <>
-      <Seo canonicalPath={routes.home} />
+      <Seo description="Sitio oficial de Solares, el Torito Violeta." canonicalPath={routes.home} />
 
-      <PageLayout>
-        <Container>
+      <HomeIntro />
+
+      <Section spacing="lg" surface="surface" as="section" aria-labelledby="crests-heading">
+        <Container size="wide">
           <header className="max-w-2xl">
-            <Badge tone="brand" variant="soft">
-              Sitio oficial
-            </Badge>
-            <Heading as="h1" size="display-lg" className="mt-4">
-              {siteConfig.teamName}
+            <Heading as="h2" id="crests-heading" size="display-sm">
+              Nuestros escudos
             </Heading>
-            <Text size="lg" tone="secondary" className="mt-4">
-              {siteConfig.description}
+            <Text size="lg" tone="secondary" className="mt-3">
+              Distintas etapas, una misma identidad.
             </Text>
-            <div className="mt-8">
-              <LinkButton
-                to={routes.championships}
-                size="lg"
-                trailingIcon={<ArrowRight aria-hidden="true" className="size-5" />}
-              >
-                Ver campeonatos
-              </LinkButton>
-            </div>
           </header>
-
-          <EmptyState
-            className="mt-20"
-            title="Sección preparada"
-            description="El contenido de esta sección se incorporará en una próxima etapa."
-          />
+          <div className="mt-10 lg:mt-14">
+            <CrestTimeline />
+          </div>
         </Container>
-      </PageLayout>
+      </Section>
+
+      <Section spacing="lg" as="section" aria-labelledby="kits-heading">
+        <Container size="wide">
+          <header className="max-w-2xl">
+            <Heading as="h2" id="kits-heading" size="display-sm">
+              Nuestras camisetas
+            </Heading>
+            <Text size="lg" tone="secondary" className="mt-3">
+              Los colores que acompañaron cada etapa de nuestra historia.
+            </Text>
+          </header>
+          <div className="mt-10 lg:mt-14">
+            <KitGallery />
+          </div>
+        </Container>
+      </Section>
     </>
   )
 }
