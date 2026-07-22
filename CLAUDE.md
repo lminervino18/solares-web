@@ -236,6 +236,15 @@ the Championships feature — there is no second Google Sheets integration.
 - New valid sheet data affects statistics automatically after revalidation. Default tests use
   the committed snapshot and fixtures, never the live spreadsheet.
 
+## Goals page media (planned)
+
+The Goles page will show short goal clips (~100 videos, ~6-7 seconds each). The chosen host is
+**Cloudinary** (free tier): purpose-built for many short clips, generous storage/bandwidth,
+inline playback with a native `<video>` element (no third-party branding), and bulk upload via
+its API/CLI. Keep the clip-to-match/goal mapping in the same data source convention as the rest
+(spreadsheet or a typed data file). Uploading clips is an outward-facing action — confirm before
+publishing. YouTube (unlisted) is the fallback if no external account is desired.
+
 ## Known accepted lint warnings
 
 `react-refresh/only-export-components` warns on files that export a component together with
