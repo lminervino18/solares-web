@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, type KeyboardEvent } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
@@ -101,15 +101,29 @@ export function ChampionshipCarousel({
   const canNext = current < championships.length - 1
   const selected = championships[current]
 
-  const onKeyDown = (event: KeyboardEvent<HTMLElement>) => {
-    if (event.key === 'ArrowLeft' && canPrev) {
-      event.preventDefault()
-      select(current - 1)
-    } else if (event.key === 'ArrowRight' && canNext) {
-      event.preventDefault()
-      select(current + 1)
+  // Arrow keys change championship anywhere on the page (no card focus needed),
+  // except while typing in a field or while a tab is focused (the tabs use arrow
+  // keys to switch F8/F5). Only the active format's carousel is mounted.
+  useEffect(() => {
+    const handler = (event: KeyboardEvent) => {
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return
+      const target = event.target as HTMLElement | null
+      const tag = target?.tagName
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || target?.isContentEditable) {
+        return
+      }
+      if (target?.closest('[role="tab"]')) return
+      if (event.key === 'ArrowLeft' && canPrev) {
+        event.preventDefault()
+        select(current - 1)
+      } else if (event.key === 'ArrowRight' && canNext) {
+        event.preventDefault()
+        select(current + 1)
+      }
     }
-  }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [canPrev, canNext, current, select])
 
   return (
     <section
@@ -130,7 +144,6 @@ export function ChampionshipCarousel({
                 <button
                   type="button"
                   onClick={() => select(index)}
-                  onKeyDown={onKeyDown}
                   aria-current={isActive ? 'true' : undefined}
                   className={cn(
                     'flex h-full w-full items-center gap-3 rounded-(--radius-xl) border p-4 text-left transition-all',

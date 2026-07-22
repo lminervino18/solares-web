@@ -65,13 +65,13 @@ test.describe('championships', () => {
     await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()
   })
 
-  test('changes championship with the keyboard arrows', async ({ page }) => {
+  test('changes championship with the keyboard arrows without selecting a card', async ({
+    page,
+  }) => {
     await page.goto('/campeonatos')
-    await page
-      .getByRole('button', { name: /Clausura 2025/ })
-      .first()
-      .focus()
+    await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()
 
+    // No card is focused; the arrows still change the championship.
     await page.keyboard.press('ArrowRight')
     await expect(page.getByRole('heading', { level: 2, name: 'Apertura 2025' })).toBeVisible()
 
