@@ -44,7 +44,7 @@ function matchRecord(torneo: string, partial: Record_ = {}): Record_ {
 }
 
 describe('mapChampionships', () => {
-  it('only includes championships listed in the summary sheet', () => {
+  it('publishes summary championships and keeps match-only ones unpublished', () => {
     const summary = sheet(SUMMARY_HEADERS, [
       { Campeonato: 'Clausura 2025', Torneo: 'TdeA', Resultado: 'Finalista', 'Link Final': '' },
       { Campeonato: 'Apertura 2026', Torneo: 'DePrimera', Resultado: 'Campeón', 'Link Final': '' },
@@ -56,11 +56,13 @@ describe('mapChampionships', () => {
     ])
 
     const championships = mapChampionships('f5', summary, matches)
-    const names = championships.map((c) => c.name)
+    const published = Object.fromEntries(championships.map((c) => [c.name, c.published]))
 
-    expect(names).toContain('Clausura 2025')
-    expect(names).toContain('Apertura 2026')
-    expect(names).not.toContain('Verano 2026')
+    expect(published['Clausura 2025']).toBe(true)
+    expect(published['Apertura 2026']).toBe(true)
+    // Verano is present (its matches feed the statistics) but unpublished, so it
+    // is excluded from the Campeonatos section and from title counts.
+    expect(published['Verano 2026']).toBe(false)
   })
 
   it('namespaces ids by format so a shared name does not collide', () => {

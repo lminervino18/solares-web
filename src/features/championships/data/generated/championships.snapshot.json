@@ -1,11 +1,12 @@
 {
-  "syncedAt": "2026-07-22T20:08:12.551Z",
+  "syncedAt": "2026-07-22T21:18:22.034Z",
   "championships": [
     {
       "id": "f8-clausura-2025",
       "slug": "clausura-2025",
       "format": "f8",
       "name": "Clausura 2025",
+      "published": true,
       "year": 2025,
       "season": "Clausura",
       "league": "TdeA",
@@ -500,6 +501,7 @@
       "slug": "apertura-2025",
       "format": "f8",
       "name": "Apertura 2025",
+      "published": true,
       "year": 2025,
       "season": "Apertura",
       "league": "TdeA",
@@ -1006,6 +1008,7 @@
       "slug": "clausura-2024",
       "format": "f8",
       "name": "Clausura 2024",
+      "published": true,
       "year": 2024,
       "season": "Clausura",
       "league": "TdeA",
@@ -1570,6 +1573,7 @@
       "slug": "apertura-2024",
       "format": "f8",
       "name": "Apertura 2024",
+      "published": true,
       "year": 2024,
       "season": "Apertura",
       "league": "Torneos Indiana",
@@ -1986,6 +1990,7 @@
       "slug": "clausura-2023",
       "format": "f8",
       "name": "Clausura 2023",
+      "published": true,
       "year": 2023,
       "season": "Clausura",
       "league": "Torneos Indiana",
@@ -2473,6 +2478,7 @@
       "slug": "apertura-2023",
       "format": "f8",
       "name": "Apertura 2023",
+      "published": true,
       "year": 2023,
       "season": "Apertura",
       "league": "Torneos Indiana",
@@ -2915,6 +2921,7 @@
       "slug": "clausura-2022",
       "format": "f8",
       "name": "Clausura 2022",
+      "published": true,
       "year": 2022,
       "season": "Clausura",
       "league": "Torneos Indiana",
@@ -3294,6 +3301,7 @@
       "slug": "apertura-2022",
       "format": "f8",
       "name": "Apertura 2022",
+      "published": true,
       "year": 2022,
       "season": "Apertura",
       "league": "Torneos Indiana",
@@ -3590,6 +3598,7 @@
       "slug": "apertura-2026",
       "format": "f5",
       "name": "Apertura 2026",
+      "published": true,
       "year": 2026,
       "season": "Apertura",
       "league": "DePrimera",
@@ -4158,10 +4167,257 @@
       }
     },
     {
+      "id": "f5-verano-2026",
+      "slug": "verano-2026",
+      "format": "f5",
+      "name": "Verano 2026",
+      "published": false,
+      "year": 2026,
+      "season": "Verano",
+      "status": "in-progress",
+      "honorType": "unknown",
+      "trophyTier": "none",
+      "sourceOrder": 20260,
+      "matches": [
+        {
+          "id": "f5-verano-2026-m13",
+          "championshipId": "f5-verano-2026",
+          "format": "f5",
+          "sourceOrder": 13,
+          "opponent": "San Termo",
+          "outcome": "draw",
+          "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 2
+            },
+            {
+              "name": "Leandro Castillo",
+              "goals": 3
+            },
+            {
+              "name": "Bruno Palacios",
+              "goals": 2
+            }
+          ],
+          "date": "2026-02-26",
+          "time": "23:00",
+          "stage": "Regular",
+          "venue": "Platense",
+          "goalsFor": 8,
+          "goalsAgainst": 8,
+          "scoreLabel": "8-8"
+        },
+        {
+          "id": "f5-verano-2026-m15",
+          "championshipId": "f5-verano-2026",
+          "format": "f5",
+          "sourceOrder": 15,
+          "opponent": "Pinocha",
+          "outcome": "win",
+          "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 6
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 3
+            },
+            {
+              "name": "Luca Crivaro",
+              "goals": 2
+            },
+            {
+              "name": "Stefano Tricarico",
+              "goals": 2
+            }
+          ],
+          "date": "2026-03-05",
+          "time": "23:00",
+          "stage": "Regular",
+          "venue": "Platense",
+          "goalsFor": 13,
+          "goalsAgainst": 4,
+          "scoreLabel": "13-4"
+        },
+        {
+          "id": "f5-verano-2026-m16",
+          "championshipId": "f5-verano-2026",
+          "format": "f5",
+          "sourceOrder": 16,
+          "opponent": "PDM",
+          "outcome": "win",
+          "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 7
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 5
+            },
+            {
+              "name": "Leandro Castillo",
+              "goals": 5
+            },
+            {
+              "name": "Luca Crivaro",
+              "goals": 3
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 5
+            }
+          ],
+          "date": "2026-03-12",
+          "time": "23:00",
+          "stage": "Regular",
+          "venue": "Platense",
+          "goalsFor": 25,
+          "goalsAgainst": 8,
+          "scoreLabel": "25-8"
+        },
+        {
+          "id": "f5-verano-2026-m12",
+          "championshipId": "f5-verano-2026",
+          "format": "f5",
+          "sourceOrder": 12,
+          "opponent": "Gemeka",
+          "outcome": "win",
+          "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lucas Iriarte",
+              "goals": 3
+            },
+            {
+              "name": "Leandro Castillo",
+              "goals": 3
+            },
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 4
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 2
+            }
+          ],
+          "date": "2026-02-25",
+          "time": "22:30",
+          "stage": "Octavos",
+          "venue": "Jose Hernandez",
+          "goalsFor": 12,
+          "goalsAgainst": 3,
+          "scoreLabel": "12-3"
+        },
+        {
+          "id": "f5-verano-2026-m14",
+          "championshipId": "f5-verano-2026",
+          "format": "f5",
+          "sourceOrder": 14,
+          "opponent": "Coghlan",
+          "outcome": "draw",
+          "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Luca Crivaro",
+              "goals": 3
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 3
+            }
+          ],
+          "date": "2026-03-01",
+          "time": "11:20",
+          "stage": "Cuartos",
+          "venue": "KDT",
+          "goalsFor": 10,
+          "goalsAgainst": 10,
+          "scoreLabel": "10-10"
+        }
+      ],
+      "scorers": [
+        {
+          "id": "f5-verano-2026-lorenzo-minervino",
+          "championshipId": "f5-verano-2026",
+          "format": "f5",
+          "playerName": "Lorenzo Minervino",
+          "goals": 20
+        },
+        {
+          "id": "f5-verano-2026-geronimo-heller",
+          "championshipId": "f5-verano-2026",
+          "format": "f5",
+          "playerName": "Geronimo Heller",
+          "goals": 12
+        },
+        {
+          "id": "f5-verano-2026-leandro-castillo",
+          "championshipId": "f5-verano-2026",
+          "format": "f5",
+          "playerName": "Leandro Castillo",
+          "goals": 11
+        },
+        {
+          "id": "f5-verano-2026-lucas-iriarte",
+          "championshipId": "f5-verano-2026",
+          "format": "f5",
+          "playerName": "Lucas Iriarte",
+          "goals": 11
+        },
+        {
+          "id": "f5-verano-2026-luca-crivaro",
+          "championshipId": "f5-verano-2026",
+          "format": "f5",
+          "playerName": "Luca Crivaro",
+          "goals": 8
+        },
+        {
+          "id": "f5-verano-2026-bruno-palacios",
+          "championshipId": "f5-verano-2026",
+          "format": "f5",
+          "playerName": "Bruno Palacios",
+          "goals": 2
+        },
+        {
+          "id": "f5-verano-2026-stefano-tricarico",
+          "championshipId": "f5-verano-2026",
+          "format": "f5",
+          "playerName": "Stefano Tricarico",
+          "goals": 2
+        }
+      ],
+      "stats": {
+        "played": 5,
+        "won": 3,
+        "drawn": 2,
+        "lost": 0,
+        "goalsFor": 68,
+        "goalsAgainst": 33,
+        "goalDifference": 35
+      },
+      "assets": {}
+    },
+    {
       "id": "f5-clausura-2025",
       "slug": "clausura-2025",
       "format": "f5",
       "name": "Clausura 2025",
+      "published": true,
       "year": 2025,
       "season": "Clausura",
       "league": "Torneos Indiana",

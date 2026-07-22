@@ -36,6 +36,7 @@ export const championshipSchema = z.object({
   slug: z.string(),
   format: z.enum(['f8', 'f5']),
   name: z.string(),
+  published: z.boolean().default(true),
   shortName: z.string().optional(),
   year: z.number().optional(),
   season: z.string().optional(),

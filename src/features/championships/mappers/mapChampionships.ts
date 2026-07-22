@@ -32,6 +32,7 @@ type SummaryMeta = {
 
 type ChampionshipGroup = {
   displayName: string
+  published: boolean
   league?: string
   resultLabel?: string
   videoRaw?: string
@@ -126,12 +127,12 @@ function sortMatches(a: Match, b: Match): number {
  * Builds all championships for a football format from its summary and matches
  * sheets.
  *
- * The summary sheet is the source of truth for which championships exist: only
- * championships listed there appear. Matches attach by name, and matches for a
- * championship absent from the summary are ignored (even if they have goals). A
- * summary championship with no matches, photo, logo or video still appears with
- * partial data. Identifiers are namespaced by format to avoid collisions
- * between formats that share a championship name.
+ * The summary sheet is the source of truth for published championships (shown in
+ * the Campeonatos section and counted as titles). A championship present only in
+ * the matches sheet is kept as `published: false`: excluded from that section
+ * and from title counts, but its matches still feed the pooled statistics.
+ * Identifiers are namespaced by format to avoid collisions between formats that
+ * share a championship name.
  */
 export function mapChampionships(
   format: FootballFormat,
@@ -144,7 +145,7 @@ export function mapChampionships(
   const groups = new Map<string, ChampionshipGroup>()
 
   for (const [key, meta] of summary) {
-    groups.set(key, { ...meta, matches: [] })
+    groups.set(key, { ...meta, published: true, matches: [] })
   }
 
   for (const raw of rawMatches) {
@@ -153,10 +154,13 @@ export function mapChampionships(
     const existing = groups.get(key)
     if (existing) {
       existing.matches.push(raw)
+    } else {
+      // A championship present only in the matches sheet (not the summary), e.g.
+      // an in-progress "Verano" edition. It is kept as unpublished: excluded
+      // from the Campeonatos section and from title counts, but its matches
+      // still feed the pooled statistics.
+      groups.set(key, { displayName, published: false, matches: [raw] })
     }
-    // Championships absent from the summary sheet are intentionally excluded,
-    // even when they have matches and scorers (e.g. an in-progress "Verano"
-    // edition). The summary sheet is the source of truth for what is shown.
   }
 
   const championships: Championship[] = []
@@ -179,6 +183,7 @@ export function mapChampionships(
       slug: key,
       format,
       name: group.displayName,
+      published: group.published,
       ...(override?.shortName ? { shortName: override.shortName } : {}),
       ...(year !== undefined ? { year } : {}),
       ...(season ? { season } : {}),

@@ -58,7 +58,7 @@ export function ChampionshipsSection() {
   }
 
   const renderPanel = (panelFormat: FootballFormat) => {
-    const list = data[panelFormat]
+    const list = data[panelFormat].filter((championship) => championship.published)
 
     if (list.length === 0) {
       return (
