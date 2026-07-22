@@ -27,7 +27,7 @@ export const siteConfig = {
   description: 'Sitio oficial del equipo de fútbol Solares.',
   locale: 'es-AR',
   language: 'es-AR',
-  siteUrl: '',
+  siteUrl: import.meta.env.VITE_SITE_URL ?? '',
   themeColor: '#25064f',
   ogImage: '',
   logo: {
