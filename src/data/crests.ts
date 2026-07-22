@@ -56,9 +56,9 @@ export const crests: readonly Crest[] = [
     image: {
       src: crest4Png,
       webp: crest4Webp,
-      width: 708,
+      width: 604,
       height: 800,
-      alt: 'Escudo circular violeta de Solares de la Falda con una cabeza de toro y dos estrellas.',
+      alt: 'Escudo circular violeta de Solares de la Falda con dos estrellas y el año 2014.',
     },
   },
   {
