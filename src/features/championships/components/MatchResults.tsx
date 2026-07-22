@@ -93,7 +93,7 @@ function MatchRow({ match }: { match: Match }) {
         <div
           className={cn(
             'border-t border-line/60 px-3 py-2',
-            expanded ? 'block' : 'hidden group-hover:block group-focus-within:block',
+            expanded ? 'block' : 'hidden group-focus-within:block group-hover:block',
           )}
         >
           <ul className="flex flex-col gap-1">
@@ -109,8 +109,8 @@ function MatchRow({ match }: { match: Match }) {
 
 /**
  * Lists the championship matches, initially the first five, with an accessible
- * control to reveal the rest. Each match exposes a football toggle that reveals
- * that match's goalscorers, mapped to the exact game.
+ * control to reveal the rest. Hovering (or focusing) a match reveals that game's
+ * goalscorers, mapped to the exact match; a click keeps them open on touch.
  */
 export function MatchResults({ matches }: MatchResultsProps) {
   const [expanded, setExpanded] = useState(false)

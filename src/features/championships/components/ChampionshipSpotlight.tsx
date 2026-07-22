@@ -85,19 +85,31 @@ export function ChampionshipSpotlight({
         </section>
       </div>
 
-      <section aria-label="Goleadores" className="mx-auto w-full max-w-2xl">
-        <Heading as="h3" size="lg" className="mb-3">
-          Goleadores
-        </Heading>
-        <ScorersTable key={`${championship.id}-scorers`} scorers={scorers} />
-      </section>
-
-      {finalVideo && (
-        <section aria-label="Video de la final">
+      {finalVideo ? (
+        <div className="grid items-start gap-8 lg:grid-cols-2">
+          <section aria-label="Goleadores">
+            <Heading as="h3" size="lg" className="mb-3">
+              Goleadores
+            </Heading>
+            <ScorersTable key={`${championship.id}-scorers`} scorers={scorers} />
+          </section>
+          <section aria-label="Video de la final">
+            <Heading as="h3" size="lg" className="mb-3">
+              La final
+            </Heading>
+            <FinalVideo
+              key={`${championship.id}-video`}
+              video={finalVideo}
+              championshipName={name}
+            />
+          </section>
+        </div>
+      ) : (
+        <section aria-label="Goleadores" className="mx-auto w-full max-w-2xl">
           <Heading as="h3" size="lg" className="mb-3">
-            La final
+            Goleadores
           </Heading>
-          <FinalVideo key={`${championship.id}-video`} video={finalVideo} championshipName={name} />
+          <ScorersTable key={`${championship.id}-scorers`} scorers={scorers} />
         </section>
       )}
     </motion.article>
