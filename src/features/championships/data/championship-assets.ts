@@ -45,14 +45,14 @@ export const championshipTeamPhotos = {
   'f5-clausura-2025': {
     src: clausura2025F5Jpg,
     webp: clausura2025F5Webp,
-    width: 720,
-    height: 1280,
+    width: 1179,
+    height: 1218,
   },
   'f5-apertura-2026': {
     src: apertura2026F5Jpg,
     webp: apertura2026F5Webp,
-    width: 720,
-    height: 1280,
+    width: 1179,
+    height: 1190,
   },
 } satisfies Record<string, ChampionshipTeamPhoto>
 
