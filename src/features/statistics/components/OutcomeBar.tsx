@@ -37,7 +37,7 @@ export function OutcomeBar({ won, drawn, lost }: OutcomeBarProps) {
   return (
     <div>
       <div
-        className="flex h-8 w-full overflow-hidden rounded-(--radius-pill) border border-line"
+        className="flex h-9 w-full overflow-hidden rounded-(--radius-pill) border border-line"
         role="img"
         aria-label={`Distribución de resultados: ${won} ganados, ${drawn} empatados, ${lost} perdidos`}
       >
@@ -46,10 +46,10 @@ export function OutcomeBar({ won, drawn, lost }: OutcomeBarProps) {
           .map((segment) => (
             <div
               key={segment.key}
-              className="flex items-center justify-center text-[length:var(--font-size-xs)] font-semibold text-on-brand"
+              className="flex items-center justify-center text-[length:var(--font-size-sm)] font-bold text-canvas"
               style={{ width: `${(segment.value / total) * 100}%`, backgroundColor: segment.token }}
             >
-              {segment.value / total >= 0.1 ? segment.value : ''}
+              {segment.value / total >= 0.08 ? segment.value : ''}
             </div>
           ))}
       </div>
