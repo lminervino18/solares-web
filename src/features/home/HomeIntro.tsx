@@ -10,6 +10,7 @@ import { Container } from '@/components/layout/Container/Container'
 import { Heading } from '@/components/primitives/Heading/Heading'
 import { Text } from '@/components/primitives/Text/Text'
 import { LinkButton } from '@/components/primitives/LinkButton/LinkButton'
+import { VisuallyHidden } from '@/components/primitives/VisuallyHidden/VisuallyHidden'
 import { Picture } from '@/components/media/Picture/Picture'
 import { LocationMap } from '@/components/media/LocationMap/LocationMap'
 import { InteractiveCrest } from '@/components/brand/InteractiveCrest/InteractiveCrest'
@@ -70,9 +71,10 @@ export function HomeIntro() {
             size="lg"
             variant="soft"
             tone="brand"
-            leadingIcon={<InstagramIcon className="size-5" />}
+            className="aspect-square px-0"
           >
-            Seguir en Instagram
+            <InstagramIcon className="size-6" />
+            <VisuallyHidden>Seguir en Instagram</VisuallyHidden>
           </LinkButton>
           <Text as="p" size="md" tone="secondary">
             Seguinos para enterarte de resultados y próximos partidos.
