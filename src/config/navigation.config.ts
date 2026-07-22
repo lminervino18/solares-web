@@ -1,4 +1,12 @@
-import { ChartNoAxesCombined, CirclePlay, Home, Trophy, Users, type LucideIcon } from 'lucide-react'
+import {
+  ChartNoAxesCombined,
+  CirclePlay,
+  Home,
+  ScrollText,
+  Trophy,
+  Users,
+  type LucideIcon,
+} from 'lucide-react'
 
 import { routes } from '@/constants/routes'
 
@@ -10,6 +18,7 @@ export type NavigationItem = {
 
 export const navigationItems = [
   { label: 'Inicio', path: routes.home, icon: Home },
+  { label: 'Historia', path: routes.history, icon: ScrollText },
   { label: 'Campeonatos', path: routes.championships, icon: Trophy },
   { label: 'Estadísticas', path: routes.statistics, icon: ChartNoAxesCombined },
   { label: 'Goles', path: routes.goals, icon: CirclePlay },

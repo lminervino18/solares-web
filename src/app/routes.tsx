@@ -8,6 +8,9 @@ import { RouteErrorBoundary } from './RouteErrorBoundary'
 const HomePage = lazy(() =>
   import('@/pages/HomePage/HomePage').then((module) => ({ default: module.HomePage })),
 )
+const HistoryPage = lazy(() =>
+  import('@/pages/HistoryPage/HistoryPage').then((module) => ({ default: module.HistoryPage })),
+)
 const ChampionshipsPage = lazy(() =>
   import('@/pages/ChampionshipsPage/ChampionshipsPage').then((module) => ({
     default: module.ChampionshipsPage,
@@ -37,6 +40,7 @@ export const appRoutes: RouteObject[] = [
     errorElement: <RouteErrorBoundary />,
     children: [
       { index: true, element: <HomePage /> },
+      { path: routes.history, element: <HistoryPage /> },
       { path: routes.championships, element: <ChampionshipsPage /> },
       { path: routes.statistics, element: <StatisticsPage /> },
       { path: routes.goals, element: <GoalsPage /> },
