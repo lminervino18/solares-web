@@ -26,6 +26,7 @@ export function makeChampionship(partial: Partial<Championship> = {}): Champions
     slug: partial.slug ?? 'torneo',
     format: partial.format ?? 'f8',
     name: partial.name ?? 'Torneo',
+    published: partial.published ?? true,
     status: partial.status ?? 'completed',
     honorType: partial.honorType ?? 'unknown',
     trophyTier: partial.trophyTier ?? 'none',

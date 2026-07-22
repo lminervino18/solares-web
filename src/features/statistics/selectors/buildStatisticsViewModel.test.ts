@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest'
 
 import { loadChampionshipsSnapshot } from '@/features/championships/data/championshipsSnapshot'
+import type { ChampionshipsByFormat } from '@/features/championships/types/championships'
 import { buildStatisticsViewModel } from './buildStatisticsViewModel'
+import { makeChampionship, makeMatch } from './testFixtures'
 
 const { data } = loadChampionshipsSnapshot()
 
@@ -31,6 +33,58 @@ describe('buildStatisticsViewModel (snapshot integration)', () => {
     expect(general.titles).toBe(
       achievements.goldTitles + achievements.silverTitles + achievements.otherTitles,
     )
+  })
+
+  it('counts unpublished championships in match stats but not in tournaments or titles', () => {
+    const fixture: ChampionshipsByFormat = {
+      f8: [],
+      f5: [
+        makeChampionship({
+          format: 'f5',
+          published: true,
+          honorType: 'gold-champion',
+          stats: {
+            played: 1,
+            won: 1,
+            drawn: 0,
+            lost: 0,
+            goalsFor: 3,
+            goalsAgainst: 0,
+            goalDifference: 3,
+          },
+          matches: [
+            makeMatch({
+              format: 'f5',
+              goalsFor: 3,
+              goalsAgainst: 0,
+              scorers: [{ name: 'Ana', goals: 3 }],
+            }),
+          ],
+        }),
+        makeChampionship({
+          id: 'f5-verano',
+          format: 'f5',
+          name: 'Verano 2026',
+          published: false,
+          matches: [
+            makeMatch({
+              format: 'f5',
+              goalsFor: 2,
+              goalsAgainst: 1,
+              scorers: [{ name: 'Ana', goals: 2 }],
+            }),
+          ],
+        }),
+      ],
+    }
+
+    const vm = buildStatisticsViewModel(fixture, 'f5')
+    expect(vm.general.matchesPlayed).toBe(2)
+    expect(vm.general.goalsFor).toBe(5)
+    expect(vm.general.tournamentsPlayed).toBe(1)
+    expect(vm.general.titles).toBe(1)
+    expect(vm.tournaments).toHaveLength(1)
+    expect(vm.scorers[0]).toMatchObject({ playerName: 'Ana', goals: 5 })
   })
 
   it('ranks the historical scorers by goals', () => {

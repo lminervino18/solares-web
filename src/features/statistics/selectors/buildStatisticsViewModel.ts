@@ -21,24 +21,29 @@ export function buildStatisticsViewModel(
   data: ChampionshipsByFormat,
   scope: StatisticsScope,
 ): StatisticsViewModel {
-  const championships = data[scope]
-  const scorers = selectHistoricalScorers(championships)
-  const tournaments = selectTournamentStatistics(championships)
+  // Pooled match statistics use all championships (including unpublished
+  // editions such as "Verano"); tournament counts, titles and the per-tournament
+  // comparison use only published championships.
+  const all = data[scope]
+  const published = all.filter((championship) => championship.published)
+
+  const scorers = selectHistoricalScorers(all)
+  const tournaments = selectTournamentStatistics(published)
 
   return {
     scope,
-    general: selectGeneralStatistics(championships),
-    achievements: selectAchievements(championships),
+    general: selectGeneralStatistics(all, published),
+    achievements: selectAchievements(published),
     scorers,
     knockoutScorers: selectKnockoutScorers(scorers),
     tournaments,
-    streaks: selectStreaks(championships),
-    opponents: selectOpponents(championships),
-    venues: selectVenues(championships),
-    kickoffTimes: selectKickoffTimes(championships),
-    records: selectRecords(championships),
-    cleanSheets: selectCleanSheets(championships),
-    annual: selectAnnual(championships),
+    streaks: selectStreaks(all),
+    opponents: selectOpponents(all),
+    venues: selectVenues(all),
+    kickoffTimes: selectKickoffTimes(all),
+    records: selectRecords(all),
+    cleanSheets: selectCleanSheets(all),
+    annual: selectAnnual(all),
     extra: selectExtra(scorers, tournaments),
   }
 }

@@ -9,8 +9,11 @@ import { selectAchievements } from './selectAchievements'
  * Only played matches are counted, so `matchesPlayed === won + drawn + lost`.
  * Rates and averages are `undefined` when there are no matches (never `NaN`).
  */
-export function selectGeneralStatistics(championships: readonly Championship[]): GeneralStatistics {
-  const played = collectPlayedMatches(championships)
+export function selectGeneralStatistics(
+  all: readonly Championship[],
+  published: readonly Championship[],
+): GeneralStatistics {
+  const played = collectPlayedMatches(all)
 
   let won = 0
   let drawn = 0
@@ -29,7 +32,7 @@ export function selectGeneralStatistics(championships: readonly Championship[]):
   }
 
   const matchesPlayed = won + drawn + lost
-  const tournamentsPlayed = championships.filter((championship) =>
+  const tournamentsPlayed = published.filter((championship) =>
     championship.matches.some(
       (match) =>
         (match.outcome === 'win' || match.outcome === 'draw' || match.outcome === 'loss') &&
@@ -38,11 +41,11 @@ export function selectGeneralStatistics(championships: readonly Championship[]):
     ),
   ).length
 
-  const achievements = selectAchievements(championships)
+  const achievements = selectAchievements(published)
 
   return {
     tournamentsPlayed,
-    tournamentsRegistered: championships.length,
+    tournamentsRegistered: published.length,
     titles: achievements.titles,
     goldTitles: achievements.goldTitles,
     silverTitles: achievements.silverTitles,
