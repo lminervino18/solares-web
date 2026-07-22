@@ -4,6 +4,8 @@ import flagJpg from '@/assets/solares/brand/flag.jpg'
 import flagWebp from '@/assets/solares/brand/flag.webp'
 import currentCrestPng from '@/assets/solares/brand/current-crest.png'
 import currentCrestWebp from '@/assets/solares/brand/current-crest.webp'
+import logoIconPng from '@/assets/solares/brand/icon.png'
+import logoIconWebp from '@/assets/solares/brand/icon.webp'
 
 export const flag: PictureSource = {
   src: flagJpg,
@@ -19,4 +21,12 @@ export const currentCrestImage: PictureSource = {
   width: 414,
   height: 485,
   alt: 'Escudo actual de Solares: un escudo violeta con una cabeza de toro, dos estrellas y laureles dorados.',
+}
+
+export const logoIcon: PictureSource = {
+  src: logoIconPng,
+  webp: logoIconWebp,
+  width: 256,
+  height: 256,
+  alt: 'Solares',
 }
