@@ -11,6 +11,7 @@ function match(partial: Partial<Match>): Match {
     sourceOrder: 0,
     opponent: 'Rival',
     outcome: 'win',
+    scorers: [],
     isFinal: false,
     ...partial,
   }

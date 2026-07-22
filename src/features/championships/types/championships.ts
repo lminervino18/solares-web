@@ -36,6 +36,11 @@ export type ChampionshipAssets = {
   readonly objectPosition?: string
 }
 
+export type MatchScorer = {
+  readonly name: string
+  readonly goals: number
+}
+
 export type Match = {
   readonly id: string
   readonly championshipId: string
@@ -49,6 +54,7 @@ export type Match = {
   readonly goalsAgainst?: number
   readonly outcome: MatchOutcome
   readonly scoreLabel?: string
+  readonly scorers: readonly MatchScorer[]
   readonly isFinal: boolean
   readonly youtubeUrl?: string
 }

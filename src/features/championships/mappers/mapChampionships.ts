@@ -9,6 +9,7 @@ import { CHAMPIONSHIP_ALIASES, findChampionshipOverride } from '../data/champion
 import { calculateChampionshipStats } from '../utils/calculateChampionshipStats'
 import { mapChampionshipHonor } from '../utils/mapChampionshipHonor'
 import { slugify } from '../utils/normalizeCellValue'
+import { parseGoalscorers } from '../utils/parseGoalscorers'
 import { parseSeasonName } from '../utils/parseSeasonName'
 import { parseYouTubeUrl } from '../utils/parseYouTubeUrl'
 import { readString, type SheetData } from '../utils/readSheetTable'
@@ -80,6 +81,7 @@ function buildMatch(raw: RawMatch, championshipId: string, format: FootballForma
     opponent: raw.opponent,
     outcome: raw.outcome,
     isFinal: raw.isFinal,
+    scorers: parseGoalscorers(raw.scorersRaw),
     ...(raw.date ? { date: raw.date } : {}),
     ...(raw.stage ? { stage: raw.stage } : {}),
     ...(raw.venue ? { venue: raw.venue } : {}),

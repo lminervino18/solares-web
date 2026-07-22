@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-07-22T16:28:22.899Z",
+  "syncedAt": "2026-07-22T17:01:26.270Z",
   "championships": [
     {
       "id": "f8-clausura-2025",
@@ -23,6 +23,20 @@
           "opponent": "Bong",
           "outcome": "draw",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Martin Uraga",
+              "goals": 1
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 2
+            }
+          ],
           "date": "2025-09-08",
           "stage": "Regular",
           "venue": "SB5",
@@ -38,6 +52,12 @@
           "opponent": "Falta Compromiso",
           "outcome": "draw",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lautaro Mariani",
+              "goals": 2
+            }
+          ],
           "date": "2025-09-15",
           "stage": "Regular",
           "venue": "SB5",
@@ -53,6 +73,12 @@
           "opponent": "Genova",
           "outcome": "draw",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Mauro Gonzalez",
+              "goals": 2
+            }
+          ],
           "date": "2025-09-22",
           "stage": "Regular",
           "venue": "Platense",
@@ -68,6 +94,20 @@
           "opponent": "Deportivo Carioca",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Bruno Palacios",
+              "goals": 1
+            },
+            {
+              "name": "Gerardo Aguiar",
+              "goals": 1
+            },
+            {
+              "name": "Lautaro Montamat",
+              "goals": 1
+            }
+          ],
           "date": "2025-09-29",
           "stage": "Regular",
           "venue": "Platense",
@@ -83,6 +123,16 @@
           "opponent": "FSN",
           "outcome": "draw",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Mauro Gonzalez",
+              "goals": 1
+            },
+            {
+              "name": "Joel Pereira",
+              "goals": 1
+            }
+          ],
           "date": "2025-10-06",
           "stage": "Regular",
           "venue": "El Campito",
@@ -98,6 +148,32 @@
           "opponent": "Bien Chilo",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Mauro Gonzalez",
+              "goals": 3
+            },
+            {
+              "name": "Agustin Di Yacovo",
+              "goals": 3
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 2
+            },
+            {
+              "name": "Gerardo Aguiar",
+              "goals": 2
+            },
+            {
+              "name": "Francisco Uraga",
+              "goals": 1
+            },
+            {
+              "name": "Martin Uraga",
+              "goals": 1
+            }
+          ],
           "date": "2025-10-13",
           "stage": "Regular",
           "venue": "Platense",
@@ -113,6 +189,20 @@
           "opponent": "Classic VIII",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Gian Poma",
+              "goals": 1
+            },
+            {
+              "name": "Matias Boland",
+              "goals": 1
+            },
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            }
+          ],
           "date": "2025-10-20",
           "stage": "Regular",
           "venue": "Platense",
@@ -128,6 +218,20 @@
           "opponent": "Talento De Barrio",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            },
+            {
+              "name": "Mauro Gonzalez",
+              "goals": 1
+            }
+          ],
           "date": "2025-10-27",
           "stage": "Regular",
           "venue": "Platense",
@@ -143,6 +247,12 @@
           "opponent": "Burkina Faso",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Mauro Gonzalez",
+              "goals": 1
+            }
+          ],
           "date": "2025-11-03",
           "stage": "Regular",
           "venue": "Platense",
@@ -158,6 +268,20 @@
           "opponent": "La Francia",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 6
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 2
+            },
+            {
+              "name": "Ariel Atienza",
+              "goals": 1
+            }
+          ],
           "date": "2025-11-17",
           "stage": "Regular",
           "venue": "Platense",
@@ -173,6 +297,24 @@
           "opponent": "Classic VIII",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 2
+            },
+            {
+              "name": "Mauro Gonzalez",
+              "goals": 1
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            }
+          ],
           "date": "2025-12-01",
           "stage": "Cuartos",
           "venue": "El Campito",
@@ -188,6 +330,16 @@
           "opponent": "Genova",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            },
+            {
+              "name": "Mauro Gonzalez",
+              "goals": 1
+            }
+          ],
           "date": "2025-12-08",
           "stage": "Semifinal",
           "venue": "Platense",
@@ -203,6 +355,7 @@
           "opponent": "Burkina Faso",
           "outcome": "loss",
           "isFinal": true,
+          "scorers": [],
           "date": "2025-12-15",
           "stage": "Final",
           "venue": "Platense",
@@ -351,6 +504,24 @@
           "opponent": "Docta",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Pablo Kunz",
+              "goals": 6
+            },
+            {
+              "name": "Ariel Atienza",
+              "goals": 1
+            },
+            {
+              "name": "Bruno Palacios",
+              "goals": 1
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 1
+            }
+          ],
           "date": "2025-04-14",
           "stage": "Regular",
           "venue": "SB5",
@@ -366,6 +537,36 @@
           "opponent": "Impala",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Pablo Kunz",
+              "goals": 7
+            },
+            {
+              "name": "Bruno Palacios",
+              "goals": 3
+            },
+            {
+              "name": "Santiago Peñoñori",
+              "goals": 2
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 2
+            },
+            {
+              "name": "Adrian Atienza",
+              "goals": 2
+            },
+            {
+              "name": "Martin Uraga",
+              "goals": 1
+            },
+            {
+              "name": "Luca Crivaro",
+              "goals": 1
+            }
+          ],
           "date": "2025-04-21",
           "stage": "Regular",
           "venue": "SB5",
@@ -381,6 +582,36 @@
           "opponent": "Maquina Del Mal",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Fernando Aguila",
+              "goals": 3
+            },
+            {
+              "name": "Lautaro Mariani",
+              "goals": 2
+            },
+            {
+              "name": "Matias Montamat",
+              "goals": 2
+            },
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            },
+            {
+              "name": "Bruno Palacios",
+              "goals": 1
+            },
+            {
+              "name": "Luca Crivaro",
+              "goals": 1
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            }
+          ],
           "date": "2025-05-05",
           "stage": "Regular",
           "venue": "El Campito",
@@ -396,6 +627,12 @@
           "opponent": "San Toque II",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Francisco Uraga",
+              "goals": 1
+            }
+          ],
           "date": "2025-05-12",
           "stage": "Regular",
           "venue": "SB5",
@@ -411,6 +648,12 @@
           "opponent": "Fuerza de Areco",
           "outcome": "draw",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Martin Uraga",
+              "goals": 1
+            }
+          ],
           "date": "2025-06-02",
           "stage": "Regular",
           "venue": "SB5",
@@ -426,6 +669,24 @@
           "opponent": "Deportivo Carioca",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lautaro Mariani",
+              "goals": 2
+            },
+            {
+              "name": "Adrian Atienza",
+              "goals": 1
+            },
+            {
+              "name": "Bruno Palacios",
+              "goals": 1
+            },
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            }
+          ],
           "date": "2025-06-09",
           "stage": "Regular",
           "venue": "SB5",
@@ -441,6 +702,32 @@
           "opponent": "Jag",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lautaro Mariani",
+              "goals": 4
+            },
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 4
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 2
+            },
+            {
+              "name": "Martin Uraga",
+              "goals": 1
+            },
+            {
+              "name": "Bruno Palacios",
+              "goals": 1
+            },
+            {
+              "name": "Luca Crivaro",
+              "goals": 1
+            }
+          ],
           "date": "2025-06-23",
           "stage": "Regular",
           "venue": "SB5",
@@ -456,6 +743,12 @@
           "opponent": "Bong",
           "outcome": "draw",
           "isFinal": true,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            }
+          ],
           "date": "2025-07-04",
           "stage": "Final",
           "venue": "Platense",
@@ -471,6 +764,16 @@
           "opponent": "Pancho's Club",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            },
+            {
+              "name": "Lautaro Mariani",
+              "goals": 1
+            }
+          ],
           "date": "2025-07-07",
           "stage": "Regular",
           "venue": "Platense",
@@ -486,6 +789,20 @@
           "opponent": "San Toque II",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 4
+            },
+            {
+              "name": "Agustin Arbanesi",
+              "goals": 2
+            },
+            {
+              "name": "Gerardo Aguiar",
+              "goals": 2
+            }
+          ],
           "date": "2025-07-21",
           "stage": "Cuartos",
           "venue": "SB5",
@@ -501,6 +818,20 @@
           "opponent": "Deportivo Carioca",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            },
+            {
+              "name": "Gerardo Aguiar",
+              "goals": 1
+            },
+            {
+              "name": "Agustin Diaz",
+              "goals": 1
+            }
+          ],
           "date": "2025-07-27",
           "stage": "Semifinal",
           "venue": "SB5",
@@ -663,6 +994,24 @@
           "opponent": "Docta",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lucas Iriarte",
+              "goals": 1
+            },
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            },
+            {
+              "name": "Martin Uraga",
+              "goals": 1
+            }
+          ],
           "date": "2024-09-02",
           "stage": "Regular",
           "venue": "El Campito",
@@ -678,6 +1027,24 @@
           "opponent": "Plinio",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Santiago Peñoñori",
+              "goals": 2
+            },
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            },
+            {
+              "name": "Lucas Pranteda",
+              "goals": 2
+            },
+            {
+              "name": "Martin Uraga",
+              "goals": 1
+            }
+          ],
           "date": "2024-09-09",
           "stage": "Regular",
           "venue": "Platense",
@@ -693,6 +1060,24 @@
           "opponent": "Deportivo Carioca",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 3
+            },
+            {
+              "name": "Lucas Pranteda",
+              "goals": 2
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            },
+            {
+              "name": "Luca Crivaro",
+              "goals": 1
+            }
+          ],
           "date": "2024-09-16",
           "stage": "Regular",
           "venue": "El Campito",
@@ -708,6 +1093,24 @@
           "opponent": "Impala",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lucas Pranteda",
+              "goals": 2
+            },
+            {
+              "name": "Lautaro Mariani",
+              "goals": 1
+            },
+            {
+              "name": "Ary Martinez",
+              "goals": 1
+            },
+            {
+              "name": "Martin Uraga",
+              "goals": 1
+            }
+          ],
           "date": "2024-09-23",
           "stage": "Regular",
           "venue": "Platense",
@@ -723,6 +1126,16 @@
           "opponent": "Barbie Queen",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Matias Montamat",
+              "goals": 1
+            }
+          ],
           "date": "2024-09-30",
           "stage": "Regular",
           "venue": "Banco Futbol",
@@ -738,6 +1151,7 @@
           "opponent": "Los Wares",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [],
           "date": "2024-10-07",
           "stage": "Regular",
           "venue": "El Campito",
@@ -753,6 +1167,24 @@
           "opponent": "Los Changos",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            },
+            {
+              "name": "Martin Uraga",
+              "goals": 1
+            },
+            {
+              "name": "Lucas Pranteda",
+              "goals": 1
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            }
+          ],
           "date": "2024-10-14",
           "stage": "Regular",
           "venue": "Banco Futbol",
@@ -768,6 +1200,16 @@
           "opponent": "La 9",
           "outcome": "draw",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Francisco Uraga",
+              "goals": 1
+            },
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            }
+          ],
           "date": "2024-10-21",
           "stage": "Regular",
           "venue": "Platense",
@@ -783,6 +1225,28 @@
           "opponent": "Los Amigos de Lucas",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Ary Martinez",
+              "goals": 1
+            },
+            {
+              "name": "Juan Mairano",
+              "goals": 1
+            },
+            {
+              "name": "Martin Uraga",
+              "goals": 1
+            },
+            {
+              "name": "Chango",
+              "goals": 1
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            }
+          ],
           "date": "2024-10-28",
           "stage": "Regular",
           "venue": "Platense",
@@ -798,6 +1262,12 @@
           "opponent": "Costa Buerito",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Ariel Atienza",
+              "goals": 1
+            }
+          ],
           "date": "2024-11-04",
           "stage": "Regular",
           "venue": "El Campito",
@@ -813,6 +1283,20 @@
           "opponent": "Fuerza de Areco",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Juan Mairano",
+              "goals": 1
+            },
+            {
+              "name": "Yoel Brandan",
+              "goals": 1
+            },
+            {
+              "name": "Matias Montamat",
+              "goals": 1
+            }
+          ],
           "date": "2024-11-11",
           "stage": "Regular",
           "venue": "Platense",
@@ -828,6 +1312,7 @@
           "opponent": "La Sardineta",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [],
           "date": "2024-11-18",
           "stage": "Regular",
           "venue": "Platense",
@@ -843,6 +1328,20 @@
           "opponent": "La Cumbancha",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Ariel Atienza",
+              "goals": 1
+            },
+            {
+              "name": "Matias Montamat",
+              "goals": 1
+            },
+            {
+              "name": "Luca Crivaro",
+              "goals": 1
+            }
+          ],
           "date": "2024-11-25",
           "stage": "Regular",
           "venue": "Platense",
@@ -858,6 +1357,12 @@
           "opponent": "Docta",
           "outcome": "draw",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Luca Crivaro",
+              "goals": 1
+            }
+          ],
           "date": "2024-12-02",
           "stage": "Cuartos",
           "venue": "Platense",
@@ -873,6 +1378,16 @@
           "opponent": "Costa Buerito",
           "outcome": "draw",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Luca Ratto",
+              "goals": 2
+            },
+            {
+              "name": "Luca Crivaro",
+              "goals": 1
+            }
+          ],
           "date": "2024-12-09",
           "stage": "Semifinal",
           "venue": "Platense",
@@ -1028,6 +1543,32 @@
           "opponent": "Ayudin",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 2
+            },
+            {
+              "name": "Ary Martinez",
+              "goals": 1
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            },
+            {
+              "name": "Matias Pueblas",
+              "goals": 1
+            },
+            {
+              "name": "Lautaro Mariani",
+              "goals": 1
+            }
+          ],
           "date": "2024-03-09",
           "stage": "Regular",
           "venue": "KDT",
@@ -1043,6 +1584,12 @@
           "opponent": "Straight Flush",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Ary Martinez",
+              "goals": 1
+            }
+          ],
           "date": "2024-03-16",
           "stage": "Regular",
           "venue": "Retiro Futbol",
@@ -1058,6 +1605,20 @@
           "opponent": "Provoleta",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            },
+            {
+              "name": "Luca Crivaro",
+              "goals": 1
+            },
+            {
+              "name": "Ary Martinez",
+              "goals": 1
+            }
+          ],
           "date": "2024-03-23",
           "stage": "Regular",
           "venue": "KDT",
@@ -1073,6 +1634,16 @@
           "opponent": "Los Soldados De Gabriel",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Matias Pueblas",
+              "goals": 1
+            }
+          ],
           "date": "2024-04-06",
           "stage": "Regular",
           "venue": "KDT",
@@ -1088,6 +1659,7 @@
           "opponent": "Palermo FS",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [],
           "date": "2024-04-20",
           "stage": "Regular",
           "venue": "KDT",
@@ -1103,6 +1675,20 @@
           "opponent": "Nestor Old Boys",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lucas Iriarte",
+              "goals": 1
+            },
+            {
+              "name": "Ary Martinez",
+              "goals": 1
+            },
+            {
+              "name": "Matias Montamat",
+              "goals": 4
+            }
+          ],
           "date": "2024-04-27",
           "stage": "Regular",
           "venue": "Retiro Futbol",
@@ -1118,6 +1704,16 @@
           "opponent": "Barsa Del Pueblo",
           "outcome": "draw",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Francisco Uraga",
+              "goals": 1
+            },
+            {
+              "name": "Luca Ratto",
+              "goals": 1
+            }
+          ],
           "date": "2024-05-11",
           "stage": "Regular",
           "venue": "KDT",
@@ -1133,6 +1729,16 @@
           "opponent": "Humildad y Talento",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Luca Ratto",
+              "goals": 1
+            },
+            {
+              "name": "Nicolas Molina",
+              "goals": 1
+            }
+          ],
           "date": "2024-05-18",
           "stage": "Regular",
           "venue": "Retiro Futbol",
@@ -1148,6 +1754,12 @@
           "opponent": "Jager Munich",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lautaro Mariani",
+              "goals": 1
+            }
+          ],
           "date": "2024-06-01",
           "stage": "Regular",
           "venue": "Retiro Futbol",
@@ -1163,6 +1775,20 @@
           "opponent": "Provoleta",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            },
+            {
+              "name": "Juan Mairano",
+              "goals": 1
+            },
+            {
+              "name": "Rubén Pachilla",
+              "goals": 1
+            }
+          ],
           "date": "2024-06-08",
           "stage": "Semifinal",
           "venue": "KDT",
@@ -1178,6 +1804,16 @@
           "opponent": "Los Soldados De Gabriel",
           "outcome": "loss",
           "isFinal": true,
+          "scorers": [
+            {
+              "name": "Juan Mairano",
+              "goals": 1
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            }
+          ],
           "date": "2024-06-29",
           "stage": "Final",
           "venue": "KDT",
@@ -1312,6 +1948,16 @@
           "opponent": "Escuela Bilardista",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Francisco Uraga",
+              "goals": 1
+            }
+          ],
           "date": "2023-08-14",
           "stage": "Regular",
           "venue": "Noble",
@@ -1327,6 +1973,24 @@
           "opponent": "La Chola",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 3
+            },
+            {
+              "name": "Lautaro Mariani",
+              "goals": 3
+            },
+            {
+              "name": "Ary Martinez",
+              "goals": 1
+            },
+            {
+              "name": "Santiago Peñoñori",
+              "goals": 1
+            }
+          ],
           "date": "2023-08-28",
           "stage": "Regular",
           "venue": "Noble",
@@ -1342,6 +2006,24 @@
           "opponent": "La Sardineta",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            },
+            {
+              "name": "Francisco Uraga",
+              "goals": 1
+            },
+            {
+              "name": "Agustin Fernandez",
+              "goals": 1
+            },
+            {
+              "name": "Santiago Peñoñori",
+              "goals": 1
+            }
+          ],
           "date": "2023-09-04",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1357,6 +2039,7 @@
           "opponent": "Prohibido No Tocar",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [],
           "date": "2023-09-11",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1372,6 +2055,24 @@
           "opponent": "El Campus",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Lautaro Mariani",
+              "goals": 2
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            },
+            {
+              "name": "Ary Martinez",
+              "goals": 1
+            }
+          ],
           "date": "2023-09-18",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1387,6 +2088,28 @@
           "opponent": "PCH",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 3
+            },
+            {
+              "name": "Lautaro Mariani",
+              "goals": 1
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            },
+            {
+              "name": "Francisco Uraga",
+              "goals": 1
+            },
+            {
+              "name": "Santiago Peñoñori",
+              "goals": 1
+            }
+          ],
           "date": "2023-09-25",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1402,6 +2125,16 @@
           "opponent": "San Diego",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lautaro Mariani",
+              "goals": 1
+            },
+            {
+              "name": "Francisco Uraga",
+              "goals": 1
+            }
+          ],
           "date": "2023-10-02",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1417,6 +2150,24 @@
           "opponent": "Legal",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lautaro Mariani",
+              "goals": 2
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 2
+            },
+            {
+              "name": "Santiago Peñoñori",
+              "goals": 1
+            },
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            }
+          ],
           "date": "2023-10-09",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1432,6 +2183,28 @@
           "opponent": "Munich",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lautaro Mariani",
+              "goals": 2
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            },
+            {
+              "name": "Santiago Peñoñori",
+              "goals": 1
+            },
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            },
+            {
+              "name": "Francisco Uraga",
+              "goals": 1
+            }
+          ],
           "date": "2023-10-30",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1447,6 +2220,7 @@
           "opponent": "KFC",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [],
           "date": "2023-11-13",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1462,6 +2236,16 @@
           "opponent": "Ferrito",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            },
+            {
+              "name": "Francisco Garcia",
+              "goals": 1
+            }
+          ],
           "date": "2023-11-27",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1477,6 +2261,24 @@
           "opponent": "San Diego",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Lautaro Mariani",
+              "goals": 1
+            },
+            {
+              "name": "Juancito Franco",
+              "goals": 1
+            },
+            {
+              "name": "Francisco Uraga",
+              "goals": 1
+            }
+          ],
           "date": "2023-12-11",
           "stage": "Semifinal",
           "venue": "GEBA",
@@ -1492,6 +2294,16 @@
           "opponent": "Prohibido No Tocar",
           "outcome": "win",
           "isFinal": true,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Nicolas Conti",
+              "goals": 2
+            }
+          ],
           "date": "2023-12-21",
           "stage": "Final",
           "venue": "Noble",
@@ -1610,6 +2422,16 @@
           "opponent": "Munich",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            },
+            {
+              "name": "Agustin Prieto",
+              "goals": 1
+            }
+          ],
           "date": "2023-03-20",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1625,6 +2447,16 @@
           "opponent": "El Reju",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Lautaro Mariani",
+              "goals": 2
+            }
+          ],
           "date": "2023-03-27",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1640,6 +2472,24 @@
           "opponent": "Migraciones",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            },
+            {
+              "name": "Juan Santos",
+              "goals": 1
+            },
+            {
+              "name": "Agustin Fernandez",
+              "goals": 1
+            },
+            {
+              "name": "Lautaro Mariani",
+              "goals": 1
+            }
+          ],
           "date": "2023-04-03",
           "stage": "Regular",
           "venue": "Noble",
@@ -1655,6 +2505,24 @@
           "opponent": "Samples",
           "outcome": "draw",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            },
+            {
+              "name": "Ary Martinez",
+              "goals": 1
+            },
+            {
+              "name": "Lautaro Mariani",
+              "goals": 1
+            },
+            {
+              "name": "Francisco Uraga",
+              "goals": 1
+            }
+          ],
           "date": "2023-04-10",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1670,6 +2538,20 @@
           "opponent": "El Campus",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Agustin Fernandez",
+              "goals": 1
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 2
+            }
+          ],
           "date": "2023-04-17",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1685,6 +2567,16 @@
           "opponent": "Cachengue",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            }
+          ],
           "date": "2023-04-24",
           "stage": "Regular",
           "venue": "Noble",
@@ -1700,6 +2592,24 @@
           "opponent": "La Chola",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            },
+            {
+              "name": "Ary Martinez",
+              "goals": 1
+            },
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Erik Guloyan",
+              "goals": 1
+            }
+          ],
           "date": "2023-05-08",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1715,6 +2625,24 @@
           "opponent": "El Bidon",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Francisco Garcia",
+              "goals": 2
+            },
+            {
+              "name": "Lautaro Mariani",
+              "goals": 2
+            },
+            {
+              "name": "Ary Martinez",
+              "goals": 1
+            },
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            }
+          ],
           "date": "2023-05-22",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1730,6 +2658,12 @@
           "opponent": "Green Team",
           "outcome": "draw",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Francisco Uraga",
+              "goals": 2
+            }
+          ],
           "date": "2023-05-29",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1745,6 +2679,7 @@
           "opponent": "San Diego",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [],
           "date": "2023-06-05",
           "stage": "Regular",
           "venue": "Noble",
@@ -1760,6 +2695,12 @@
           "opponent": "Prohibido No Tocar",
           "outcome": "draw",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lautaro Mariani",
+              "goals": 1
+            }
+          ],
           "date": "2023-06-12",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1775,6 +2716,7 @@
           "opponent": "Flamengo",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [],
           "date": "2023-06-26",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1790,6 +2732,12 @@
           "opponent": "Green Team",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            }
+          ],
           "date": "2023-07-03",
           "stage": "Semifinal",
           "venue": "GEBA",
@@ -1903,6 +2851,16 @@
           "opponent": "Laguna",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Bautista Montero",
+              "goals": 1
+            }
+          ],
           "date": "2022-08-10",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1918,6 +2876,24 @@
           "opponent": "Doña Tota",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Tobias Browne",
+              "goals": 1
+            },
+            {
+              "name": "Lautaro Mariani",
+              "goals": 1
+            },
+            {
+              "name": "Ary Martinez",
+              "goals": 1
+            }
+          ],
           "date": "2022-08-17",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1933,6 +2909,16 @@
           "opponent": "Uña Encarnada",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Thomas Casanova",
+              "goals": 1
+            },
+            {
+              "name": "Bautista Montero",
+              "goals": 1
+            }
+          ],
           "date": "2022-08-24",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1948,6 +2934,16 @@
           "opponent": "Surinam",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Agustin Prieto",
+              "goals": 2
+            },
+            {
+              "name": "Ary Martinez",
+              "goals": 1
+            }
+          ],
           "date": "2022-08-31",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1963,6 +2959,7 @@
           "opponent": "Defensa y Jodita",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [],
           "date": "2022-09-07",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1978,6 +2975,16 @@
           "opponent": "Pelegra",
           "outcome": "draw",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            },
+            {
+              "name": "Tobias Browne",
+              "goals": 1
+            }
+          ],
           "date": "2022-09-14",
           "stage": "Regular",
           "venue": "GEBA",
@@ -1993,6 +3000,12 @@
           "opponent": "Sibiribong",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            }
+          ],
           "date": "2022-09-21",
           "stage": "Regular",
           "venue": "GEBA",
@@ -2008,6 +3021,16 @@
           "opponent": "Tricky",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 3
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 2
+            }
+          ],
           "date": "2022-10-05",
           "stage": "Regular",
           "venue": "GEBA",
@@ -2023,6 +3046,12 @@
           "opponent": "3er Tiempo",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            }
+          ],
           "date": "2022-10-12",
           "stage": "Regular",
           "venue": "GEBA",
@@ -2038,6 +3067,12 @@
           "opponent": "Defensa y Jodita",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Matias Pueblas",
+              "goals": 1
+            }
+          ],
           "date": "2022-10-19",
           "stage": "Semifinal",
           "venue": "GEBA",
@@ -2053,6 +3088,24 @@
           "opponent": "3er Tiempo",
           "outcome": "win",
           "isFinal": true,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            },
+            {
+              "name": "Angelo Alessi",
+              "goals": 1
+            },
+            {
+              "name": "Bautista Montero",
+              "goals": 1
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            }
+          ],
           "date": "2022-10-26",
           "stage": "Final",
           "venue": "GEBA",
@@ -2166,6 +3219,28 @@
           "opponent": "Elfos",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lautaro Mariani",
+              "goals": 1
+            },
+            {
+              "name": "Francisco Garcia",
+              "goals": 2
+            },
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            },
+            {
+              "name": "Bautista Montero",
+              "goals": 1
+            }
+          ],
           "date": "2022-04-04",
           "stage": "Regular",
           "venue": "GEBA",
@@ -2181,6 +3256,7 @@
           "opponent": "Duendes",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [],
           "date": "2022-04-11",
           "stage": "Regular",
           "venue": "Noble",
@@ -2196,6 +3272,12 @@
           "opponent": "Salguero",
           "outcome": "draw",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            }
+          ],
           "date": "2022-04-25",
           "stage": "Regular",
           "venue": "Noble",
@@ -2211,6 +3293,16 @@
           "opponent": "Oveja",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Francisco Garcia",
+              "goals": 2
+            },
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            }
+          ],
           "date": "2022-04-25",
           "stage": "Semifinal",
           "venue": "Noble",
@@ -2226,6 +3318,24 @@
           "opponent": "Oveja",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            },
+            {
+              "name": "Bautista Montero",
+              "goals": 1
+            },
+            {
+              "name": "Francisco Garcia",
+              "goals": 1
+            },
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            }
+          ],
           "date": "2022-05-02",
           "stage": "Regular",
           "venue": "Noble",
@@ -2241,6 +3351,16 @@
           "opponent": "El Reju",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Martin Uraga",
+              "goals": 1
+            },
+            {
+              "name": "Santiago Maretto",
+              "goals": 1
+            }
+          ],
           "date": "2022-05-09",
           "stage": "Regular",
           "venue": "Noble",
@@ -2256,6 +3376,24 @@
           "opponent": "San Diego",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lautaro Mariani",
+              "goals": 1
+            },
+            {
+              "name": "Bautista Montero",
+              "goals": 1
+            },
+            {
+              "name": "Francisco Garcia",
+              "goals": 1
+            },
+            {
+              "name": "Martin Uraga",
+              "goals": 1
+            }
+          ],
           "date": "2022-05-23",
           "stage": "Regular",
           "venue": "Noble",
@@ -2271,6 +3409,12 @@
           "opponent": "Duendes",
           "outcome": "loss",
           "isFinal": true,
+          "scorers": [
+            {
+              "name": "Francisco Garcia",
+              "goals": 2
+            }
+          ],
           "date": "2022-06-06",
           "stage": "Final",
           "venue": "Noble",
@@ -2363,6 +3507,24 @@
           "opponent": "Eduke",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 8
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 3
+            },
+            {
+              "name": "Luca Crivaro",
+              "goals": 3
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            }
+          ],
           "date": "2026-03-28",
           "stage": "Regular",
           "venue": "Open Atlanta",
@@ -2378,6 +3540,16 @@
           "opponent": "Atletico Funebrero",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 11
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 3
+            }
+          ],
           "date": "2026-04-11",
           "stage": "Regular",
           "venue": "Open Atlanta",
@@ -2393,6 +3565,20 @@
           "opponent": "Los Pitbull del Botanico",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 1
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 3
+            }
+          ],
           "date": "2026-04-18",
           "stage": "Regular",
           "venue": "Open Atlanta",
@@ -2408,6 +3594,16 @@
           "opponent": "Real Bañil",
           "outcome": "draw",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 2
+            }
+          ],
           "date": "2026-04-25",
           "stage": "Regular",
           "venue": "Open Atlanta",
@@ -2423,6 +3619,16 @@
           "opponent": "Linaje",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Leandro Castillo",
+              "goals": 2
+            },
+            {
+              "name": "Santiago Peñoñori",
+              "goals": 1
+            }
+          ],
           "date": "2026-05-02",
           "stage": "Regular",
           "venue": "Open Atlanta",
@@ -2438,6 +3644,24 @@
           "opponent": "IAF",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Stefano Tricarico",
+              "goals": 1
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 2
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 2
+            },
+            {
+              "name": "Leandro Castillo",
+              "goals": 1
+            }
+          ],
           "date": "2026-05-09",
           "stage": "Regular",
           "venue": "Open Atlanta",
@@ -2453,6 +3677,20 @@
           "opponent": "Maestricos",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Leandro Castillo",
+              "goals": 2
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 2
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 1
+            }
+          ],
           "date": "2026-05-16",
           "stage": "Regular",
           "venue": "Open Atlanta",
@@ -2468,6 +3706,24 @@
           "opponent": "Norteños",
           "outcome": "draw",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Nazareno Diaz",
+              "goals": 2
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 2
+            },
+            {
+              "name": "Tiago Baca",
+              "goals": 1
+            },
+            {
+              "name": "Leandro Castillo",
+              "goals": 1
+            }
+          ],
           "date": "2026-05-23",
           "stage": "Regular",
           "venue": "Open Atlanta",
@@ -2483,6 +3739,28 @@
           "opponent": "La Pelota No Se Mancha",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Leandro Castillo",
+              "goals": 2
+            },
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Bruno Portinho",
+              "goals": 2
+            },
+            {
+              "name": "Santiago Peñoñori",
+              "goals": 1
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            }
+          ],
           "date": "2026-05-30",
           "stage": "Regular",
           "venue": "Open Atlanta",
@@ -2498,6 +3776,24 @@
           "opponent": "Atletico Zulia",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Ruben Pachilla",
+              "goals": 1
+            },
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 8
+            },
+            {
+              "name": "Bruno Portinho",
+              "goals": 5
+            },
+            {
+              "name": "Gaston Aguilera",
+              "goals": 1
+            }
+          ],
           "date": "2026-06-06",
           "stage": "Regular",
           "venue": "Open Atlanta",
@@ -2513,6 +3809,28 @@
           "opponent": "Manchester de Unare",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 5
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 2
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            },
+            {
+              "name": "Bruno Portinho",
+              "goals": 1
+            },
+            {
+              "name": "Giuliano Staffieri",
+              "goals": 2
+            }
+          ],
           "date": "2026-06-13",
           "stage": "Regular",
           "venue": "Open Atlanta",
@@ -2528,6 +3846,16 @@
           "opponent": "Manchester de Unare",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 1
+            }
+          ],
           "date": "2026-06-20",
           "stage": "Cuartos",
           "venue": "Open Atlanta",
@@ -2543,6 +3871,24 @@
           "opponent": "Real Bañil",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 1
+            },
+            {
+              "name": "Giuliano Staffieri",
+              "goals": 1
+            },
+            {
+              "name": "Leandro Castillo",
+              "goals": 1
+            }
+          ],
           "date": "2026-06-27",
           "stage": "Semifinal",
           "venue": "Open Atlanta",
@@ -2558,6 +3904,28 @@
           "opponent": "Los Pitbull del Botanico",
           "outcome": "win",
           "isFinal": true,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 2
+            },
+            {
+              "name": "Giuliano Staffieri",
+              "goals": 1
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 1
+            },
+            {
+              "name": "Leandro Castillo",
+              "goals": 2
+            }
+          ],
           "date": "2026-07-04",
           "stage": "Final",
           "venue": "Open Atlanta",
@@ -2668,7 +4036,12 @@
         "goalsAgainst": 38,
         "goalDifference": 70
       },
-      "assets": {}
+      "assets": {},
+      "finalVideo": {
+        "videoId": "2rC7bduhIC8",
+        "url": "https://www.youtube.com/watch?v=2rC7bduhIC8",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/2rC7bduhIC8"
+      }
     },
     {
       "id": "f5-clausura-2025",
@@ -2692,6 +4065,24 @@
           "opponent": "Arequipa",
           "outcome": "draw",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lucas Iriarte",
+              "goals": 3
+            },
+            {
+              "name": "Agustin Di Yacovo",
+              "goals": 2
+            },
+            {
+              "name": "Leandro Castillo",
+              "goals": 2
+            },
+            {
+              "name": "Luca Crivaro",
+              "goals": 1
+            }
+          ],
           "date": "2025-08-20",
           "stage": "Regular",
           "venue": "Jose Hernandez",
@@ -2707,6 +4098,28 @@
           "opponent": "L-GANTE Sport",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Agustin Di Yacovo",
+              "goals": 5
+            },
+            {
+              "name": "Luca Crivaro",
+              "goals": 3
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 3
+            },
+            {
+              "name": "Leandro Castillo",
+              "goals": 3
+            },
+            {
+              "name": "Stefano Tricarico",
+              "goals": 1
+            }
+          ],
           "date": "2025-08-27",
           "stage": "Regular",
           "venue": "Jose Hernandez",
@@ -2722,6 +4135,28 @@
           "opponent": "Trinidad Y Todos Vagos",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Leandro Castillo",
+              "goals": 2
+            },
+            {
+              "name": "Agustin Di Yacovo",
+              "goals": 2
+            },
+            {
+              "name": "Nazareno Diaz",
+              "goals": 2
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 1
+            },
+            {
+              "name": "Stefano Tricarico",
+              "goals": 1
+            }
+          ],
           "date": "2025-09-03",
           "stage": "Regular",
           "venue": "Jose Hernandez",
@@ -2737,6 +4172,28 @@
           "opponent": "Pelusa FC",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lucas Iriarte",
+              "goals": 3
+            },
+            {
+              "name": "Leandro Castillo",
+              "goals": 2
+            },
+            {
+              "name": "Stefano Tricarico",
+              "goals": 2
+            },
+            {
+              "name": "Luca Crivaro",
+              "goals": 1
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            }
+          ],
           "date": "2025-09-10",
           "stage": "Regular",
           "venue": "Jose Hernandez",
@@ -2752,6 +4209,16 @@
           "opponent": "Atletico KYF",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 1
+            }
+          ],
           "date": "2025-10-01",
           "stage": "Regular",
           "venue": "Jose Hernandez",
@@ -2767,6 +4234,28 @@
           "opponent": "Paso A Paso FC",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Agustin Di Yacovo",
+              "goals": 1
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            },
+            {
+              "name": "Leandro Castillo",
+              "goals": 2
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 3
+            },
+            {
+              "name": "Stefano Tricarico",
+              "goals": 1
+            }
+          ],
           "date": "2025-10-08",
           "stage": "Regular",
           "venue": "Noble",
@@ -2782,6 +4271,20 @@
           "opponent": "Marconeta",
           "outcome": "loss",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Agustin Di Yacovo",
+              "goals": 1
+            },
+            {
+              "name": "Geronimo Heller",
+              "goals": 4
+            },
+            {
+              "name": "Leandro Castillo",
+              "goals": 1
+            }
+          ],
           "date": "2025-10-15",
           "stage": "Regular",
           "venue": "Jose Hernandez",
@@ -2797,6 +4300,16 @@
           "opponent": "Muchapo",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 5
+            },
+            {
+              "name": "Agustin Di Yacovo",
+              "goals": 1
+            }
+          ],
           "date": "2025-10-22",
           "stage": "Regular",
           "venue": "Jose Hernandez",
@@ -2812,6 +4325,20 @@
           "opponent": "Coronados De Gloria",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 7
+            },
+            {
+              "name": "Mauro Gonzalez",
+              "goals": 2
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 2
+            }
+          ],
           "date": "2025-10-29",
           "stage": "Regular",
           "venue": "Jose Hernandez",
@@ -2827,6 +4354,24 @@
           "opponent": "Arequipa",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Geronimo Heller",
+              "goals": 1
+            },
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Luca Crivaro",
+              "goals": 1
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 3
+            }
+          ],
           "date": "2025-11-19",
           "stage": "Cuartos",
           "venue": "Noble",
@@ -2842,6 +4387,20 @@
           "opponent": "Paso A Paso FC",
           "outcome": "win",
           "isFinal": false,
+          "scorers": [
+            {
+              "name": "Agustin Di Yacovo",
+              "goals": 2
+            },
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 2
+            },
+            {
+              "name": "Lucas Iriarte",
+              "goals": 2
+            }
+          ],
           "date": "2025-11-26",
           "stage": "Semifinal",
           "venue": "Jose Hernandez",
@@ -2857,6 +4416,7 @@
           "opponent": "Marconeta",
           "outcome": "loss",
           "isFinal": true,
+          "scorers": [],
           "date": "2025-12-03",
           "stage": "Final",
           "venue": "Jose Hernandez",

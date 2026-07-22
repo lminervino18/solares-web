@@ -15,6 +15,7 @@ export const matchSchema = z.object({
   goalsAgainst: z.number().optional(),
   outcome: matchOutcomeSchema,
   scoreLabel: z.string().optional(),
+  scorers: z.array(z.object({ name: z.string(), goals: z.number() })).default([]),
   isFinal: z.boolean(),
   youtubeUrl: z.string().optional(),
 })
