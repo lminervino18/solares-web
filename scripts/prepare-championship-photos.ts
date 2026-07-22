@@ -16,10 +16,18 @@ import sharp from 'sharp'
 const SOURCE_DIR = 'campeonatos_archivos_solares'
 const OUTPUT_DIR = 'src/assets/solares/championships'
 
+type CropRegion = {
+  readonly left: number
+  readonly top: number
+  readonly width: number
+  readonly height: number
+}
+
 type PhotoJob = {
   readonly source: string
   readonly format: 'f8' | 'f5'
   readonly slug: string
+  readonly crop?: CropRegion
 }
 
 const PHOTOS: readonly PhotoJob[] = [
@@ -28,7 +36,13 @@ const PHOTOS: readonly PhotoJob[] = [
   { source: 'Apertura_2023.jpeg', format: 'f8', slug: 'apertura-2023' },
   { source: 'Clausura_2023.jpeg', format: 'f8', slug: 'clausura-2023' },
   { source: 'Apertura_2024.jpeg', format: 'f8', slug: 'apertura-2024' },
-  { source: 'Clausura_2024.jpeg', format: 'f8', slug: 'clausura-2024' },
+  // Crop away the ceiling/net above the team, keeping a margin over the heads.
+  {
+    source: 'Clausura_2024.jpeg',
+    format: 'f8',
+    slug: 'clausura-2024',
+    crop: { left: 0, top: 385, width: 1179, height: 717 },
+  },
   { source: 'Apertura_2025.jpeg', format: 'f8', slug: 'apertura-2025' },
   { source: 'Clausura_2025.jpeg', format: 'f8', slug: 'clausura-2025' },
   { source: 'Clausura_2025_F5.jpeg', format: 'f5', slug: 'clausura-2025' },
@@ -46,14 +60,21 @@ async function preparePhoto(
 
   if (!existsSync(sourcePath)) return 'missing'
 
+  const prepare = () => {
+    const pipeline = sharp(sourcePath)
+    return job.crop ? pipeline.extract(job.crop) : pipeline
+  }
+
   const meta = await sharp(sourcePath).metadata()
-  console.log(`${job.format}/${job.slug}: ${meta.width}x${meta.height}`)
+  const outWidth = job.crop ? job.crop.width : meta.width
+  const outHeight = job.crop ? job.crop.height : meta.height
+  console.log(`${job.format}/${job.slug}: ${outWidth}x${outHeight}`)
 
   if (existsSync(jpgPath) && existsSync(webpPath) && !force) return 'skipped'
 
   await mkdir(targetDir, { recursive: true })
-  await sharp(sourcePath).jpeg({ quality: 82, mozjpeg: true }).toFile(jpgPath)
-  await sharp(sourcePath).webp({ quality: 78 }).toFile(webpPath)
+  await prepare().jpeg({ quality: 82, mozjpeg: true }).toFile(jpgPath)
+  await prepare().webp({ quality: 78 }).toFile(webpPath)
   return 'done'
 }
 

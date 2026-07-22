@@ -39,7 +39,7 @@ export const championshipTeamPhotos = {
   'f8-apertura-2023': { src: apertura2023Jpg, webp: apertura2023Webp, width: 1179, height: 822 },
   'f8-clausura-2023': { src: clausura2023Jpg, webp: clausura2023Webp, width: 1179, height: 1145 },
   'f8-apertura-2024': { src: apertura2024Jpg, webp: apertura2024Webp, width: 1179, height: 1115 },
-  'f8-clausura-2024': { src: clausura2024Jpg, webp: clausura2024Webp, width: 1179, height: 1102 },
+  'f8-clausura-2024': { src: clausura2024Jpg, webp: clausura2024Webp, width: 1179, height: 717 },
   'f8-apertura-2025': { src: apertura2025Jpg, webp: apertura2025Webp, width: 1179, height: 728 },
   'f8-clausura-2025': { src: clausura2025Jpg, webp: clausura2025Webp, width: 1179, height: 1096 },
   'f5-clausura-2025': {
