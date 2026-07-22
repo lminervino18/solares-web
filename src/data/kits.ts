@@ -34,17 +34,6 @@ export const kits: readonly Kit[] = [
     },
   },
   {
-    id: 'kit-1',
-    label: 'Camiseta roja JCP',
-    image: {
-      src: kit1Jpg,
-      webp: kit1Webp,
-      width: 675,
-      height: 900,
-      alt: 'Camiseta roja con franja blanca y el logo JCP.',
-    },
-  },
-  {
     id: 'kit-2',
     label: 'Camiseta bordó Ripiera Palito',
     image: {
@@ -53,6 +42,17 @@ export const kits: readonly Kit[] = [
       width: 675,
       height: 900,
       alt: 'Camiseta blanca con franja central bordó y el logo RP de Ripiera Palito.',
+    },
+  },
+  {
+    id: 'kit-1',
+    label: 'Camiseta roja JCP',
+    image: {
+      src: kit1Jpg,
+      webp: kit1Webp,
+      width: 675,
+      height: 900,
+      alt: 'Camiseta roja con franja blanca y el logo JCP.',
     },
   },
   {
