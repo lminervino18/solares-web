@@ -28,8 +28,8 @@ export const kits: readonly Kit[] = [
     image: {
       src: kit0Jpg,
       webp: kit0Webp,
-      width: 900,
-      height: 675,
+      width: 675,
+      height: 900,
       alt: 'Camiseta blanca sin mangas con la letra S en verde y amarillo de Solares.',
     },
   },
@@ -94,7 +94,7 @@ export const kits: readonly Kit[] = [
     image: {
       src: kit6Jpg,
       webp: kit6Webp,
-      width: 600,
+      width: 675,
       height: 900,
       alt: 'Chomba violeta con rombos negros y el escudo de Solares.',
     },
