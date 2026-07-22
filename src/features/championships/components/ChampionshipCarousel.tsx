@@ -31,9 +31,9 @@ export function ChampionshipCarousel({
 }: ChampionshipCarouselProps) {
   const prefersReducedMotion = useReducedMotionPreference()
   const [emblaRef, emblaApi] = useEmblaCarousel({
-    align: 'center',
+    align: 'start',
     loop: false,
-    containScroll: false,
+    containScroll: 'trimSnaps',
     duration: prefersReducedMotion ? 0 : 22,
   })
 
