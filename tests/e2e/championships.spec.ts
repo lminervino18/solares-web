@@ -53,6 +53,26 @@ test.describe('championships', () => {
     await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()
   })
 
+  test('selects a non-default F5 championship (Clausura 2025)', async ({ page }) => {
+    await page.goto('/campeonatos?modalidad=f5')
+    await expect(page.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeVisible()
+
+    await page
+      .getByRole('button', { name: /Clausura 2025/ })
+      .first()
+      .click()
+    await expect(page).toHaveURL(/torneo=clausura-2025/)
+    await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()
+  })
+
+  test('reveals a match goalscorers with the ball toggle', async ({ page }) => {
+    await page.goto('/campeonatos')
+    const ball = page.getByRole('button', { name: /Ver goleadores contra/ }).first()
+    await expect(ball).toBeVisible()
+    await ball.click()
+    await expect(ball).toHaveAttribute('aria-expanded', 'true')
+  })
+
   test('reveals all matches on demand', async ({ page }) => {
     await page.goto('/campeonatos')
     const toggle = page.getByRole('button', { name: 'Ver todos los partidos' })
