@@ -38,3 +38,6 @@ playwright/.cache
 *.njsproj
 *.sln
 *.sw?
+
+# Raw source assets (organized/optimized into src/assets/solares)
+archivos_solares

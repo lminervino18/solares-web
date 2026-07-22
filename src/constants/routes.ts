@@ -1,5 +1,6 @@
 export const routes = {
   home: '/',
+  history: '/historia',
   championships: '/campeonatos',
   statistics: '/estadisticas',
   goals: '/goles',
