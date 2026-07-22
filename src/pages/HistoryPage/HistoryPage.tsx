@@ -1,3 +1,5 @@
+import { Fragment } from 'react'
+
 import { routes } from '@/constants/routes'
 import { historyChapters } from '@/data/history'
 import { Seo } from '@/components/seo/Seo/Seo'
@@ -5,9 +7,11 @@ import { PageLayout } from '@/components/layout/PageLayout/PageLayout'
 import { Container } from '@/components/layout/Container/Container'
 import { Heading } from '@/components/primitives/Heading/Heading'
 import { Text } from '@/components/primitives/Text/Text'
+import { LocationMap } from '@/components/media/LocationMap/LocationMap'
 import { HistoryChapter } from '@/features/history/HistoryChapter'
 import { HistoryTimeline } from '@/features/history/HistoryTimeline'
-import { OriginMap } from '@/features/history/OriginMap'
+
+const PLAZA_MAP_AFTER_CHAPTER = 'los-primeros-partidos'
 
 export function HistoryPage() {
   return (
@@ -45,10 +49,21 @@ export function HistoryPage() {
 
             <div className="space-y-16 lg:space-y-28">
               {historyChapters.map((chapter) => (
-                <HistoryChapter key={chapter.id} chapter={chapter} />
+                <Fragment key={chapter.id}>
+                  <HistoryChapter chapter={chapter} />
+                  {chapter.id === PLAZA_MAP_AFTER_CHAPTER ? (
+                    <LocationMap
+                      className="mx-auto max-w-[54rem]"
+                      title="La plaza de Los Tordos"
+                      description="En esta plaza de Cipolletti, Solares se reunía a entrenar todos los sábados durante sus primeros años."
+                      coordinates="-38.9418688,-67.9719193"
+                      zoom={16}
+                      iframeTitle="Mapa de la plaza de Los Tordos en Cipolletti, Río Negro"
+                      externalUrl="https://maps.app.goo.gl/vQKr48LTRRuHgCWj6"
+                    />
+                  ) : null}
+                </Fragment>
               ))}
-
-              <OriginMap />
             </div>
           </div>
         </Container>

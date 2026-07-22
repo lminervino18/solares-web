@@ -38,14 +38,14 @@ describe('HistoryPage', () => {
     }
   })
 
-  it('renders the origin map and an external maps link', () => {
+  it('renders the plaza map where it is narrated', () => {
     renderWithProviders(<HistoryPage />)
     expect(
-      screen.getByTitle('Mapa del barrio de origen de Solares en Cipolletti, Río Negro'),
+      screen.getByTitle('Mapa de la plaza de Los Tordos en Cipolletti, Río Negro'),
     ).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /Abrir en Google Maps/ })).toHaveAttribute(
       'href',
-      'https://maps.app.goo.gl/KeFDXXi2T5eTtrw68',
+      'https://maps.app.goo.gl/vQKr48LTRRuHgCWj6',
     )
   })
 })
