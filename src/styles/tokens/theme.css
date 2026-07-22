@@ -37,4 +37,9 @@
 
   --color-on-brand: var(--palette-neutral-0);
   --color-on-accent: var(--palette-neutral-0);
+
+  --color-control: var(--palette-neutral-100);
+  --color-control-hover: var(--palette-neutral-0);
+  --color-control-active: var(--palette-neutral-300);
+  --color-on-control: var(--palette-neutral-950);
 }
