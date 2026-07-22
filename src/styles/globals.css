@@ -36,6 +36,11 @@
   --color-on-brand: var(--color-on-brand);
   --color-plaque: var(--color-plaque);
 
+  --color-medal-gold: var(--color-medal-gold);
+  --color-medal-gold-highlight: var(--color-medal-gold-highlight);
+  --color-medal-silver: var(--color-medal-silver);
+  --color-medal-silver-highlight: var(--color-medal-silver-highlight);
+
   --font-body: var(--font-family-body);
   --font-display: var(--font-family-display);
 }

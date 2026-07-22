@@ -44,4 +44,9 @@
   --color-on-control: var(--palette-neutral-950);
 
   --color-plaque: var(--palette-neutral-0);
+
+  --color-medal-gold: var(--palette-gold-500);
+  --color-medal-gold-highlight: var(--palette-gold-400);
+  --color-medal-silver: var(--palette-silver-500);
+  --color-medal-silver-highlight: var(--palette-silver-400);
 }
