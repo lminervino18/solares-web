@@ -33,3 +33,12 @@ if (typeof window.IntersectionObserver === 'undefined') {
   }
   window.IntersectionObserver = MockIntersectionObserver as unknown as typeof IntersectionObserver
 }
+
+if (typeof window.ResizeObserver === 'undefined') {
+  class MockResizeObserver {
+    observe(): void {}
+    unobserve(): void {}
+    disconnect(): void {}
+  }
+  window.ResizeObserver = MockResizeObserver
+}
