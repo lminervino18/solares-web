@@ -46,10 +46,11 @@ export default tseslint.config(
   },
   {
     files: ['tests/**/*.{ts,tsx}'],
-    extends: [tseslint.configs.disableTypeChecked],
+    extends: tseslint.configs.recommended,
     languageOptions: {
       globals: {
         ...globals.node,
+        ...globals.browser,
       },
     },
   },
