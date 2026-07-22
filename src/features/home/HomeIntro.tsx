@@ -48,7 +48,7 @@ export function HomeIntro() {
                 </Text>
               ))}
             </div>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            <div className="mt-8">
               <LinkButton
                 to={routes.history}
                 size="lg"
@@ -56,19 +56,7 @@ export function HomeIntro() {
               >
                 Conocé nuestra historia
               </LinkButton>
-              <LinkButton
-                href={siteConfig.social.instagram}
-                size="lg"
-                variant="soft"
-                tone="brand"
-                leadingIcon={<InstagramIcon className="size-5" />}
-              >
-                Seguinos: @solares.futbol
-              </LinkButton>
             </div>
-            <Text as="p" size="sm" tone="muted" className="mt-3">
-              Seguinos en Instagram y sumate al Torito Violeta.
-            </Text>
           </div>
 
           <div className="order-first lg:order-none">
@@ -76,15 +64,28 @@ export function HomeIntro() {
           </div>
         </div>
 
+        <div className="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <LinkButton
+            href={siteConfig.social.instagram}
+            size="lg"
+            variant="soft"
+            tone="brand"
+            leadingIcon={<InstagramIcon className="size-5" />}
+          >
+            Seguir en Instagram
+          </LinkButton>
+          <Text as="p" size="md" tone="secondary">
+            Seguinos para enterarte de resultados y próximos partidos.
+          </Text>
+        </div>
+
         <figure className="mt-14 overflow-hidden rounded-(--radius-xl) border border-line">
           <Picture image={flag} imgClassName="w-full" />
         </figure>
 
         <LocationMap
-          className="mt-14"
-          description={
-            'El nombre "Solares de la Falda" proviene de este barrio de Cipolletti, Río Negro.'
-          }
+          className="mt-14 max-w-[30rem]"
+          description="Pequeño barrio (dos cuadras) de Cipolletti: Solares De La Falda."
           coordinates="-38.938323,-67.968526"
           iframeTitle="Mapa del barrio Solares de la Falda en Cipolletti, Río Negro"
           externalUrl="https://maps.app.goo.gl/KeFDXXi2T5eTtrw68"
