@@ -42,4 +42,15 @@ describe('HomePage', () => {
       expect(image).toHaveAccessibleName()
     }
   })
+
+  it('renders the origin neighborhood map', () => {
+    renderWithProviders(<HomePage />)
+    expect(
+      screen.getByTitle('Mapa del barrio Solares de la Falda en Cipolletti, Río Negro'),
+    ).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /Abrir en Google Maps/ })).toHaveAttribute(
+      'href',
+      'https://maps.app.goo.gl/KeFDXXi2T5eTtrw68',
+    )
+  })
 })

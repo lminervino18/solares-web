@@ -35,7 +35,7 @@ export const siteConfig = {
     monochrome: '/assets/images/solares-logo-monochrome.svg',
   },
   social: {
-    instagram: '',
+    instagram: 'https://www.instagram.com/solares.futbol',
     youtube: '',
     tiktok: '',
     x: '',

@@ -3,12 +3,15 @@ import { ArrowRight } from 'lucide-react'
 import { routes } from '@/constants/routes'
 import { flag } from '@/data/brand'
 import { currentCrest } from '@/data/crests'
+import { siteConfig } from '@/config/site.config'
+import { InstagramIcon } from '@/components/brand/icons/InstagramIcon'
 import { Section } from '@/components/layout/Section/Section'
 import { Container } from '@/components/layout/Container/Container'
 import { Heading } from '@/components/primitives/Heading/Heading'
 import { Text } from '@/components/primitives/Text/Text'
 import { LinkButton } from '@/components/primitives/LinkButton/LinkButton'
 import { Picture } from '@/components/media/Picture/Picture'
+import { LocationMap } from '@/components/media/LocationMap/LocationMap'
 import { InteractiveCrest } from '@/components/brand/InteractiveCrest/InteractiveCrest'
 
 const introParagraphs = [
@@ -45,7 +48,7 @@ export function HomeIntro() {
                 </Text>
               ))}
             </div>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-wrap items-center gap-4">
               <LinkButton
                 to={routes.history}
                 size="lg"
@@ -53,7 +56,19 @@ export function HomeIntro() {
               >
                 Conocé nuestra historia
               </LinkButton>
+              <LinkButton
+                href={siteConfig.social.instagram}
+                size="lg"
+                variant="soft"
+                tone="brand"
+                leadingIcon={<InstagramIcon className="size-5" />}
+              >
+                Seguinos: @solares.futbol
+              </LinkButton>
             </div>
+            <Text as="p" size="sm" tone="muted" className="mt-3">
+              Seguinos en Instagram y sumate al Torito Violeta.
+            </Text>
           </div>
 
           <div className="order-first lg:order-none">
@@ -64,6 +79,16 @@ export function HomeIntro() {
         <figure className="mt-14 overflow-hidden rounded-(--radius-xl) border border-line">
           <Picture image={flag} imgClassName="w-full" />
         </figure>
+
+        <LocationMap
+          className="mt-14"
+          description={
+            'El nombre "Solares de la Falda" proviene de este barrio de Cipolletti, Río Negro.'
+          }
+          coordinates="-38.938323,-67.968526"
+          iframeTitle="Mapa del barrio Solares de la Falda en Cipolletti, Río Negro"
+          externalUrl="https://maps.app.goo.gl/KeFDXXi2T5eTtrw68"
+        />
       </Container>
     </Section>
   )
