@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 const widths = [320, 360, 375, 390, 412, 768, 1024, 1280, 1440]
-const paths = ['/', '/campeonatos', '/estadisticas', '/goles', '/femenino-mixto']
+const paths = ['/', '/historia', '/campeonatos', '/estadisticas', '/goles', '/femenino-mixto']
 
 test.describe('responsive layout', () => {
   for (const width of widths) {

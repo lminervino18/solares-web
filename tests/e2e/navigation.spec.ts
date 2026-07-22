@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test'
 
 const routes = [
   { path: '/', heading: 'Solares' },
+  { path: '/historia', heading: 'La historia de Solares' },
   { path: '/campeonatos', heading: 'Campeonatos' },
   { path: '/estadisticas', heading: 'Estadísticas' },
   { path: '/goles', heading: 'Goles' },
@@ -29,9 +30,12 @@ test.describe('routing', () => {
 
     await page.goto('/')
     const nav = page.getByRole('navigation', { name: 'Navegación principal' })
-    await nav.getByRole('link', { name: 'Campeonatos' }).click()
-    await expect(page).toHaveURL('/campeonatos')
-    await expect(page.getByRole('link', { name: 'Campeonatos' }).first()).toHaveAttribute(
+    await nav.getByRole('link', { name: 'Historia' }).click()
+    await expect(page).toHaveURL('/historia')
+    await expect(
+      page.getByRole('heading', { level: 1, name: 'La historia de Solares' }),
+    ).toBeVisible()
+    await expect(nav.getByRole('link', { name: 'Historia' })).toHaveAttribute(
       'aria-current',
       'page',
     )

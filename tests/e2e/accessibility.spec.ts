@@ -34,6 +34,7 @@ test.describe('accessibility', () => {
     const dialog = page.getByRole('dialog')
     await expect(dialog).toBeVisible()
     await expect(dialog.getByRole('link', { name: 'Inicio' })).toBeVisible()
+    await expect(dialog.getByRole('link', { name: 'Historia' })).toBeVisible()
 
     await page.keyboard.press('Escape')
     await expect(dialog).toBeHidden()
