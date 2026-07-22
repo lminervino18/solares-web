@@ -8,6 +8,7 @@ export const matchSchema = z.object({
   format: z.enum(['f8', 'f5']),
   sourceOrder: z.number(),
   date: z.string().optional(),
+  time: z.string().optional(),
   stage: z.string().optional(),
   venue: z.string().optional(),
   opponent: z.string(),

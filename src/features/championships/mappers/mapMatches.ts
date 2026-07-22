@@ -1,5 +1,6 @@
 import type { MatchOutcome } from '../types/championships'
 import { parseSheetDate } from '../utils/parseSheetDate'
+import { parseSheetTime } from '../utils/parseSheetTime'
 import {
   readNumber,
   readRawValue,
@@ -19,6 +20,7 @@ export type RawMatch = {
   readonly stage?: string
   readonly venue?: string
   readonly date?: string
+  readonly time?: string
   readonly isFinal: boolean
   readonly scorersRaw?: string
 }
@@ -33,6 +35,7 @@ const MATCH_HEADERS = {
   stage: 'Fase',
   scorers: 'Goleadores',
   date: 'Fecha',
+  time: 'Hora',
 } as const
 
 function normalize(value: string): string {
@@ -76,6 +79,9 @@ function mapRow(row: SheetRow): RawMatch | undefined {
   const date = parseSheetDate(
     readRawValue(row, MATCH_HEADERS.date) ?? row.cells.get(MATCH_HEADERS.date)?.f,
   )
+  const time = parseSheetTime(
+    readRawValue(row, MATCH_HEADERS.time) ?? row.cells.get(MATCH_HEADERS.time)?.f,
+  )
   const scorersRaw = readString(row, MATCH_HEADERS.scorers)
 
   return {
@@ -90,6 +96,7 @@ function mapRow(row: SheetRow): RawMatch | undefined {
     ...(stage ? { stage } : {}),
     ...(venue ? { venue } : {}),
     ...(date ? { date } : {}),
+    ...(time ? { time } : {}),
     ...(scorersRaw ? { scorersRaw } : {}),
   }
 }

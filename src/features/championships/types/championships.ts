@@ -47,6 +47,7 @@ export type Match = {
   readonly format: FootballFormat
   readonly sourceOrder: number
   readonly date?: string
+  readonly time?: string
   readonly stage?: string
   readonly venue?: string
   readonly opponent: string

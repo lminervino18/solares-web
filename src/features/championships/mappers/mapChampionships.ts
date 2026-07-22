@@ -83,6 +83,7 @@ function buildMatch(raw: RawMatch, championshipId: string, format: FootballForma
     isFinal: raw.isFinal,
     scorers: parseGoalscorers(raw.scorersRaw),
     ...(raw.date ? { date: raw.date } : {}),
+    ...(raw.time ? { time: raw.time } : {}),
     ...(raw.stage ? { stage: raw.stage } : {}),
     ...(raw.venue ? { venue: raw.venue } : {}),
     ...(raw.goalsFor !== undefined ? { goalsFor: raw.goalsFor } : {}),
