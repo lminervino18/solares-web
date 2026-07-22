@@ -91,7 +91,26 @@ function buildMatch(raw: RawMatch, championshipId: string, format: FootballForma
   }
 }
 
+function stageRank(stage: string | undefined): number {
+  if (!stage) return 0
+  const value = stage.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+  // "semifinal" contains "final", so it must be checked first.
+  if (value.includes('semifinal')) return 3
+  if (value.includes('cuarto')) return 2
+  if (value.includes('octavo')) return 1
+  if (value.includes('final')) return 4
+  return 0
+}
+
+/**
+ * Orders matches by competition stage first (Regular → Octavos → Cuartos →
+ * Semifinal → Final), then by date within a stage. Stage takes precedence over
+ * the date so a mis-dated knockout match (e.g. a final dated before its
+ * semifinal in the sheet) still reads in the real tournament order.
+ */
 function sortMatches(a: Match, b: Match): number {
+  const rankDelta = stageRank(a.stage) - stageRank(b.stage)
+  if (rankDelta !== 0) return rankDelta
   if (a.date && b.date) {
     if (a.date !== b.date) return a.date.localeCompare(b.date)
   } else if (a.date) {

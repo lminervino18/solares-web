@@ -91,6 +91,23 @@ describe('mapChampionships', () => {
     expect(championship?.status).toBe('scheduled')
   })
 
+  it('orders matches by stage so a mis-dated final still comes last', () => {
+    const summary = sheet(SUMMARY_HEADERS, [
+      { Campeonato: 'Apertura 2025', Torneo: 'TdeA', Resultado: 'Finalista', 'Link Final': '' },
+    ])
+    const matches = sheet(MATCH_HEADERS, [
+      matchRecord('Apertura 2025', { Fase: 'Semifinal', Fecha: 'Date(2025,6,27)' }),
+      // Final dated before the semifinal (a sheet typo): stage must still win.
+      matchRecord('Apertura 2025', { Rival: 'Bong', Fase: 'Final', Fecha: 'Date(2025,6,4)' }),
+      matchRecord('Apertura 2025', { Fase: 'Regular', Fecha: 'Date(2025,3,14)' }),
+    ])
+
+    const [championship] = mapChampionships('f8', summary, matches)
+    const stages = championship?.matches.map((m) => m.stage)
+    expect(stages).toEqual(['Regular', 'Semifinal', 'Final'])
+    expect(championship?.matches.at(-1)?.opponent).toBe('Bong')
+  })
+
   it('parses the final video from the summary and sorts most recent first', () => {
     const summary = sheet(SUMMARY_HEADERS, [
       {

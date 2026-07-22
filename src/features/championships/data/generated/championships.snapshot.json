@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-07-22T17:01:26.270Z",
+  "syncedAt": "2026-07-22T19:03:08.713Z",
   "championships": [
     {
       "id": "f8-clausura-2025",
@@ -736,27 +736,6 @@
           "scoreLabel": "13-1"
         },
         {
-          "id": "f8-apertura-2025-m81",
-          "championshipId": "f8-apertura-2025",
-          "format": "f8",
-          "sourceOrder": 81,
-          "opponent": "Bong",
-          "outcome": "draw",
-          "isFinal": true,
-          "scorers": [
-            {
-              "name": "Lorenzo Minervino",
-              "goals": 1
-            }
-          ],
-          "date": "2025-07-04",
-          "stage": "Final",
-          "venue": "Platense",
-          "goalsFor": 1,
-          "goalsAgainst": 1,
-          "scoreLabel": "1-1"
-        },
-        {
           "id": "f8-apertura-2025-m78",
           "championshipId": "f8-apertura-2025",
           "format": "f8",
@@ -838,6 +817,27 @@
           "goalsFor": 3,
           "goalsAgainst": 0,
           "scoreLabel": "3-0"
+        },
+        {
+          "id": "f8-apertura-2025-m81",
+          "championshipId": "f8-apertura-2025",
+          "format": "f8",
+          "sourceOrder": 81,
+          "opponent": "Bong",
+          "outcome": "draw",
+          "isFinal": true,
+          "scorers": [
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            }
+          ],
+          "date": "2025-07-04",
+          "stage": "Final",
+          "venue": "Platense",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "scoreLabel": "1-1"
         }
       ],
       "scorers": [
@@ -3286,31 +3286,6 @@
           "scoreLabel": "2-2"
         },
         {
-          "id": "f8-apertura-2022-m6",
-          "championshipId": "f8-apertura-2022",
-          "format": "f8",
-          "sourceOrder": 6,
-          "opponent": "Oveja",
-          "outcome": "win",
-          "isFinal": false,
-          "scorers": [
-            {
-              "name": "Francisco Garcia",
-              "goals": 2
-            },
-            {
-              "name": "Lorenzo Minervino",
-              "goals": 1
-            }
-          ],
-          "date": "2022-04-25",
-          "stage": "Semifinal",
-          "venue": "Noble",
-          "goalsFor": 3,
-          "goalsAgainst": 2,
-          "scoreLabel": "3-2"
-        },
-        {
           "id": "f8-apertura-2022-m3",
           "championshipId": "f8-apertura-2022",
           "format": "f8",
@@ -3400,6 +3375,31 @@
           "goalsFor": 4,
           "goalsAgainst": 3,
           "scoreLabel": "4-3"
+        },
+        {
+          "id": "f8-apertura-2022-m6",
+          "championshipId": "f8-apertura-2022",
+          "format": "f8",
+          "sourceOrder": 6,
+          "opponent": "Oveja",
+          "outcome": "win",
+          "isFinal": false,
+          "scorers": [
+            {
+              "name": "Francisco Garcia",
+              "goals": 2
+            },
+            {
+              "name": "Lorenzo Minervino",
+              "goals": 1
+            }
+          ],
+          "date": "2022-04-25",
+          "stage": "Semifinal",
+          "venue": "Noble",
+          "goalsFor": 3,
+          "goalsAgainst": 2,
+          "scoreLabel": "3-2"
         },
         {
           "id": "f8-apertura-2022-m7",
