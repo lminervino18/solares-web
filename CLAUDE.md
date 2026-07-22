@@ -15,10 +15,16 @@ documentation are written in English.
 Main routes:
 
 - Inicio — `/`
+- Historia — `/historia`
 - Campeonatos — `/campeonatos`
 - Estadísticas — `/estadisticas`
 - Goles — `/goles`
 - Femenino y Mixto — `/femenino-mixto`
+
+Implemented pages: **Inicio** (presentation with an interactive crest, the crest timeline and the
+kit gallery) and **Historia** (eight chapters, chapter index, contextual photo galleries and the
+origin map). The other four pages are still `EmptyState` placeholders — do not invent their
+sports content.
 
 ## Stack
 
@@ -137,11 +143,38 @@ minimal wrappers (`three`). Implement them with dynamic imports when a page rend
 
 ## Configuration points
 
-- Team name, description, logo, social links, theme color, OG image: `src/config/site.config.ts`.
+- Team name, description, social links (Instagram is set), theme color, OG image:
+  `src/config/site.config.ts`.
 - Production URL: `VITE_SITE_URL` environment variable (see `README.md`), read by `site.config.ts`.
-- Navigation items: `src/config/navigation.config.ts`.
-- Design tokens: `src/styles/tokens/*`. Routes: `src/constants/routes.ts`.
-- Local data: `src/data/*` (typed empty arrays). Domain types: `src/types/*`. Schemas: `src/schemas/*`.
+- Navigation items (label + path + Lucide icon): `src/config/navigation.config.ts`.
+- Design tokens: `src/styles/tokens/*`. Routes: `src/constants/routes.ts`. Router: `src/app/routes.tsx`.
+- Content data: `src/data/crests.ts`, `kits.ts`, `history.ts` (chapters + photos), `brand.ts`
+  (flag, current crest, header logo). Domain types: `src/types/*`. Schemas: `src/schemas/*`.
+  The sports data files (`players.ts`, `matches.ts`, etc.) are still typed empty arrays.
+- Home sections: `src/features/home/HomeIntro.tsx`; brand components in `src/components/brand/*`.
+- History sections: `src/features/history/*` (chapter, figure, gallery, timeline).
+
+## Solares content and media
+
+- Optimized media lives in `src/assets/solares/{brand,crests,kits,history}` as PNG/JPG + WebP
+  pairs, rendered through `Picture` (`<picture>` with a WebP source and a fallback, plus intrinsic
+  `width`/`height`). The raw source images are in `archivos_solares/` (gitignored — originals kept
+  locally, never committed).
+- Crests, kits and photos are ordered chronologically in their data files. Crests: `crest-1`
+  (oldest) … `crest-5` (`isCurrent`, the shield with laurels used in the flag). Kits: 10, chronological.
+  History photos: `photo-0`..`photo-8`, placed in specific chapters — keep those positions.
+- Crest and logo images are **transparent PNGs**. They were cut with ImageMagick using
+  connectivity-based flood fill from the corners (`-fill none -floodfill +x+y <bgcolor>`), which
+  removes the background while preserving interior design (e.g. the bull's white horns, digit
+  counters). When adding/replacing a crest, redo the same and **verify the result visually** before
+  committing (view it on a mid-gray background to check the cut). Do not simplify or recolor crests.
+- The crest timeline (`CrestTimeline`) shows crests transparent, without a plaque, at a uniform
+  square size. `InteractiveCrest` is a hover-driven 3D spin (transparent crest + shadow, reduced
+  motion → static). `LocationMap` embeds Google Maps via `output=embed` (no API key) with an
+  external link. Instagram is an icon-only link using the custom `InstagramIcon` SVG (Lucide v1 has
+  no brand icons).
+- Favicon and the header logo come from the circular bull `icon` as transparent PNGs
+  (`public/favicon*.png`, `.ico`, `apple-touch-icon`, `icon-192/512`; `src/assets/solares/brand/icon.png`).
 
 ## Known accepted lint warnings
 
