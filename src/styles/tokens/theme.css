@@ -49,4 +49,17 @@
   --color-medal-gold-highlight: var(--palette-gold-400);
   --color-medal-silver: var(--palette-silver-500);
   --color-medal-silver-highlight: var(--palette-silver-400);
+  --color-medal-bronze: var(--palette-bronze-500);
+  --color-medal-bronze-highlight: var(--palette-bronze-400);
+
+  --color-chart-primary: var(--palette-violet-500);
+  --color-chart-secondary: var(--palette-violet-300);
+  --color-chart-tertiary: var(--palette-cyan-400);
+  --color-chart-win: var(--palette-green-500);
+  --color-chart-draw: var(--palette-neutral-300);
+  --color-chart-loss: var(--palette-red-500);
+  --color-chart-neutral: var(--palette-neutral-500);
+  --color-chart-grid: color-mix(in oklab, var(--palette-violet-300) 16%, transparent);
+  --color-chart-label: var(--palette-neutral-300);
+  --color-chart-tooltip: var(--palette-neutral-900);
 }

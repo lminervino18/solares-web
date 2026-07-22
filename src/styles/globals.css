@@ -40,6 +40,8 @@
   --color-medal-gold-highlight: var(--color-medal-gold-highlight);
   --color-medal-silver: var(--color-medal-silver);
   --color-medal-silver-highlight: var(--color-medal-silver-highlight);
+  --color-medal-bronze: var(--color-medal-bronze);
+  --color-medal-bronze-highlight: var(--color-medal-bronze-highlight);
 
   --font-body: var(--font-family-body);
   --font-display: var(--font-family-display);
