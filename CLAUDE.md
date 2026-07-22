@@ -176,6 +176,33 @@ minimal wrappers (`three`). Implement them with dynamic imports when a page rend
 - Favicon and the header logo come from the circular bull `icon` as transparent PNGs
   (`public/favicon*.png`, `.ico`, `apple-touch-icon`, `icon-192/512`; `src/assets/solares/brand/icon.png`).
 
+## Championships (F8 and F5)
+
+The Championships page contains two football formats: F8 and F5. See
+`docs/championships-data-source.md` for the full data contract.
+
+- F8 is always the default format for `/campeonatos`. The active format is stored in the
+  `modalidad` query parameter (only written for F5; `/campeonatos` is canonical F8). The
+  selected championship is stored in the `torneo` query parameter (its slug).
+- Never mix F8 and F5 championships, matches, scorers, assets, videos or statistics.
+- Every championship has an explicit `f8` or `f5` format, defined by which sheet the data
+  lives in. Do not infer football formats through unsafe string matching.
+- Google Sheets is the source of truth for championship data. The client revalidates the
+  public spreadsheet whenever the page is loaded (`cache: 'no-store'`).
+- Championships are discovered from the **summary sheet only**. A tournament that appears in
+  the matches sheet but not the summary is NOT shown (e.g. `Verano 2026`), even if it has
+  matches and goals. Adding a summary row publishes a new championship automatically, with no
+  override required.
+- A published championship stays visible even when its optional assets or data are incomplete;
+  missing team photos and tournament logos use explicit accessible placeholders. Never assign
+  media from another championship as a fallback.
+- The local snapshot is only a first-render and offline fallback. The build must not depend on
+  live Google Sheets access.
+- Championship photos and logos are static build assets and require a new deployment after
+  being added. Tournament logos must be available as PNG; conversion is format-only and
+  preserves every part of the original design (no automatic background removal).
+- Videos must be unmounted when changing format or championship; never autoplay.
+
 ## Known accepted lint warnings
 
 `react-refresh/only-export-components` warns on files that export a component together with
