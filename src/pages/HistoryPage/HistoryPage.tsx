@@ -55,7 +55,7 @@ export function HistoryPage() {
                     <LocationMap
                       className="mx-auto max-w-[54rem]"
                       title="La plaza de Los Tordos"
-                      description="En esta plaza de Cipolletti, Solares se reunía a entrenar todos los sábados durante sus primeros años."
+                      description="La plaza donde se hicieron los primeros entrenamientos."
                       coordinates="-38.9418688,-67.9719193"
                       zoom={16}
                       iframeTitle="Mapa de la plaza de Los Tordos en Cipolletti, Río Negro"
