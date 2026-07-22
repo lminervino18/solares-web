@@ -65,6 +65,20 @@ test.describe('championships', () => {
     await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()
   })
 
+  test('changes championship with the keyboard arrows', async ({ page }) => {
+    await page.goto('/campeonatos')
+    await page
+      .getByRole('button', { name: /Clausura 2025/ })
+      .first()
+      .focus()
+
+    await page.keyboard.press('ArrowRight')
+    await expect(page.getByRole('heading', { level: 2, name: 'Apertura 2025' })).toBeVisible()
+
+    await page.keyboard.press('ArrowLeft')
+    await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()
+  })
+
   test('keeps the scroll position when switching championships', async ({ page }) => {
     await page.goto('/campeonatos')
     await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, type KeyboardEvent } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
@@ -101,6 +101,16 @@ export function ChampionshipCarousel({
   const canNext = current < championships.length - 1
   const selected = championships[current]
 
+  const onKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+    if (event.key === 'ArrowLeft' && canPrev) {
+      event.preventDefault()
+      select(current - 1)
+    } else if (event.key === 'ArrowRight' && canNext) {
+      event.preventDefault()
+      select(current + 1)
+    }
+  }
+
   return (
     <section
       aria-roledescription="carrusel"
@@ -120,6 +130,7 @@ export function ChampionshipCarousel({
                 <button
                   type="button"
                   onClick={() => select(index)}
+                  onKeyDown={onKeyDown}
                   aria-current={isActive ? 'true' : undefined}
                   className={cn(
                     'flex h-full w-full items-center gap-3 rounded-(--radius-xl) border p-4 text-left transition-all',
