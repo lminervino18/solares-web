@@ -1,8 +1,7 @@
 import { ArrowRight } from 'lucide-react'
 
 import { routes } from '@/constants/routes'
-import { flag } from '@/data/brand'
-import { currentCrest } from '@/data/crests'
+import { flag, currentCrestImage } from '@/data/brand'
 import { siteConfig } from '@/config/site.config'
 import { InstagramIcon } from '@/components/brand/icons/InstagramIcon'
 import { Section } from '@/components/layout/Section/Section'
@@ -61,7 +60,7 @@ export function HomeIntro() {
           </div>
 
           <div className="order-first lg:order-none">
-            <InteractiveCrest crest={currentCrest.image} />
+            <InteractiveCrest crest={currentCrestImage} />
           </div>
         </div>
 
@@ -86,8 +85,8 @@ export function HomeIntro() {
         </figure>
 
         <LocationMap
-          className="mt-14 max-w-[30rem]"
-          description="Pequeño barrio (dos cuadras) de Cipolletti: Solares De La Falda."
+          className="mt-14 max-w-[44rem]"
+          description="El nombre del equipo viene de Solares de la Falda, un pequeño barrio de apenas dos cuadras en Cipolletti, Río Negro."
           coordinates="-38.938323,-67.968526"
           iframeTitle="Mapa del barrio Solares de la Falda en Cipolletti, Río Negro"
           externalUrl="https://maps.app.goo.gl/KeFDXXi2T5eTtrw68"
