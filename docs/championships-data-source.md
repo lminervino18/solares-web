@@ -72,15 +72,16 @@ both). They are different tournaments, so identifiers are namespaced by format:
 
 ## Dynamic championship discovery
 
-Championships are discovered from the **summary sheet only**. Adding a row to a
-summary sheet publishes a new championship automatically — no code change, no
-override. Its matches, scorers and statistics are then read from the matches
-sheet by name.
+The summary sheet defines **published** championships. Adding a row to a summary
+sheet publishes a championship automatically — no code change, no override. Its
+matches, scorers and statistics are read from the matches sheet by name.
 
-**A tournament that exists only in the matches sheet (not in the summary) is not
-shown.** For example an in-progress `Verano 2026` in the F5 matches sheet with
-goals loaded does not appear until it is added to the F5 summary sheet. The
-summary sheet is the editorial source of truth for what is published.
+A championship present only in the matches sheet (not in the summary) is kept as
+`published: false`. For example an in-progress `Verano 2026` in the F5 matches
+sheet is **not shown in the Campeonatos section and does not count as a title or
+a tournament**, but its matches still feed the pooled statistics on the
+Estadísticas page (goals, matches, streaks, opponents, etc.). It becomes a full
+published championship once added to the summary sheet.
 
 ### Required structure for a new championship
 
@@ -151,7 +152,8 @@ embedded via `youtube-nocookie.com`, click-to-load, never autoplayed.
 - The F5 summary's `Apertura 2026` `Link Final` is a plain title, not a URL, so
   no video is shown for it.
 - `Verano 2026` exists in the F5 matches sheet but not the F5 summary, so it is
-  intentionally not shown.
+  unpublished: hidden from Campeonatos and excluded from titles, but its matches
+  count in the pooled statistics.
 
 ## Fallback rules
 

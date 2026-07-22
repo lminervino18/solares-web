@@ -189,10 +189,12 @@ The Championships page contains two football formats: F8 and F5. See
   lives in. Do not infer football formats through unsafe string matching.
 - Google Sheets is the source of truth for championship data. The client revalidates the
   public spreadsheet whenever the page is loaded (`cache: 'no-store'`).
-- Championships are discovered from the **summary sheet only**. A tournament that appears in
-  the matches sheet but not the summary is NOT shown (e.g. `Verano 2026`), even if it has
-  matches and goals. Adding a summary row publishes a new championship automatically, with no
-  override required.
+- The summary sheet defines **published** championships. A championship listed there is
+  published (shown in Campeonatos, counted as a title). A championship present only in the
+  matches sheet (e.g. `Verano 2026`) is kept as `published: false`: hidden from the Campeonatos
+  section and excluded from titles and tournament counts, but its matches still feed the pooled
+  statistics (goals, matches, streaks, etc.). Adding a summary row publishes a championship
+  automatically, with no override required.
 - A published championship stays visible even when its optional assets or data are incomplete;
   missing team photos and tournament logos use explicit accessible placeholders. Never assign
   media from another championship as a fallback.
@@ -214,6 +216,10 @@ the Championships feature — there is no second Google Sheets integration.
 - Every statistic is derived from the normalized championships, matches and scorers via pure
   selectors in `src/features/statistics/selectors`. Do not compute statistics inside
   presentation components.
+- Pooled match statistics (goals, matches, streaks, opponents, venues, kickoff times, records,
+  clean sheets, scorers, annual) include ALL championships, even unpublished match-only
+  editions. Tournament counts, titles and the per-tournament comparison use only published
+  championships.
 - Pending, cancelled and invalid matches do not count as played. Penalty shootout goals do not
   count toward GF or GC. Tournament honors represent the final achieved stage and are counted
   once; a title with an unknown tier is not classified as gold.
