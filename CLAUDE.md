@@ -270,8 +270,17 @@ The Goles page plays short goal clips hosted on Cloudinary. See
   format plus `championshipId`, never by display name.
 - The normal build must not require `CLOUDINARY_URL` or Cloudinary access. Uploads are
   resumable at file level and never overwrite an existing asset.
-- Cards render static posters only: no `<video>` in the grid, no hover playback, no autoplay.
-  The 4:3 poster crop is a grid device; the player always shows the original aspect ratio.
+- Cards render static posters only: no `<video>` in the grid and no hover playback. The 4:3
+  poster crop is a grid device; the player always shows the original aspect ratio.
+- The goal player starts playing as soon as the clip is ready. This is a deliberate exception
+  to the general "no autoplay" rule, confirmed by the club: opening a goal is an explicit click,
+  so the browser allows sound, and a clip lasting a few seconds is the whole point of the page.
+  A browser that refuses to start without a gesture (a shared link opened directly) leaves the
+  clip paused — that is not a playback failure and must never surface an error.
+- Clip duration comes from the manifest until the element reports its own, and is only accepted
+  once it is finite and positive: a transcoded MP4 reports `Infinity` first. Read it on
+  `loadedmetadata` and `durationchange`, and also on mount, because a cached clip can already
+  have its metadata before the listeners are attached.
 
 ## Known accepted lint warnings
 
