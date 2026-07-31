@@ -22,6 +22,7 @@
     "goals:inspect": "tsx --tsconfig tsconfig.app.json scripts/inspect-goals.ts",
     "assets:championship-logos": "tsx scripts/convert-championship-logos.ts",
     "assets:championship-photos": "tsx scripts/prepare-championship-photos.ts",
+    "assets:women-and-mixed": "tsx scripts/prepare-women-and-mixed-assets.ts",
     "build:fresh": "npm run sync:championships && npm run build",
     "check": "npm run typecheck && npm run lint && npm run test:run && npm run build",
     "goals:upload": "tsx --tsconfig tsconfig.app.json scripts/upload-goals-to-cloudinary.ts",
