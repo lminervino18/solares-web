@@ -6,6 +6,7 @@ import { config as loadEnv } from 'dotenv'
 import pLimit from 'p-limit'
 
 import type { GoalCompetition, GoalFormat, GoalScorer } from '@/features/goals/types/goals'
+import { GOALS_ROOT, INSPECTION_REPORT_PATH as INSPECTION_PATH } from './goals/goal-paths'
 import { writeGoalsManifest } from './goals/goal-manifest'
 import {
   isAlreadyUploaded,
@@ -33,8 +34,6 @@ import {
  * exactly what would be uploaded without contacting the upload API.
  */
 
-const GOALS_ROOT = 'Goles/web'
-const INSPECTION_PATH = 'data/goals/goals-inspection.generated.json'
 const DEFAULT_CONCURRENCY = 2
 const CHUNK_SIZE_BYTES = 6 * 1024 * 1024
 const MAX_ATTEMPTS = 3

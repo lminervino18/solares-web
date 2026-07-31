@@ -25,8 +25,7 @@ import { GOAL_SOURCE_OVERRIDES } from './goals/goals-source-overrides'
  * files. Source paths stay relative so the report never leaks a local path.
  */
 
-export const GOALS_ROOT = 'Goles/web'
-export const REPORT_PATH = 'data/goals/goals-inspection.generated.json'
+import { GOALS_ROOT, INSPECTION_REPORT_PATH as REPORT_PATH } from './goals/goal-paths'
 
 const CHAMPIONSHIPS_SNAPSHOT_PATH =
   'src/features/championships/data/generated/championships.snapshot.json'
