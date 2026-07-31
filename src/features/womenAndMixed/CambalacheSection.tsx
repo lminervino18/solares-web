@@ -22,7 +22,13 @@ export function CambalacheSection() {
   const [firstRelationshipParagraph, ...remainingRelationshipParagraphs] = relationshipParagraphs
 
   return (
-    <Section id="femenino" spacing="lg" aria-labelledby="femenino-title" className="scroll-mt-24">
+    <Section
+      id="femenino"
+      spacing="lg"
+      aria-labelledby="femenino-title"
+      tabIndex={-1}
+      className="scroll-mt-24 focus:outline-none"
+    >
       <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
         <div className="max-w-2xl">
           <Text

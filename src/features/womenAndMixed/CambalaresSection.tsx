@@ -15,7 +15,13 @@ export function CambalaresSection() {
   const { crest, teamPhotos } = womenAndMixedMedia.cambalares
 
   return (
-    <Section id="mixto" spacing="lg" aria-labelledby="mixto-title" className="scroll-mt-24">
+    <Section
+      id="mixto"
+      spacing="lg"
+      aria-labelledby="mixto-title"
+      tabIndex={-1}
+      className="scroll-mt-24 focus:outline-none"
+    >
       <div className="max-w-2xl">
         <Text
           as="p"
