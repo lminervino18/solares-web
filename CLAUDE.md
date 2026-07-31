@@ -255,7 +255,14 @@ The Goles page plays short goal clips hosted on Cloudinary. See
 - Goal ordering uses competition chronology, not file timestamps: the source timestamps only
   record when the clips were copied to disk. Timestamps only break ties inside one competition.
 - Goal ids are deterministic and content-based (`{format}-{short sha256}`). Do not upload
-  duplicate video content; duplicates are detected by hash.
+  duplicate video content. Hashing only catches byte-identical files: the same goal exported
+  twice (different bitrate, burned-in watermark) hashes differently, so
+  `npm run goals:duplicates` compares frames perceptually and reports candidates. It never
+  deletes — choosing which copy to keep is a human decision.
+- To remove a clip, mark it `skip` in the source overrides with a reason, re-inspect, then
+  `npm run goals:prune`. Skipping without pruning leaves an unreferenced asset hosted; pruning
+  without skipping means the next upload puts it straight back. Deletion never touches the
+  local file, which is what makes it reversible.
 - Goal metadata is classified before upload. Do not use fuzzy matching to silently merge
   scorers or competitions — Fuse.js is only for user-facing search.
 - Friendly and preseason goals belong in the competition filter and only ever appear on the

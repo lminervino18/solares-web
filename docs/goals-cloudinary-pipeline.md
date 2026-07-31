@@ -154,6 +154,9 @@ by the manifest generator and the gallery, so both agree.
 npm run goals:inspect      # classify local clips, write a report, upload nothing
 npm run goals:upload:dry   # report exactly what would be uploaded
 npm run goals:upload       # upload and rebuild the manifest
+npm run goals:duplicates   # report clips that look the same but hash differently
+npm run goals:prune        # report hosted assets the collection no longer publishes
+npm run goals:prune:apply  # delete them
 ```
 
 `goals:inspect` writes `data/goals/goals-inspection.generated.json` (gitignored)
@@ -169,6 +172,33 @@ not retried.
 
 None of these run during `npm install`, `npm run dev` or `npm run build`. **The
 build never needs a credential or network access to Cloudinary.**
+
+## Removing a goal
+
+Content hashing only catches byte-identical files. The same goal exported twice
+— a different bitrate, or a burned-in `@solares.futbol` watermark — produces
+different bytes and is uploaded as two goals.
+
+`npm run goals:duplicates` finds those. It reduces several frames per clip to a
+perceptual fingerprint and compares clips credited to the same scorer in the
+same competition and format, writing candidates to
+`data/goals/goals-duplicates.generated.json`. It never deletes: judging which
+copy to keep needs a human, and the comparison is a heuristic.
+
+To remove a clip once decided:
+
+1. Add it to `scripts/goals/goals-source-overrides.ts` with `skip: true` and a
+   `reason`. Skipping rather than deleting the file keeps the decision visible
+   and reversible.
+2. `npm run goals:inspect` — the clip drops out of the resolved set.
+3. `npm run goals:prune` to see which hosted assets are now unpublished, then
+   `npm run goals:prune:apply` to delete them. The script only ever deletes
+   assets absent from the inspection, and clears their checkpoint entries so a
+   later upload does not believe they still exist.
+4. `npm run goals:upload` to rebuild the manifest, then commit it.
+
+Skipping without pruning leaves the asset hosted but unreferenced; pruning
+without skipping means the next upload puts it straight back.
 
 ## Checkpoint and resuming
 
