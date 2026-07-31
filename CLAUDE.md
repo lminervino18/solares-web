@@ -236,14 +236,42 @@ the Championships feature — there is no second Google Sheets integration.
 - New valid sheet data affects statistics automatically after revalidation. Default tests use
   the committed snapshot and fixtures, never the live spreadsheet.
 
-## Goals page media (planned)
+## Goals (F8 and F5)
 
-The Goles page will show short goal clips (~100 videos, ~6-7 seconds each). The chosen host is
-**Cloudinary** (free tier): purpose-built for many short clips, generous storage/bandwidth,
-inline playback with a native `<video>` element (no third-party branding), and bulk upload via
-its API/CLI. Keep the clip-to-match/goal mapping in the same data source convention as the rest
-(spreadsheet or a typed data file). Uploading clips is an outward-facing action — confirm before
-publishing. YouTube (unlisted) is the fallback if no external account is desired.
+The Goles page plays short goal clips hosted on Cloudinary. See
+`docs/goals-cloudinary-pipeline.md` for the full pipeline contract.
+
+- The Goals section contains separate F8 and F5 collections. F8 is the default format for
+  `/goles` (`?modalidad=f5` for F5). Never mix F8 and F5 goals.
+- Local goal videos live under `Goles/` and must never be committed. The upload source is
+  `Goles/web/`; the originals are never modified or deleted by any script.
+- `CLOUDINARY_URL` must only be read from `.env.local` by local Node scripts. Never expose
+  Cloudinary credentials to Vite or browser code, and never print keys, secrets or the URL.
+  Under ESM the SDK needs `cloudinary.config(true)` because its import is evaluated before
+  `dotenv` runs.
+- The goals manifest may contain only public delivery information.
+- Numeric filename prefixes and suffixes are not goal identifiers and must never be shown.
+  Four-digit years that belong to a competition name must be preserved.
+- Goal ordering uses competition chronology, not file timestamps: the source timestamps only
+  record when the clips were copied to disk. Timestamps only break ties inside one competition.
+- Goal ids are deterministic and content-based (`{format}-{short sha256}`). Do not upload
+  duplicate video content; duplicates are detected by hash.
+- Goal metadata is classified before upload. Do not use fuzzy matching to silently merge
+  scorers or competitions — Fuse.js is only for user-facing search.
+- Friendly and preseason goals belong in the competition filter and only ever appear on the
+  Goles page, never inside an official championship.
+- Goal filters combine with AND. Previous and next navigation stays inside the filtered
+  collection, and both ends are closed rather than circular.
+- Shared goal URLs open the player on the selected goal and always point at `/goles`, even when
+  the player was opened from a championship. A filter that would hide a shared goal is dropped;
+  the goal is not.
+- `GoalGallery` and `GoalPlayer` are reusable. Championship pages omit the goals section
+  entirely when no matching goal exists — no heading, no placeholder. Goals are matched by
+  format plus `championshipId`, never by display name.
+- The normal build must not require `CLOUDINARY_URL` or Cloudinary access. Uploads are
+  resumable at file level and never overwrite an existing asset.
+- Cards render static posters only: no `<video>` in the grid, no hover playback, no autoplay.
+  The 4:3 poster crop is a grid device; the player always shows the original aspect ratio.
 
 ## Known accepted lint warnings
 
