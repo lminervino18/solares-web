@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-31T04:57:36.600Z",
+  "generatedAt": "2026-07-31T06:29:52.252Z",
   "goals": [
     {
       "id": "f5-65a7936b0094",
@@ -389,45 +389,6 @@
         "fileName": "Apertura_2026-Lorenzo_Minervino-06.mp4",
         "createdAt": "2026-07-30T22:51:14.847Z",
         "hash": "e65d509427712bc4adc4fe28134f50e07d178c8a78e9b0a4fc25b8ab682a0f32"
-      }
-    },
-    {
-      "id": "f5-1f3bdf9f7df6",
-      "format": "f5",
-      "scorer": {
-        "id": "lorenzo-minervino",
-        "slug": "lorenzo-minervino",
-        "name": "Lorenzo Minervino"
-      },
-      "competition": {
-        "id": "f5-apertura-2026",
-        "slug": "apertura-2026",
-        "name": "Apertura 2026",
-        "format": "f5",
-        "type": "official",
-        "championshipId": "f5-apertura-2026"
-      },
-      "cloudinary": {
-        "publicId": "solares/goals/f5/apertura-2026/lorenzo-minervino-1f3bdf9f7df6",
-        "resourceType": "video",
-        "format": "mp4",
-        "secureUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/v1785473488/solares/goals/f5/apertura-2026/lorenzo-minervino-1f3bdf9f7df6.mp4",
-        "playbackUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/f_auto,q_auto/v1785473488/solares/goals/f5/apertura-2026/lorenzo-minervino-1f3bdf9f7df6.mp4",
-        "posterUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/ar_4:3,c_fill,f_auto,g_auto,q_auto,so_auto,w_640/v1785473488/solares/goals/f5/apertura-2026/lorenzo-minervino-1f3bdf9f7df6.jpg",
-        "downloadUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/fl_attachment:solares-f5-apertura-2026-lorenzo-minervino/v1785473488/solares/goals/f5/apertura-2026/lorenzo-minervino-1f3bdf9f7df6.mp4",
-        "version": 1785473488
-      },
-      "media": {
-        "bytes": 1037776,
-        "width": 720,
-        "height": 1280,
-        "duration": 3.033333,
-        "aspectRatio": 0.5625
-      },
-      "source": {
-        "fileName": "Apertura_2026-Lorenzo_Minervino-04.mp4",
-        "createdAt": "2026-07-30T22:51:14.805Z",
-        "hash": "1f3bdf9f7df698ae2a508adc3517c785577f8ddd4a040c14dac6add0f85b9032"
       }
     },
     {
