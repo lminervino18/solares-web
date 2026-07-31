@@ -49,7 +49,9 @@ export function GoalPlayer({ goal, goals, shareUrl, onNavigate, onClose }: GoalP
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-[var(--z-overlay)] bg-[color-mix(in_oklab,var(--color-canvas)_88%,transparent)] backdrop-blur-sm" />
         <Dialog.Content className="fixed inset-0 z-[var(--z-dialog)] flex flex-col overflow-y-auto p-4 pt-[max(1rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))]">
-          <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-4">
+          {/* `my-auto` centres the player when it fits and still lets a taller
+              layout scroll from its top instead of being clipped. */}
+          <div className="mx-auto my-auto flex w-full max-w-5xl flex-col gap-4">
             <header className="flex items-start justify-between gap-4">
               <div className="min-w-0">
                 <Dialog.Title className="font-display text-[length:var(--font-size-xl)] font-bold text-primary">
