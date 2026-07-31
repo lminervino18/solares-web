@@ -3,8 +3,7 @@ import { motion } from 'motion/react'
 import { historyPhotos } from '@/data/history'
 import { Heading } from '@/components/primitives/Heading/Heading'
 import { Text } from '@/components/primitives/Text/Text'
-import { HistoryFigure } from './HistoryFigure'
-import { HistoryGallery } from './HistoryGallery'
+import { EditorialGallery } from '@/components/media/EditorialGallery/EditorialGallery'
 import type { HistoryChapter as HistoryChapterModel } from '@/types/history'
 
 export type HistoryChapterProps = {
@@ -52,7 +51,16 @@ export function HistoryChapter({ chapter }: HistoryChapterProps) {
             if (!photo) {
               return null
             }
-            return <HistoryFigure key={key} photo={photo} className="my-8" />
+            return (
+              <EditorialGallery
+                key={key}
+                photos={[photo]}
+                label={`Fotografía del capítulo ${chapter.title}`}
+                columns={1}
+                crop={false}
+                className="my-8"
+              />
+            )
           }
 
           const photos = block.photoIds
@@ -64,9 +72,12 @@ export function HistoryChapter({ chapter }: HistoryChapterProps) {
           }
 
           return (
-            <div key={key} className="my-8">
-              <HistoryGallery photos={photos} label={`Galería del capítulo ${chapter.title}`} />
-            </div>
+            <EditorialGallery
+              key={key}
+              photos={photos}
+              label={`Galería del capítulo ${chapter.title}`}
+              className="my-8"
+            />
           )
         })}
       </div>
