@@ -11,6 +11,10 @@ export type UseGoalPlayerOptions = {
   readonly containerRef: RefObject<HTMLDivElement | null>
   readonly initialRate: GoalPlaybackRate
   readonly onRateChange: (rate: GoalPlaybackRate) => void
+  /** Duration from the manifest, used until the element reports its own. */
+  readonly fallbackDuration?: number
+  /** Start playing as soon as the clip can play. */
+  readonly autoPlay?: boolean
 }
 
 export type GoalPlayerState = {
@@ -37,19 +41,24 @@ export type GoalPlayerState = {
  *
  * The hook is mounted per goal, so switching clips remounts it and the state
  * starts clean without any reset effect. The chosen rate is lifted to the
- * caller so it survives that remount for the length of the session. Playback
- * never starts on its own, and a rate the browser refuses falls back to 1x
- * instead of leaving the player stuck.
+ * caller so it survives that remount for the length of the session, and a rate
+ * the browser refuses falls back to 1x instead of leaving the player stuck.
+ *
+ * With `autoPlay` the clip starts as soon as it can play: opening a goal is an
+ * explicit click, so sound is allowed. A browser that still refuses leaves it
+ * paused, which is not treated as a failure.
  */
 export function useGoalPlayer({
   videoRef,
   containerRef,
   initialRate,
   onRateChange,
+  fallbackDuration,
+  autoPlay = false,
 }: UseGoalPlayerOptions): GoalPlayerState {
   const [playing, setPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
-  const [duration, setDuration] = useState(0)
+  const [duration, setDuration] = useState(fallbackDuration ?? 0)
   const [muted, setMuted] = useState(false)
   const [volume, setVolumeState] = useState(1)
   const [rate, setRateState] = useState<GoalPlaybackRate>(initialRate)
@@ -73,25 +82,42 @@ export function useGoalPlayer({
     const onPlay = () => setPlaying(true)
     const onPause = () => setPlaying(false)
     const onTimeUpdate = () => setCurrentTime(video.currentTime)
-    const onLoadedMetadata = () => {
-      setDuration(Number.isFinite(video.duration) ? video.duration : 0)
+    // A transcoded MP4 can report `Infinity` before the real length arrives, so
+    // the value is only accepted once it is finite and positive.
+    const readDuration = () => {
+      if (Number.isFinite(video.duration) && video.duration > 0) setDuration(video.duration)
     }
     const onError = () => setFailed(true)
+    const startPlayback = () => {
+      if (!autoPlay) return
+      // A browser may refuse to start without a gesture (a shared link opened
+      // directly). That is not a playback failure: the clip stays paused.
+      void video.play().catch(() => undefined)
+    }
 
     video.addEventListener('play', onPlay)
     video.addEventListener('pause', onPause)
     video.addEventListener('timeupdate', onTimeUpdate)
-    video.addEventListener('loadedmetadata', onLoadedMetadata)
+    video.addEventListener('loadedmetadata', readDuration)
+    video.addEventListener('durationchange', readDuration)
+    video.addEventListener('canplay', startPlayback)
     video.addEventListener('error', onError)
+
+    // The element can already have its metadata when this effect runs, in which
+    // case the events above have fired and would never be seen.
+    if (video.readyState >= HTMLMediaElement.HAVE_METADATA) readDuration()
+    if (video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) startPlayback()
 
     return () => {
       video.removeEventListener('play', onPlay)
       video.removeEventListener('pause', onPause)
       video.removeEventListener('timeupdate', onTimeUpdate)
-      video.removeEventListener('loadedmetadata', onLoadedMetadata)
+      video.removeEventListener('loadedmetadata', readDuration)
+      video.removeEventListener('durationchange', readDuration)
+      video.removeEventListener('canplay', startPlayback)
       video.removeEventListener('error', onError)
     }
-  }, [videoRef])
+  }, [videoRef, autoPlay])
 
   useEffect(() => {
     const video = videoRef.current
@@ -113,10 +139,18 @@ export function useGoalPlayer({
   const seekTo = useCallback(
     (seconds: number) => {
       const video = videoRef.current
-      if (video === null || !Number.isFinite(video.duration)) return
-      video.currentTime = Math.min(Math.max(seconds, 0), video.duration)
+      if (video === null) return
+      // The element's own duration is preferred, but a seek must still work
+      // while it is unknown, so the manifest value bounds the range instead.
+      const limit =
+        Number.isFinite(video.duration) && video.duration > 0 ? video.duration : duration
+      const target = limit > 0 ? Math.min(Math.max(seconds, 0), limit) : Math.max(seconds, 0)
+      video.currentTime = target
+      // Reflect the new position immediately so dragging the bar feels direct
+      // instead of waiting for the next `timeupdate`.
+      setCurrentTime(target)
     },
-    [videoRef],
+    [videoRef, duration],
   )
 
   const seekBy = useCallback(

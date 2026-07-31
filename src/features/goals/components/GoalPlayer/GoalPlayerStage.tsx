@@ -44,7 +44,14 @@ export function GoalPlayerStage({
 }: GoalPlayerStageProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const player = useGoalPlayer({ videoRef, containerRef, initialRate: rate, onRateChange })
+  const player = useGoalPlayer({
+    videoRef,
+    containerRef,
+    initialRate: rate,
+    onRateChange,
+    autoPlay: true,
+    ...(goal.media.duration === undefined ? {} : { fallbackDuration: goal.media.duration }),
+  })
   const zoom = useGoalZoom()
 
   useEffect(() => {
@@ -126,7 +133,7 @@ export function GoalPlayerStage({
               src={goal.cloudinary.playbackUrl}
               poster={goal.cloudinary.posterUrl}
               playsInline
-              preload="metadata"
+              preload="auto"
               className="max-h-[68vh] w-auto max-w-full origin-center"
               style={{
                 transform: `scale(${zoom.scale}) translate(${zoom.offsetX}%, ${zoom.offsetY}%)`,
