@@ -40,7 +40,15 @@ export function EditorialGallery({
     <div role="group" aria-label={label} className={className}>
       <ul className={cn('grid grid-cols-1 gap-4', columns === 2 && 'sm:grid-cols-2')}>
         {photos.map((photo, index) => (
-          <li key={photo.id}>
+          <li
+            key={photo.id}
+            className={cn(
+              columns === 2 &&
+                photos.length % 2 === 1 &&
+                index === photos.length - 1 &&
+                'sm:col-span-2',
+            )}
+          >
             {withLightbox ? (
               <button
                 type="button"
