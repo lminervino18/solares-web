@@ -23,4 +23,9 @@ export const GOAL_SOURCE_OVERRIDES: Readonly<Record<string, GoalSourceOverride>>
     reason:
       'Same goal as Apertura_2026-Lorenzo_Minervino-01, re-encoded with an @solares.futbol watermark and a lower bitrate. Content hashes differ, so only a visual comparison finds it.',
   },
+  'F5/Clausura_2025-Lucas_Iriarte-00.mp4': {
+    skip: true,
+    reason:
+      'Same goal as Clausura_2025-Lucas_Iriarte-08, which is kept: this copy carries a site watermark across the top edge and a lower bitrate. Identical duration, so only a visual comparison finds it.',
+  },
 }

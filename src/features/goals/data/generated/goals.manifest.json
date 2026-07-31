@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-31T06:29:52.252Z",
+  "generatedAt": "2026-07-31T06:43:12.142Z",
   "goals": [
     {
       "id": "f5-65a7936b0094",
@@ -1598,45 +1598,6 @@
         "fileName": "Clausura_2025-Lucas_Iriarte-01.mp4",
         "createdAt": "2026-07-30T22:52:10.975Z",
         "hash": "78fe1aa1facafd5d2124402e882774ec1c5a5f2ab9dde86561fa9558b659db62"
-      }
-    },
-    {
-      "id": "f5-0b3146c714f7",
-      "format": "f5",
-      "scorer": {
-        "id": "lucas-iriarte",
-        "slug": "lucas-iriarte",
-        "name": "Lucas Iriarte"
-      },
-      "competition": {
-        "id": "f5-clausura-2025",
-        "slug": "clausura-2025",
-        "name": "Clausura 2025",
-        "format": "f5",
-        "type": "official",
-        "championshipId": "f5-clausura-2025"
-      },
-      "cloudinary": {
-        "publicId": "solares/goals/f5/clausura-2025/lucas-iriarte-0b3146c714f7",
-        "resourceType": "video",
-        "format": "mp4",
-        "secureUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/v1785473480/solares/goals/f5/clausura-2025/lucas-iriarte-0b3146c714f7.mp4",
-        "playbackUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/f_auto,q_auto/v1785473480/solares/goals/f5/clausura-2025/lucas-iriarte-0b3146c714f7.mp4",
-        "posterUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/ar_4:3,c_fill,f_auto,g_auto,q_auto,so_auto,w_640/v1785473480/solares/goals/f5/clausura-2025/lucas-iriarte-0b3146c714f7.jpg",
-        "downloadUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/fl_attachment:solares-f5-clausura-2025-lucas-iriarte/v1785473480/solares/goals/f5/clausura-2025/lucas-iriarte-0b3146c714f7.mp4",
-        "version": 1785473480
-      },
-      "media": {
-        "bytes": 1442093,
-        "width": 720,
-        "height": 594,
-        "duration": 9,
-        "aspectRatio": 1.2121
-      },
-      "source": {
-        "fileName": "Clausura_2025-Lucas_Iriarte-00.mp4",
-        "createdAt": "2026-07-30T22:52:10.831Z",
-        "hash": "0b3146c714f715ebd0ef01937c3bdc1dba20c3aa628bff72196b9b242992484a"
       }
     },
     {
