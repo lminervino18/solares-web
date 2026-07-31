@@ -22,9 +22,9 @@ Main routes:
 - Femenino y Mixto — `/femenino-mixto`
 
 Implemented pages: **Inicio** (presentation with an interactive crest, the crest timeline and the
-kit gallery) and **Historia** (eight chapters, chapter index, contextual photo galleries and the
-origin map). The other four pages are still `EmptyState` placeholders — do not invent their
-sports content.
+kit gallery), **Historia** (eight chapters, chapter index, contextual photo galleries and the
+origin map), **Campeonatos**, **Estadísticas**, **Goles** and **Femenino y Mixto** (Cambalache and
+Cambalares). Do not invent sports content for any of them.
 
 ## Stack
 
@@ -149,20 +149,29 @@ minimal wrappers (`three`). Implement them with dynamic imports when a page rend
 - Navigation items (label + path + Lucide icon): `src/config/navigation.config.ts`.
 - Design tokens: `src/styles/tokens/*`. Routes: `src/constants/routes.ts`. Router: `src/app/routes.tsx`.
 - Content data: `src/data/crests.ts`, `kits.ts`, `history.ts` (chapters + photos), `brand.ts`
-  (flag, current crest, header logo). Domain types: `src/types/*`. Schemas: `src/schemas/*`.
+  (flag, current crest, header logo), `womenAndMixed.ts` (Cambalache and Cambalares media).
+  Domain types: `src/types/*`. Schemas: `src/schemas/*`.
   The sports data files (`players.ts`, `matches.ts`, etc.) are still typed empty arrays.
-- Home sections: `src/features/home/HomeIntro.tsx`; brand components in `src/components/brand/*`.
-- History sections: `src/features/history/*` (chapter, figure, gallery, timeline).
+- Home sections: `src/features/home/HomeIntro.tsx`; brand components in `src/components/brand/*`
+  (`InteractiveCrest`, `CrestFusion`, `TeamFlag`, `CrestTimeline`, `KitGallery`).
+- History sections: `src/features/history/*` (chapter, timeline).
+- Women and Mixed sections: `src/features/womenAndMixed/*` (Cambalache, Cambalares).
 
 ## Solares content and media
 
-- Optimized media lives in `src/assets/solares/{brand,crests,kits,history}` as PNG/JPG + WebP
-  pairs, rendered through `Picture` (`<picture>` with a WebP source and a fallback, plus intrinsic
+- Optimized media lives in `src/assets/solares/{brand,crests,kits,history,cambalache,cambalares}`
+  as PNG/JPG + WebP pairs, rendered through `Picture` (`<picture>` with a WebP source and a fallback, plus intrinsic
   `width`/`height`). The raw source images are in `archivos_solares/` (gitignored — originals kept
-  locally, never committed).
+  locally, never committed); the Femenino y Mixto sources are in `nuevos_archvios_fem_y_mixto/`
+  (also gitignored) and are prepared by `npm run assets:women-and-mixed`.
 - Crests, kits and photos are ordered chronologically in their data files. Crests: `crest-1`
   (oldest) … `crest-5` (`isCurrent`, the shield with laurels used in the flag). Kits: 10, chronological.
-  History photos: `photo-0`..`photo-8`, placed in specific chapters — keep those positions.
+  History photos: `photo-0`..`photo-10`, placed in specific chapters — keep those positions. The
+  Historia renaissance chapter contains four ordered images: the two original ones (`photo-3`,
+  `photo-4`) always come before the two newer ones (`photo-9`, `photo-10`). Do not reorder
+  editorial images for visual convenience.
+- Photo blocks are rendered by the shared `EditorialGallery` (ordered photos, one or two columns,
+  optional crop, optional lightbox, lazy loading). Do not add a per-section gallery component.
 - Crest and logo images are **transparent PNGs**. They were cut with ImageMagick using
   connectivity-based flood fill from the corners (`-fill none -floodfill +x+y <bgcolor>`), which
   removes the background while preserving interior design (e.g. the bull's white horns, digit
@@ -175,6 +184,33 @@ minimal wrappers (`three`). Implement them with dynamic imports when a page rend
   no brand icons).
 - Favicon and the header logo come from the circular bull `icon` as transparent PNGs
   (`public/favicon*.png`, `.ico`, `apple-touch-icon`, `icon-192/512`; `src/assets/solares/brand/icon.png`).
+
+## Women and Mixed (Cambalache and Cambalares)
+
+The Femenino y Mixto page (`/femenino-mixto`) tells two related but separate stories.
+
+- The page contains separate Cambalache (`#femenino`) and Cambalares (`#mixto`) sections.
+  Cambalache represents the women-related section and Cambalares the mixed-team section.
+  Do not mix Cambalache and Cambalares media.
+- Solares has no women's team of its own. Cambalache is a different team; never present it as a
+  Solares branch, and never add names, tournaments or results that are not already written.
+- The Cambalache crest is extracted from the center of its flag. The extracted crest must
+  preserve all internal colors, borders, text and shapes. The Cambalares crest is a faithful
+  extraction of its source image. Never use automatic background removal on team crests:
+  `scripts/prepare-women-and-mixed-assets.ts` only clears the outer background with a
+  connectivity flood fill seeded from the image border, and every result is checked visually
+  on a mid-gray background before committing. Original source files stay unchanged.
+- Interactive crest behavior is shared: `InteractiveCrest` serves Solares, Cambalache and
+  Cambalares through `size`, `intensity` and `priority` props. Do not write a second
+  implementation. Crest animation and the `CrestFusion` entrance must respect reduced motion,
+  which renders the composition static.
+- The `Cambalache + Solares = Cambalares` composition keeps an accessible name on the group, the
+  plus and equals signs are `aria-hidden`, and it reflows vertically on small viewports.
+- Photo order is defined by the descriptive source filenames and by the page requirements, never
+  by file timestamps or by visual convenience. `src/data/womenAndMixed.ts` is the single ordered
+  manifest; components never index media by magic numbers.
+- The router restores the scroll position on history entries, which cancels native fragment
+  jumps. In-page anchors must scroll and focus the target section explicitly.
 
 ## Championships (F8 and F5)
 
