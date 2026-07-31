@@ -25,7 +25,10 @@
     "build:fresh": "npm run sync:championships && npm run build",
     "check": "npm run typecheck && npm run lint && npm run test:run && npm run build",
     "goals:upload": "tsx --tsconfig tsconfig.app.json scripts/upload-goals-to-cloudinary.ts",
-    "goals:upload:dry": "tsx --tsconfig tsconfig.app.json scripts/upload-goals-to-cloudinary.ts --dry-run"
+    "goals:upload:dry": "tsx --tsconfig tsconfig.app.json scripts/upload-goals-to-cloudinary.ts --dry-run",
+    "goals:prune": "tsx --tsconfig tsconfig.app.json scripts/prune-cloudinary-goals.ts",
+    "goals:prune:apply": "tsx --tsconfig tsconfig.app.json scripts/prune-cloudinary-goals.ts --confirm",
+    "goals:duplicates": "tsx --tsconfig tsconfig.app.json scripts/find-duplicate-goals.ts"
   },
   "dependencies": {
     "@fontsource/barlow": "^5.3.0",
