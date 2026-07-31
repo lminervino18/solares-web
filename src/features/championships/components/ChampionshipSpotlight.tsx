@@ -2,6 +2,7 @@ import { motion } from 'motion/react'
 
 import { Heading } from '@/components/primitives/Heading/Heading'
 import { Text } from '@/components/primitives/Text/Text'
+import { ChampionshipGoals } from '@/features/goals/components/ChampionshipGoals/ChampionshipGoals'
 import type { Championship } from '../types/championships'
 import { FOOTBALL_FORMAT_LABEL, FOOTBALL_FORMAT_LONG_LABEL } from '../utils/championshipLabels'
 import { ChampionshipHonor } from './ChampionshipHonor'
@@ -112,6 +113,8 @@ export function ChampionshipSpotlight({
           <ScorersTable key={`${championship.id}-scorers`} scorers={scorers} />
         </section>
       )}
+
+      <ChampionshipGoals championshipId={championship.id} format={format} />
     </motion.article>
   )
 }
