@@ -10,9 +10,9 @@ import { Heading } from '@/components/primitives/Heading/Heading'
 import { Text } from '@/components/primitives/Text/Text'
 import { LinkButton } from '@/components/primitives/LinkButton/LinkButton'
 import { VisuallyHidden } from '@/components/primitives/VisuallyHidden/VisuallyHidden'
-import { Picture } from '@/components/media/Picture/Picture'
 import { LocationMap } from '@/components/media/LocationMap/LocationMap'
 import { InteractiveCrest } from '@/components/brand/InteractiveCrest/InteractiveCrest'
+import { TeamFlag } from '@/components/brand/TeamFlag/TeamFlag'
 
 const introParagraphs = [
   'Nacimos en un barrio de Cipolletti, Río Negro, y hoy continuamos nuestra historia en Capital Federal. Nos dicen el Torito Violeta y cada semana volvemos a encontrarnos para competir y defender nuestros colores jugando al deporte más lindo del mundo.',
@@ -80,9 +80,7 @@ export function HomeIntro() {
           </Text>
         </div>
 
-        <figure className="mt-14 overflow-hidden rounded-(--radius-xl) border border-line">
-          <Picture image={flag} imgClassName="w-full" />
-        </figure>
+        <TeamFlag flag={flag} className="mt-14" />
 
         <LocationMap
           className="mt-14 max-w-[44rem]"
