@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { screen } from '@testing-library/react'
+import { screen, within } from '@testing-library/react'
 
 import { renderWithProviders } from '@/test/renderWithProviders'
 import { historyChapters, historyPhotos } from '@/data/history'
@@ -36,6 +36,24 @@ describe('HistoryPage', () => {
       expect(photo).toBeDefined()
       expect(screen.getByRole('img', { name: photo?.alt ?? '' })).toBeInTheDocument()
     }
+  })
+
+  it('renders the four renaissance photos, the two newer ones last', () => {
+    renderWithProviders(<HistoryPage />)
+    const chapter = screen
+      .getByRole('heading', { level: 2, name: 'El renacimiento' })
+      .closest('section')
+    expect(chapter).not.toBeNull()
+
+    const alternativeTexts = within(chapter as HTMLElement)
+      .getAllByRole('img')
+      .map((image) => image.getAttribute('alt'))
+    const expected = ['photo-3', 'photo-4', 'photo-9', 'photo-10'].map(
+      (photoId) => historyPhotos[photoId]?.alt,
+    )
+
+    expect(expected.every((alt) => typeof alt === 'string' && alt.length > 0)).toBe(true)
+    expect(alternativeTexts).toEqual(expected)
   })
 
   it('renders the plaza map where it is narrated', () => {

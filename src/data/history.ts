@@ -18,6 +18,10 @@ import photo7Jpg from '@/assets/solares/history/photo-7.jpg'
 import photo7Webp from '@/assets/solares/history/photo-7.webp'
 import photo8Jpg from '@/assets/solares/history/photo-8.jpg'
 import photo8Webp from '@/assets/solares/history/photo-8.webp'
+import photo9Jpg from '@/assets/solares/history/photo-9.jpg'
+import photo9Webp from '@/assets/solares/history/photo-9.webp'
+import photo10Jpg from '@/assets/solares/history/photo-10.jpg'
+import photo10Webp from '@/assets/solares/history/photo-10.webp'
 
 export const historyPhotos: Record<string, HistoryPhoto> = {
   'photo-0': {
@@ -91,6 +95,22 @@ export const historyPhotos: Record<string, HistoryPhoto> = {
     width: 960,
     height: 1280,
     alt: 'Plantel de Solares Buenos Aires celebrando junto a la bandera del equipo, con un trofeo y una bota de oro, en una cancha sintética.',
+  },
+  'photo-9': {
+    id: 'photo-9',
+    src: photo9Jpg,
+    webp: photo9Webp,
+    width: 1600,
+    height: 1066,
+    alt: 'Plantel de Solares posando frente al arco con camiseta violeta y celeste, en una cancha de césped iluminada de noche.',
+  },
+  'photo-10': {
+    id: 'photo-10',
+    src: photo10Jpg,
+    webp: photo10Webp,
+    width: 1600,
+    height: 1200,
+    alt: 'Plantel de Solares celebrando de noche con un trofeo y una bandera blanca que dice Campeón 2021 junto al escudo del equipo.',
   },
 }
 
@@ -258,7 +278,7 @@ export const historyChapters: readonly HistoryChapter[] = [
         type: 'paragraph',
         text: 'El equipo ya no era exactamente el mismo de 2014. Habían cambiado los jugadores, los torneos y los lugares. Sin embargo, seguía existiendo la misma esencia: un grupo de amigos que se juntaba para jugar, competir y defender el escudo de Solares.',
       },
-      { type: 'gallery', photoIds: ['photo-3', 'photo-4'] },
+      { type: 'gallery', photoIds: ['photo-3', 'photo-4', 'photo-9', 'photo-10'] },
     ],
   },
   {
