@@ -42,3 +42,6 @@ playwright/.cache
 # Raw source assets (organized/optimized into src/assets/solares)
 archivos_solares
 campeonatos_archivos_solares
+
+# Raw goal clips (uploaded to Cloudinary, never committed)
+Goles
