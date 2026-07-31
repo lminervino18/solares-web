@@ -45,3 +45,7 @@ campeonatos_archivos_solares
 
 # Raw goal clips (uploaded to Cloudinary, never committed)
 Goles
+
+# Local pipeline artifacts (regenerated on demand)
+.cache
+data/goals
