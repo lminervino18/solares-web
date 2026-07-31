@@ -140,14 +140,59 @@ test.describe('goals', () => {
     await expect(dialog).toContainText('Lorenzo Minervino')
   })
 
-  test('opens a shared URL directly on the goal', async ({ page }) => {
+  test('reserves the video box so the player never resizes while loading', async ({ page }) => {
+    // Delay the clip so the loading state is observable, then confirm the box
+    // it occupies is already the one the video ends up in.
+    await page.route('**res.cloudinary.com/**.mp4*', async (route) => {
+      await new Promise((resolve) => setTimeout(resolve, 1200))
+      await route.continue()
+    })
+
     await page.goto('/goles')
     await page.getByRole('button', { name: anyCard }).first().click()
+    await expect(page.getByRole('dialog')).toBeVisible()
+
+    const stage = page.locator('[role="dialog"] video').locator('xpath=../..')
+    await expect(page.getByRole('status')).toBeVisible()
+    const whileLoading = await stage.boundingBox()
+
+    await expect(page.getByRole('status')).toBeHidden({ timeout: 15_000 })
+    const afterLoading = await stage.boundingBox()
+
+    expect(whileLoading).not.toBeNull()
+    expect(afterLoading).not.toBeNull()
+    expect(Math.abs(whileLoading!.width - afterLoading!.width)).toBeLessThanOrEqual(1)
+    expect(Math.abs(whileLoading!.height - afterLoading!.height)).toBeLessThanOrEqual(1)
+  })
+
+  test('keeps the reported duration stable while the clip plays', async ({ page }) => {
+    await page.goto('/goles')
+    await page.getByRole('button', { name: anyCard }).first().click()
+    await expect(page.getByRole('dialog')).toBeVisible()
+
+    const bar = page.locator('[role="dialog"] input[type=range]').first()
+    const first = await bar.getAttribute('max')
+    await page.waitForTimeout(1500)
+    expect(await bar.getAttribute('max')).toBe(first)
+  })
+
+  test('opens a shared URL directly on the goal', async ({ page }) => {
+    await page.goto('/goles')
+    const firstCard = page.getByRole('button', { name: anyCard }).first()
+    await expect(firstCard).toBeVisible()
+    const goalName = (await firstCard.getAttribute('aria-label')) ?? ''
+
+    await firstCard.click()
     await expect(page).toHaveURL(/gol=/)
     const sharedUrl = page.url()
 
-    await page.goto(sharedUrl)
-    await expect(page.getByRole('dialog')).toBeVisible()
+    // The player preloads its clip, so waiting for `load` would wait for the
+    // whole video. The assertion below is what actually decides the test.
+    await page.goto(sharedUrl, { waitUntil: 'domcontentloaded' })
+    const dialog = page.getByRole('dialog')
+    await expect(dialog).toBeVisible()
+    // The shared link must land on the same goal, not just on any player.
+    expect(goalName).toContain(await dialog.getByRole('heading').first().innerText())
   })
 
   test('reports a goal that no longer exists without breaking the page', async ({ page }) => {
@@ -232,7 +277,10 @@ test.describe('championship goals', () => {
   test('keeps the championship goals out of the query string', async ({ page }) => {
     await page.goto('/campeonatos?torneo=clausura-2023')
     const section = page.getByRole('region', { name: 'Goles del campeonato' })
-    await section.getByRole('button', { name: anyCard }).first().click()
+    const card = section.getByRole('button', { name: anyCard }).first()
+    await card.scrollIntoViewIfNeeded()
+    await expect(card).toBeVisible()
+    await card.click()
 
     await expect(page.getByRole('dialog')).toBeVisible()
     await expect(page).not.toHaveURL(/gol=/)

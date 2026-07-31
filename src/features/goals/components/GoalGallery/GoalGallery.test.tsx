@@ -232,6 +232,27 @@ describe('GoalGallery', () => {
     expect(dialog).toHaveTextContent('0:09')
   })
 
+  it('keeps the manifest duration when the element reports a different one', async () => {
+    renderWithProviders(
+      <GoalGallery goals={[makeGoal({ id: 'f8-dur2', duration: 9.4 })]} format="f8" />,
+      { initialEntries: ['/goles?gol=f8-dur2'] },
+    )
+
+    const dialog = await screen.findByRole('dialog')
+    const video = dialog.querySelector('video')
+    expect(video).not.toBeNull()
+
+    // A progressively downloaded transcode reports its length repeatedly while
+    // it streams; letting it win would make the total drift as the clip plays.
+    Object.defineProperty(video!, 'duration', { configurable: true, value: 3 })
+    fireEvent(video!, new Event('durationchange'))
+
+    await waitFor(() => {
+      expect(dialog).toHaveTextContent('0:09')
+    })
+    expect(dialog).not.toHaveTextContent('0:03')
+  })
+
   it('starts playing once the clip is ready', async () => {
     playCalls = 0
 
