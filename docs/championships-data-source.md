@@ -148,7 +148,9 @@ embedded via `youtube-nocookie.com`, click-to-load, never autoplayed.
 
 ## Known inconsistencies
 
-- `Clausura 2025` exists in both F8 and F5 — handled by format-namespaced ids.
+- `Clausura 2025` and `Apertura 2026` exist in both F8 and F5 — handled by
+  format-namespaced ids. They are different tournaments with their own matches,
+  team photos and statistics.
 - The F5 summary's `Apertura 2026` `Link Final` is a plain title, not a URL, so
   no video is shown for it.
 - `Verano 2026` exists in the F5 matches sheet but not the F5 summary, so it is

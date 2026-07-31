@@ -45,6 +45,7 @@ const PHOTOS: readonly PhotoJob[] = [
   },
   { source: 'Apertura_2025.jpeg', format: 'f8', slug: 'apertura-2025' },
   { source: 'Clausura_2025.jpeg', format: 'f8', slug: 'clausura-2025' },
+  { source: 'Apertura_2026.jpeg', format: 'f8', slug: 'apertura-2026' },
   { source: 'Clausura_2025_F5.jpeg', format: 'f5', slug: 'clausura-2025' },
   { source: 'Apertura_2026_F5.jpeg', format: 'f5', slug: 'apertura-2026' },
 ]

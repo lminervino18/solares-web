@@ -28,20 +28,22 @@ describe('ChampionshipsSection', () => {
     await waitFor(() => {
       expect(screen.getByRole('tab', { name: /F8/ })).toHaveAttribute('aria-selected', 'true')
     })
-    expect(screen.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeInTheDocument()
   })
 
   it('switches to F5 and shows only F5 championships', async () => {
     renderWithProviders(<ChampionshipsSection />, { initialEntries: ['/campeonatos'] })
 
     await waitFor(() => {
-      expect(screen.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeInTheDocument()
+      expect(screen.getByText(/Campeonatos F8/)).toBeInTheDocument()
     })
 
     await userEvent.click(screen.getByRole('tab', { name: /F5/ }))
 
+    // "Apertura 2026" exists in both formats, so the spotlight label is what
+    // proves the switch happened.
     await waitFor(() => {
-      expect(screen.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeInTheDocument()
+      expect(screen.getByText(/Campeonatos F5/)).toBeInTheDocument()
     })
     // "Clausura 2023" only exists in F8, so it must be gone after switching.
     expect(screen.queryByText('Clausura 2023')).not.toBeInTheDocument()

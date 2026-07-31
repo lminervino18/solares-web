@@ -14,6 +14,8 @@ import apertura2025Jpg from '@/assets/solares/championships/f8/apertura-2025/tea
 import apertura2025Webp from '@/assets/solares/championships/f8/apertura-2025/team-photo.webp'
 import clausura2025Jpg from '@/assets/solares/championships/f8/clausura-2025/team-photo.jpg'
 import clausura2025Webp from '@/assets/solares/championships/f8/clausura-2025/team-photo.webp'
+import apertura2026Jpg from '@/assets/solares/championships/f8/apertura-2026/team-photo.jpg'
+import apertura2026Webp from '@/assets/solares/championships/f8/apertura-2026/team-photo.webp'
 import clausura2025F5Jpg from '@/assets/solares/championships/f5/clausura-2025/team-photo.jpg'
 import clausura2025F5Webp from '@/assets/solares/championships/f5/clausura-2025/team-photo.webp'
 import apertura2026F5Jpg from '@/assets/solares/championships/f5/apertura-2026/team-photo.jpg'
@@ -42,6 +44,7 @@ export const championshipTeamPhotos = {
   'f8-clausura-2024': { src: clausura2024Jpg, webp: clausura2024Webp, width: 1179, height: 717 },
   'f8-apertura-2025': { src: apertura2025Jpg, webp: apertura2025Webp, width: 1179, height: 728 },
   'f8-clausura-2025': { src: clausura2025Jpg, webp: clausura2025Webp, width: 1179, height: 1096 },
+  'f8-apertura-2026': { src: apertura2026Jpg, webp: apertura2026Webp, width: 1179, height: 1098 },
   'f5-clausura-2025': {
     src: clausura2025F5Jpg,
     webp: clausura2025F5Webp,

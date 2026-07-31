@@ -26,31 +26,34 @@ test.describe('championships', () => {
 
   test('switching format updates the URL and the content', async ({ page }) => {
     await page.goto('/campeonatos')
-    await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()
+    await expect(page.getByText('Campeonatos F8')).toBeVisible()
+    await expect(page.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeVisible()
 
     await page.getByRole('tab', { name: /F5/ }).click()
     await expect(page).toHaveURL(/modalidad=f5/)
-    await expect(page.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeVisible()
+    // "Apertura 2026" is the most recent championship in both formats, so the
+    // spotlight label is what proves the format changed.
+    await expect(page.getByText('Campeonatos F5')).toBeVisible()
     // Clausura 2023 only exists in F8.
     await expect(page.getByText('Clausura 2023')).toHaveCount(0)
 
     await page.getByRole('tab', { name: /F8/ }).click()
     await expect(page).not.toHaveURL(/modalidad=f5/)
-    await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()
+    await expect(page.getByText('Campeonatos F8')).toBeVisible()
   })
 
   test('selecting a championship updates the torneo param and back restores it', async ({
     page,
   }) => {
     await page.goto('/campeonatos')
-    await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()
+    await expect(page.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeVisible()
 
     await page.getByRole('button', { name: 'Campeonato siguiente' }).click()
     await expect(page).toHaveURL(/torneo=/)
 
     await page.goBack()
     await expect(page).not.toHaveURL(/torneo=/)
-    await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()
+    await expect(page.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeVisible()
   })
 
   test('selects a non-default F5 championship (Clausura 2025)', async ({ page }) => {
@@ -69,19 +72,19 @@ test.describe('championships', () => {
     page,
   }) => {
     await page.goto('/campeonatos')
-    await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()
+    await expect(page.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeVisible()
 
     // No card is focused; the arrows still change the championship.
     await page.keyboard.press('ArrowRight')
-    await expect(page.getByRole('heading', { level: 2, name: 'Apertura 2025' })).toBeVisible()
+    await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()
 
     await page.keyboard.press('ArrowLeft')
-    await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()
+    await expect(page.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeVisible()
   })
 
   test('keeps the scroll position when switching championships', async ({ page }) => {
     await page.goto('/campeonatos')
-    await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()
+    await expect(page.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeVisible()
 
     // Click via the DOM so Playwright does not auto-scroll the button into view,
     // which would move the page itself and mask the behaviour under test.
@@ -118,7 +121,7 @@ test.describe('championships', () => {
   test('renders from the snapshot when the sheet is unavailable', async ({ page }) => {
     await page.goto('/campeonatos')
     await expect(page.getByText('Mostrando la última versión disponible.')).toBeVisible()
-    await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()
+    await expect(page.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeVisible()
   })
 
   test('has no horizontal overflow', async ({ page }) => {
