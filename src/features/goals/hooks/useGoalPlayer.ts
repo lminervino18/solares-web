@@ -26,6 +26,8 @@ export type GoalPlayerState = {
   readonly rate: GoalPlaybackRate
   readonly fullscreen: boolean
   readonly failed: boolean
+  /** True once the clip can play, used to swap the loading state out. */
+  readonly ready: boolean
   readonly canFullscreen: boolean
   readonly togglePlay: () => void
   readonly seekTo: (seconds: number) => void
@@ -66,6 +68,7 @@ export function useGoalPlayer({
     () => typeof document !== 'undefined' && document.fullscreenElement !== null,
   )
   const [failed, setFailed] = useState(false)
+  const [ready, setReady] = useState(false)
 
   const canFullscreen = typeof document !== 'undefined' && document.fullscreenEnabled === true
 
@@ -82,11 +85,15 @@ export function useGoalPlayer({
     const onPlay = () => setPlaying(true)
     const onPause = () => setPlaying(false)
     const onTimeUpdate = () => setCurrentTime(video.currentTime)
-    // A transcoded MP4 can report `Infinity` before the real length arrives, so
-    // the value is only accepted once it is finite and positive.
+    // The manifest duration comes from Cloudinary's own metadata and never
+    // changes. A progressively downloaded transcode reports its length several
+    // times while it streams, so letting the element win would make the total
+    // visibly drift as the clip plays.
     const readDuration = () => {
+      if (fallbackDuration !== undefined) return
       if (Number.isFinite(video.duration) && video.duration > 0) setDuration(video.duration)
     }
+    const onReady = () => setReady(true)
     const onError = () => setFailed(true)
     const startPlayback = () => {
       if (!autoPlay) return
@@ -100,13 +107,17 @@ export function useGoalPlayer({
     video.addEventListener('timeupdate', onTimeUpdate)
     video.addEventListener('loadedmetadata', readDuration)
     video.addEventListener('durationchange', readDuration)
+    video.addEventListener('canplay', onReady)
     video.addEventListener('canplay', startPlayback)
     video.addEventListener('error', onError)
 
     // The element can already have its metadata when this effect runs, in which
     // case the events above have fired and would never be seen.
     if (video.readyState >= HTMLMediaElement.HAVE_METADATA) readDuration()
-    if (video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) startPlayback()
+    if (video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) {
+      onReady()
+      startPlayback()
+    }
 
     return () => {
       video.removeEventListener('play', onPlay)
@@ -114,10 +125,26 @@ export function useGoalPlayer({
       video.removeEventListener('timeupdate', onTimeUpdate)
       video.removeEventListener('loadedmetadata', readDuration)
       video.removeEventListener('durationchange', readDuration)
+      video.removeEventListener('canplay', onReady)
       video.removeEventListener('canplay', startPlayback)
       video.removeEventListener('error', onError)
     }
-  }, [videoRef, autoPlay])
+  }, [videoRef, autoPlay, fallbackDuration])
+
+  // `timeupdate` only fires a few times a second, which reads as a stuttering
+  // progress bar on a clip lasting a few seconds. While playing, the position
+  // is sampled per frame instead.
+  useEffect(() => {
+    if (!playing) return
+    let frame = 0
+    const sample = () => {
+      const video = videoRef.current
+      if (video !== null) setCurrentTime(video.currentTime)
+      frame = requestAnimationFrame(sample)
+    }
+    frame = requestAnimationFrame(sample)
+    return () => cancelAnimationFrame(frame)
+  }, [playing, videoRef])
 
   useEffect(() => {
     const video = videoRef.current
@@ -140,10 +167,14 @@ export function useGoalPlayer({
     (seconds: number) => {
       const video = videoRef.current
       if (video === null) return
-      // The element's own duration is preferred, but a seek must still work
-      // while it is unknown, so the manifest value bounds the range instead.
+      // Bounded by the same duration the progress bar shows, so the thumb can
+      // always reach both ends of the track it is drawn on.
       const limit =
-        Number.isFinite(video.duration) && video.duration > 0 ? video.duration : duration
+        duration > 0
+          ? duration
+          : Number.isFinite(video.duration) && video.duration > 0
+            ? video.duration
+            : 0
       const target = limit > 0 ? Math.min(Math.max(seconds, 0), limit) : Math.max(seconds, 0)
       video.currentTime = target
       // Reflect the new position immediately so dragging the bar feels direct
@@ -210,6 +241,7 @@ export function useGoalPlayer({
     rate,
     fullscreen,
     failed,
+    ready,
     canFullscreen,
     togglePlay,
     seekTo,

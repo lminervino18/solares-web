@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { Loader2 } from 'lucide-react'
 
 import { cn } from '@/lib/cn'
 import { Button } from '@/components/primitives/Button/Button'
@@ -15,6 +16,19 @@ export type GoalPlayerStageProps = {
   onRateChange: (rate: GoalPlaybackRate) => void
   onPrevious?: () => void
   onNext?: () => void
+}
+
+/** Tallest the video area may get, leaving room for the header and controls. */
+const MAX_STAGE_HEIGHT = '62vh'
+const DEFAULT_ASPECT_RATIO = 16 / 9
+
+function stageAspectRatio(goal: GoalVideo): number {
+  if (goal.media.aspectRatio !== undefined && goal.media.aspectRatio > 0) {
+    return goal.media.aspectRatio
+  }
+  const { width, height } = goal.media
+  if (width !== undefined && height !== undefined && height > 0) return width / height
+  return DEFAULT_ASPECT_RATIO
 }
 
 function isTypingTarget(target: EventTarget | null): boolean {
@@ -53,6 +67,7 @@ export function GoalPlayerStage({
     ...(goal.media.duration === undefined ? {} : { fallbackDuration: goal.media.duration }),
   })
   const zoom = useGoalZoom()
+  const aspectRatio = stageAspectRatio(goal)
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -93,9 +108,17 @@ export function GoalPlayerStage({
 
   return (
     <>
+      {/* The stage takes its exact size from the manifest before the clip
+          loads, so the player never resizes once the video appears. The width
+          is whichever is smaller: the available width, or the width that makes
+          the clip exactly as tall as the allowed maximum. */}
       <div
         ref={containerRef}
-        className="relative flex min-w-0 flex-1 items-center justify-center overflow-hidden rounded-(--radius-lg) bg-black"
+        style={{
+          aspectRatio: String(aspectRatio),
+          width: `min(100%, calc(${MAX_STAGE_HEIGHT} * ${String(aspectRatio)}))`,
+        }}
+        className="relative mx-auto flex min-w-0 items-center justify-center overflow-hidden rounded-(--radius-lg) bg-black"
       >
         {player.failed ? (
           <div className="flex flex-col items-center gap-3 p-10 text-center">
@@ -119,27 +142,39 @@ export function GoalPlayerStage({
             onPointerUp={zoom.onPointerUp}
             onPointerCancel={zoom.onPointerUp}
             className={cn(
-              'flex max-h-[68vh] w-full items-center justify-center',
+              'flex h-full w-full items-center justify-center',
               zoom.isZoomed && (zoom.isPanning ? 'cursor-grabbing' : 'cursor-grab'),
             )}
             style={{ touchAction: zoom.isZoomed ? 'none' : 'auto' }}
           >
-            {/* These are short silent action clips with no spoken content, so a
-                captions track would carry nothing. The scorer, competition and
-                position are exposed as text in the dialog header instead. */}
+            {/* No poster: showing the thumbnail and swapping it for the clip
+                reads as a flicker. The reserved box holds the size and a
+                spinner covers the wait instead. */}
             {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
             <video
               ref={videoRef}
               src={goal.cloudinary.playbackUrl}
-              poster={goal.cloudinary.posterUrl}
               playsInline
               preload="auto"
-              className="max-h-[68vh] w-auto max-w-full origin-center"
+              className={cn(
+                'h-full w-full origin-center object-contain transition-opacity duration-150',
+                player.ready ? 'opacity-100' : 'opacity-0',
+              )}
               style={{
                 transform: `scale(${zoom.scale}) translate(${zoom.offsetX}%, ${zoom.offsetY}%)`,
                 transition: zoom.isPanning ? 'none' : 'transform 150ms ease-out',
               }}
             />
+          </div>
+        )}
+
+        {!player.ready && !player.failed && (
+          <div className="absolute inset-0 flex items-center justify-center" role="status">
+            <Loader2
+              aria-hidden
+              className="size-8 animate-spin text-white/70 motion-reduce:animate-none"
+            />
+            <span className="sr-only">Cargando el gol</span>
           </div>
         )}
       </div>
