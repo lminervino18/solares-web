@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeAll, describe, expect, it } from 'vitest'
 
@@ -6,12 +6,17 @@ import { renderWithProviders } from '@/test/renderWithProviders'
 import { goalFixtures, makeGoal } from '../../test/goalFixtures'
 import { GoalGallery } from './GoalGallery'
 
+let playCalls = 0
+
 beforeAll(() => {
   // jsdom does not implement media playback; the player only needs these to
   // exist so mounting it does not throw.
   Object.defineProperty(HTMLMediaElement.prototype, 'play', {
     configurable: true,
-    value: () => Promise.resolve(),
+    value: () => {
+      playCalls += 1
+      return Promise.resolve()
+    },
   })
   Object.defineProperty(HTMLMediaElement.prototype, 'pause', {
     configurable: true,
@@ -213,6 +218,39 @@ describe('GoalGallery', () => {
       expect(screen.getByRole('button', { name: 'Alejar' })).toBeEnabled()
     })
     expect(screen.getByText('1.5x')).toBeInTheDocument()
+  })
+
+  it('shows the manifest duration before the element reports its own', async () => {
+    renderWithProviders(
+      <GoalGallery goals={[makeGoal({ id: 'f8-dur', duration: 9.4 })]} format="f8" />,
+      { initialEntries: ['/goles?gol=f8-dur'] },
+    )
+
+    const dialog = await screen.findByRole('dialog')
+    // jsdom never loads media, so a player relying only on `loadedmetadata`
+    // would be stuck at 0:00 here.
+    expect(dialog).toHaveTextContent('0:09')
+  })
+
+  it('starts playing once the clip is ready', async () => {
+    playCalls = 0
+
+    renderWithProviders(<GoalGallery goals={goalFixtures} format="f8" />, {
+      initialEntries: ['/goles?gol=f8-a1'],
+    })
+
+    const dialog = await screen.findByRole('dialog')
+    const video = dialog.querySelector('video')
+    expect(video).not.toBeNull()
+
+    // jsdom never loads media, so readiness is signalled by hand to verify the
+    // player actually reacts to it.
+    expect(playCalls).toBe(0)
+    fireEvent(video!, new Event('canplay'))
+
+    await waitFor(() => {
+      expect(playCalls).toBeGreaterThan(0)
+    })
   })
 
   it('offers a download with a readable name', async () => {
