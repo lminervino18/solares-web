@@ -45,7 +45,9 @@ const PHOTOS: readonly PhotoJob[] = [
   { source: 'cambalares_1.jpeg', target: 'cambalares/team/team-2' },
   { source: 'cambalares_2.jpeg', target: 'cambalares/team/team-3' },
   { source: 'cambalares_4.jpeg', target: 'cambalares/team/team-4' },
-  { source: 'cambalares_5.jpeg', target: 'cambalares/team/team-5' },
+  // The newest photo was requested as the second to last one of the gallery.
+  { source: 'cambalares_6.jpeg', target: 'cambalares/team/team-5' },
+  { source: 'cambalares_5.jpeg', target: 'cambalares/team/team-6' },
 ]
 
 const CRESTS: readonly CrestJob[] = [
