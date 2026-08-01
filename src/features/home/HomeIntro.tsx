@@ -3,16 +3,15 @@ import { ArrowRight } from 'lucide-react'
 import { routes } from '@/constants/routes'
 import { flag, currentCrestImage } from '@/data/brand'
 import { siteConfig } from '@/config/site.config'
-import { InstagramIcon } from '@/components/brand/icons/InstagramIcon'
 import { Section } from '@/components/layout/Section/Section'
 import { Container } from '@/components/layout/Container/Container'
 import { Heading } from '@/components/primitives/Heading/Heading'
 import { Text } from '@/components/primitives/Text/Text'
 import { LinkButton } from '@/components/primitives/LinkButton/LinkButton'
-import { VisuallyHidden } from '@/components/primitives/VisuallyHidden/VisuallyHidden'
 import { LocationMap } from '@/components/media/LocationMap/LocationMap'
 import { InteractiveCrest } from '@/components/brand/InteractiveCrest/InteractiveCrest'
 import { TeamFlag } from '@/components/brand/TeamFlag/TeamFlag'
+import { TeamInstagram } from '@/components/brand/TeamInstagram/TeamInstagram'
 
 const introParagraphs = [
   'Nacimos en un barrio de Cipolletti, Río Negro, y hoy continuamos nuestra historia en Capital Federal. Nos dicen el Torito Violeta y cada semana volvemos a encontrarnos para competir y defender nuestros colores jugando al deporte más lindo del mundo.',
@@ -64,21 +63,12 @@ export function HomeIntro() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-          <LinkButton
-            href={siteConfig.social.instagram}
-            size="lg"
-            variant="soft"
-            tone="brand"
-            className="aspect-square px-0"
-          >
-            <InstagramIcon className="size-6" />
-            <VisuallyHidden>Seguir en Instagram</VisuallyHidden>
-          </LinkButton>
-          <Text as="p" size="md" tone="secondary">
-            Seguinos para enterarte de resultados y próximos partidos.
-          </Text>
-        </div>
+        <TeamInstagram
+          className="mt-12"
+          href={siteConfig.social.instagram}
+          label="Seguir en Instagram"
+          description="Seguinos para enterarte de resultados y próximos partidos."
+        />
 
         <TeamFlag flag={flag} className="mt-14" />
 
