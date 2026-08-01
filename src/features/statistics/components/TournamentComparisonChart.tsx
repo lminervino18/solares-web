@@ -2,6 +2,7 @@ import { useId, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import type { EChartsCoreOption } from 'echarts/core'
 
+import { parseSeasonName } from '@/features/championships/utils/parseSeasonName'
 import type { TournamentStatistics } from '../types/statistics'
 import { useChartThemeTokens } from '../hooks/useChartThemeTokens'
 import { championshipUrl } from '../utils/championshipUrl'
@@ -75,11 +76,16 @@ export function TournamentComparisonChart({
   const selectId = useId()
   const metric = METRICS.find((item) => item.key === metricKey) ?? METRICS[0]!
 
-  const ordered = useMemo(
-    () =>
-      [...tournaments].sort((a, b) => a.championshipName.localeCompare(b.championshipName, 'es')),
-    [tournaments],
-  )
+  // Chronological, not alphabetical: within a year Verano comes before Apertura
+  // and Apertura before Clausura. Undated names have no recency and go last.
+  const ordered = useMemo(() => {
+    const chronology = (name: string) => parseSeasonName(name).recency || Number.MAX_SAFE_INTEGER
+    return [...tournaments].sort(
+      (a, b) =>
+        chronology(a.championshipName) - chronology(b.championshipName) ||
+        a.championshipName.localeCompare(b.championshipName, 'es'),
+    )
+  }, [tournaments])
 
   const option = useMemo<EChartsCoreOption>(() => {
     const names = ordered.map((tournament) => tournament.championshipName)

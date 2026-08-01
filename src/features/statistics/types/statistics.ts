@@ -14,8 +14,9 @@ export type GeneralStatistics = {
   readonly titles: number
   readonly goldTitles: number
   readonly silverTitles: number
-  readonly otherTitles: number
   readonly runnerUpFinishes: number
+  readonly goldRunnerUpFinishes: number
+  readonly silverRunnerUpFinishes: number
   readonly semifinalFinishes: number
   readonly quarterfinalFinishes: number
   readonly matchesPlayed: number
@@ -143,8 +144,9 @@ export type AchievementStatistics = {
   readonly titles: number
   readonly goldTitles: number
   readonly silverTitles: number
-  readonly otherTitles: number
   readonly runnerUpFinishes: number
+  readonly goldRunnerUpFinishes: number
+  readonly silverRunnerUpFinishes: number
   readonly semifinalFinishes: number
   readonly quarterfinalFinishes: number
 }

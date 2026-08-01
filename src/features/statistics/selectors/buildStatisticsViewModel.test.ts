@@ -30,9 +30,7 @@ describe('buildStatisticsViewModel (snapshot integration)', () => {
 
   it('counts titles as gold + silver + other', () => {
     const { general, achievements } = buildStatisticsViewModel(data, 'f8')
-    expect(general.titles).toBe(
-      achievements.goldTitles + achievements.silverTitles + achievements.otherTitles,
-    )
+    expect(general.titles).toBe(achievements.goldTitles + achievements.silverTitles)
   })
 
   it('counts unpublished championships in match stats but not in tournaments or titles', () => {
