@@ -124,6 +124,15 @@ minimal wrappers (`three`). Implement them with dynamic imports when a page rend
 - Target WCAG AA. Use semantic HTML before ARIA. One `h1` per page. Keep the skip link and
   visible focus. Everything must work with mouse, keyboard, touch, screen reader, reduced
   motion and browser zoom.
+- `ScrollRestoration` (in `RootLayout`) restores the scroll position on every history entry,
+  which **cancels the browser jump to a `#fragment`**. Chromium usually wins the race, Firefox
+  and WebKit do not. An in-page anchor must therefore scroll and focus its target explicitly
+  (`WomenAndMixedPage` shows the pattern: `preventDefault`, `history.replaceState`,
+  `scrollIntoView`, then `focus({ preventScroll: true })` on a `tabIndex={-1}` section).
+  The chapter index of `/historia` still relies on the native behaviour and scrolls
+  unreliably outside Chromium; fix it the same way when that page is touched.
+- Pointer-driven effects (crest tilt) must never be the only way to reach content, because
+  touch devices have no hover. Guard them with `(hover: hover)` when testing.
 
 ## TypeScript and React policy
 
@@ -163,7 +172,9 @@ minimal wrappers (`three`). Implement them with dynamic imports when a page rend
   as PNG/JPG + WebP pairs, rendered through `Picture` (`<picture>` with a WebP source and a fallback, plus intrinsic
   `width`/`height`). The raw source images are in `archivos_solares/` (gitignored — originals kept
   locally, never committed); the Femenino y Mixto sources are in `nuevos_archvios_fem_y_mixto/`
-  (also gitignored) and are prepared by `npm run assets:women-and-mixed`.
+  (also gitignored) and are prepared by `npm run assets:women-and-mixed`. Every asset script is
+  idempotent and skips existing targets: pass `--force` (or delete the target files) to
+  regenerate after changing a source or a mapping.
 - Crests, kits and photos are ordered chronologically in their data files. Crests: `crest-1`
   (oldest) … `crest-5` (`isCurrent`, the shield with laurels used in the flag). Kits: 10, chronological.
   History photos: `photo-0`..`photo-10`, placed in specific chapters — keep those positions. The
@@ -179,9 +190,15 @@ minimal wrappers (`three`). Implement them with dynamic imports when a page rend
   committing (view it on a mid-gray background to check the cut). Do not simplify or recolor crests.
 - The crest timeline (`CrestTimeline`) shows crests transparent, without a plaque, at a uniform
   square size. `InteractiveCrest` is a hover-driven 3D spin (transparent crest + shadow, reduced
-  motion → static). `LocationMap` embeds Google Maps via `output=embed` (no API key) with an
-  external link. Instagram is an icon-only link using the custom `InstagramIcon` SVG (Lucide v1 has
-  no brand icons).
+  motion → static). Its `shape="square"` frame needs an **explicit width** (`w-[13rem]`, not
+  `w-full max-w-[13rem]`) and the `<picture>` needs a definite height, otherwise the box derives
+  its size from the loaded image: it measures zero until the PNG arrives, which shifts the layout
+  and makes size assertions flaky. `zoom` is an optical correction for artwork whose decorations
+  (the Solares laurels and stars) shrink the body of the crest inside a shared frame.
+- `LocationMap` embeds Google Maps via `output=embed` (no API key) with an external link.
+  Instagram is an icon-only link rendered by the shared `TeamInstagram` block (custom
+  `InstagramIcon` SVG, because Lucide v1 has no brand icons); Solares, Cambalache and Cambalares
+  all use it.
 - Favicon and the header logo come from the circular bull `icon` as transparent PNGs
   (`public/favicon*.png`, `.ico`, `apple-touch-icon`, `icon-192/512`; `src/assets/solares/brand/icon.png`).
 
@@ -201,16 +218,15 @@ The Femenino y Mixto page (`/femenino-mixto`) tells two related but separate sto
   connectivity flood fill seeded from the image border, and every result is checked visually
   on a mid-gray background before committing. Original source files stay unchanged.
 - Interactive crest behavior is shared: `InteractiveCrest` serves Solares, Cambalache and
-  Cambalares through `size`, `intensity` and `priority` props. Do not write a second
-  implementation. Crest animation and the `CrestFusion` entrance must respect reduced motion,
+  Cambalares through `size`, `shape`, `intensity`, `zoom` and `priority` props. Do not write a
+  second implementation. Crest animation and the `CrestFusion` entrance must respect reduced motion,
   which renders the composition static.
 - The `Cambalache + Solares = Cambalares` composition keeps an accessible name on the group, the
-  plus and equals signs are `aria-hidden`, and it reflows vertically on small viewports.
+  plus and equals signs are `aria-hidden`, and it reflows vertically on small viewports. The three
+  crests share one square frame of the same size; only the optical `zoom` differs between them.
 - Photo order is defined by the descriptive source filenames and by the page requirements, never
   by file timestamps or by visual convenience. `src/data/womenAndMixed.ts` is the single ordered
   manifest; components never index media by magic numbers.
-- The router restores the scroll position on history entries, which cancels native fragment
-  jumps. In-page anchors must scroll and focus the target section explicitly.
 
 ## Championships (F8 and F5)
 
@@ -240,6 +256,9 @@ The Championships page contains two football formats: F8 and F5. See
   being added. Tournament logos must be available as PNG; conversion is format-only and
   preserves every part of the original design (no automatic background removal).
 - Videos must be unmounted when changing format or championship; never autoplay.
+- In the spotlight the tournament logo sits **before** the championship name (`size="lg"`, larger
+  than the `size="md"` used in the selector) and the team photo opens full size in the lightbox.
+  Team photos are always contained, never cropped, so faces are preserved.
 
 ## Statistics (F8 and F5)
 
@@ -268,6 +287,12 @@ the Championships feature — there is no second Google Sheets integration.
 - Charts use Apache ECharts (dynamically imported, SVG renderer) and always include an
   accessible textual/tabular alternative. Chart colors come from `--color-chart-*` design
   tokens resolved via `useChartThemeTokens`; never hardcode chart colors. Do not use 3D charts.
+- Championship honors are a podium: gold titles in the tall centre step, gold runner-ups and
+  semifinals at the sides, and everything else (silver titles, silver runner-ups, quarterfinals)
+  summarised in a note below. Gold and silver brackets are different competitions and are counted
+  separately, never merged. There is no "other titles" bucket.
+- Any per-championship list or chart is ordered by season, never alphabetically. Reuse
+  `parseSeasonName` (`recency`: within a year Verano < Apertura < Clausura); undated names go last.
 - Do not compute universal historical points; competitions use different point systems.
 - New valid sheet data affects statistics automatically after revalidation. Default tests use
   the committed snapshot and fixtures, never the live spreadsheet.
@@ -303,8 +328,11 @@ The Goles page plays short goal clips hosted on Cloudinary. See
   scorers or competitions — Fuse.js is only for user-facing search.
 - Friendly and preseason goals belong in the competition filter and only ever appear on the
   Goles page, never inside an official championship.
-- Goal filters combine with AND. Previous and next navigation stays inside the filtered
-  collection, and both ends are closed rather than circular.
+- Goal filters combine with AND, and each one is scoped by the other: the tournament options are
+  counted within the selected scorer and vice versa, including the `Todos` row. A filter must never
+  offer an option that would produce an empty result, and no count may ignore the active filter.
+- Previous and next navigation stays inside the filtered collection, and both ends are closed
+  rather than circular.
 - Shared goal URLs open the player on the selected goal and always point at `/goles`, even when
   the player was opened from a championship. A filter that would hide a shared goal is dropped;
   the goal is not.
@@ -331,6 +359,29 @@ The Goles page plays short goal clips hosted on Cloudinary. See
 its CVA variant function (idiomatic co-location) and on `routes.tsx`. These are development
 hot-reload hints only; `npm run check` passes (0 errors). The rule stays enabled and visible;
 do not disable it globally.
+
+## Known flaky end-to-end tests
+
+Two Championships specs fail intermittently on Firefox inside the full parallel run and pass
+when run alone: `reveals a match goalscorers on interaction` and `reveals all matches on
+demand`. They predate the current work (verified by stashing local changes) and depend on the
+live Google Sheets fetch. Do not treat them as a regression and do not "fix" them by loosening
+an assertion. Re-run the failing spec in isolation
+(`npx playwright test --project=firefox championships -g "<title>"`) and report the result
+honestly. Any _other_ failure is a real one.
+
+## Writing Playwright specs here
+
+- `locator.evaluateAll()` does **not** auto-wait. On a lazily rendered route it silently returns
+  `[]`. Await an `expect()` or `locator.waitFor()` on the element first, then read the DOM.
+- Lazy images have `naturalWidth === 0` until they load, so aspect-ratio or size assertions must
+  poll (`await expect.poll(...)`) instead of measuring immediately.
+- Skip pointer/hover tests on the touch projects (`mobile-small`, `mobile-medium`, `tablet`)
+  with `test.skip(!canHover, ...)` after reading `matchMedia('(hover: hover)')`.
+- Tailwind utilities such as `[perspective:1100px]` are **classes**, not inline styles. Match
+  them with `[class*="perspective"]`; `[style*="..."]` finds only what Motion writes inline.
+- The six projects are Chromium, Firefox, WebKit, two phones and a tablet. A layout or scroll
+  behaviour that works in Chromium is not proof; run the spec across projects before claiming it.
 
 ## Validation commands
 
