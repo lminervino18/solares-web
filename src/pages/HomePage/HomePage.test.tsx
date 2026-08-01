@@ -20,10 +20,8 @@ describe('HomePage', () => {
 
   it('renders the crests and kits sections', () => {
     renderWithProviders(<HomePage />)
-    expect(screen.getByRole('heading', { level: 2, name: 'Nuestros escudos' })).toBeInTheDocument()
-    expect(
-      screen.getByRole('heading', { level: 2, name: 'Nuestras camisetas' }),
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 2, name: 'Escudos' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 2, name: 'Camisetas' })).toBeInTheDocument()
   })
 
   it('links to the history page', () => {

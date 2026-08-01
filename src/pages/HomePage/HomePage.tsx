@@ -3,7 +3,6 @@ import { Seo } from '@/components/seo/Seo/Seo'
 import { Section } from '@/components/layout/Section/Section'
 import { Container } from '@/components/layout/Container/Container'
 import { Heading } from '@/components/primitives/Heading/Heading'
-import { Text } from '@/components/primitives/Text/Text'
 import { HomeIntro } from '@/features/home/HomeIntro'
 import { CrestTimeline } from '@/components/brand/CrestTimeline/CrestTimeline'
 import { KitGallery } from '@/components/brand/KitGallery/KitGallery'
@@ -19,11 +18,8 @@ export function HomePage() {
         <Container size="wide">
           <header className="max-w-2xl">
             <Heading as="h2" id="crests-heading" size="display-sm">
-              Nuestros escudos
+              Escudos
             </Heading>
-            <Text size="lg" tone="secondary" className="mt-3">
-              Distintas etapas, una misma identidad.
-            </Text>
           </header>
           <div className="mt-10 lg:mt-14">
             <CrestTimeline />
@@ -35,11 +31,8 @@ export function HomePage() {
         <Container size="wide">
           <header className="max-w-2xl">
             <Heading as="h2" id="kits-heading" size="display-sm">
-              Nuestras camisetas
+              Camisetas
             </Heading>
-            <Text size="lg" tone="secondary" className="mt-3">
-              Los colores que acompañaron cada etapa de nuestra historia.
-            </Text>
           </header>
           <div className="mt-10 lg:mt-14">
             <KitGallery />
