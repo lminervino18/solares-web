@@ -60,4 +60,13 @@ describe('InteractiveCrest', () => {
     const { container } = render(<InteractiveCrest crest={currentCrestImage} size="sm" />)
     expect(container.querySelector('.max-w-\\[9rem\\]')).not.toBeNull()
   })
+
+  it('fits the crest in a square frame of an explicit width when asked', () => {
+    const { container } = render(
+      <InteractiveCrest crest={currentCrestImage} size="md" shape="square" />,
+    )
+    expect(container.querySelector('.w-\\[13rem\\]')).not.toBeNull()
+    expect(container.querySelector('.aspect-square')).not.toBeNull()
+    expect(container.querySelector('img')?.className).toContain('object-contain')
+  })
 })

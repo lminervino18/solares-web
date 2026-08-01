@@ -13,10 +13,17 @@ const ROTATION: Record<CrestIntensity, { y: number; x: number }> = {
   subtle: { y: 26, x: 14 },
 }
 
-const SIZE: Record<CrestSize, string> = {
-  sm: 'max-w-[9rem]',
-  md: 'max-w-[13rem]',
-  lg: 'max-w-[18rem]',
+const NATURAL_SIZE: Record<CrestSize, string> = {
+  sm: 'w-full max-w-[9rem]',
+  md: 'w-full max-w-[13rem]',
+  lg: 'w-full max-w-[18rem]',
+}
+
+/** A square frame needs an explicit width so it does not depend on the loaded image. */
+const SQUARE_SIZE: Record<CrestSize, string> = {
+  sm: 'w-[9rem] max-w-full',
+  md: 'w-[13rem] max-w-full',
+  lg: 'w-[18rem] max-w-full',
 }
 
 const CREST_SHADOW =
@@ -24,6 +31,7 @@ const CREST_SHADOW =
 
 export type CrestSize = 'sm' | 'md' | 'lg'
 export type CrestIntensity = 'subtle' | 'full'
+export type CrestShape = 'natural' | 'square'
 
 export type InteractiveCrestProps = {
   crest: PictureSource
@@ -31,6 +39,8 @@ export type InteractiveCrestProps = {
   back?: PictureSource
   size?: CrestSize
   intensity?: CrestIntensity
+  /** `square` fits the crest inside a square box, so crests of different proportions match. */
+  shape?: CrestShape
   priority?: boolean
   className?: string
 }
@@ -40,6 +50,7 @@ export function InteractiveCrest({
   back,
   size = 'lg',
   intensity = 'full',
+  shape = 'natural',
   priority = true,
   className,
 }: InteractiveCrestProps) {
@@ -53,12 +64,27 @@ export function InteractiveCrest({
   const backImage = back ?? crest
   const loading = priority ? 'eager' : 'lazy'
   const frontPriority = priority ? { fetchPriority: 'high' as const } : {}
+  const isSquare = shape === 'square'
+  const frameClassName = isSquare ? SQUARE_SIZE[size] : NATURAL_SIZE[size]
+  const faceClassName = isSquare ? 'flex size-full items-center justify-center' : undefined
+  // The picture needs a definite height for `max-h-full` to resolve on the image.
+  const pictureFrame = isSquare ? { className: 'flex size-full items-center justify-center' } : {}
+  const imgClassName = isSquare ? 'max-h-full w-auto max-w-full object-contain' : 'w-full'
 
   if (prefersReducedMotion) {
     return (
-      <div className={cn('mx-auto w-full', SIZE[size], className)}>
-        <div style={{ filter: CREST_SHADOW }}>
-          <Picture image={crest} loading={loading} {...frontPriority} imgClassName="w-full" />
+      <div className={cn('mx-auto', frameClassName, className)}>
+        <div
+          className={cn(isSquare && 'flex aspect-square items-center justify-center')}
+          style={{ filter: CREST_SHADOW }}
+        >
+          <Picture
+            image={crest}
+            loading={loading}
+            {...frontPriority}
+            {...pictureFrame}
+            imgClassName={imgClassName}
+          />
         </div>
       </div>
     )
@@ -76,17 +102,33 @@ export function InteractiveCrest({
   }
 
   return (
-    <div className={cn('mx-auto w-full [perspective:1100px]', SIZE[size], className)}>
+    <div className={cn('mx-auto [perspective:1100px]', frameClassName, className)}>
       <div onPointerMove={handlePointerMove} onPointerLeave={resetRotation} className="touch-none">
         <motion.div
           style={{ rotateX, rotateY, transformStyle: 'preserve-3d', filter: CREST_SHADOW }}
-          className="relative"
+          className={cn('relative', isSquare && 'aspect-square')}
         >
-          <div className="[backface-visibility:hidden]">
-            <Picture image={crest} loading={loading} {...frontPriority} imgClassName="w-full" />
+          <div className={cn('[backface-visibility:hidden]', faceClassName)}>
+            <Picture
+              image={crest}
+              loading={loading}
+              {...frontPriority}
+              {...pictureFrame}
+              imgClassName={imgClassName}
+            />
           </div>
-          <div className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden]">
-            <Picture image={{ ...backImage, alt: '' }} loading={loading} imgClassName="w-full" />
+          <div
+            className={cn(
+              'absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden]',
+              faceClassName,
+            )}
+          >
+            <Picture
+              image={{ ...backImage, alt: '' }}
+              loading={loading}
+              {...pictureFrame}
+              imgClassName={imgClassName}
+            />
           </div>
         </motion.div>
       </div>

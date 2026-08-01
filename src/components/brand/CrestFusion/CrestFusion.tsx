@@ -19,6 +19,14 @@ const groupVariants = {
   visible: { transition: { staggerChildren: 0.08 } },
 }
 
+/** The three crests share one square frame so the equation stays symmetric. */
+const crestProps = {
+  size: 'md',
+  shape: 'square',
+  intensity: 'subtle',
+  priority: false,
+} as const
+
 type FusionItemProps = {
   animated: boolean
   children: ReactNode
@@ -65,15 +73,15 @@ export function CrestFusion({ left, right, result, label, className }: CrestFusi
   const content = (
     <>
       <FusionItem animated={animated}>
-        <InteractiveCrest crest={left} size="sm" intensity="subtle" priority={false} />
+        <InteractiveCrest crest={left} {...crestProps} />
       </FusionItem>
       <FusionSign animated={animated} symbol="+" />
       <FusionItem animated={animated}>
-        <InteractiveCrest crest={right} size="sm" intensity="subtle" priority={false} />
+        <InteractiveCrest crest={right} {...crestProps} />
       </FusionItem>
       <FusionSign animated={animated} symbol="=" />
       <FusionItem animated={animated}>
-        <InteractiveCrest crest={result} size="md" intensity="subtle" priority={false} />
+        <InteractiveCrest crest={result} {...crestProps} />
       </FusionItem>
     </>
   )
