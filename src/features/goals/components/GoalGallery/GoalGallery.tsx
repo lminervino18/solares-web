@@ -85,7 +85,8 @@ export function GoalGallery({
           scorerOptions={state.scorerOptions}
           competitionId={state.competitionId}
           scorerId={state.scorerId}
-          totalGoals={state.formatGoals.length}
+          competitionScopeTotal={state.competitionScopeTotal}
+          scorerScopeTotal={state.scorerScopeTotal}
           filteredGoals={state.filteredGoals}
           density={state.density}
           {...(state.openGoal === undefined ? {} : { currentGoalId: state.openGoal.id })}

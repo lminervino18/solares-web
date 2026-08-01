@@ -44,6 +44,21 @@ describe('GoalGallery', () => {
     expect(screen.getByText('Lucas Iriarte')).toBeInTheDocument()
   })
 
+  it('counts the scorer options inside the selected tournament, including Todos', async () => {
+    renderWithProviders(<GoalGallery goals={goalFixtures} format="f8" />, {
+      initialEntries: ['/goles?torneo=apertura-2026'],
+    })
+
+    await userEvent.click(screen.getByRole('button', { name: /Goleador/i }))
+
+    const options = await screen.findAllByRole('option')
+    const all = options.find((option) => option.textContent?.includes('Todos'))
+    expect(all).toBeDefined()
+    // Two of the four F8 goals belong to Apertura 2026, so Todos cannot say 4.
+    expect(all?.textContent).toContain('2')
+    expect(options.some((option) => option.textContent?.includes('Ary Martinez'))).toBe(false)
+  })
+
   it('orders the newest competition first', () => {
     renderWithProviders(<GoalGallery goals={goalFixtures} format="f8" />, {
       initialEntries: ['/goles'],

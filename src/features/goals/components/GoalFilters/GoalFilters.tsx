@@ -17,7 +17,10 @@ export type GoalFiltersProps = {
   scorerOptions: readonly GoalScorerOption[]
   competitionId: string
   scorerId: string
-  totalGoals: number
+  /** Goals matching the scorer filter, so the tournament totals follow it. */
+  competitionScopeTotal: number
+  /** Goals matching the tournament filter, so the scorer totals follow it. */
+  scorerScopeTotal: number
   filteredGoals: readonly GoalVideo[]
   density: GoalDensity
   currentGoalId?: string
@@ -51,7 +54,8 @@ export function GoalFilters({
   scorerOptions,
   competitionId,
   scorerId,
-  totalGoals,
+  competitionScopeTotal,
+  scorerScopeTotal,
   filteredGoals,
   density,
   currentGoalId,
@@ -75,14 +79,14 @@ export function GoalFilters({
           <GoalCompetitionFilter
             options={competitionOptions}
             value={competitionId}
-            totalGoals={totalGoals}
+            totalGoals={competitionScopeTotal}
             onChange={onCompetitionChange}
           />
         )}
         <GoalScorerCombobox
           options={scorerOptions}
           value={scorerId}
-          totalGoals={totalGoals}
+          totalGoals={scorerScopeTotal}
           onChange={onScorerChange}
         />
       </div>

@@ -58,16 +58,27 @@ export function useGoalFilters({
 
   const formatGoals = useMemo(() => goals.filter((goal) => goal.format === format), [goals, format])
 
-  const competitionOptions = useMemo(() => selectGoalCompetitionOptions(formatGoals), [formatGoals])
+  // Each filter is scoped by the other one, so its options and counts always
+  // describe the current view and no choice can lead to an empty result.
+  const competitionScope = useMemo(
+    () =>
+      scorerId === ALL_FILTER
+        ? formatGoals
+        : formatGoals.filter((goal) => goal.scorer.id === scorerId),
+    [formatGoals, scorerId],
+  )
 
-  // Scorer options follow the tournament filter so the list never offers a
-  // player with no goals in the current view.
   const scorerScope = useMemo(
     () =>
       competitionId === ALL_FILTER
         ? formatGoals
         : formatGoals.filter((goal) => goal.competition.id === competitionId),
     [formatGoals, competitionId],
+  )
+
+  const competitionOptions = useMemo(
+    () => selectGoalCompetitionOptions(competitionScope),
+    [competitionScope],
   )
 
   const scorerOptions = useMemo(() => selectGoalScorerOptions(scorerScope), [scorerScope])
@@ -160,7 +171,9 @@ export function useGoalFilters({
     formatGoals,
     filteredGoals,
     competitionOptions,
+    competitionScopeTotal: competitionScope.length,
     scorerOptions,
+    scorerScopeTotal: scorerScope.length,
     openGoal: openGoalVideo,
     missingGoal: syncUrl ? urlState.missingGoal : false,
     setFormat,
