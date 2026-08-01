@@ -4,9 +4,14 @@ import { ZoomIn } from 'lucide-react'
 import { cn } from '@/lib/cn'
 import { Picture } from '@/components/media/Picture/Picture'
 import { Lightbox } from '@/components/media/Lightbox/Lightbox'
-import type { PictureSource } from '@/types/brand'
+import type { FocalPoint, PictureSource } from '@/types/brand'
 
-export type EditorialGalleryPhoto = PictureSource & { id: string }
+export type EditorialGalleryPhoto = PictureSource & { id: string; focalPoint?: FocalPoint }
+
+const focalPointClass: Record<FocalPoint, string> = {
+  top: 'object-top',
+  center: 'object-center',
+}
 
 export type EditorialGalleryProps = {
   photos: readonly EditorialGalleryPhoto[]
@@ -34,7 +39,10 @@ export function EditorialGallery({
     return null
   }
 
-  const imgClassName = crop ? 'aspect-[4/3] w-full object-cover' : 'w-full'
+  const imageClassName = (photo: EditorialGalleryPhoto) =>
+    crop
+      ? cn('aspect-[4/3] w-full object-cover', focalPointClass[photo.focalPoint ?? 'center'])
+      : 'w-full'
 
   return (
     <div role="group" aria-label={label} className={className}>
@@ -58,14 +66,14 @@ export function EditorialGallery({
                 aria-label={`Ampliar imagen: ${photo.alt}`}
                 className="group relative block w-full overflow-hidden rounded-(--radius-lg) border border-line focus-visible:ring-2 focus-visible:ring-(--color-focus-ring) focus-visible:ring-offset-2 focus-visible:ring-offset-(--color-canvas) focus-visible:outline-none"
               >
-                <Picture image={photo} loading={loading} imgClassName={imgClassName} />
+                <Picture image={photo} loading={loading} imgClassName={imageClassName(photo)} />
                 <span className="pointer-events-none absolute inset-0 flex items-center justify-center bg-[color-mix(in_oklab,var(--color-canvas)_35%,transparent)] text-primary opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
                   <ZoomIn aria-hidden="true" className="size-7" />
                 </span>
               </button>
             ) : (
               <div className="overflow-hidden rounded-(--radius-lg) border border-line">
-                <Picture image={photo} loading={loading} imgClassName={imgClassName} />
+                <Picture image={photo} loading={loading} imgClassName={imageClassName(photo)} />
               </div>
             )}
           </li>

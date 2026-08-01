@@ -6,6 +6,9 @@ export type PictureSource = {
   alt: string
 }
 
+/** Part of the photo that a cropped frame must keep. */
+export type FocalPoint = 'top' | 'center'
+
 export type Crest = {
   id: string
   stageLabel: string
