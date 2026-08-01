@@ -50,7 +50,7 @@ export function CambalacheSection() {
         className="mt-10"
         href={womenAndMixedInstagram.cambalache}
         label="Seguir a Cambalache en Instagram"
-        description="Seguí a Cambalache para ver su día a día y sus próximos partidos."
+        description="Seguí a Cambalache para enterarte de resultados y próximos partidos."
       />
 
       <TeamFlag flag={flag} className="mt-12" />

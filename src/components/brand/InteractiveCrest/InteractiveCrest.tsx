@@ -19,6 +19,12 @@ const NATURAL_SIZE: Record<CrestSize, string> = {
   lg: 'w-full max-w-[18rem]',
 }
 
+const ZOOM: Record<CrestZoom, string> = {
+  none: '',
+  sm: 'scale-110',
+  md: 'scale-[1.2]',
+}
+
 /** A square frame needs an explicit width so it does not depend on the loaded image. */
 const SQUARE_SIZE: Record<CrestSize, string> = {
   sm: 'w-[9rem] max-w-full',
@@ -32,6 +38,7 @@ const CREST_SHADOW =
 export type CrestSize = 'sm' | 'md' | 'lg'
 export type CrestIntensity = 'subtle' | 'full'
 export type CrestShape = 'natural' | 'square'
+export type CrestZoom = 'none' | 'sm' | 'md'
 
 export type InteractiveCrestProps = {
   crest: PictureSource
@@ -41,6 +48,8 @@ export type InteractiveCrestProps = {
   intensity?: CrestIntensity
   /** `square` fits the crest inside a square box, so crests of different proportions match. */
   shape?: CrestShape
+  /** Optical correction for artwork whose decorations shrink the body of the crest. */
+  zoom?: CrestZoom
   priority?: boolean
   className?: string
 }
@@ -51,6 +60,7 @@ export function InteractiveCrest({
   size = 'lg',
   intensity = 'full',
   shape = 'natural',
+  zoom = 'none',
   priority = true,
   className,
 }: InteractiveCrestProps) {
@@ -69,7 +79,10 @@ export function InteractiveCrest({
   const faceClassName = isSquare ? 'flex size-full items-center justify-center' : undefined
   // The picture needs a definite height for `max-h-full` to resolve on the image.
   const pictureFrame = isSquare ? { className: 'flex size-full items-center justify-center' } : {}
-  const imgClassName = isSquare ? 'max-h-full w-auto max-w-full object-contain' : 'w-full'
+  const imgClassName = cn(
+    isSquare ? 'max-h-full w-auto max-w-full object-contain' : 'w-full',
+    ZOOM[zoom],
+  )
 
   if (prefersReducedMotion) {
     return (

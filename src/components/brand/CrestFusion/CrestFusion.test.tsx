@@ -10,9 +10,9 @@ const label = 'Cambalache más Solares da origen a Cambalares.'
 function renderFusion() {
   return render(
     <CrestFusion
-      left={womenAndMixedMedia.cambalache.crest}
-      right={currentCrestImage}
-      result={womenAndMixedMedia.cambalares.crest}
+      left={{ crest: womenAndMixedMedia.cambalache.crest }}
+      right={{ crest: currentCrestImage, zoom: 'sm' }}
+      result={{ crest: womenAndMixedMedia.cambalares.crest }}
       label={label}
     />,
   )

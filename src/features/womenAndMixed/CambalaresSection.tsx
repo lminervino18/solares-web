@@ -39,9 +39,9 @@ export function CambalaresSection() {
       </div>
 
       <CrestFusion
-        left={womenAndMixedMedia.cambalache.crest}
-        right={currentCrestImage}
-        result={crest}
+        left={{ crest: womenAndMixedMedia.cambalache.crest }}
+        right={{ crest: currentCrestImage, zoom: 'md' }}
+        result={{ crest }}
         label="Cambalache más Solares da origen a Cambalares."
         className="mt-10"
       />

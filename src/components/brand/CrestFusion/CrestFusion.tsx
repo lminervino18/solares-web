@@ -2,7 +2,10 @@ import { type ReactNode } from 'react'
 import { motion } from 'motion/react'
 
 import { cn } from '@/lib/cn'
-import { InteractiveCrest } from '@/components/brand/InteractiveCrest/InteractiveCrest'
+import {
+  InteractiveCrest,
+  type CrestZoom,
+} from '@/components/brand/InteractiveCrest/InteractiveCrest'
 import { useReducedMotionPreference } from '@/hooks/useReducedMotionPreference'
 import type { PictureSource } from '@/types/brand'
 
@@ -53,10 +56,16 @@ function FusionSign({ animated, symbol }: { animated: boolean; symbol: string })
   )
 }
 
+export type FusionCrest = {
+  crest: PictureSource
+  /** Optical correction so every crest reads at the same size inside its frame. */
+  zoom?: CrestZoom
+}
+
 export type CrestFusionProps = {
-  left: PictureSource
-  right: PictureSource
-  result: PictureSource
+  left: FusionCrest
+  right: FusionCrest
+  result: FusionCrest
   label: string
   className?: string
 }
@@ -73,15 +82,15 @@ export function CrestFusion({ left, right, result, label, className }: CrestFusi
   const content = (
     <>
       <FusionItem animated={animated}>
-        <InteractiveCrest crest={left} {...crestProps} />
+        <InteractiveCrest {...crestProps} {...left} />
       </FusionItem>
       <FusionSign animated={animated} symbol="+" />
       <FusionItem animated={animated}>
-        <InteractiveCrest crest={right} {...crestProps} />
+        <InteractiveCrest {...crestProps} {...right} />
       </FusionItem>
       <FusionSign animated={animated} symbol="=" />
       <FusionItem animated={animated}>
-        <InteractiveCrest crest={result} {...crestProps} />
+        <InteractiveCrest {...crestProps} {...result} />
       </FusionItem>
     </>
   )
