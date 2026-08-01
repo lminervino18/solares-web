@@ -30,6 +30,13 @@ import cambalaresTeam4Jpg from '@/assets/solares/cambalares/team/team-4.jpg'
 import cambalaresTeam4Webp from '@/assets/solares/cambalares/team/team-4.webp'
 import cambalaresTeam5Jpg from '@/assets/solares/cambalares/team/team-5.jpg'
 import cambalaresTeam5Webp from '@/assets/solares/cambalares/team/team-5.webp'
+import cambalaresTeam6Jpg from '@/assets/solares/cambalares/team/team-6.jpg'
+import cambalaresTeam6Webp from '@/assets/solares/cambalares/team/team-6.webp'
+
+export const womenAndMixedInstagram = {
+  cambalache: 'https://www.instagram.com/cambalachefutbol',
+  cambalares: 'https://www.instagram.com/cambalares',
+} as const
 
 export const womenAndMixedMedia: WomenAndMixedMedia = {
   cambalache: {
@@ -123,6 +130,7 @@ export const womenAndMixedMedia: WomenAndMixedMedia = {
         webp: cambalaresTeam1Webp,
         width: 1600,
         height: 1600,
+        focalPoint: 'top',
         alt: 'Plantel mixto de Cambalares con camiseta violeta celebrando con un trofeo en una cancha sintética de noche.',
       },
       {
@@ -131,6 +139,7 @@ export const womenAndMixedMedia: WomenAndMixedMedia = {
         webp: cambalaresTeam2Webp,
         width: 1179,
         height: 1370,
+        focalPoint: 'top',
         alt: 'Plantel mixto de Cambalares con camiseta violeta posando frente al arco en una cancha sintética de noche.',
       },
       {
@@ -153,6 +162,14 @@ export const womenAndMixedMedia: WomenAndMixedMedia = {
         id: 'cambalares-team-5',
         src: cambalaresTeam5Jpg,
         webp: cambalaresTeam5Webp,
+        width: 1280,
+        height: 854,
+        alt: 'Plantel mixto de Cambalares festejando de noche con un trofeo y una bandera de campeones, entre papel picado.',
+      },
+      {
+        id: 'cambalares-team-6',
+        src: cambalaresTeam6Jpg,
+        webp: cambalaresTeam6Webp,
         width: 1179,
         height: 769,
         alt: 'Plantel mixto de Cambalares celebrando de noche con un trofeo, entre humo y espuma, en una cancha sintética.',

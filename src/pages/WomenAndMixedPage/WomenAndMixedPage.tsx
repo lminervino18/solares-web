@@ -5,7 +5,6 @@ import { Seo } from '@/components/seo/Seo/Seo'
 import { PageLayout } from '@/components/layout/PageLayout/PageLayout'
 import { Container } from '@/components/layout/Container/Container'
 import { Heading } from '@/components/primitives/Heading/Heading'
-import { Text } from '@/components/primitives/Text/Text'
 import { CambalacheSection } from '@/features/womenAndMixed/CambalacheSection'
 import { CambalaresSection } from '@/features/womenAndMixed/CambalaresSection'
 
@@ -44,10 +43,6 @@ export function WomenAndMixedPage() {
             <Heading as="h1" size="display-lg">
               Femenino y Mixto
             </Heading>
-            <Text size="xl" tone="secondary" leading="snug" className="mt-4">
-              Dos historias unidas a Solares por la amistad, la identidad y una misma forma de vivir
-              el fútbol.
-            </Text>
           </header>
 
           <nav aria-label="Secciones de la página" className="mt-8">

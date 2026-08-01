@@ -86,6 +86,27 @@ test.describe('women and mixed', () => {
     expect(supporting.every((alt) => alt.includes('Solares'))).toBe(true)
   })
 
+  test('renders the three crests of the equation at the same size', async ({ page }) => {
+    await page.goto('/femenino-mixto')
+    const fusion = page.getByRole('group', { name: fusionLabel })
+    await fusion.scrollIntoViewIfNeeded()
+    await expect(fusion.getByRole('img')).toHaveCount(3)
+
+    const boxes = await fusion.getByRole('img').evaluateAll((images) =>
+      images.map((image) => {
+        const frame = image.closest('picture')?.parentElement?.getBoundingClientRect()
+        return { width: Math.round(frame?.width ?? 0), height: Math.round(frame?.height ?? 0) }
+      }),
+    )
+
+    expect(boxes).toHaveLength(3)
+    for (const box of boxes) {
+      expect(box.width).toBeGreaterThan(0)
+      expect(box.width).toBe(boxes[0]?.width)
+      expect(box.height).toBe(boxes[0]?.height)
+    }
+  })
+
   test('composes Cambalache plus Solares into Cambalares', async ({ page }) => {
     await page.goto('/femenino-mixto')
     const fusion = page.getByRole('group', { name: fusionLabel })
@@ -155,7 +176,7 @@ test.describe('women and mixed', () => {
     await page.goto('/femenino-mixto')
 
     const photos = await altTexts(page, 'Fotografías de Cambalares')
-    expect(photos).toHaveLength(5)
+    expect(photos).toHaveLength(6)
     expect(photos.every((alt) => alt.startsWith('Plantel mixto de Cambalares'))).toBe(true)
 
     const mixedSection = page.locator('#mixto')

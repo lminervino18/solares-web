@@ -1,6 +1,6 @@
-import type { PictureSource } from './brand'
+import type { FocalPoint, PictureSource } from './brand'
 
-export type TeamPhoto = PictureSource & { id: string }
+export type TeamPhoto = PictureSource & { id: string; focalPoint?: FocalPoint }
 
 export type WomenAndMixedMedia = {
   readonly cambalache: {

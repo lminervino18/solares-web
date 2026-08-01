@@ -1,9 +1,10 @@
 import { currentCrestImage } from '@/data/brand'
-import { womenAndMixedMedia } from '@/data/womenAndMixed'
+import { womenAndMixedInstagram, womenAndMixedMedia } from '@/data/womenAndMixed'
 import { Section } from '@/components/layout/Section/Section'
 import { Heading } from '@/components/primitives/Heading/Heading'
 import { Text } from '@/components/primitives/Text/Text'
 import { CrestFusion } from '@/components/brand/CrestFusion/CrestFusion'
+import { TeamInstagram } from '@/components/brand/TeamInstagram/TeamInstagram'
 import { EditorialGallery } from '@/components/media/EditorialGallery/EditorialGallery'
 
 const presentationParagraphs = [
@@ -58,6 +59,13 @@ export function CambalaresSection() {
           </Text>
         ))}
       </div>
+
+      <TeamInstagram
+        className="mt-10"
+        href={womenAndMixedInstagram.cambalares}
+        label="Seguir a Cambalares en Instagram"
+        description="Seguí a Cambalares para enterarte de los próximos torneos mixtos."
+      />
 
       <EditorialGallery photos={teamPhotos} label="Fotografías de Cambalares" className="mt-10" />
     </Section>

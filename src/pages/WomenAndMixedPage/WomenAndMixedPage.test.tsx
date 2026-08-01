@@ -22,15 +22,6 @@ describe('WomenAndMixedPage', () => {
     expect(headings[0]).toHaveTextContent('Femenino y Mixto')
   })
 
-  it('renders the introduction', () => {
-    renderWithProviders(<WomenAndMixedPage />)
-    expect(
-      screen.getByText(
-        /Dos historias unidas a Solares por la amistad, la identidad y una misma forma de vivir el fútbol/,
-      ),
-    ).toBeInTheDocument()
-  })
-
   it('links the internal navigation to both sections', () => {
     renderWithProviders(<WomenAndMixedPage />)
     const navigation = screen.getByRole('navigation', { name: 'Secciones de la página' })
@@ -55,14 +46,23 @@ describe('WomenAndMixedPage', () => {
   it('renders the Cambalache presentation text', () => {
     renderWithProviders(<WomenAndMixedPage />)
     expect(
-      screen.getByText('El equipo de fútbol femenino amateur más grande del mundo.'),
-    ).toBeInTheDocument()
-    expect(
       screen.getByText(/Aunque Solares no cuenta con una rama femenina propia/),
     ).toBeInTheDocument()
     expect(
-      screen.getByText(/Cambalache comparte con Solares una identidad construida desde la amistad/),
+      screen.getByText(/unidos por valores y una forma muy parecida de vivir el fútbol y la vida/),
     ).toBeInTheDocument()
+  })
+
+  it('links to the Instagram account of each team', () => {
+    renderWithProviders(<WomenAndMixedPage />)
+    expect(screen.getByRole('link', { name: 'Seguir a Cambalache en Instagram' })).toHaveAttribute(
+      'href',
+      'https://www.instagram.com/cambalachefutbol',
+    )
+    expect(screen.getByRole('link', { name: 'Seguir a Cambalares en Instagram' })).toHaveAttribute(
+      'href',
+      'https://www.instagram.com/cambalares',
+    )
   })
 
   it('renders the crest and the flag of Cambalache inside the women section', () => {
@@ -83,14 +83,9 @@ describe('WomenAndMixedPage', () => {
 
   it('renders the relationship text with the coaches photo in its own block', () => {
     renderWithProviders(<WomenAndMixedPage />)
+    expect(screen.getByRole('heading', { level: 3, name: 'Vínculos' })).toBeInTheDocument()
     expect(
-      screen.getByRole('heading', { level: 3, name: 'Una relación que va más allá de la cancha' }),
-    ).toBeInTheDocument()
-    expect(
-      screen.getByText(/Los capitanes de Solares también acompañan y dirigen a Cambalache/),
-    ).toBeInTheDocument()
-    expect(
-      screen.getByText(/Son dos equipos diferentes, pero unidos por una relación/),
+      screen.getByText('Los capitanes de Solares son DTs de Cambalache desde 2023.'),
     ).toBeInTheDocument()
 
     const coaches = screen.getByRole('group', { name: 'Directores técnicos de Cambalache' })
@@ -101,7 +96,9 @@ describe('WomenAndMixedPage', () => {
 
   it('renders the photos supporting Solares in their own block', () => {
     renderWithProviders(<WomenAndMixedPage />)
-    expect(screen.getByRole('heading', { level: 4, name: 'Siempre presentes' })).toBeInTheDocument()
+    expect(
+      screen.getByText(/Las jugadoras de Cambalache son hinchas fieles del Torito/),
+    ).toBeInTheDocument()
 
     const gallery = screen.getByRole('group', { name: 'Cambalache alentando a Solares' })
     const alternativeTexts = within(gallery)
