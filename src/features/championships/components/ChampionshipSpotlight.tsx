@@ -41,7 +41,8 @@ export function ChampionshipSpotlight({
       transition={{ duration: 0.3 }}
       className="flex flex-col gap-8"
     >
-      <header className="flex flex-wrap items-start justify-between gap-4">
+      <header className="flex items-start gap-4 sm:gap-5">
+        <TournamentLogo championship={championship} size="lg" className="shrink-0" />
         <div className="min-w-0">
           <Text as="p" size="sm" tone="brand" weight="semibold" className="tracking-wide uppercase">
             Campeonatos {FOOTBALL_FORMAT_LABEL[format]}
@@ -57,7 +58,6 @@ export function ChampionshipSpotlight({
             {position} de {total} campeonatos
           </Text>
         </div>
-        <TournamentLogo championship={championship} />
       </header>
 
       <ChampionshipHonor

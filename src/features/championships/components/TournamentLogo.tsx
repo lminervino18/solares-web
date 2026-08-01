@@ -3,9 +3,17 @@ import { Trophy } from 'lucide-react'
 import { cn } from '@/lib/cn'
 import type { Championship } from '../types/championships'
 
+export type TournamentLogoSize = 'md' | 'lg'
+
 export type TournamentLogoProps = {
   championship: Championship
+  size?: TournamentLogoSize
   className?: string
+}
+
+const FRAME_SIZE: Record<TournamentLogoSize, string> = {
+  md: 'size-16 p-1.5',
+  lg: 'size-24 p-2 sm:size-28',
 }
 
 function initials(value: string): string {
@@ -22,14 +30,15 @@ function initials(value: string): string {
  * accessible placeholder with the tournament initials. A missing logo never
  * borrows another tournament's image.
  */
-export function TournamentLogo({ championship, className }: TournamentLogoProps) {
+export function TournamentLogo({ championship, size = 'md', className }: TournamentLogoProps) {
   const { assets, league, name } = championship
 
   if (assets.tournamentLogo) {
     return (
       <div
         className={cn(
-          'flex size-16 items-center justify-center overflow-hidden rounded-(--radius-md) border border-line bg-surface p-1.5',
+          'flex items-center justify-center overflow-hidden rounded-(--radius-md) border border-line bg-surface',
+          FRAME_SIZE[size],
           className,
         )}
       >
@@ -47,7 +56,8 @@ export function TournamentLogo({ championship, className }: TournamentLogoProps)
   return (
     <div
       className={cn(
-        'flex size-16 flex-col items-center justify-center gap-0.5 rounded-(--radius-md) border border-line bg-surface-elevated',
+        'flex flex-col items-center justify-center gap-0.5 rounded-(--radius-md) border border-line bg-surface-elevated',
+        FRAME_SIZE[size],
         className,
       )}
       role="img"

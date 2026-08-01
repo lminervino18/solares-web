@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/react'
+import { screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
@@ -29,6 +29,26 @@ describe('ChampionshipsSection', () => {
       expect(screen.getByRole('tab', { name: /F8/ })).toHaveAttribute('aria-selected', 'true')
     })
     expect(screen.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeInTheDocument()
+  })
+
+  it('shows the tournament logo before the championship name', async () => {
+    renderWithProviders(<ChampionshipsSection />, { initialEntries: ['/campeonatos'] })
+
+    const title = await screen.findByRole('heading', { level: 2, name: 'Apertura 2026' })
+    const header = title.closest('header')
+    expect(header).not.toBeNull()
+
+    const logo = within(header as HTMLElement).getByRole('img')
+    expect(header?.firstElementChild?.contains(logo) || header?.firstElementChild === logo).toBe(
+      true,
+    )
+  })
+
+  it('opens the team photo in a lightbox', async () => {
+    renderWithProviders(<ChampionshipsSection />, { initialEntries: ['/campeonatos'] })
+
+    const photoButton = await screen.findByRole('button', { name: /^Ampliar imagen: / })
+    expect(photoButton).toBeInTheDocument()
   })
 
   it('switches to F5 and shows only F5 championships', async () => {
