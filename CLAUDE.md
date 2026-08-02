@@ -408,12 +408,18 @@ visible; do not disable it globally.
 
 ## Known flaky end-to-end tests
 
-Two Championships specs fail intermittently on Firefox inside the full parallel run and pass
-when run alone: `reveals a match goalscorers on interaction` and `reveals all matches on
-demand`. They predate the current work (verified by stashing local changes) and depend on the
-live Google Sheets fetch. Do not treat them as a regression and do not "fix" them by loosening
-an assertion. Re-run the failing spec in isolation
-(`npx playwright test --project=firefox championships -g "<title>"`) and report the result
+These specs fail intermittently inside the full parallel run and pass when run alone. Do not
+treat them as a regression and do not "fix" them by loosening an assertion.
+
+- Firefox, Championships: `reveals a match goalscorers on interaction` and `reveals all
+matches on demand`. They predate the current work (verified by stashing local changes).
+- WebKit, Femenino y Mixto: `the crests answer to the pointer with a bounded rotation`. It
+  reads a Motion transform right after a pointer move, which WebKit does not always have
+  committed yet under parallel load.
+- WebKit, responsive: `has no horizontal overflow at 375px`, occasionally, under load.
+
+Re-run the failing spec in isolation
+(`npx playwright test --project=<browser> <file> -g "<title>"`) and report the result
 honestly. Any _other_ failure is a real one.
 
 ## Writing Playwright specs here

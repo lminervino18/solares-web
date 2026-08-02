@@ -1,4 +1,5 @@
-import snapshot from '../../../src/features/championships/data/generated/championships.snapshot.json'
+import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 
 /**
  * Championship names read from the committed snapshot, which is exactly what the
@@ -6,6 +7,9 @@ import snapshot from '../../../src/features/championships/data/generated/champio
  *
  * The specs derive their expectations from here so publishing a new championship
  * never breaks them.
+ *
+ * Read from disk rather than imported: Playwright runs these specs as Node ESM,
+ * where a JSON import needs an import attribute.
  */
 
 type SnapshotChampionship = {
@@ -15,7 +19,16 @@ type SnapshotChampionship = {
   readonly published: boolean
 }
 
-const championships = (snapshot as { championships: readonly SnapshotChampionship[] }).championships
+const SNAPSHOT_URL = new URL(
+  '../../../src/features/championships/data/generated/championships.snapshot.json',
+  import.meta.url,
+)
+
+const snapshot = JSON.parse(readFileSync(fileURLToPath(SNAPSHOT_URL), 'utf-8')) as {
+  championships: readonly SnapshotChampionship[]
+}
+
+const championships = snapshot.championships
 
 export function publishedChampionships(format: 'f8' | 'f5'): readonly SnapshotChampionship[] {
   return championships.filter(
