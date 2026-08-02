@@ -1,14 +1,4 @@
-import type { ChampionshipHonorType, FootballFormat, MatchOutcome } from '../types/championships'
-
-export const FOOTBALL_FORMAT_LABEL: Record<FootballFormat, string> = {
-  f8: 'F8',
-  f5: 'F5',
-}
-
-export const FOOTBALL_FORMAT_LONG_LABEL: Record<FootballFormat, string> = {
-  f8: 'Fútbol 8',
-  f5: 'Fútbol 5',
-}
+import type { ChampionshipHonorType, MatchOutcome } from '../types/championships'
 
 export const HONOR_LABEL: Record<ChampionshipHonorType, string> = {
   'gold-champion': 'Campeón de Oro',

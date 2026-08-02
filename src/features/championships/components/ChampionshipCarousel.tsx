@@ -6,7 +6,7 @@ import { cn } from '@/lib/cn'
 import { IconButton } from '@/components/primitives/IconButton/IconButton'
 import { useReducedMotionPreference } from '@/hooks/useReducedMotionPreference'
 import type { Championship, FootballFormat } from '../types/championships'
-import { FOOTBALL_FORMAT_LABEL, FOOTBALL_FORMAT_LONG_LABEL } from '../utils/championshipLabels'
+import { FOOTBALL_FORMAT_LABEL, FOOTBALL_FORMAT_LONG_LABEL } from '@/config/football-format'
 import { ChampionshipHonor } from './ChampionshipHonor'
 import { TournamentLogo } from './TournamentLogo'
 

@@ -1,4 +1,4 @@
-export type FootballFormat = 'f8' | 'f5'
+import type { FootballFormat } from '@/config/football-format'
 
 export type ChampionshipSheetPurpose = 'championships' | 'matches'
 
@@ -13,10 +13,6 @@ export type ChampionshipSheetConfig = {
 export const CHAMPIONSHIPS_SPREADSHEET_ID = '1SDQgD6adhje5JFokdqNmGQYA0VQrqBKeWOvtAcI53bo'
 
 export const CHAMPIONSHIPS_SPREADSHEET_URL = `https://docs.google.com/spreadsheets/d/${CHAMPIONSHIPS_SPREADSHEET_ID}/edit`
-
-export const FOOTBALL_FORMATS = ['f8', 'f5'] as const
-
-export const DEFAULT_FOOTBALL_FORMAT: FootballFormat = 'f8'
 
 export const CHAMPIONSHIP_SHEETS: readonly ChampionshipSheetConfig[] = [
   {
@@ -48,7 +44,3 @@ export const CHAMPIONSHIP_SHEETS: readonly ChampionshipSheetConfig[] = [
     headerInColumns: true,
   },
 ]
-
-export function isFootballFormat(value: unknown): value is FootballFormat {
-  return value === 'f8' || value === 'f5'
-}

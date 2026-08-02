@@ -6,7 +6,7 @@ import { cn } from '@/lib/cn'
 import { Picture } from '@/components/media/Picture/Picture'
 import { Lightbox } from '@/components/media/Lightbox/Lightbox'
 import type { Championship } from '../types/championships'
-import { FOOTBALL_FORMAT_LONG_LABEL } from '../utils/championshipLabels'
+import { FOOTBALL_FORMAT_LONG_LABEL } from '@/config/football-format'
 
 export type ChampionshipTeamPhotoProps = {
   championship: Championship

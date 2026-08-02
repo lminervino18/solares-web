@@ -1,4 +1,7 @@
-export type GoalFormat = 'f8' | 'f5'
+import type { FootballFormat } from '@/config/football-format'
+
+/** A goal is scoped by the same football format as every other sports entity. */
+export type GoalFormat = FootballFormat
 
 export type GoalCompetitionType = 'official' | 'friendly' | 'preseason' | 'other'
 
@@ -62,14 +65,8 @@ export type GoalsManifest = {
   readonly goals: readonly GoalVideo[]
 }
 
-export const GOAL_FORMATS = ['f8', 'f5'] as const
-
-export const GOAL_FORMAT_LABEL: Record<GoalFormat, string> = {
-  f8: 'F8',
-  f5: 'F5',
-}
-
-export const GOAL_FORMAT_LONG_LABEL: Record<GoalFormat, string> = {
-  f8: 'Fútbol 8',
-  f5: 'Fútbol 5',
-}
+export {
+  FOOTBALL_FORMATS as GOAL_FORMATS,
+  FOOTBALL_FORMAT_LABEL as GOAL_FORMAT_LABEL,
+  FOOTBALL_FORMAT_LONG_LABEL as GOAL_FORMAT_LONG_LABEL,
+} from '@/config/football-format'

@@ -1,11 +1,8 @@
 import { useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-import {
-  DEFAULT_FOOTBALL_FORMAT,
-  isFootballFormat,
-  type FootballFormat,
-} from '@/config/championships-source.config'
+import type { FootballFormat } from '@/config/football-format'
+import { QUERY_PARAMS, readFormatParam, writeFormatParam } from '@/config/query-params'
 
 export type ChampionshipsUrlState = {
   readonly format: FootballFormat
@@ -13,9 +10,6 @@ export type ChampionshipsUrlState = {
   readonly setFormat: (format: FootballFormat) => void
   readonly setTorneo: (slug: string) => void
 }
-
-const MODALIDAD_PARAM = 'modalidad'
-const TORNEO_PARAM = 'torneo'
 
 /**
  * Reads and writes the Championships URL state.
@@ -29,21 +23,16 @@ const TORNEO_PARAM = 'torneo'
 export function useChampionshipsUrlState(): ChampionshipsUrlState {
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const modalidad = searchParams.get(MODALIDAD_PARAM)
-  const format: FootballFormat = isFootballFormat(modalidad) ? modalidad : DEFAULT_FOOTBALL_FORMAT
-  const torneoSlug = searchParams.get(TORNEO_PARAM) ?? undefined
+  const format = readFormatParam(searchParams)
+  const torneoSlug = searchParams.get(QUERY_PARAMS.championship) ?? undefined
 
   const setFormat = useCallback(
     (next: FootballFormat) => {
       setSearchParams(
         (current) => {
           const params = new URLSearchParams(current)
-          params.delete(TORNEO_PARAM)
-          if (next === DEFAULT_FOOTBALL_FORMAT) {
-            params.delete(MODALIDAD_PARAM)
-          } else {
-            params.set(MODALIDAD_PARAM, next)
-          }
+          params.delete(QUERY_PARAMS.championship)
+          writeFormatParam(params, next)
           return params
         },
         { replace: false },
@@ -57,7 +46,7 @@ export function useChampionshipsUrlState(): ChampionshipsUrlState {
       setSearchParams(
         (current) => {
           const params = new URLSearchParams(current)
-          params.set(TORNEO_PARAM, slug)
+          params.set(QUERY_PARAMS.championship, slug)
           return params
         },
         // Keep the scroll position when switching championships so parts of the

@@ -1,9 +1,8 @@
 import {
   CHAMPIONSHIP_SHEETS,
-  FOOTBALL_FORMATS,
   type ChampionshipSheetConfig,
-  type FootballFormat,
 } from '@/config/championships-source.config'
+import { FOOTBALL_FORMATS, type FootballFormat } from '@/config/football-format'
 import { mapChampionships } from '../mappers/mapChampionships'
 import type { GvizTable } from '../schemas/googleVisualization.schema'
 import type { Championship, ChampionshipsByFormat } from '../types/championships'

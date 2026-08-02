@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 
 import { Heading } from '@/components/primitives/Heading/Heading'
-import { FOOTBALL_FORMAT_LONG_LABEL } from '@/features/championships/utils/championshipLabels'
+import { FOOTBALL_FORMAT_LONG_LABEL } from '@/config/football-format'
 import type { ChampionshipsByFormat } from '@/features/championships/types/championships'
 import { buildStatisticsViewModel } from '../selectors/buildStatisticsViewModel'
 import type { StatisticsScope } from '../types/statistics'

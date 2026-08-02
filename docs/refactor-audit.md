@@ -18,14 +18,14 @@ inconsistent script naming.
 
 ## Current architecture
 
-| Layer            | Location                                                        | State                                                    |
-| ---------------- | --------------------------------------------------------------- | -------------------------------------------------------- |
-| Remote source    | `src/features/championships/api/`                                | Google Sheets gviz, no credentials, `cache: 'no-store'`   |
-| Normalization    | `src/features/championships/mappers/`, `utils/`                  | Pure, unit tested                                        |
-| Offline fallback | `src/features/championships/data/generated/championships.snapshot.json` | Committed, refreshed by script                     |
-| Derived stats    | `src/features/statistics/selectors/`                             | Pure selectors over the same normalized model             |
-| Goals            | `src/features/goals/data/generated/goals.manifest.json`          | Committed, Zod-validated entry by entry                   |
-| Goals pipeline   | `scripts/goals/`, `scripts/inspect-goals.ts`, `scripts/upload-goals-to-cloudinary.ts` | Hash ids, checkpoint, dry run       |
+| Layer            | Location                                                                              | State                                                   |
+| ---------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Remote source    | `src/features/championships/api/`                                                     | Google Sheets gviz, no credentials, `cache: 'no-store'` |
+| Normalization    | `src/features/championships/mappers/`, `utils/`                                       | Pure, unit tested                                       |
+| Offline fallback | `src/features/championships/data/generated/championships.snapshot.json`               | Committed, refreshed by script                          |
+| Derived stats    | `src/features/statistics/selectors/`                                                  | Pure selectors over the same normalized model           |
+| Goals            | `src/features/goals/data/generated/goals.manifest.json`                               | Committed, Zod-validated entry by entry                 |
+| Goals pipeline   | `scripts/goals/`, `scripts/inspect-goals.ts`, `scripts/upload-goals-to-cloudinary.ts` | Hash ids, checkpoint, dry run                           |
 
 Statistics consumes the championships model directly, so there is a single
 interpretation of a championship. That part of the target architecture is done.
@@ -81,22 +81,22 @@ carry two names for the same domain concept.
 An unused parallel domain layer predates the real features and duplicates their
 concepts:
 
-| File                                                          | Consumers |
-| ------------------------------------------------------------- | --------- |
-| `src/data/competitions.ts`, `goals.ts`, `matches.ts`, `players.ts`, `team.ts` | 0 (empty typed arrays) |
-| `src/types/competition.ts`, `goal.ts`, `match.ts`, `player.ts`, `team.ts`     | 1 each — only the empty stub above |
-| `src/schemas/competition.schema.ts`, `goal.schema.ts`, `match.schema.ts`, `player.schema.ts`, `team.schema.ts` | 0 |
+| File                                                                                                           | Consumers                          |
+| -------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| `src/data/competitions.ts`, `goals.ts`, `matches.ts`, `players.ts`, `team.ts`                                  | 0 (empty typed arrays)             |
+| `src/types/competition.ts`, `goal.ts`, `match.ts`, `player.ts`, `team.ts`                                      | 1 each — only the empty stub above |
+| `src/schemas/competition.schema.ts`, `goal.schema.ts`, `match.schema.ts`, `player.schema.ts`, `team.schema.ts` | 0                                  |
 
 Unused components and modules:
 
-| File                                                    | Consumers |
-| -------------------------------------------------------- | --------- |
-| `src/components/three/LazyThreeScene/`                   | 0         |
-| `src/components/three/ThreeFallback/`                    | 1 — only `LazyThreeScene` |
-| `src/components/media/ResponsiveImage/`                  | 0         |
-| `src/components/primitives/Skeleton/`, `Divider/`, `Card/` | 0       |
-| `src/lib/storage.ts`, `src/lib/formatters.ts`            | 0         |
-| `src/hooks/useScrollLock.ts`, `src/hooks/useDocumentTitle.ts` | 0    |
+| File                                                          | Consumers                 |
+| ------------------------------------------------------------- | ------------------------- |
+| `src/components/three/LazyThreeScene/`                        | 0                         |
+| `src/components/three/ThreeFallback/`                         | 1 — only `LazyThreeScene` |
+| `src/components/media/ResponsiveImage/`                       | 0                         |
+| `src/components/primitives/Skeleton/`, `Divider/`, `Card/`    | 0                         |
+| `src/lib/storage.ts`, `src/lib/formatters.ts`                 | 0                         |
+| `src/hooks/useScrollLock.ts`, `src/hooks/useDocumentTitle.ts` | 0                         |
 
 ## Unused dependencies
 
@@ -164,12 +164,12 @@ recorded in `CLAUDE.md` and is not addressed here.
 
 ## Migration risks
 
-| Risk                                          | Mitigation                                                                 |
-| --------------------------------------------- | -------------------------------------------------------------------------- |
-| Moving `Goles/web/` invalidates upload state  | Keep `Goles/web/` working; add the new intake root as an additional, preferred location |
-| Regenerating photos changes committed bytes   | Keep the existing encoder settings and skip targets that already exist       |
-| Renaming npm scripts breaks the operator's habits | Update every document that names them in the same commit                 |
-| Deleting `src/types/*` breaks an unseen import | Verified consumer counts first; typecheck and build gate each removal       |
+| Risk                                              | Mitigation                                                                              |
+| ------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| Moving `Goles/web/` invalidates upload state      | Keep `Goles/web/` working; add the new intake root as an additional, preferred location |
+| Regenerating photos changes committed bytes       | Keep the existing encoder settings and skip targets that already exist                  |
+| Renaming npm scripts breaks the operator's habits | Update every document that names them in the same commit                                |
+| Deleting `src/types/*` breaks an unseen import    | Verified consumer counts first; typecheck and build gate each removal                   |
 
 ## Proposed final architecture
 

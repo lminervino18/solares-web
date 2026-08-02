@@ -1,14 +1,16 @@
+import { DEFAULT_FOOTBALL_FORMAT } from '@/config/football-format'
+import { QUERY_PARAMS, writeFormatParam } from '@/config/query-params'
 import { routes } from '@/constants/routes'
 import type { GoalVideo } from '../types/goals'
 import { ALL_FILTER, type GoalFilters } from '../selectors/selectFilteredGoals'
 
-export const GOAL_PARAM = 'gol'
-export const FORMAT_PARAM = 'modalidad'
-export const COMPETITION_PARAM = 'torneo'
-export const SCORER_PARAM = 'jugador'
-export const DENSITY_PARAM = 'vista'
+export const GOAL_PARAM = QUERY_PARAMS.goal
+export const FORMAT_PARAM = QUERY_PARAMS.format
+export const COMPETITION_PARAM = QUERY_PARAMS.championship
+export const SCORER_PARAM = QUERY_PARAMS.scorer
+export const DENSITY_PARAM = QUERY_PARAMS.density
 
-export const DEFAULT_GOAL_FORMAT = 'f8'
+export const DEFAULT_GOAL_FORMAT = DEFAULT_FOOTBALL_FORMAT
 
 /**
  * Builds the canonical shareable URL for a goal.
@@ -23,7 +25,7 @@ export function buildGoalShareUrl(
   origin: string,
 ): string {
   const params = new URLSearchParams()
-  if (goal.format !== DEFAULT_GOAL_FORMAT) params.set(FORMAT_PARAM, goal.format)
+  writeFormatParam(params, goal.format)
   if (filters.competitionId !== ALL_FILTER) params.set(COMPETITION_PARAM, goal.competition.slug)
   if (filters.scorerId !== ALL_FILTER) params.set(SCORER_PARAM, goal.scorer.slug)
   params.set(GOAL_PARAM, goal.id)

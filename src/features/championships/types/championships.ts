@@ -1,4 +1,4 @@
-import type { FootballFormat } from '@/config/championships-source.config'
+import type { FootballFormat } from '@/config/football-format'
 
 export type { FootballFormat }
 

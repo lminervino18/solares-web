@@ -1,10 +1,8 @@
 import { useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-import { DEFAULT_FOOTBALL_FORMAT, isFootballFormat } from '@/config/championships-source.config'
+import { readFormatParam, writeFormatParam } from '@/config/query-params'
 import type { StatisticsScope } from '../types/statistics'
-
-const MODALIDAD_PARAM = 'modalidad'
 
 export type StatisticsScopeState = {
   readonly scope: StatisticsScope
@@ -18,16 +16,14 @@ export type StatisticsScopeState = {
  */
 export function useStatisticsScope(): StatisticsScopeState {
   const [searchParams, setSearchParams] = useSearchParams()
-  const modalidad = searchParams.get(MODALIDAD_PARAM)
-  const scope: StatisticsScope = isFootballFormat(modalidad) ? modalidad : DEFAULT_FOOTBALL_FORMAT
+  const scope: StatisticsScope = readFormatParam(searchParams)
 
   const setScope = useCallback(
     (next: StatisticsScope) => {
       setSearchParams(
         (current) => {
           const params = new URLSearchParams(current)
-          if (next === DEFAULT_FOOTBALL_FORMAT) params.delete(MODALIDAD_PARAM)
-          else params.set(MODALIDAD_PARAM, next)
+          writeFormatParam(params, next)
           return params
         },
         { replace: false, preventScrollReset: true },
