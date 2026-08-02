@@ -47,7 +47,11 @@ function FusionSign({ animated, symbol }: { animated: boolean; symbol: string })
     <FusionItem animated={animated}>
       <span
         aria-hidden="true"
-        className="font-display text-[length:var(--font-size-display-md)] leading-none font-bold text-brand"
+        className={cn(
+          'font-display leading-none font-bold text-brand',
+          'text-[length:var(--font-size-xl)] sm:text-[length:var(--font-size-display-sm)]',
+          'md:text-[length:var(--font-size-display-md)]',
+        )}
         style={{ filter: SIGN_SHADOW }}
       >
         {symbol}
@@ -74,8 +78,10 @@ export function CrestFusion({ left, right, result, label, className }: CrestFusi
   const prefersReducedMotion = useReducedMotionPreference()
   const animated = !prefersReducedMotion
 
+  // The equation reads as one line at every width: stacking it vertically turned
+  // "Cambalache + Solares = Cambalares" into three unrelated crests.
   const groupClassName = cn(
-    'flex flex-col flex-wrap items-center justify-center gap-5 md:flex-row md:gap-8',
+    'flex flex-row items-center justify-center gap-2 sm:gap-5 md:gap-8',
     className,
   )
 

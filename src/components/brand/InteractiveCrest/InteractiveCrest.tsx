@@ -13,10 +13,14 @@ const ROTATION: Record<CrestIntensity, { y: number; x: number }> = {
   subtle: { y: 26, x: 14 },
 }
 
+/**
+ * Sizes scale with the viewport: at the desktop size a crest takes most of a
+ * phone's width and pushes the copy below the fold.
+ */
 const NATURAL_SIZE: Record<CrestSize, string> = {
-  sm: 'w-full max-w-[9rem]',
-  md: 'w-full max-w-[13rem]',
-  lg: 'w-full max-w-[18rem]',
+  sm: 'w-full max-w-[6rem] sm:max-w-[7.5rem] lg:max-w-[9rem]',
+  md: 'w-full max-w-[8rem] sm:max-w-[10.5rem] lg:max-w-[13rem]',
+  lg: 'w-full max-w-[10.5rem] sm:max-w-[14rem] lg:max-w-[18rem]',
 }
 
 const ZOOM: Record<CrestZoom, string> = {
@@ -25,11 +29,14 @@ const ZOOM: Record<CrestZoom, string> = {
   md: 'scale-[1.2]',
 }
 
-/** A square frame needs an explicit width so it does not depend on the loaded image. */
+/**
+ * A square frame needs an explicit width so it does not depend on the loaded
+ * image. The small step keeps three of them plus two signs on one phone row.
+ */
 const SQUARE_SIZE: Record<CrestSize, string> = {
-  sm: 'w-[9rem] max-w-full',
-  md: 'w-[13rem] max-w-full',
-  lg: 'w-[18rem] max-w-full',
+  sm: 'w-[4rem] sm:w-[6.5rem] md:w-[9rem] max-w-full',
+  md: 'w-[5.25rem] sm:w-[9rem] md:w-[13rem] max-w-full',
+  lg: 'w-[7rem] sm:w-[12rem] md:w-[18rem] max-w-full',
 }
 
 const CREST_SHADOW =

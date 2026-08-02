@@ -56,16 +56,30 @@ describe('InteractiveCrest', () => {
     expect(screen.getByRole('img', { name: currentCrestImage.alt })).toBeInTheDocument()
   })
 
-  it('applies the requested size', () => {
-    const { container } = render(<InteractiveCrest crest={currentCrestImage} size="sm" />)
-    expect(container.querySelector('.max-w-\\[9rem\\]')).not.toBeNull()
+  it('gives each size a different frame', () => {
+    const { container: small } = render(<InteractiveCrest crest={currentCrestImage} size="sm" />)
+    const { container: large } = render(<InteractiveCrest crest={currentCrestImage} size="lg" />)
+    expect(small.firstElementChild?.className).not.toBe(large.firstElementChild?.className)
+  })
+
+  it('scales the frame down for narrow viewports', () => {
+    const { container } = render(<InteractiveCrest crest={currentCrestImage} size="lg" />)
+    const frame = container.firstElementChild?.className ?? ''
+    // A phone-first width plus a wider step: a single desktop-sized frame takes
+    // most of a phone screen and pushes the surrounding copy below the fold.
+    expect(frame).toMatch(/(^|\s)max-w-\[[\d.]+rem\]/)
+    expect(frame).toMatch(/\slg:max-w-\[[\d.]+rem\]/)
   })
 
   it('fits the crest in a square frame of an explicit width when asked', () => {
     const { container } = render(
       <InteractiveCrest crest={currentCrestImage} size="md" shape="square" />,
     )
-    expect(container.querySelector('.w-\\[13rem\\]')).not.toBeNull()
+    const frame = container.firstElementChild?.className ?? ''
+    // The width must be explicit, never `w-full`: the box would otherwise derive
+    // its size from the image, which measures zero until the PNG arrives.
+    expect(frame).toMatch(/(^|\s)w-\[[\d.]+rem\]/)
+    expect(frame).not.toMatch(/(^|\s)w-full(\s|$)/)
     expect(container.querySelector('.aspect-square')).not.toBeNull()
     expect(container.querySelector('img')?.className).toContain('object-contain')
   })
