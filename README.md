@@ -78,6 +78,7 @@ carries a README naming the script that writes it.
 | `src/features/championships/data/generated/championship-assets.manifest.json` | `npm run championships:assets` |
 | `src/features/goals/data/generated/goals.manifest.json`                       | `npm run goals:upload`         |
 | `docs/screenshots/home.png`                                                   | `npm run assets:screenshots`   |
+| `public/og-image.png`                                                         | `npm run assets:og-image`      |
 
 The screenshot is committed and shows the production build. Regenerate it after a
 visible change to the home page:

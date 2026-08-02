@@ -24,6 +24,9 @@ export function Seo({
     siteConfig.siteUrl && canonicalPath
       ? new URL(canonicalPath, siteConfig.siteUrl).toString()
       : null
+  // A social crawler ignores a relative image, so only emit one we can make absolute.
+  const imageUrl =
+    image && siteConfig.siteUrl ? new URL(image, siteConfig.siteUrl).toString() : null
 
   return (
     <Helmet>
@@ -39,12 +42,12 @@ export function Seo({
       <meta property="og:type" content={ogType} />
       <meta property="og:locale" content={siteConfig.locale} />
       {canonicalUrl ? <meta property="og:url" content={canonicalUrl} /> : null}
-      {image ? <meta property="og:image" content={image} /> : null}
+      {imageUrl ? <meta property="og:image" content={imageUrl} /> : null}
 
-      <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+      <meta name="twitter:card" content={imageUrl ? 'summary_large_image' : 'summary'} />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
-      {image ? <meta name="twitter:image" content={image} /> : null}
+      {imageUrl ? <meta name="twitter:image" content={imageUrl} /> : null}
     </Helmet>
   )
 }

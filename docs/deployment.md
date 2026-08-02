@@ -279,6 +279,35 @@ Para forzarlo: **Deployments → el último → menú `···` → Redeploy**.
 | El deploy falla                                | Leé el log. Reproducilo local con `npm run validate`                        |
 | Se ve el sitio viejo después de publicar       | Caché del navegador. Probá en ventana privada                               |
 
+## La imagen que se ve al compartir
+
+Cuando pasás un link por WhatsApp, Instagram o X, esas apps **no ejecutan el
+JavaScript** del sitio: leen el HTML crudo y nada más. Por eso las etiquetas de la
+tarjeta social están escritas directamente en `index.html`, no generadas por
+React.
+
+La imagen es `public/og-image.png` (1200×630) y se genera con:
+
+```bash
+npm run assets:og-image
+```
+
+Es una composición con el escudo, el nombre y el dominio: a propósito **no** es una
+captura del sitio, porque en el celular la tarjeta se ve a unos 400 px de ancho y
+el texto de una página resulta ilegible.
+
+Si cambiás el dominio, actualizá las URLs absolutas de `og:url`, `og:image` y
+`twitter:image` en `index.html`. Tienen que ser absolutas: una ruta relativa la
+ignoran los crawlers.
+
+Para probar cómo quedó, sin esperar a que alguien comparta el link:
+
+- <https://developers.facebook.com/tools/debug/> (WhatsApp usa el mismo dato)
+- <https://cards-dev.twitter.com/validator>
+
+Las dos cachean. Si cambiaste la imagen y seguís viendo la vieja, usá el botón de
+volver a leer (_Scrape Again_).
+
 ## Fijar la versión de Node (opcional)
 
 Vercel elige una versión de Node por su cuenta. Si querés que sea siempre la misma

@@ -29,7 +29,8 @@ export const siteConfig = {
   language: 'es-AR',
   siteUrl: import.meta.env.VITE_SITE_URL ?? '',
   themeColor: '#25064f',
-  ogImage: '',
+  /** Site-relative; `Seo` resolves it against `siteUrl` because a social crawler ignores a relative image. */
+  ogImage: '/og-image.png',
   logo: {
     primary: '/assets/images/solares-logo.svg',
     monochrome: '/assets/images/solares-logo-monochrome.svg',
