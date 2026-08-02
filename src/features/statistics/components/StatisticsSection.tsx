@@ -1,4 +1,6 @@
 import { CHAMPIONSHIPS_SPREADSHEET_URL } from '@/config/championships-source.config'
+import { FOOTBALL_FORMAT_LONG_LABEL } from '@/config/football-format'
+import { FormatTabs } from '@/components/navigation/FormatTabs/FormatTabs'
 import { LinkButton } from '@/components/primitives/LinkButton/LinkButton'
 import { ErrorState } from '@/components/feedback/ErrorState/ErrorState'
 import { LoadingState } from '@/components/feedback/LoadingState/LoadingState'
@@ -7,7 +9,6 @@ import { ChampionshipsDataNotice } from '@/features/championships/components/Cha
 import type { ChampionshipsByFormat } from '@/features/championships/types/championships'
 import { useStatisticsScope } from '../hooks/useStatisticsScope'
 import { StatisticsPanel } from './StatisticsPanel'
-import { StatisticsScopeTabs } from './StatisticsScopeTabs'
 
 const EMPTY_DATA: ChampionshipsByFormat = { f8: [], f5: [] }
 
@@ -45,10 +46,12 @@ export function StatisticsSection() {
 
   return (
     <div>
-      <StatisticsScopeTabs
-        scope={scope}
-        onScopeChange={setScope}
+      <FormatTabs
+        format={scope}
+        onFormatChange={setScope}
         renderPanel={(panelScope) => <StatisticsPanel data={data} scope={panelScope} />}
+        listLabel="Modalidad de las estadísticas"
+        describeFormat={(value) => `Estadísticas de ${FOOTBALL_FORMAT_LONG_LABEL[value]}`}
       />
       <ChampionshipsDataNotice state={state} isRefreshing={isRefreshing} onRefresh={refresh} />
     </div>

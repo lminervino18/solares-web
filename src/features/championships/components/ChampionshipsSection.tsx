@@ -1,7 +1,7 @@
 import { Trophy } from 'lucide-react'
 
 import { CHAMPIONSHIPS_SPREADSHEET_URL } from '@/config/championships-source.config'
-import type { FootballFormat } from '@/config/championships-source.config'
+import type { FootballFormat } from '@/config/football-format'
 import { LinkButton } from '@/components/primitives/LinkButton/LinkButton'
 import { EmptyState } from '@/components/feedback/EmptyState/EmptyState'
 import { ErrorState } from '@/components/feedback/ErrorState/ErrorState'
@@ -9,9 +9,9 @@ import { LoadingState } from '@/components/feedback/LoadingState/LoadingState'
 import { useChampionshipsData } from '../hooks/useChampionshipsData'
 import { useChampionshipsUrlState } from '../hooks/useChampionshipsUrlState'
 import type { Championship, ChampionshipsByFormat } from '../types/championships'
-import { FOOTBALL_FORMAT_LABEL } from '../utils/championshipLabels'
+import { FOOTBALL_FORMAT_LABEL, FOOTBALL_FORMAT_LONG_LABEL } from '@/config/football-format'
+import { FormatTabs } from '@/components/navigation/FormatTabs/FormatTabs'
 import { ChampionshipCarousel } from './ChampionshipCarousel'
-import { ChampionshipFormatTabs } from './ChampionshipFormatTabs'
 import { ChampionshipSpotlight } from './ChampionshipSpotlight'
 import { ChampionshipsDataNotice } from './ChampionshipsDataNotice'
 
@@ -93,10 +93,12 @@ export function ChampionshipsSection() {
 
   return (
     <div>
-      <ChampionshipFormatTabs
+      <FormatTabs
         format={format}
         onFormatChange={setFormat}
         renderPanel={renderPanel}
+        listLabel="Modalidades de campeonatos"
+        describeFormat={(value) => `Campeonatos de ${FOOTBALL_FORMAT_LONG_LABEL[value]}`}
       />
       <ChampionshipsDataNotice state={state} isRefreshing={isRefreshing} onRefresh={refresh} />
     </div>
