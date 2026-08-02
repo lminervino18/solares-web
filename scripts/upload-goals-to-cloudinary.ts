@@ -6,7 +6,7 @@ import { config as loadEnv } from 'dotenv'
 import pLimit from 'p-limit'
 
 import type { GoalCompetition, GoalFormat, GoalScorer } from '@/features/goals/types/goals'
-import { GOALS_ROOT, INSPECTION_REPORT_PATH as INSPECTION_PATH } from './goals/goal-paths'
+import { INSPECTION_REPORT_PATH as INSPECTION_PATH, resolveGoalsRoot } from './goals/goal-paths'
 import { writeGoalsManifest } from './goals/goal-manifest'
 import {
   isAlreadyUploaded,
@@ -123,7 +123,7 @@ function buildContext(goal: InspectedGoal): Record<string, string> {
 }
 
 async function uploadOnce(goal: InspectedGoal): Promise<Record<string, unknown>> {
-  const filePath = join(GOALS_ROOT, goal.sourcePath)
+  const filePath = join(resolveGoalsRoot(), goal.sourcePath)
   return new Promise((resolve, reject) => {
     cloudinary.uploader.upload_large(
       filePath,

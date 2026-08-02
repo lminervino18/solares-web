@@ -6,7 +6,11 @@ import { promisify } from 'node:util'
 
 import pLimit from 'p-limit'
 
-import { DUPLICATES_REPORT_PATH, GOALS_ROOT, INSPECTION_REPORT_PATH } from './goals/goal-paths'
+import {
+  DUPLICATES_REPORT_PATH,
+  INSPECTION_REPORT_PATH,
+  resolveGoalsRoot,
+} from './goals/goal-paths'
 
 /**
  * Finds goals that show the same action but do not share a content hash.
@@ -42,7 +46,7 @@ type ResolvedGoal = {
 }
 
 async function fingerprint(sourcePath: string): Promise<string | undefined> {
-  const filePath = join(GOALS_ROOT, sourcePath)
+  const filePath = join(resolveGoalsRoot(), sourcePath)
   try {
     // A tiny grayscale strip is enough: the comparison only needs the shape of
     // the action, not its colours or detail.

@@ -1,0 +1,134 @@
+{
+  "teamPhotos": {
+    "f5-apertura-2026": {
+      "championshipId": "f5-apertura-2026",
+      "format": "f5",
+      "slug": "apertura-2026",
+      "jpg": "f5/apertura-2026/team-photo.jpg",
+      "webp": "f5/apertura-2026/team-photo.webp",
+      "width": 1179,
+      "height": 1190,
+      "aspectRatio": 0.9908
+    },
+    "f5-clausura-2025": {
+      "championshipId": "f5-clausura-2025",
+      "format": "f5",
+      "slug": "clausura-2025",
+      "jpg": "f5/clausura-2025/team-photo.jpg",
+      "webp": "f5/clausura-2025/team-photo.webp",
+      "width": 1179,
+      "height": 1218,
+      "aspectRatio": 0.968
+    },
+    "f8-apertura-2022": {
+      "championshipId": "f8-apertura-2022",
+      "format": "f8",
+      "slug": "apertura-2022",
+      "jpg": "f8/apertura-2022/team-photo.jpg",
+      "webp": "f8/apertura-2022/team-photo.webp",
+      "width": 1179,
+      "height": 1094,
+      "aspectRatio": 1.0777
+    },
+    "f8-apertura-2023": {
+      "championshipId": "f8-apertura-2023",
+      "format": "f8",
+      "slug": "apertura-2023",
+      "jpg": "f8/apertura-2023/team-photo.jpg",
+      "webp": "f8/apertura-2023/team-photo.webp",
+      "width": 1179,
+      "height": 822,
+      "aspectRatio": 1.4343
+    },
+    "f8-apertura-2024": {
+      "championshipId": "f8-apertura-2024",
+      "format": "f8",
+      "slug": "apertura-2024",
+      "jpg": "f8/apertura-2024/team-photo.jpg",
+      "webp": "f8/apertura-2024/team-photo.webp",
+      "width": 1179,
+      "height": 1115,
+      "aspectRatio": 1.0574
+    },
+    "f8-apertura-2025": {
+      "championshipId": "f8-apertura-2025",
+      "format": "f8",
+      "slug": "apertura-2025",
+      "jpg": "f8/apertura-2025/team-photo.jpg",
+      "webp": "f8/apertura-2025/team-photo.webp",
+      "width": 1179,
+      "height": 728,
+      "aspectRatio": 1.6195
+    },
+    "f8-apertura-2026": {
+      "championshipId": "f8-apertura-2026",
+      "format": "f8",
+      "slug": "apertura-2026",
+      "jpg": "f8/apertura-2026/team-photo.jpg",
+      "webp": "f8/apertura-2026/team-photo.webp",
+      "width": 1179,
+      "height": 1098,
+      "aspectRatio": 1.0738
+    },
+    "f8-clausura-2022": {
+      "championshipId": "f8-clausura-2022",
+      "format": "f8",
+      "slug": "clausura-2022",
+      "jpg": "f8/clausura-2022/team-photo.jpg",
+      "webp": "f8/clausura-2022/team-photo.webp",
+      "width": 1179,
+      "height": 1143,
+      "aspectRatio": 1.0315
+    },
+    "f8-clausura-2023": {
+      "championshipId": "f8-clausura-2023",
+      "format": "f8",
+      "slug": "clausura-2023",
+      "jpg": "f8/clausura-2023/team-photo.jpg",
+      "webp": "f8/clausura-2023/team-photo.webp",
+      "width": 1179,
+      "height": 1145,
+      "aspectRatio": 1.0297
+    },
+    "f8-clausura-2024": {
+      "championshipId": "f8-clausura-2024",
+      "format": "f8",
+      "slug": "clausura-2024",
+      "jpg": "f8/clausura-2024/team-photo.jpg",
+      "webp": "f8/clausura-2024/team-photo.webp",
+      "width": 1179,
+      "height": 717,
+      "aspectRatio": 1.6444
+    },
+    "f8-clausura-2025": {
+      "championshipId": "f8-clausura-2025",
+      "format": "f8",
+      "slug": "clausura-2025",
+      "jpg": "f8/clausura-2025/team-photo.jpg",
+      "webp": "f8/clausura-2025/team-photo.webp",
+      "width": 1179,
+      "height": 1096,
+      "aspectRatio": 1.0757
+    }
+  },
+  "leagueLogos": {
+    "deprimera": {
+      "leagueSlug": "deprimera",
+      "png": "logos/deprimera.png",
+      "width": 447,
+      "height": 447
+    },
+    "tdea": {
+      "leagueSlug": "tdea",
+      "png": "logos/tdea.png",
+      "width": 500,
+      "height": 500
+    },
+    "torneos-indiana": {
+      "leagueSlug": "torneos-indiana",
+      "png": "logos/torneos-indiana.png",
+      "width": 512,
+      "height": 512
+    }
+  }
+}

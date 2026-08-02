@@ -47,6 +47,12 @@ nuevos_archvios_fem_y_mixto
 # Raw goal clips (uploaded to Cloudinary, never committed)
 Goles
 
+# Content intake: the folders and their instructions are tracked, the media is not
+content/incoming/**/*
+!content/incoming/**/
+!content/incoming/**/README.md
+!content/incoming/**/.gitkeep
+
 # Local pipeline artifacts (regenerated on demand)
 .cache
 data/goals

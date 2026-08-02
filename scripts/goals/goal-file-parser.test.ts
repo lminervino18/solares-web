@@ -11,11 +11,54 @@ import {
 const HASH_A = 'a4d938b817fc1122334455667788990011223344556677889900aabbccddeeff'
 const HASH_B = 'ffeeddccbbaa00998877665544332211009988776655443322110cf718b839d4'
 
-describe('parseGoalFileName', () => {
+describe('parseGoalFileName (canonical convention)', () => {
+  it('reads the competition and the scorer from the three segments', () => {
+    expect(parseGoalFileName('apertura-2026__lorenzo-minervino__gol-01.mp4')).toEqual({
+      competitionName: 'Apertura 2026',
+      scorerName: 'Lorenzo Minervino',
+      convention: 'canonical',
+    })
+  })
+
+  it('ignores the third segment whatever it is', () => {
+    const numbered = parseGoalFileName('apertura-2026__lorenzo-minervino__gol-01.mp4')
+    const labelled = parseGoalFileName('apertura-2026__lorenzo-minervino__segundo-tiempo.mp4')
+    const dated = parseGoalFileName('apertura-2026__lorenzo-minervino__2026-03-14.mp4')
+    expect(labelled).toEqual(numbered)
+    expect(dated).toEqual(numbered)
+  })
+
+  it('reads a friendly and a preseason competition', () => {
+    expect(parseGoalFileName('amistoso__agus-lorenzo__clip-a.mov')?.competitionName).toBe(
+      'Amistoso',
+    )
+    expect(parseGoalFileName('pretemporada-2026__martin-perez__uno.mp4')?.competitionName).toBe(
+      'Pretemporada 2026',
+    )
+  })
+
+  it('restores an accented scorer through the alias', () => {
+    expect(parseGoalFileName('apertura-2025__santiago-penonori__gol-01.mp4')?.scorerName).toBe(
+      'Santiago Peñoñori',
+    )
+  })
+
+  it('normalises the own-goal marker', () => {
+    expect(parseGoalFileName('clausura-2023__en-contra__gol-01.mp4')?.scorerName).toBe('En contra')
+  })
+
+  it('rejects a name with the wrong number of segments', () => {
+    expect(parseGoalFileName('apertura-2026__lorenzo-minervino.mp4')).toBeUndefined()
+    expect(parseGoalFileName('apertura-2026__lorenzo-minervino__a__b.mp4')).toBeUndefined()
+  })
+})
+
+describe('parseGoalFileName (legacy convention)', () => {
   it('reads the competition and the scorer', () => {
     expect(parseGoalFileName('Apertura_2026-Lorenzo_Minervino-0.mp4')).toEqual({
       competitionName: 'Apertura 2026',
       scorerName: 'Lorenzo Minervino',
+      convention: 'legacy',
     })
   })
 
@@ -57,6 +100,7 @@ describe('parseGoalFileName', () => {
     expect(parseGoalFileName('Apertura_2026-Lorenzo_Minervino-0.MOV')).toEqual({
       competitionName: 'Apertura 2026',
       scorerName: 'Lorenzo Minervino',
+      convention: 'legacy',
     })
   })
 

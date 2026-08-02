@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto'
 import { createReadStream, existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { mkdir, readdir, stat } from 'node:fs/promises'
-import { dirname, extname, join } from 'node:path'
+import { basename, dirname, extname, join } from 'node:path'
 
 import pLimit from 'p-limit'
 
@@ -25,12 +25,16 @@ import { GOAL_SOURCE_OVERRIDES } from './goals/goals-source-overrides'
  * files. Source paths stay relative so the report never leaks a local path.
  */
 
-import { GOALS_ROOT, INSPECTION_REPORT_PATH as REPORT_PATH } from './goals/goal-paths'
+import {
+  INSPECTION_REPORT_PATH as REPORT_PATH,
+  resolveFormatDirectory,
+  resolveGoalsRoot,
+} from './goals/goal-paths'
 
 const CHAMPIONSHIPS_SNAPSHOT_PATH =
   'src/features/championships/data/generated/championships.snapshot.json'
 
-const FORMAT_DIRECTORIES: Readonly<Record<GoalFormat, string>> = { f8: 'F8', f5: 'F5' }
+const GOALS_ROOT = resolveGoalsRoot()
 const SUPPORTED_EXTENSIONS = new Set(['.mp4', '.mov', '.m4v', '.webm', '.avi', '.mkv'])
 const HASH_CONCURRENCY = 8
 
@@ -75,8 +79,9 @@ async function hashFile(filePath: string): Promise<string> {
 }
 
 async function listFormatFiles(format: GoalFormat): Promise<InspectedFile[]> {
-  const directory = join(GOALS_ROOT, FORMAT_DIRECTORIES[format])
-  if (!existsSync(directory)) return []
+  const directory = resolveFormatDirectory(GOALS_ROOT, format)
+  if (directory === undefined) return []
+  const formatFolder = basename(directory)
 
   const entries = await readdir(directory, { withFileTypes: true })
   const files = entries.filter((entry) => entry.isFile()).map((entry) => entry.name)
@@ -84,7 +89,7 @@ async function listFormatFiles(format: GoalFormat): Promise<InspectedFile[]> {
 
   const inspected: InspectedFile[] = []
   for (const fileName of files) {
-    const sourcePath = `${FORMAT_DIRECTORIES[format]}/${fileName}`
+    const sourcePath = `${formatFolder}/${fileName}`
     const stats = await stat(join(directory, fileName))
     inspected.push({
       sourcePath,
