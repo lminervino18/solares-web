@@ -124,9 +124,20 @@ tocan los DNS en DonWeb. Vercel te dice exactamente qué cargar.
 
 1. En tu proyecto: **Settings → Domains**.
 2. Escribí tu dominio sin `www` (por ejemplo `solares.com.ar`) y **Add**.
-3. Elegí la opción que agrega también `www` y la redirige al dominio sin `www`
-   (o al revés, pero elegí una y que la otra redirija; tener las dos activas por
-   separado es malo para SEO).
+3. **Agregá también `www.tu-dominio.com` como dominio aparte**, y configuralo para
+   que redirija al dominio sin `www`.
+
+> **No te saltees el paso 3.** Que el DNS de `www` resuelva no alcanza: Vercel
+> emite el certificado HTTPS **sólo para los dominios que están en esta lista**. Si
+> `www` no está agregado acá, quien lo escriba en el navegador va a ver la
+> advertencia roja de "conexión no privada", aunque el dominio pelado ande
+> perfecto. Se verifica así:
+>
+> ```bash
+> curl -sI https://www.tu-dominio.com | head -1
+> ```
+>
+> Si no devuelve una respuesta HTTP, falta el certificado.
 
 Vercel va a mostrar los registros DNS que necesita, algo así:
 
@@ -141,7 +152,32 @@ Vercel va a mostrar los registros DNS que necesita, algo así:
 
 Dejá esa pantalla abierta.
 
-### 7. Cargar los registros en DonWeb
+### 7. Apuntar el dominio: dos caminos
+
+Hay dos formas. **Elegí una sola.**
+
+#### Camino A — Nameservers de Vercel (el que usa este sitio)
+
+Vercel se encarga de todo el DNS. Es el más simple y el que menos se rompe.
+
+En el panel de DonWeb, buscá la opción de **cambiar los DNS / nameservers** del
+dominio y poné los que te da Vercel:
+
+```text
+ns1.vercel-dns.com
+ns2.vercel-dns.com
+```
+
+Vercel crea los registros del sitio solo. La contra: si algún día usás el dominio
+para mail o para otro servicio, esos registros los tenés que cargar en Vercel, no
+en DonWeb.
+
+> Este es el camino que está funcionando hoy en `solaresfutbol.com`.
+
+#### Camino B — Registros A y CNAME en DonWeb
+
+Dejás el DNS en DonWeb y sólo apuntás dos registros. Serví si querés seguir
+manejando mail u otros subdominios desde DonWeb.
 
 1. Entrá a tu panel de DonWeb e iniciá sesión.
 2. Buscá tu dominio y entrá a la administración de **DNS** (según el panel puede
@@ -233,14 +269,15 @@ Para forzarlo: **Deployments → el último → menú `···` → Redeploy**.
 
 ## Problemas frecuentes
 
-| Síntoma                                        | Causa probable                                                             |
-| ---------------------------------------------- | -------------------------------------------------------------------------- |
-| El dominio muestra una página de DonWeb        | Quedó un registro A o CNAME viejo apuntando al hosting de DonWeb           |
-| Vercel dice _Invalid Configuration_            | El DNS todavía no propagó, o el registro se cargó con el nombre equivocado |
-| `/goles` da 404 al entrar directo              | Falta el rewrite. Verificá que `vercel.json` esté commiteado               |
-| El link compartido no muestra título ni imagen | Falta `VITE_SITE_URL`, o se cargó pero no se hizo redeploy                 |
-| El deploy falla                                | Leé el log. Reproducilo local con `npm run validate`                       |
-| Se ve el sitio viejo después de publicar       | Caché del navegador. Probá en ventana privada                              |
+| Síntoma                                        | Causa probable                                                              |
+| ---------------------------------------------- | --------------------------------------------------------------------------- |
+| `www` da "conexión no privada"                 | Falta agregar `www` como dominio en Vercel: sin eso no emite su certificado |
+| El dominio muestra una página de DonWeb        | Quedó un registro A o CNAME viejo apuntando al hosting de DonWeb            |
+| Vercel dice _Invalid Configuration_            | El DNS todavía no propagó, o el registro se cargó con el nombre equivocado  |
+| `/goles` da 404 al entrar directo              | Falta el rewrite. Verificá que `vercel.json` esté commiteado                |
+| El link compartido no muestra título ni imagen | Falta `VITE_SITE_URL`, o se cargó pero no se hizo redeploy                  |
+| El deploy falla                                | Leé el log. Reproducilo local con `npm run validate`                        |
+| Se ve el sitio viejo después de publicar       | Caché del navegador. Probá en ventana privada                               |
 
 ## Fijar la versión de Node (opcional)
 
