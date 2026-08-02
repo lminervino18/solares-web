@@ -4,25 +4,29 @@ Media components for the Solares site.
 
 ## Implemented
 
-- `ResponsiveImage/ResponsiveImage.tsx` — accessible image with aspect ratio, object-fit,
-  lazy loading and an error fallback.
+- `Picture/Picture.tsx` — `<picture>` with a WebP source, a fallback and intrinsic
+  dimensions. Every optimized asset in `src/assets/solares` is rendered through it.
+- `EditorialGallery/EditorialGallery.tsx` — ordered photo blocks in one or two columns,
+  with an optional crop, an optional lightbox and lazy loading. The only gallery: do not
+  add a per-section variant.
+- `Lightbox/Lightbox.tsx` — dynamically imported wrapper over
+  `yet-another-react-lightbox`.
+- `LocationMap/LocationMap.tsx` — Google Maps `output=embed` (no API key) plus an
+  external link.
 
-## Prepared for later stages
+## Video
 
-These are intentionally not implemented yet to keep heavy libraries out of the initial
-bundle. Implement them with dynamic imports when a page actually renders them.
+Video is played by feature components, not by a shared wrapper:
 
-- `AspectRatioMedia` — ratio wrapper around arbitrary media.
-- `VideoPlayer` — wrapper over `react-player`, dynamically imported. Never autoplay audio;
-  provide controls, poster, accessible iframe titles and a fallback.
-- `MediaCarousel` — wrapper over `embla-carousel-react` with touch, drag, keyboard,
-  previous/next controls, indicators, reduced-motion support and optional autoplay disabled
-  by default.
-- `Lightbox` — wrapper over `yet-another-react-lightbox`, dynamically imported.
+- `features/goals/components/GoalPlayer` — native `<video>` for the Cloudinary clips.
+- `features/championships/components/FinalVideo` — click-to-load
+  `youtube-nocookie.com` iframe.
 
 ## Rules
 
 - Define image dimensions to avoid layout shift.
-- Prefer AVIF/WebP; lazy-load below-the-fold media.
-- Dynamically import `react-player` and `yet-another-react-lightbox`.
+- Prefer WebP; lazy-load below-the-fold media.
+- Dynamically import `yet-another-react-lightbox`.
 - Never load third-party embeds before they are needed.
+- Never autoplay audio. The goal player is the one documented exception and is
+  explained in `CLAUDE.md`.

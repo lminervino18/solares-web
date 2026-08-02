@@ -90,7 +90,7 @@ Do not commit a state broken by the current change (type check, lint, tests or b
 8. Do not disable lint rules to hide problems.
 9. Do not add dependencies without a clear reason. Do not duplicate components.
 10. Preserve keyboard accessibility and respect `prefers-reduced-motion`.
-11. Dynamically load heavy libraries (`react-player`, lightbox, Three.js).
+11. Dynamically load heavy libraries (lightbox, ECharts).
 12. Run validation before finishing. Keep user-facing copy in Spanish.
 
 ## Design tokens and styling
@@ -114,8 +114,9 @@ raw hex colors as props. Do not make every card clickable. Require accessible na
 icon-only buttons.
 
 Implemented primitives live in `src/components`. Not-yet-implemented components are
-documented in the `README.md` of their folder (`media`, `data-display`, `navigation`) or as
-minimal wrappers (`three`). Implement them with dynamic imports when a page renders them.
+documented in the `README.md` of their folder (`media`, `data-display`, `navigation`).
+Implement them with dynamic imports when a page renders them. A component with no
+consumer is deleted, not kept as a placeholder: the README records the intent.
 
 ## Responsive and accessibility policy
 
