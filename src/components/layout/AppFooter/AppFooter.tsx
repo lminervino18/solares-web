@@ -39,7 +39,7 @@ export function AppFooter() {
             <Link
               key={item.path}
               to={item.path}
-              className="rounded-(--radius-sm) text-secondary transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-(--color-focus-ring) focus-visible:outline-none"
+              className="inline-flex min-h-6 items-center rounded-(--radius-sm) text-secondary transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-(--color-focus-ring) focus-visible:outline-none pointer-coarse:min-h-11"
             >
               {item.label}
             </Link>
@@ -53,7 +53,7 @@ export function AppFooter() {
                     href={url}
                     target="_blank"
                     rel="noreferrer"
-                    className="rounded-(--radius-sm) text-secondary transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-(--color-focus-ring) focus-visible:outline-none"
+                    className="inline-flex min-h-6 items-center rounded-(--radius-sm) text-secondary transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-(--color-focus-ring) focus-visible:outline-none pointer-coarse:min-h-11"
                   >
                     {socialLabels[key as keyof typeof siteConfig.social]}
                   </a>

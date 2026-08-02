@@ -31,7 +31,7 @@ function RecordCard({ label, record }: { label: string; record: MatchRecord }) {
       </p>
       <Link
         to={championshipUrl(record.format, record.slug)}
-        className="mt-2 inline-block text-[length:var(--font-size-xs)] font-semibold text-brand hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-focus-ring)"
+        className="mt-2 inline-flex min-h-6 items-center text-[length:var(--font-size-xs)] font-semibold text-brand hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-focus-ring) pointer-coarse:min-h-11"
       >
         Ver campeonato
       </Link>

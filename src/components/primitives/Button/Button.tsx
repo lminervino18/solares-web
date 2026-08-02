@@ -53,7 +53,15 @@ export const buttonVariants = cva(
         false: '',
       },
     },
-    compoundVariants: [{ variant: 'text', class: 'h-auto gap-1 px-0' }],
+    compoundVariants: [
+      {
+        variant: 'text',
+        // A text button is only as tall as its line box (~20px), below the 24px
+        // WCAG target. The hit area grows on touch pointers only, so the desktop
+        // layout is untouched while a thumb gets a real target.
+        class: 'h-auto gap-1 px-0 min-h-6 pointer-coarse:min-h-11',
+      },
+    ],
     defaultVariants: {
       tone: 'brand',
       variant: 'solid',
