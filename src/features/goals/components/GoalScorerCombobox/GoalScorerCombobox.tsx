@@ -3,6 +3,7 @@ import { Check, ChevronDown, Search } from 'lucide-react'
 import { Popover } from 'radix-ui'
 
 import { cn } from '@/lib/cn'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { ALL_FILTER } from '../../selectors/selectFilteredGoals'
 import type { GoalScorerOption } from '../../selectors/selectGoalScorerOptions'
 import { createScorerSearch } from '../../utils/normalizeGoalSearch'
@@ -46,6 +47,10 @@ export function GoalScorerCombobox({
   const listId = useId()
   const inputRef = useRef<HTMLInputElement>(null)
   const triggerRef = useRef<HTMLButtonElement>(null)
+  // A pointing device can focus the search field for free. On touch, focusing it
+  // opens the on-screen keyboard, which covers the list the user came to read —
+  // so there the keyboard waits until the field itself is tapped.
+  const hasFinePointer = useMediaQuery('(pointer: fine)')
 
   const search = useMemo(() => createScorerSearch(options), [options])
 
@@ -120,7 +125,7 @@ export function GoalScorerCombobox({
             align="start"
             onOpenAutoFocus={(event) => {
               event.preventDefault()
-              inputRef.current?.focus()
+              if (hasFinePointer) inputRef.current?.focus()
             }}
             className="z-[var(--z-toast)] w-(--radix-popover-trigger-width) min-w-56 overflow-hidden rounded-(--radius-md) border border-line bg-surface shadow-lg"
           >

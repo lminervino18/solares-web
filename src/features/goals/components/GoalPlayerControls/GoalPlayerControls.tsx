@@ -69,7 +69,7 @@ export function GoalPlayerControls({ goal, player, zoom, shareUrl }: GoalPlayerC
         </span>
       </div>
 
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
         <IconButton
           aria-label={player.playing ? 'Pausar' : 'Reproducir'}
           tooltip={player.playing ? 'Pausar' : 'Reproducir'}
@@ -174,7 +174,9 @@ export function GoalPlayerControls({ goal, player, zoom, shareUrl }: GoalPlayerC
           />
         )}
 
-        <div className="ml-auto flex flex-wrap items-center gap-2">
+        {/* Full width on a phone: wrapped onto its own row, `ml-auto` alone left
+            these actions pinned to the right edge and visibly off balance. */}
+        <div className="flex w-full flex-wrap items-center justify-center gap-2 sm:ml-auto sm:w-auto sm:justify-end">
           {player.canFullscreen && (
             <IconButton
               aria-label={player.fullscreen ? 'Salir de pantalla completa' : 'Pantalla completa'}
