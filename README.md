@@ -4,6 +4,8 @@ Official frontend website for Solares. Static SPA: no backend, no database, no
 custom API. Sports data comes from a public Google Sheet at runtime; goal clips
 are delivered by Cloudinary through a committed manifest.
 
+![Solares home page: the presentation section with the interactive crest](docs/screenshots/home.png)
+
 ## Stack
 
 React 19, React Router 7, TypeScript 6, Vite 8, Tailwind CSS v4, Radix UI,
@@ -75,6 +77,15 @@ carries a README naming the script that writes it.
 | `src/features/championships/data/generated/championships.snapshot.json`       | `npm run championships:sync`   |
 | `src/features/championships/data/generated/championship-assets.manifest.json` | `npm run championships:assets` |
 | `src/features/goals/data/generated/goals.manifest.json`                       | `npm run goals:upload`         |
+| `docs/screenshots/home.png`                                                   | `npm run assets:screenshots`   |
+
+The screenshot is committed and shows the production build. Regenerate it after a
+visible change to the home page:
+
+```bash
+npm run build && npm run preview     # in one terminal
+npm run assets:screenshots           # in another
+```
 
 ## Environment variables
 

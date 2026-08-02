@@ -32,7 +32,8 @@
     "goals:sync": "npm run goals:inspect && npm run goals:upload && npm run goals:verify",
     "content:check": "npm run championships:assets:check && npm run goals:inspect",
     "content:sync": "npm run championships:sync && npm run championships:assets && npm run goals:sync",
-    "assets:women-and-mixed": "tsx scripts/prepare-women-and-mixed-assets.ts"
+    "assets:women-and-mixed": "tsx scripts/prepare-women-and-mixed-assets.ts",
+    "assets:screenshots": "tsx --tsconfig tsconfig.app.json scripts/media/capture-screenshots.ts"
   },
   "dependencies": {
     "@fontsource/barlow": "^5.3.0",
