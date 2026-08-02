@@ -176,20 +176,40 @@ championship appears from the sheet immediately, but its photo and logo only
 appear after they are added to the repository and the site is **rebuilt and
 redeployed**. Missing assets never hide a championship — placeholders are used.
 
-Sources of raw images live in `campeonatos_archivos_solares/` (gitignored). The
-optimized assets are produced by:
+### Adding media
 
-- `npm run assets:championship-logos` — converts league logos to PNG
-  (format-only; preserves the full design, no background removal). See
-  `scripts/convert-championship-logos.ts`.
-- `npm run assets:championship-photos` — writes optimized JPG + WebP team photos
-  at their original dimensions. See `scripts/prepare-championship-photos.ts`.
+Media is added through the intake folder, never by editing code:
 
-To add media for a new championship: place the source image in
-`campeonatos_archivos_solares/`, add a mapping entry in the relevant script, run
-the script, register the import in
-`src/features/championships/data/championship-assets.ts`, then rebuild and
-redeploy.
+```text
+content/incoming/championships/{f8,f5}/{slug}/
+├── team-photo.jpg        (optional)
+└── tournament-logo.png   (optional)
+```
+
+Then `npm run championships:assets`
+(`scripts/championships/process-championship-assets.ts`). The script:
+
+- validates the folder slug against the normalized championships and refuses to
+  copy anything for an unknown slug;
+- re-encodes the team photo to JPG + WebP at its original dimensions — no crop,
+  no face-cutting, no filters;
+- converts the tournament logo to PNG, format-only: no resize, no crop, no
+  recolouring, no background removal, existing alpha preserved and none invented;
+- measures the intrinsic dimensions and rewrites
+  `data/generated/championship-assets.manifest.json`;
+- reports what it encoded, skipped and could not process.
+
+A tournament logo belongs to the championship's **league**, which several
+championships share, so one logo is enough per league and two conflicting logos
+for the same league are reported instead of one silently winning.
+
+The runtime never names a file: `data/championship-assets.ts` reads the manifest
+and resolves the bundled URLs through `import.meta.glob`. Adding a photo is a
+script run plus a commit.
+
+The intake media itself is gitignored — only the optimized output and the
+manifest are committed. `npm run championships:assets:check` verifies the
+manifest is current without writing anything.
 
 ## Update procedure
 
@@ -200,7 +220,7 @@ reload or return navigation) using `fetch(..., { cache: 'no-store' })` with a
 first and serves as an offline fallback; a valid remote response replaces it. A
 failed or invalid remote response never overwrites the visible data.
 
-Refresh the snapshot with `npm run sync:championships` (and
-`npm run sync:championships:check` in CI to detect staleness). The snapshot is a
+Refresh the snapshot with `npm run championships:sync` (and
+`npm run championships:sync:check` in CI to detect staleness). The snapshot is a
 first-render/offline convenience only — the build never requires live Google
 Sheets access, and new championships still arrive through the runtime fetch.

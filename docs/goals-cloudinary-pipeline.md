@@ -7,26 +7,32 @@ keeping that pipeline working.
 
 ## Local source folder
 
-Raw clips live outside the repository tree that Git tracks:
+Clips live outside the tree Git tracks. Two roots are supported:
 
 ```text
-Goles/
-├── F8/           original clips, one folder per format
-├── F5/
-└── web/
-    ├── F8/       web-ready MP4s, the upload source
-    ├── F5/
-    └── mapping.csv
+content/incoming/goals/     documented intake, preferred
+├── f8/
+└── f5/
+
+Goles/web/                  original location, still read
+├── F8/
+└── F5/
 ```
 
-`Goles/` is gitignored. The originals are never deleted, renamed, re-encoded or
-modified by any script.
+`scripts/goals/goal-paths.ts` resolves one root per run: the intake folder once
+it actually holds clips, otherwise the legacy one. Emptiness matters, not
+existence — the intake folders are committed empty, and picking them while empty
+would silently hide an existing collection. Reading a single root also means a
+clip is never inspected twice under two source paths.
 
-`Goles/web/` holds MP4s already normalised for the web (the F5 originals include
-`.mov` files; the web copies are all MP4 and much smaller). **That folder is what
-gets uploaded** — `GOALS_ROOT` in `scripts/inspect-goals.ts`. `mapping.csv` is a
-pre-existing classification of every clip; the pipeline does not depend on it,
-but it is a useful oracle to cross-check the parser against.
+Either casing of the format folder (`f8` or `F8`) works. The format always comes
+from the folder, never from the file name.
+
+Because ids are content hashes, **moving a collection between the two roots
+re-uploads nothing**: the same bytes keep the same id and the same public id.
+
+Both roots are gitignored. The originals are never deleted, renamed, re-encoded
+or modified by any script.
 
 ## Credentials
 
@@ -66,21 +72,40 @@ script reports `CLOUDINARY_URL is present but could not be parsed`.
 
 ## File naming and classification
 
-Clips are named:
+Two conventions are parsed, in this order. Neither encodes a goal number.
+
+### Canonical, for new clips
+
+```text
+{competition-slug}__{scorer-slug}__{label}.{ext}
+```
+
+For example `apertura-2026__lorenzo-minervino__gol-01.mp4`. Segments are
+separated by a double underscore, so hyphens are free inside a competition or a
+scorer name — which the legacy pattern forbids. Segments are lowercase slugs and
+are title-cased back into display names; an alias then restores accents and
+irregular spellings.
+
+### Legacy, for the collection uploaded before the convention existed
 
 ```text
 {Competition}_{Year}-{Scorer}-{index}.{ext}
 ```
 
-For example `Apertura_2026-Lorenzo_Minervino-0.mp4`.
+For example `Apertura_2026-Lorenzo_Minervino-0.mp4`. Existing files are **not**
+renamed: renaming them would churn nothing useful and the parser keeps reading
+them.
 
-- **The trailing index is meaningless.** It only keeps sibling file names unique.
+Common to both:
+
+- **The third segment is meaningless.** It only keeps sibling file names unique.
   It is not a goal number, a shirt number, a matchday or a date. It is parsed and
   discarded, and never shown in the interface.
 - **Four-digit years are kept.** They are part of the competition name.
-- The format comes from the folder (`F8` / `F5`), never from the name.
-- `En_Contra` marks a goal scored by the opposing team. It keeps its video and is
-  displayed as `En contra`, but it belongs to no player.
+- The format comes from the folder (`f8` / `f5`), never from the name.
+- `en-contra` (or legacy `En_Contra`) marks a goal scored by the opposing team.
+  It keeps its video and is displayed as `En contra`, but it belongs to no
+  player.
 
 Names are resolved in this order: an explicit override, then the deterministic
 parser, then a competition or scorer alias. Nothing is ever resolved by fuzzy
@@ -154,6 +179,8 @@ by the manifest generator and the gallery, so both agree.
 npm run goals:inspect      # classify local clips, write a report, upload nothing
 npm run goals:upload:dry   # report exactly what would be uploaded
 npm run goals:upload       # upload and rebuild the manifest
+npm run goals:verify       # check every published goal is really hosted
+npm run goals:sync         # inspect + upload + verify
 npm run goals:duplicates   # report clips that look the same but hash differently
 npm run goals:prune        # report hosted assets the collection no longer publishes
 npm run goals:prune:apply  # delete them
@@ -232,14 +259,14 @@ always renders the untouched original ratio; the crop is a grid device only.
 
 ## Adding new goals
 
-1. Drop the clips into `Goles/F8` or `Goles/F5` and produce their web-ready
-   copies under `Goles/web/`. Do not modify existing files.
+1. Drop the web-ready clips into `content/incoming/goals/f8` or
+   `content/incoming/goals/f5`. Do not modify existing files.
 2. `npm run goals:inspect` and read the report.
 3. Resolve anything listed as ambiguous or unresolved with an alias or an
    override, then inspect again.
 4. `npm run goals:upload:dry` and check the counts and public ids.
 5. `npm run goals:upload`.
-6. `npm run check` and commit the regenerated manifest.
+6. `npm run validate` and commit the regenerated manifest.
 7. Deploy. Photos, logos and the manifest are build assets, so new goals only
    appear after a redeployment.
 

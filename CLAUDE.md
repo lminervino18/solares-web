@@ -78,6 +78,35 @@ Allowed types: `chore feat fix refactor style test docs build ci perf revert`
 
 Do not commit a state broken by the current change (type check, lint, tests or build).
 
+## Content architecture rules
+
+The project grows through data, files and scripts — never by editing a presentation
+component. Before writing code to publish content, check whether one of these paths
+already covers it.
+
+1. Production sports data must not be hardcoded in presentation components.
+2. New championships are discovered from the documented Google Sheets contract. Adding one
+   never requires a card, a carousel entry, a component or an override.
+3. Championship media is added through `content/incoming/championships/{f8,f5}/{slug}/` and
+   `npm run championships:assets`. Never register an asset import by hand.
+4. Goals are added through `content/incoming/goals/{f8,f5}/` and the upload scripts.
+5. Components consume normalized domain entities. They must not know Google Sheets columns,
+   physical file names, folder paths, numeric prefixes, parsing rules or raw API responses.
+6. Never map entities by array index, column position or visual order. Use stable ids:
+   `{format}-{slug}` for a championship, `{format}-{short content hash}` for a goal.
+7. Never use fuzzy matching to merge production entities. Aliases and overrides are explicit;
+   approximate matching exists only for visitor-facing search.
+8. Generated manifests are never edited by hand, and generated output is deterministic: two
+   runs with no changes must leave the files byte-identical.
+9. Missing media falls back to an accessible placeholder that reserves the layout space. Never
+   borrow another championship's photo or another tournament's logo.
+10. Tests must not depend on current production counts or on the names of the championships
+    that happen to exist today. Use controlled fixtures and domain invariants; derive any
+    production-dependent expectation from the snapshot.
+11. Do not create an abstraction without a concrete reuse case — two real consumers minimum.
+12. Never expose Cloudinary credentials, never commit local goal videos, and never make live
+    Google Sheets or Cloudinary access mandatory for the normal build.
+
 ## Fundamental architecture rules
 
 1. Do not add a backend without an explicit request.
@@ -135,6 +164,18 @@ consumer is deleted, not kept as a placeholder: the README records the intent.
 - Pointer-driven effects (crest tilt) must never be the only way to reach content, because
   touch devices have no hover. Guard them with `(hover: hover)` when testing.
 
+## Comment policy
+
+Do not add comments that restate the code. No line-by-line narration, no explanation of a
+clear name, no commented-out code, no context-free TODO.
+
+Keep a comment only when it records something the code cannot show: a non-obvious decision,
+an external constraint, a browser incompatibility, a spreadsheet exception, a security
+decision, a Cloudinary limitation or a business rule that is not deducible. Keep it short.
+
+Docstrings on exported functions, components and modules are the documented style and stay:
+they describe the contract, not the implementation.
+
 ## TypeScript and React policy
 
 - Keep `strict: true` plus `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes` and the
@@ -158,10 +199,14 @@ consumer is deleted, not kept as a placeholder: the README records the intent.
 - Production URL: `VITE_SITE_URL` environment variable (see `README.md`), read by `site.config.ts`.
 - Navigation items (label + path + Lucide icon): `src/config/navigation.config.ts`.
 - Design tokens: `src/styles/tokens/*`. Routes: `src/constants/routes.ts`. Router: `src/app/routes.tsx`.
+- Football format (`FootballFormat`, guard, labels): `src/config/football-format.ts`. It is the
+  only declaration of the F8/F5 union — features alias it (`GoalFormat`) but never redeclare it.
+- Query parameter names and their typed read/write helpers: `src/config/query-params.ts`.
+  `modalidad` is written only for F5, so an F8 URL stays canonical.
 - Content data: `src/data/crests.ts`, `kits.ts`, `history.ts` (chapters + photos), `brand.ts`
   (flag, current crest, header logo), `womenAndMixed.ts` (Cambalache and Cambalares media).
-  Domain types: `src/types/*`. Schemas: `src/schemas/*`.
-  The sports data files (`players.ts`, `matches.ts`, etc.) are still typed empty arrays.
+  Editorial domain types: `src/types/*`. Sports domain types live in their feature
+  (`features/championships/types`, `features/goals/types`, `features/statistics/types`).
 - Home sections: `src/features/home/HomeIntro.tsx`; brand components in `src/components/brand/*`
   (`InteractiveCrest`, `CrestFusion`, `TeamFlag`, `CrestTimeline`, `KitGallery`).
 - History sections: `src/features/history/*` (chapter, timeline).
@@ -358,8 +403,8 @@ The Goles page plays short goal clips hosted on Cloudinary. See
 
 `react-refresh/only-export-components` warns on files that export a component together with
 its CVA variant function (idiomatic co-location) and on `routes.tsx`. These are development
-hot-reload hints only; `npm run check` passes (0 errors). The rule stays enabled and visible;
-do not disable it globally.
+hot-reload hints only; `npm run validate` passes (0 errors). The rule stays enabled and
+visible; do not disable it globally.
 
 ## Known flaky end-to-end tests
 
@@ -401,8 +446,16 @@ npx playwright install
 npm run test:e2e
 ```
 
-`npm run check` runs typecheck, lint, unit tests and build together. Do not claim a check
-passed unless it was actually executed successfully.
+`npm run validate` runs format:check, typecheck, lint, unit tests and build together. It needs
+no credential and no network. Do not claim a check passed unless it was actually executed
+successfully.
+
+Content commands (see `docs/content-operations.md`):
+
+```bash
+npm run content:check    # manifests + local clip classification, no credential
+npm run content:sync     # snapshot + assets + goal upload, needs CLOUDINARY_URL
+```
 
 ## Deployment
 
