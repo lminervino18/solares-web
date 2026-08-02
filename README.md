@@ -106,6 +106,7 @@ goals — the normal build never reads it and never contacts Cloudinary.
 ## Documentation
 
 - [`docs/content-operations.md`](docs/content-operations.md) — administrator guide (Spanish)
+- [`docs/deployment.md`](docs/deployment.md) — publishing on Vercel with a custom domain (Spanish)
 - [`docs/championships-data-source.md`](docs/championships-data-source.md) — Google Sheets contract
 - [`docs/goals-cloudinary-pipeline.md`](docs/goals-cloudinary-pipeline.md) — goals media pipeline
 - [`docs/refactor-audit.md`](docs/refactor-audit.md) — architecture audit
@@ -114,4 +115,11 @@ goals — the normal build never reads it and never contacts Cloudinary.
 ## Deployment
 
 Static SPA with an `index.html` fallback rewrite, configured in `vercel.json` and
-`netlify.toml`.
+`netlify.toml`. Pushing to `main` redeploys production; other branches get preview
+deployments. The build needs no credential and no network access to Google Sheets
+or Cloudinary.
+
+Set `VITE_SITE_URL` in the hosting provider to the production domain: without it
+the pages carry no canonical URL and no `og:url`. It is baked in at build time, so
+changing it requires a redeploy. Step-by-step guide in
+[`docs/deployment.md`](docs/deployment.md).
