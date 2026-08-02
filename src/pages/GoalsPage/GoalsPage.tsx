@@ -22,8 +22,10 @@ export function GoalsPage() {
               Goles
             </Heading>
             <Text size="lg" tone="secondary" className="mt-3">
-              Algunos goles solo quedan en la memoria. Otros quedan registrados. Gracias a las
-              chicas de Camba y a Beelup por hacer esta sección posible.
+              Algunos goles quedan solo en la memoria. Estos, por suerte, quedaron grabados.
+            </Text>
+            <Text size="sm" tone="muted" className="mt-4">
+              Esta sección existe gracias a las chicas de Camba y a Beelup.
             </Text>
           </header>
 

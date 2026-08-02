@@ -22,7 +22,7 @@ export function ChampionshipsPage() {
               Campeonatos
             </Heading>
             <Text size="lg" tone="secondary" className="mt-3">
-              Cada torneo dejó resultados, goles y momentos que forman parte de nuestra historia.
+              Cada torneo que jugamos, partido por partido.
             </Text>
           </header>
 

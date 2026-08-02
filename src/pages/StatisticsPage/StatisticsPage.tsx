@@ -22,7 +22,7 @@ export function StatisticsPage() {
               Estadísticas
             </Heading>
             <Text size="lg" tone="secondary" className="mt-3">
-              Los números que cuentan la historia competitiva de Solares.
+              Goleadores, rachas, rivales y récords, desde el primer partido hasta hoy.
             </Text>
           </header>
 
