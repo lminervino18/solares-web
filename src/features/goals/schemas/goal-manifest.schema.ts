@@ -33,6 +33,7 @@ export const goalVideoSchema = z.object({
     resourceType: z.literal('video'),
     secureUrl: httpsUrl,
     playbackUrl: httpsUrl,
+    compactPlaybackUrl: httpsUrl.optional(),
     posterUrl: httpsUrl,
     downloadUrl: httpsUrl,
   }),

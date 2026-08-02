@@ -31,6 +31,14 @@ export const MANIFEST_PATH = 'src/features/goals/data/generated/goals.manifest.j
 const POSTER_WIDTH = 640
 const POSTER_ASPECT_RATIO = '4:3'
 
+/**
+ * Width cap for the phone rendition. Clips are delivered up to their source
+ * width, which on a phone means paying for pixels the screen cannot show:
+ * capping at 720 roughly halves the transfer with no visible difference at that
+ * size. `c_limit` never upscales, so a smaller clip is served untouched.
+ */
+const COMPACT_PLAYBACK_WIDTH = 720
+
 type ManifestInput = {
   readonly sourcePath: string
   readonly fileName: string
@@ -79,6 +87,16 @@ function buildGoalVideo(goal: ManifestInput, state: UploadState): GoalVideo | un
     ...versionOption,
   })
 
+  const compactPlaybackUrl = cloudinary.url(goal.publicId, {
+    resource_type: 'video',
+    format: 'mp4',
+    secure: true,
+    transformation: [
+      { quality: 'auto', fetch_format: 'auto', width: COMPACT_PLAYBACK_WIDTH, crop: 'limit' },
+    ],
+    ...versionOption,
+  })
+
   const posterUrl = cloudinary.url(goal.publicId, {
     resource_type: 'video',
     format: 'jpg',
@@ -121,6 +139,7 @@ function buildGoalVideo(goal: ManifestInput, state: UploadState): GoalVideo | un
       format: assetFormat,
       secureUrl,
       playbackUrl,
+      compactPlaybackUrl,
       posterUrl,
       downloadUrl,
       ...(version === undefined ? {} : { version }),

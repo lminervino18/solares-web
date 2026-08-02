@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react'
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { Dialog } from 'radix-ui'
 
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { Button } from '@/components/primitives/Button/Button'
 import { IconButton } from '@/components/primitives/IconButton/IconButton'
 import { Text } from '@/components/primitives/Text/Text'
@@ -9,6 +10,7 @@ import type { GoalVideo } from '../../types/goals'
 import { GOAL_FORMAT_LONG_LABEL } from '../../types/goals'
 import { selectAdjacentGoals } from '../../selectors/selectAdjacentGoals'
 import type { GoalPlaybackRate } from '../../hooks/useGoalPlayer'
+import { usePrefetchGoals } from '../../hooks/usePrefetchGoals'
 import { GoalPlayerStage } from './GoalPlayerStage'
 
 export type GoalPlayerProps = {
@@ -30,6 +32,8 @@ export type GoalPlayerProps = {
 export function GoalPlayer({ goal, goals, shareUrl, onNavigate, onClose }: GoalPlayerProps) {
   const [rate, setRate] = useState<GoalPlaybackRate>(1)
   const { index, total, previous, next } = selectAdjacentGoals(goals, goal.id)
+  const compact = useMediaQuery('(max-width: 640px)')
+  usePrefetchGoals([next, previous], compact)
 
   const goPrevious = useCallback(() => {
     if (previous !== undefined) onNavigate(previous)

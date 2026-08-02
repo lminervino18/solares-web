@@ -2,11 +2,13 @@ import { useEffect, useRef } from 'react'
 import { Loader2 } from 'lucide-react'
 
 import { cn } from '@/lib/cn'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { Button } from '@/components/primitives/Button/Button'
 import { Text } from '@/components/primitives/Text/Text'
 import type { GoalVideo } from '../../types/goals'
 import { SEEK_STEP_SECONDS, useGoalPlayer, type GoalPlaybackRate } from '../../hooks/useGoalPlayer'
 import { useGoalZoom } from '../../hooks/useGoalZoom'
+import { selectGoalPlaybackUrl } from '../../utils/selectGoalPlaybackUrl'
 import { GoalPlayerControls } from '../GoalPlayerControls/GoalPlayerControls'
 
 export type GoalPlayerStageProps = {
@@ -20,6 +22,9 @@ export type GoalPlayerStageProps = {
 
 /** Tallest the video area may get, leaving room for the header and controls. */
 const MAX_STAGE_HEIGHT = '62vh'
+
+/** Below this width the stage is never wide enough to need the full rendition. */
+const COMPACT_VIEWPORT = '(max-width: 640px)'
 const DEFAULT_ASPECT_RATIO = 16 / 9
 
 function stageAspectRatio(goal: GoalVideo): number {
@@ -68,6 +73,7 @@ export function GoalPlayerStage({
   })
   const zoom = useGoalZoom()
   const aspectRatio = stageAspectRatio(goal)
+  const compact = useMediaQuery(COMPACT_VIEWPORT)
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -153,7 +159,7 @@ export function GoalPlayerStage({
             {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
             <video
               ref={videoRef}
-              src={goal.cloudinary.playbackUrl}
+              src={selectGoalPlaybackUrl(goal, compact)}
               playsInline
               preload="auto"
               className={cn(

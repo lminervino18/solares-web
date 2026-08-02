@@ -32,6 +32,8 @@ export type GoalCloudinaryAsset = {
   readonly resourceType: 'video'
   readonly secureUrl: string
   readonly playbackUrl: string
+  /** Width-capped rendition served to phones. Absent on manifests built before it existed. */
+  readonly compactPlaybackUrl?: string
   readonly posterUrl: string
   readonly downloadUrl: string
 }
