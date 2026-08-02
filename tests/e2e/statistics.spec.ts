@@ -1,5 +1,7 @@
 import { test, expect, type Page } from '@playwright/test'
 
+import { topScorerName } from './fixtures/snapshotChampionships'
+
 const STUB_RESPONSE =
   'google.visualization.Query.setResponse({"status":"error","errors":[{"message":"stubbed"}]});'
 
@@ -30,12 +32,16 @@ test.describe('statistics', () => {
   })
 
   test('expands the full scorers table and filters by name', async ({ page }) => {
+    const scorer = topScorerName('f8')
+    test.skip(scorer === undefined, 'The snapshot has no F8 scorer')
+
     await page.goto('/estadisticas')
     await page.getByRole('button', { name: 'Ver tabla completa' }).click()
     const search = page.getByLabel('Buscar jugador')
     await expect(search).toBeVisible()
-    await search.fill('lorenzo')
-    await expect(page.getByText('Lorenzo Minervino').first()).toBeVisible()
+
+    await search.fill((scorer ?? '').split(' ')[0] ?? '')
+    await expect(page.getByText(scorer ?? '').first()).toBeVisible()
   })
 
   test('renders a chart with an accessible data table', async ({ page }) => {

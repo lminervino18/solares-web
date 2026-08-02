@@ -3,7 +3,29 @@ import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { renderWithProviders } from '@/test/renderWithProviders'
+import type { FootballFormat } from '@/config/football-format'
+import { loadChampionshipsSnapshot } from '../data/championshipsSnapshot'
 import { ChampionshipsSection } from './ChampionshipsSection'
+
+// Derived from the snapshot, never hardcoded: publishing a newer championship
+// must not break these tests.
+const snapshot = loadChampionshipsSnapshot().data
+
+function published(format: FootballFormat) {
+  return snapshot[format].filter((championship) => championship.published)
+}
+
+function defaultName(format: FootballFormat): string {
+  const name = published(format)[0]?.name
+  if (!name) throw new Error(`The snapshot has no published ${format} championship`)
+  return name
+}
+
+/** A name present in one format only, which proves a format switch happened. */
+function exclusiveName(format: FootballFormat, other: FootballFormat): string | undefined {
+  const otherNames = new Set(published(other).map((championship) => championship.name))
+  return published(format).find((championship) => !otherNames.has(championship.name))?.name
+}
 
 vi.mock('../api/championshipsDataSource', async (importOriginal) => {
   const actual = await importOriginal<typeof import('../api/championshipsDataSource')>()
@@ -28,13 +50,13 @@ describe('ChampionshipsSection', () => {
     await waitFor(() => {
       expect(screen.getByRole('tab', { name: /F8/ })).toHaveAttribute('aria-selected', 'true')
     })
-    expect(screen.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 2, name: defaultName('f8') })).toBeInTheDocument()
   })
 
   it('shows the tournament logo before the championship name', async () => {
     renderWithProviders(<ChampionshipsSection />, { initialEntries: ['/campeonatos'] })
 
-    const title = await screen.findByRole('heading', { level: 2, name: 'Apertura 2026' })
+    const title = await screen.findByRole('heading', { level: 2, name: defaultName('f8') })
     const header = title.closest('header')
     expect(header).not.toBeNull()
 
@@ -60,13 +82,15 @@ describe('ChampionshipsSection', () => {
 
     await userEvent.click(screen.getByRole('tab', { name: /F5/ }))
 
-    // "Apertura 2026" exists in both formats, so the spotlight label is what
-    // proves the switch happened.
+    // A championship name can exist in both formats, so the spotlight label is
+    // what proves the switch happened.
     await waitFor(() => {
       expect(screen.getByText(/Campeonatos F5/)).toBeInTheDocument()
     })
-    // "Clausura 2023" only exists in F8, so it must be gone after switching.
-    expect(screen.queryByText('Clausura 2023')).not.toBeInTheDocument()
+
+    // A championship exclusive to F8 must be gone after switching.
+    const f8Only = exclusiveName('f8', 'f5')
+    if (f8Only) expect(screen.queryByText(f8Only)).not.toBeInTheDocument()
   })
 
   it('shows the source notice with a link to the spreadsheet', async () => {

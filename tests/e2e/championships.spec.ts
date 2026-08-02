@@ -1,5 +1,11 @@
 import { test, expect, type Page } from '@playwright/test'
 
+import {
+  defaultChampionship,
+  exclusiveChampionshipName,
+  secondChampionship,
+} from './fixtures/snapshotChampionships'
+
 // Serve a deterministic, offline experience: the gviz endpoint returns an error
 // payload so the app keeps rendering the committed snapshot. This avoids relying
 // on live Google Sheets and keeps the tests stable.
@@ -27,15 +33,18 @@ test.describe('championships', () => {
   test('switching format updates the URL and the content', async ({ page }) => {
     await page.goto('/campeonatos')
     await expect(page.getByText('Campeonatos F8')).toBeVisible()
-    await expect(page.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeVisible()
+    await expect(
+      page.getByRole('heading', { level: 2, name: defaultChampionship('f8').name }),
+    ).toBeVisible()
 
     await page.getByRole('tab', { name: /F5/ }).click()
     await expect(page).toHaveURL(/modalidad=f5/)
-    // "Apertura 2026" is the most recent championship in both formats, so the
-    // spotlight label is what proves the format changed.
+    // A championship name can exist in both formats, so the spotlight label is
+    // what proves the format changed.
     await expect(page.getByText('Campeonatos F5')).toBeVisible()
-    // Clausura 2023 only exists in F8.
-    await expect(page.getByText('Clausura 2023')).toHaveCount(0)
+
+    const f8Only = exclusiveChampionshipName('f8', 'f5')
+    if (f8Only) await expect(page.getByText(f8Only)).toHaveCount(0)
 
     await page.getByRole('tab', { name: /F8/ }).click()
     await expect(page).not.toHaveURL(/modalidad=f5/)
@@ -45,46 +54,58 @@ test.describe('championships', () => {
   test('selecting a championship updates the torneo param and back restores it', async ({
     page,
   }) => {
+    const first = defaultChampionship('f8')
     await page.goto('/campeonatos')
-    await expect(page.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeVisible()
+    await expect(page.getByRole('heading', { level: 2, name: first.name })).toBeVisible()
 
     await page.getByRole('button', { name: 'Campeonato siguiente' }).click()
     await expect(page).toHaveURL(/torneo=/)
 
     await page.goBack()
     await expect(page).not.toHaveURL(/torneo=/)
-    await expect(page.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeVisible()
+    await expect(page.getByRole('heading', { level: 2, name: first.name })).toBeVisible()
   })
 
-  test('selects a non-default F5 championship (Clausura 2025)', async ({ page }) => {
+  test('selects a non-default F5 championship from the carousel', async ({ page }) => {
+    const target = secondChampionship('f5')
+    test.skip(target === undefined, 'The snapshot has a single published F5 championship')
+
     await page.goto('/campeonatos?modalidad=f5')
-    await expect(page.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeVisible()
+    await expect(
+      page.getByRole('heading', { level: 2, name: defaultChampionship('f5').name }),
+    ).toBeVisible()
 
     await page
-      .getByRole('button', { name: /Clausura 2025/ })
+      .getByRole('button', { name: new RegExp(target?.name ?? '') })
       .first()
       .click()
-    await expect(page).toHaveURL(/torneo=clausura-2025/)
-    await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()
+    await expect(page).toHaveURL(new RegExp(`torneo=${target?.slug ?? ''}`))
+    await expect(page.getByRole('heading', { level: 2, name: target?.name ?? '' })).toBeVisible()
   })
 
   test('changes championship with the keyboard arrows without selecting a card', async ({
     page,
   }) => {
+    const first = defaultChampionship('f8')
+    const second = secondChampionship('f8')
+    test.skip(second === undefined, 'The snapshot has a single published F8 championship')
+
     await page.goto('/campeonatos')
-    await expect(page.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeVisible()
+    await expect(page.getByRole('heading', { level: 2, name: first.name })).toBeVisible()
 
     // No card is focused; the arrows still change the championship.
     await page.keyboard.press('ArrowRight')
-    await expect(page.getByRole('heading', { level: 2, name: 'Clausura 2025' })).toBeVisible()
+    await expect(page.getByRole('heading', { level: 2, name: second?.name ?? '' })).toBeVisible()
 
     await page.keyboard.press('ArrowLeft')
-    await expect(page.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeVisible()
+    await expect(page.getByRole('heading', { level: 2, name: first.name })).toBeVisible()
   })
 
   test('keeps the scroll position when switching championships', async ({ page }) => {
     await page.goto('/campeonatos')
-    await expect(page.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeVisible()
+    await expect(
+      page.getByRole('heading', { level: 2, name: defaultChampionship('f8').name }),
+    ).toBeVisible()
 
     // Click via the DOM so Playwright does not auto-scroll the button into view,
     // which would move the page itself and mask the behaviour under test.
@@ -121,7 +142,9 @@ test.describe('championships', () => {
   test('renders from the snapshot when the sheet is unavailable', async ({ page }) => {
     await page.goto('/campeonatos')
     await expect(page.getByText('Mostrando la última versión disponible.')).toBeVisible()
-    await expect(page.getByRole('heading', { level: 2, name: 'Apertura 2026' })).toBeVisible()
+    await expect(
+      page.getByRole('heading', { level: 2, name: defaultChampionship('f8').name }),
+    ).toBeVisible()
   })
 
   test('has no horizontal overflow', async ({ page }) => {
