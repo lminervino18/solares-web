@@ -32,7 +32,7 @@ export function WomenAndMixedPage() {
   return (
     <>
       <Seo
-        title="Femenino y Mixto de Solares"
+        title="Femenino y Mixto"
         description="Conocé la relación de Solares con Cambalache y la historia de Cambalares, la fusión de ambos equipos en el fútbol mixto."
         canonicalPath={routes.womenAndMixed}
       />

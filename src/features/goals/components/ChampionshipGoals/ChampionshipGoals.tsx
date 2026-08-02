@@ -30,9 +30,9 @@ export function ChampionshipGoals({ championshipId, format }: ChampionshipGoalsP
   const hasSeveralScorers = new Set(championshipGoals.map((goal) => goal.scorer.id)).size > 1
 
   return (
-    <section aria-label="Goles del campeonato">
+    <section aria-label="Goles grabados">
       <Heading as="h3" size="lg" className="mb-3">
-        Goles del campeonato
+        Goles grabados
       </Heading>
       <GoalGallery
         goals={championshipGoals}

@@ -17,7 +17,7 @@ export function HistoryPage() {
   return (
     <>
       <Seo
-        title="Historia de Solares"
+        title="Historia"
         description="La historia de Solares, desde sus comienzos en Cipolletti hasta la formación de Solares Buenos Aires."
         canonicalPath={routes.history}
       />

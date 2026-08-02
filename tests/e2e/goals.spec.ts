@@ -251,7 +251,7 @@ test.describe('goals', () => {
 test.describe('championship goals', () => {
   test('reuses the gallery inside a championship with goals', async ({ page }) => {
     await page.goto('/campeonatos?torneo=clausura-2023')
-    const section = page.getByRole('region', { name: 'Goles del campeonato' })
+    const section = page.getByRole('region', { name: 'Goles grabados' })
     await expect(section).toBeVisible()
     await expect(section.getByRole('button', { name: anyCard }).first()).toBeVisible()
   })
@@ -262,7 +262,7 @@ test.describe('championship goals', () => {
     await page.goto('/campeonatos?torneo=clausura-2022')
     const selected = await page.getByRole('heading', { level: 2 }).first().innerText()
 
-    const section = page.getByRole('region', { name: 'Goles del campeonato' })
+    const section = page.getByRole('region', { name: 'Goles grabados' })
     await expect(section).toBeVisible()
 
     const cards = section.getByRole('button', { name: anyCard })
@@ -276,7 +276,7 @@ test.describe('championship goals', () => {
 
   test('keeps the championship goals out of the query string', async ({ page }) => {
     await page.goto('/campeonatos?torneo=clausura-2023')
-    const section = page.getByRole('region', { name: 'Goles del campeonato' })
+    const section = page.getByRole('region', { name: 'Goles grabados' })
     const card = section.getByRole('button', { name: anyCard }).first()
     await card.scrollIntoViewIfNeeded()
     await expect(card).toBeVisible()

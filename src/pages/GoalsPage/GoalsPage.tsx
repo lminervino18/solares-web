@@ -10,7 +10,7 @@ export function GoalsPage() {
   return (
     <>
       <Seo
-        title="Goles de Solares"
+        title="Goles"
         description="Mirá los goles de Solares en fútbol 8 y fútbol 5, filtrados por torneo y goleador."
         canonicalPath={routes.goals}
       />
@@ -22,7 +22,8 @@ export function GoalsPage() {
               Goles
             </Heading>
             <Text size="lg" tone="secondary" className="mt-3">
-              Cada gol quedó grabado. Filtralos por torneo o por goleador.
+              Algunos goles solo quedan en la memoria. Otros quedan registrados. Gracias a las
+              chicas de Camba y a Beelup por hacer esta sección posible.
             </Text>
           </header>
 

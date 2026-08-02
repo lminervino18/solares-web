@@ -19,7 +19,7 @@ describe('ChampionshipGoals', () => {
     )
 
     expect(container).toBeEmptyDOMElement()
-    expect(screen.queryByText('Goles del campeonato')).not.toBeInTheDocument()
+    expect(screen.queryByText('Goles grabados')).not.toBeInTheDocument()
   })
 
   it('renders nothing when the format does not match the championship', () => {
@@ -50,7 +50,7 @@ describe('ChampionshipGoals', () => {
       { initialEntries: ['/campeonatos'] },
     )
 
-    expect(screen.getByText('Goles del campeonato')).toBeInTheDocument()
+    expect(screen.getByText('Goles grabados')).toBeInTheDocument()
     for (const card of screen.getAllByRole('button', { name: /^Abrir gol de/ })) {
       expect(card).toHaveAccessibleName(new RegExp(sample!.competition.name))
     }
