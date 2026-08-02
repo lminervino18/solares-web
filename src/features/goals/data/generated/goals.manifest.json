@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-31T06:43:12.142Z",
+  "generatedAt": "2026-08-02T19:52:04.609Z",
   "goals": [
     {
       "id": "f5-65a7936b0094",
@@ -1721,9 +1721,9 @@
       "id": "f5-1ba2505f7df8",
       "format": "f5",
       "scorer": {
-        "id": "luca-crivaro",
-        "slug": "luca-crivaro",
-        "name": "Luca Crivaro"
+        "id": "agustin-di-yacovo",
+        "slug": "agustin-di-yacovo",
+        "name": "Agustin Di Yacovo"
       },
       "competition": {
         "id": "f5-clausura-2025",
@@ -1734,14 +1734,14 @@
         "championshipId": "f5-clausura-2025"
       },
       "cloudinary": {
-        "publicId": "solares/goals/f5/clausura-2025/luca-crivaro-1ba2505f7df8",
+        "publicId": "solares/goals/f5/clausura-2025/agustin-di-yacovo-1ba2505f7df8",
         "resourceType": "video",
         "format": "mp4",
-        "secureUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/v1785473483/solares/goals/f5/clausura-2025/luca-crivaro-1ba2505f7df8.mp4",
-        "playbackUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/f_auto,q_auto/v1785473483/solares/goals/f5/clausura-2025/luca-crivaro-1ba2505f7df8.mp4",
-        "posterUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/ar_4:3,c_fill,f_auto,g_auto,q_auto,so_auto,w_640/v1785473483/solares/goals/f5/clausura-2025/luca-crivaro-1ba2505f7df8.jpg",
-        "downloadUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/fl_attachment:solares-f5-clausura-2025-luca-crivaro/v1785473483/solares/goals/f5/clausura-2025/luca-crivaro-1ba2505f7df8.mp4",
-        "version": 1785473483
+        "secureUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/v1785700316/solares/goals/f5/clausura-2025/agustin-di-yacovo-1ba2505f7df8.mp4",
+        "playbackUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/f_auto,q_auto/v1785700316/solares/goals/f5/clausura-2025/agustin-di-yacovo-1ba2505f7df8.mp4",
+        "posterUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/ar_4:3,c_fill,f_auto,g_auto,q_auto,so_auto,w_640/v1785700316/solares/goals/f5/clausura-2025/agustin-di-yacovo-1ba2505f7df8.jpg",
+        "downloadUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/fl_attachment:solares-f5-clausura-2025-agustin-di-yacovo/v1785700316/solares/goals/f5/clausura-2025/agustin-di-yacovo-1ba2505f7df8.mp4",
+        "version": 1785700316
       },
       "media": {
         "bytes": 366253,
@@ -2969,9 +2969,9 @@
       "id": "f5-61917c71d79b",
       "format": "f5",
       "scorer": {
-        "id": "agustin-di-yacovo",
-        "slug": "agustin-di-yacovo",
-        "name": "Agustin Di Yacovo"
+        "id": "mauro-gonzalez",
+        "slug": "mauro-gonzalez",
+        "name": "Mauro Gonzalez"
       },
       "competition": {
         "id": "f5-clausura-2025",
@@ -2982,14 +2982,14 @@
         "championshipId": "f5-clausura-2025"
       },
       "cloudinary": {
-        "publicId": "solares/goals/f5/clausura-2025/agustin-di-yacovo-61917c71d79b",
+        "publicId": "solares/goals/f5/clausura-2025/mauro-gonzalez-61917c71d79b",
         "resourceType": "video",
         "format": "mp4",
-        "secureUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/v1785473527/solares/goals/f5/clausura-2025/agustin-di-yacovo-61917c71d79b.mp4",
-        "playbackUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/f_auto,q_auto/v1785473527/solares/goals/f5/clausura-2025/agustin-di-yacovo-61917c71d79b.mp4",
-        "posterUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/ar_4:3,c_fill,f_auto,g_auto,q_auto,so_auto,w_640/v1785473527/solares/goals/f5/clausura-2025/agustin-di-yacovo-61917c71d79b.jpg",
-        "downloadUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/fl_attachment:solares-f5-clausura-2025-agustin-di-yacovo/v1785473527/solares/goals/f5/clausura-2025/agustin-di-yacovo-61917c71d79b.mp4",
-        "version": 1785473527
+        "secureUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/v1785700318/solares/goals/f5/clausura-2025/mauro-gonzalez-61917c71d79b.mp4",
+        "playbackUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/f_auto,q_auto/v1785700318/solares/goals/f5/clausura-2025/mauro-gonzalez-61917c71d79b.mp4",
+        "posterUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/ar_4:3,c_fill,f_auto,g_auto,q_auto,so_auto,w_640/v1785700318/solares/goals/f5/clausura-2025/mauro-gonzalez-61917c71d79b.jpg",
+        "downloadUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/fl_attachment:solares-f5-clausura-2025-mauro-gonzalez/v1785700318/solares/goals/f5/clausura-2025/mauro-gonzalez-61917c71d79b.mp4",
+        "version": 1785700318
       },
       "media": {
         "bytes": 848566,
@@ -3749,9 +3749,9 @@
       "id": "f8-dba1458f41b6",
       "format": "f8",
       "scorer": {
-        "id": "pablo-kunz",
-        "slug": "pablo-kunz",
-        "name": "Pablo Kunz"
+        "id": "ariel-atienza",
+        "slug": "ariel-atienza",
+        "name": "Ariel Atienza"
       },
       "competition": {
         "id": "f8-apertura-2025",
@@ -3762,14 +3762,14 @@
         "championshipId": "f8-apertura-2025"
       },
       "cloudinary": {
-        "publicId": "solares/goals/f8/apertura-2025/pablo-kunz-dba1458f41b6",
+        "publicId": "solares/goals/f8/apertura-2025/ariel-atienza-dba1458f41b6",
         "resourceType": "video",
         "format": "mp4",
-        "secureUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/v1785473718/solares/goals/f8/apertura-2025/pablo-kunz-dba1458f41b6.mp4",
-        "playbackUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/f_auto,q_auto/v1785473718/solares/goals/f8/apertura-2025/pablo-kunz-dba1458f41b6.mp4",
-        "posterUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/ar_4:3,c_fill,f_auto,g_auto,q_auto,so_auto,w_640/v1785473718/solares/goals/f8/apertura-2025/pablo-kunz-dba1458f41b6.jpg",
-        "downloadUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/fl_attachment:solares-f8-apertura-2025-pablo-kunz/v1785473718/solares/goals/f8/apertura-2025/pablo-kunz-dba1458f41b6.mp4",
-        "version": 1785473718
+        "secureUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/v1785700321/solares/goals/f8/apertura-2025/ariel-atienza-dba1458f41b6.mp4",
+        "playbackUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/f_auto,q_auto/v1785700321/solares/goals/f8/apertura-2025/ariel-atienza-dba1458f41b6.mp4",
+        "posterUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/ar_4:3,c_fill,f_auto,g_auto,q_auto,so_auto,w_640/v1785700321/solares/goals/f8/apertura-2025/ariel-atienza-dba1458f41b6.jpg",
+        "downloadUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/fl_attachment:solares-f8-apertura-2025-ariel-atienza/v1785700321/solares/goals/f8/apertura-2025/ariel-atienza-dba1458f41b6.mp4",
+        "version": 1785700321
       },
       "media": {
         "bytes": 1690111,
@@ -4763,9 +4763,9 @@
       "id": "f8-e8d8d0b52ee6",
       "format": "f8",
       "scorer": {
-        "id": "lorenzo-minervino",
-        "slug": "lorenzo-minervino",
-        "name": "Lorenzo Minervino"
+        "id": "lucas-pranteda",
+        "slug": "lucas-pranteda",
+        "name": "Lucas Pranteda"
       },
       "competition": {
         "id": "f8-clausura-2024",
@@ -4776,14 +4776,14 @@
         "championshipId": "f8-clausura-2024"
       },
       "cloudinary": {
-        "publicId": "solares/goals/f8/clausura-2024/lorenzo-minervino-e8d8d0b52ee6",
+        "publicId": "solares/goals/f8/clausura-2024/lucas-pranteda-e8d8d0b52ee6",
         "resourceType": "video",
         "format": "mp4",
-        "secureUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/v1785473726/solares/goals/f8/clausura-2024/lorenzo-minervino-e8d8d0b52ee6.mp4",
-        "playbackUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/f_auto,q_auto/v1785473726/solares/goals/f8/clausura-2024/lorenzo-minervino-e8d8d0b52ee6.mp4",
-        "posterUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/ar_4:3,c_fill,f_auto,g_auto,q_auto,so_auto,w_640/v1785473726/solares/goals/f8/clausura-2024/lorenzo-minervino-e8d8d0b52ee6.jpg",
-        "downloadUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/fl_attachment:solares-f8-clausura-2024-lorenzo-minervino/v1785473726/solares/goals/f8/clausura-2024/lorenzo-minervino-e8d8d0b52ee6.mp4",
-        "version": 1785473726
+        "secureUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/v1785700323/solares/goals/f8/clausura-2024/lucas-pranteda-e8d8d0b52ee6.mp4",
+        "playbackUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/f_auto,q_auto/v1785700323/solares/goals/f8/clausura-2024/lucas-pranteda-e8d8d0b52ee6.mp4",
+        "posterUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/ar_4:3,c_fill,f_auto,g_auto,q_auto,so_auto,w_640/v1785700323/solares/goals/f8/clausura-2024/lucas-pranteda-e8d8d0b52ee6.jpg",
+        "downloadUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/fl_attachment:solares-f8-clausura-2024-lucas-pranteda/v1785700323/solares/goals/f8/clausura-2024/lucas-pranteda-e8d8d0b52ee6.mp4",
+        "version": 1785700323
       },
       "media": {
         "bytes": 3257545,
