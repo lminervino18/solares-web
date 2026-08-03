@@ -113,7 +113,6 @@ export const historyPhotos: Record<string, HistoryPhoto> = {
     alt: 'Plantel de Solares celebrando de noche con un trofeo y una bandera blanca que dice Campeón 2021 junto al escudo del equipo.',
   },
 }
-
 export const historyChapters: readonly HistoryChapter[] = [
   {
     id: 'todo-empezo-en-un-barrio',
@@ -125,11 +124,11 @@ export const historyChapters: readonly HistoryChapter[] = [
       },
       {
         type: 'paragraph',
-        text: 'La iniciativa comenzó con apenas cinco jugadores. Como no alcanzaban para completar un equipo, empezaron a convocar amigos, compañeros y conocidos de todos lados. Poco a poco, aquella idea que parecía improvisada comenzó a tomar forma.',
+        text: 'La iniciativa comenzó con apenas cinco jugadores. Como no alcanzaban para completar un equipo, empezaron a reclutar amigos, compañeros del colegio y conocidos de todos lados. Poco a poco, aquella idea que parecía un tanto improvisada empezó a tomar forma.',
       },
       {
         type: 'paragraph',
-        text: 'El sábado 12 de abril de 2014 se realizó el primer entrenamiento de la historia de Solares. Hubo una pelota, dos conos y muchas ganas. No hacía falta mucho más. Ese día todavía nadie podía saber hasta dónde llegaría el equipo, pero ya estaba dando su primer paso.',
+        text: 'El sábado 12 de abril de 2014 se realizó el primer entrenamiento de la historia de Solares. Hubo una pelota, dos conos y muchas ganas. No hacía falta más. Ese día todavía nadie podía imaginar hasta dónde llegaría el club, pero se trató del primer paso necesario para poner en marcha su historia oficial.',
       },
     ],
   },
@@ -139,19 +138,19 @@ export const historyChapters: readonly HistoryChapter[] = [
     blocks: [
       {
         type: 'paragraph',
-        text: 'A finales de ese mismo mes llegó el primer amistoso. El rival fue San Pablo y el partido se disputó en el complejo Duronia, en una cancha de fútbol 8. Solares tenía apenas diez jugadores y enfrentó a un equipo mucho más numeroso y experimentado.',
+        text: 'A finales de ese mismo mes llegó el primer amistoso. El rival fue San Pablo y el partido tuvo lugar en una cancha de fútbol 8 del complejo Duronia. Solares, que tenía apenas diez jugadores, se encontró frente a un equipo mucho más numeroso y experimentado.',
       },
       {
         type: 'paragraph',
-        text: 'El resultado fue una derrota por 4 a 0. Sin embargo, el resultado fue lo menos importante. Por primera vez, el equipo había entrado a una cancha con su propio nombre y había comenzado oficialmente su historia.',
+        text: 'El saldo fue una derrota inapelable por 4 a 0. Sin embargo, el resultado fue lo menos importante: por primera vez, el equipo había entrado a una cancha con su propio nombre.',
       },
       {
         type: 'paragraph',
-        text: 'A partir de ese encuentro se sumó una persona encargada de organizar los entrenamientos. Desde entonces, el grupo empezó a reunirse todos los sábados a las dos de la tarde en la plaza de Los Tordos. Allí se trabajaba, se aprendía y se construía una identidad que todavía no tenía demasiado, pero ya tenía compromiso.',
+        text: 'A partir de ese encuentro se sumó una persona encargada de organizar los entrenamientos, y así el grupo empezó a reunirse todos los sábados a las dos de la tarde en la plaza de Los Tordos. Ahí se trabajaba, se aprendía y se construía una identidad a la que todavía le faltaba rodaje, pero le sobraba compromiso.',
       },
       {
         type: 'paragraph',
-        text: 'Dos semanas después, Solares volvió a enfrentar a San Pablo, esta vez en cancha de once. El equipo perdió 4 a 1, pero aquella tarde convirtió el primer gol de su historia, obra de Santiago Campitelli.',
+        text: 'Dos semanas después, Solares volvió a enfrentar a San Pablo, esta vez en cancha de once. El Toro Violeta (que aún no se percibía como tal) volvió a perder, esta vez por 4 a 1, pero se dio el gusto de celebrar el primer gol de su historia, obra de Santiago Campitelli.',
       },
     ],
   },
@@ -161,7 +160,7 @@ export const historyChapters: readonly HistoryChapter[] = [
     blocks: [
       {
         type: 'paragraph',
-        text: 'El plantel siguió creciendo. Aproximadamente dos meses después del primer entrenamiento llegó el tercer amistoso, frente a Pillmatún. Solares ganó 2 a 1 y consiguió la primera victoria de su historia.',
+        text: 'El plantel siguió creciendo. Unos dos meses después de aquel sábado de abril llegó el tercer amistoso, frente a Pillmatún, y la primera victoria de su historia para Solares, que se impuso por 2 a 1.',
       },
       {
         type: 'paragraph',
@@ -177,7 +176,7 @@ export const historyChapters: readonly HistoryChapter[] = [
       },
       {
         type: 'paragraph',
-        text: 'Durante ese mismo período, los entrenamientos se trasladaron de la plaza de Los Tordos a Canchas González. El año terminó con una comida compartida frente al Parque Rosauer. Habían pasado apenas unos meses desde aquel primer entrenamiento de abril, pero Solares ya había escrito una parte de su historia.',
+        text: 'Durante ese mismo período, los entrenamientos se trasladaron de la plaza de Los Tordos a Canchas González. El año terminó con una comida compartida frente al Parque Rosauer. Habían pasado apenas unos meses desde aquel primer entrenamiento bajo el sol de otoño, pero Solares ya había escrito el preámbulo de su historia.',
       },
       { type: 'figure', photoId: 'photo-1' },
     ],
@@ -196,15 +195,15 @@ export const historyChapters: readonly HistoryChapter[] = [
       },
       {
         type: 'paragraph',
-        text: 'El crecimiento fue enorme. De aquel pequeño grupo inicial, Solares pasó a reunir cerca de cuarenta jugadores. Ese crecimiento permitió presentar dos categorías en la Liga Municipal y ampliar el proyecto mucho más allá de lo que se había imaginado durante el primer año.',
+        text: 'El crecimiento fue enorme. De aquel pequeño puñado inicial, Solares pasó a reunir cerca de cuarenta jugadores. Esta expansión permitió presentar dos categorías en la Liga Municipal y ampliar el proyecto mucho más allá de lo que se había imaginado durante el primer año.',
       },
       {
         type: 'paragraph',
-        text: 'Una de esas categorías consiguió buenos resultados y estuvo cerca de avanzar en un torneo clasificatorio. En un triangular decisivo, Solares empató frente a Los Humildes y luego ganó 5 a 0 su siguiente partido. La clasificación se escapó solamente por diferencia de gol.',
+        text: 'Una de esas divisiones consiguió buenos resultados y estuvo cerca de avanzar en un torneo clasificatorio. En un triangular decisivo, Solares empató frente a Los Humildes y luego ganó 5 a 0 su siguiente partido. La clasificación se escapó solamente por diferencia de gol.',
       },
       {
         type: 'paragraph',
-        text: 'Aunque no alcanzó para avanzar, aquella campaña dejó una certeza: Solares ya podía competir de igual a igual contra cualquiera.',
+        text: 'Aunque no alcanzó para avanzar, aquella campaña dejó la certeza de que Solares ya podía competir de igual a igual contra cualquiera.',
       },
     ],
   },
@@ -219,7 +218,7 @@ export const historyChapters: readonly HistoryChapter[] = [
       },
       {
         type: 'paragraph',
-        text: 'El campeonato comenzó con un empate sin goles frente a Los Humildes. Después de aquel partido, Solares encadenó catorce victorias consecutivas. Su principal rival también ganó todos sus encuentros, por lo que ambos equipos terminaron igualados y tuvieron que definir el torneo en un partido decisivo.',
+        text: 'El campeonato comenzó con un empate sin goles frente a Los Humildes. Después de aquel partido, Solares encadenó catorce victorias consecutivas. Su principal rival también ganó todos sus encuentros, por lo que ambos equipos terminaron igualados y tuvieron que definir el título en un mano a mano por la gloria.',
       },
       {
         type: 'paragraph',
@@ -227,11 +226,11 @@ export const historyChapters: readonly HistoryChapter[] = [
       },
       {
         type: 'paragraph',
-        text: 'La derrota fue dolorosa, pero la campaña quedó grabada como una de las primeras grandes demostraciones competitivas de Solares.',
+        text: 'La derrota fue dolorosa, pero quedó grabada como el cierre de una de las primeras grandes demostraciones competitivas de Solares.',
       },
       {
         type: 'paragraph',
-        text: 'En medio de aquella etapa también se produjo uno de los viajes más importantes de aquellos años: el grupo viajó a Buenos Aires para jugar contra Vélez. El viaje reunió a jugadores de Solares y de otros equipos, y representó una experiencia que hasta poco tiempo atrás parecía imposible para un proyecto que había nacido con dos conos y una pelota.',
+        text: 'En aquella etapa también se produjo uno de los viajes más importantes de la institución, cuando viajó a Buenos Aires para jugar contra Vélez. La experiencia reunió a jugadores de Solares y de otros equipos, y representó un hito que hasta poco tiempo atrás parecía imposible para un proyecto que había nacido con dos conos y una pelota.',
       },
       { type: 'figure', photoId: 'photo-2' },
     ],
@@ -246,7 +245,7 @@ export const historyChapters: readonly HistoryChapter[] = [
       },
       {
         type: 'paragraph',
-        text: 'Entre esos resultados estuvieron un triunfo por 3 a 0 frente a Los Humildes y otro por 2 a 1 contra uno de los rivales más difíciles del torneo.',
+        text: 'Entre esos resultados se puede destacar un triunfo por 3 a 0 frente a Los Humildes y otro por 2 a 1 contra uno de los rivales más difíciles del torneo.',
       },
       {
         type: 'paragraph',
@@ -254,11 +253,11 @@ export const historyChapters: readonly HistoryChapter[] = [
       },
       {
         type: 'paragraph',
-        text: 'Con el paso del tiempo, aquella etapa de Solares en el fútbol 11 llegó a su final. El equipo dejó de competir y la historia entró en una pausa.',
+        text: 'Con el paso del tiempo, aquella etapa de Solares en el fútbol 11 llegó a su fin. El equipo dejó de competir y la historia entró en un punto muerto.',
       },
       {
         type: 'paragraph',
-        text: 'Pero Solares todavía no había terminado.',
+        text: 'Pero el corazón de Solares seguía latiendo.',
       },
     ],
   },
@@ -272,11 +271,11 @@ export const historyChapters: readonly HistoryChapter[] = [
       },
       {
         type: 'paragraph',
-        text: 'Solares volvió a competir, esta vez en torneos de fútbol 7 y fútbol 8. Primero jugó en Perilli, en fútbol 7, y después en Rayada, en fútbol 8. Durante los años siguientes participó de distintas competencias, formó nuevos grupos y recuperó esa costumbre de encontrarse semana a semana alrededor de una cancha.',
+        text: 'Solares volvió a competir por torneos, primero en Perilli (fútbol 7) y luego en Rayada (fútbol 8). Durante los años siguientes participó de distintas competencias, formó nuevos grupos y recuperó esa costumbre de encontrarse semana a semana alrededor de una cancha.',
       },
       {
         type: 'paragraph',
-        text: 'El equipo ya no era exactamente el mismo de 2014. Habían cambiado los jugadores, los torneos y los lugares. Sin embargo, seguía existiendo la misma esencia: un grupo de amigos que se juntaba para jugar, competir y defender el escudo de Solares.',
+        text: 'El grupo, claro, ya no era el mismo de 2014. Habían cambiado los jugadores, los torneos y los lugares. No obstante, la esencia era la misma: un grupo de amigos que se juntaba para jugar, competir y defender el escudo de Solares.',
       },
       { type: 'gallery', photoIds: ['photo-3', 'photo-4', 'photo-9', 'photo-10'] },
     ],
@@ -287,11 +286,11 @@ export const historyChapters: readonly HistoryChapter[] = [
     blocks: [
       {
         type: 'paragraph',
-        text: 'En 2022, Lorenzo Minervino se trasladó a Capital Federal para estudiar y comenzar una nueva etapa en la historia del equipo.',
+        text: 'En 2022, Lorenzo Minervino se trasladó a Capital Federal para estudiar. Ese viaje abrió una nueva etapa para el club.',
       },
       {
         type: 'paragraph',
-        text: 'Solares pasó a dividirse en dos caminos: Solares Cipo y Solares Buenos Aires.',
+        text: 'Solares pasó a dividirse en dos equipos, separados por más de 1000 kilómetros pero hermanados por sus raíces: Solares Cipolletti y Solares Buenos Aires.',
       },
       {
         type: 'paragraph',
@@ -299,11 +298,11 @@ export const historyChapters: readonly HistoryChapter[] = [
       },
       {
         type: 'paragraph',
-        text: 'El desafío se parecía mucho al de 2014. Otra ciudad, otras canchas y nuevas personas, pero la misma intención de convertir un grupo en un equipo.',
+        text: 'El desafío se parecía mucho al de 2014. Otra ciudad, otras canchas y nuevas personas, pero con la intención intacta de convertir un grupo de conocidos en algo mucho más grande.',
       },
       {
         type: 'paragraph',
-        text: 'Esta página está centrada principalmente en la historia y la actualidad de Solares Buenos Aires. Sin embargo, nada de lo que ocurre hoy puede entenderse sin recordar el barrio, los primeros amistosos, la plaza de Los Tordos, las tardes en Duronia, la camiseta naranja y todos los que alguna vez formaron parte del camino.',
+        text: 'Esta página está centrada principalmente en la historia y la actualidad de Solares Buenos Aires, pero nada de lo que sucede hoy puede entenderse sin recordar el barrio, los primeros amistosos, la plaza de Los Tordos, las tardes en Duronia, la camiseta naranja y todos los que alguna vez formaron parte del camino.',
       },
       {
         type: 'paragraph',
@@ -311,7 +310,7 @@ export const historyChapters: readonly HistoryChapter[] = [
       },
       {
         type: 'paragraph',
-        text: 'La ciudad cambió. La historia continuó. El alma siguió siendo la misma.',
+        text: 'La ciudad cambió. La historia siguió adelante. El alma sigue siendo la misma.',
       },
       { type: 'gallery', photoIds: ['photo-5', 'photo-6', 'photo-7', 'photo-8'] },
     ],
