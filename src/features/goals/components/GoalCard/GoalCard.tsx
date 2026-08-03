@@ -6,6 +6,8 @@ import { Text } from '@/components/primitives/Text/Text'
 import type { GoalVideo } from '../../types/goals'
 import { GOAL_FORMAT_LABEL } from '../../types/goals'
 import { formatGoalDuration } from '../../utils/formatGoalDuration'
+import { selectGoalPlaybackUrl } from '../../utils/selectGoalPlaybackUrl'
+import { warmGoalClip } from '../../utils/warmGoalClip'
 
 export type GoalCardProps = {
   goal: GoalVideo
@@ -13,22 +15,23 @@ export type GoalCardProps = {
   showFormat?: boolean
 }
 
-/**
- * A single goal in the grid.
- *
- * Renders a static poster only: no video element is mounted and nothing plays
- * on hover, so a long grid stays cheap. The whole card is one button with an
- * accessible name describing the goal it opens.
- */
 export function GoalCard({ goal, onOpen, showFormat = false }: GoalCardProps) {
   const [posterFailed, setPosterFailed] = useState(false)
   const duration = formatGoalDuration(goal.media.duration)
   const label = `Abrir gol de ${goal.scorer.name} en ${goal.competition.name}`
 
+  // Warm the edge on intent: a pointer arriving or a finger landing precedes the
+  // click by enough to turn a cold first delivery into a warm one.
+  const warmOnIntent = () => {
+    warmGoalClip(selectGoalPlaybackUrl(goal, window.matchMedia('(max-width: 640px)').matches))
+  }
+
   return (
     <button
       type="button"
       onClick={() => onOpen(goal)}
+      onPointerEnter={warmOnIntent}
+      onTouchStart={warmOnIntent}
       aria-label={label}
       className={cn(
         'group relative flex w-full flex-col overflow-hidden rounded-(--radius-lg)',

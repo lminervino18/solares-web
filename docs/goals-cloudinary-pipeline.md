@@ -180,7 +180,8 @@ npm run goals:inspect      # classify local clips, write a report, upload nothin
 npm run goals:upload:dry   # report exactly what would be uploaded
 npm run goals:upload       # upload and rebuild the manifest
 npm run goals:verify       # check every published goal is really hosted
-npm run goals:sync         # inspect + upload + verify
+npm run goals:warm         # request every rendition once so the CDN edge is warm
+npm run goals:sync         # inspect + upload + verify + warm
 npm run goals:duplicates   # report clips that look the same but hash differently
 npm run goals:prune        # report hosted assets the collection no longer publishes
 npm run goals:prune:apply  # delete them
@@ -226,6 +227,21 @@ To remove a clip once decided:
 
 Skipping without pruning leaves the asset hosted but unreferenced; pruning
 without skipping means the next upload puts it straight back.
+
+## Cold edge
+
+A clip's first delivery is slow because the CDN edge has to pull it from the
+origin. Measured on this collection, warming the whole set takes a median of 2 s
+per rendition and up to 10 s; the same requests served from the edge afterwards
+drop to a median of 0.5 s.
+
+`npm run goals:warm` pays that cost once, from wherever it runs, so the first
+real visitor does not. It warms the edge nearest the operator, which is the right
+one when the audience shares the region. It needs no credential — the URLs are
+public — and runs at the end of `goals:sync`.
+
+The gallery also warms a clip when a pointer arrives over its card or a finger
+lands on it, and the player warms the previous and next clips while one is open.
 
 ## Checkpoint and resuming
 
