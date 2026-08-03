@@ -1,6 +1,7 @@
 import { Suspense, useEffect, useRef } from 'react'
 import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom'
 
+import { SiteAnalytics } from '@/components/analytics/SiteAnalytics'
 import { AppHeader } from '@/components/layout/AppHeader/AppHeader'
 import { AppFooter } from '@/components/layout/AppFooter/AppFooter'
 import { LoadingState } from '@/components/feedback/LoadingState/LoadingState'
@@ -34,6 +35,7 @@ export function RootLayout() {
 
       <AppFooter />
       <ScrollRestoration />
+      <SiteAnalytics />
     </div>
   )
 }
