@@ -28,6 +28,9 @@ playwright/.cache
 # Local files
 *.local
 
+# Agent instructions: kept on disk, not published
+CLAUDE.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

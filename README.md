@@ -1,76 +1,70 @@
 # Solares Web
 
-Official frontend website for Solares. Static SPA: no backend, no database, no
-custom API. Sports data comes from a public Google Sheet at runtime; goal clips
-are delivered by Cloudinary through a committed manifest.
+Official site for Solares. Static SPA, no backend and no database: sports data
+comes from a public Google Sheet on every visit, and goal clips are delivered by
+Cloudinary through a committed manifest.
 
-![Solares home page: the presentation section with the interactive crest](docs/screenshots/home.png)
+![Solares home page](docs/screenshots/home.png)
 
-## Stack
+React 19 · React Router 7 · TypeScript 6 · Vite 8 · Tailwind CSS v4 · Vitest ·
+Playwright
 
-React 19, React Router 7, TypeScript 6, Vite 8, Tailwind CSS v4, Radix UI,
-Motion, ECharts, Zod, Vitest, Playwright.
+## Run
 
-## Requirements
-
-- Node.js 20.19+
-- npm
-
-## Setup
+Needs Node.js 20.19+.
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Validation
+## Validate before pushing
 
 ```bash
 npm run validate
 ```
 
-Runs `format:check`, `typecheck`, `lint`, `test:run` and `build`. It needs no
-credential and no network access.
-
-End-to-end tests:
+Format, types, lint, tests and build. No credential and no network needed.
 
 ```bash
-npx playwright install
+npx playwright install   # once
 npm run test:e2e
 ```
 
-## Content workflows
+## Adding content
 
-New content is added through data, folders and scripts — never by editing a
-component. Full instructions for the site administrator are in
+None of this touches a component. Full guide (Spanish) in
 [`docs/content-operations.md`](docs/content-operations.md).
 
-| Task               | How                                                                                                     |
-| ------------------ | ------------------------------------------------------------------------------------------------------- |
-| New championship   | Add a row to the Google Sheet. It appears on the next page load.                                        |
-| Championship media | Drop files in `content/incoming/championships/{f8,f5}/{slug}/`, then run `npm run championships:assets` |
-| New goals          | Drop clips in `content/incoming/goals/{f8,f5}/`, then run `npm run goals:sync`                          |
-
-Content commands:
+| Task               | How                                                                                             |
+| ------------------ | ----------------------------------------------------------------------------------------------- |
+| New championship   | Add it to the spreadsheet. It appears on the next page load                                     |
+| Team photo or logo | Drop it in `content/incoming/championships/{f8,f5}/{slug}/`, run `npm run championships:assets` |
+| New goals          | Drop the clips in `content/incoming/goals/{f8,f5}/`, run `npm run goals:sync`                   |
 
 ```bash
-npm run content:check           # validate manifests and classify local clips (no credential)
-npm run content:sync            # refresh snapshot, process media, upload goals (needs credential)
-
-npm run championships:sync      # refresh the offline snapshot from the spreadsheet
-npm run championships:assets    # process intake media and rebuild the asset manifest
-npm run goals:inspect           # classify local clips, upload nothing
-npm run goals:upload:dry        # report exactly what would be uploaded
-npm run goals:upload            # upload and rebuild the goals manifest
-npm run goals:verify            # check every published goal is hosted
+npm run content:check    # validate manifests and classify local clips
+npm run content:sync     # refresh everything (needs CLOUDINARY_URL)
 ```
 
 Every script is idempotent: a second run with no changes rewrites nothing.
 
+## Environment
+
+In a local `.env.local` (never committed):
+
+```env
+VITE_SITE_URL=https://solaresfutbol.com
+CLOUDINARY_URL=cloudinary://API_KEY:API_SECRET@CLOUD_NAME
+```
+
+`VITE_SITE_URL` builds the canonical and `og:url` tags and is baked in at build
+time, so changing it needs a redeploy. `CLOUDINARY_URL` is read only by the local
+goal scripts — never prefix it with `VITE_`.
+
 ## Generated files
 
-These are committed and must never be edited by hand. Each `generated/` folder
-carries a README naming the script that writes it.
+Committed, never edited by hand.
 
 | File                                                                          | Written by                     |
 | ----------------------------------------------------------------------------- | ------------------------------ |
@@ -80,47 +74,10 @@ carries a README naming the script that writes it.
 | `docs/screenshots/home.png`                                                   | `npm run assets:screenshots`   |
 | `public/og-image.png`                                                         | `npm run assets:og-image`      |
 
-The screenshot is committed and shows the production build. Regenerate it after a
-visible change to the home page:
-
-```bash
-npm run build && npm run preview     # in one terminal
-npm run assets:screenshots           # in another
-```
-
-## Environment variables
-
-Copy the shape below into a local `.env.local` (gitignored, never committed):
-
-```env
-# Public production URL for canonical and Open Graph metadata.
-VITE_SITE_URL=https://example.com
-
-# Cloudinary credential, read only by the local goal scripts.
-# Never prefix it with VITE_: that would publish the API secret in the bundle.
-CLOUDINARY_URL=cloudinary://API_KEY:API_SECRET@CLOUD_NAME
-```
-
-`VITE_SITE_URL` is empty by default. `CLOUDINARY_URL` is only needed to upload
-goals — the normal build never reads it and never contacts Cloudinary.
-
 ## Documentation
 
-- [`docs/content-operations.md`](docs/content-operations.md) — administrator guide (Spanish)
-- [`docs/deployment.md`](docs/deployment.md) — publishing on Vercel with a custom domain (Spanish)
-- [`docs/championships-data-source.md`](docs/championships-data-source.md) — Google Sheets contract
-- [`docs/goals-cloudinary-pipeline.md`](docs/goals-cloudinary-pipeline.md) — goals media pipeline
-- [`docs/refactor-audit.md`](docs/refactor-audit.md) — architecture audit
-- [`CLAUDE.md`](CLAUDE.md) — rules for coding agents
-
-## Deployment
-
-Static SPA with an `index.html` fallback rewrite, configured in `vercel.json` and
-`netlify.toml`. Pushing to `main` redeploys production; other branches get preview
-deployments. The build needs no credential and no network access to Google Sheets
-or Cloudinary.
-
-Set `VITE_SITE_URL` in the hosting provider to the production domain: without it
-the pages carry no canonical URL and no `og:url`. It is baked in at build time, so
-changing it requires a redeploy. Step-by-step guide in
-[`docs/deployment.md`](docs/deployment.md).
+- [Content operations](docs/content-operations.md) — administrator guide (Spanish)
+- [Deployment](docs/deployment.md) — Vercel and the custom domain (Spanish)
+- [Championships data source](docs/championships-data-source.md) — spreadsheet contract
+- [Goals pipeline](docs/goals-cloudinary-pipeline.md) — Cloudinary
+- [Architecture audit](docs/refactor-audit.md)
