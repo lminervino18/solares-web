@@ -42,13 +42,9 @@ CLAUDE.md
 *.sln
 *.sw?
 
-# Raw source assets (organized/optimized into src/assets/solares)
-archivos_solares
-campeonatos_archivos_solares
-nuevos_archvios_fem_y_mixto
-
-# Raw goal clips (uploaded to Cloudinary, never committed)
-Goles
+# Untouched sources: full-resolution images and the original goal clips.
+# Not published anywhere — keep a copy off this machine before deleting it.
+_originals
 
 # Content intake: the folders and their instructions are tracked, the media is not
 content/incoming/**/*

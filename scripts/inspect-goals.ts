@@ -75,7 +75,9 @@ async function listFormatFiles(format: GoalFormat): Promise<InspectedFile[]> {
   const formatFolder = basename(directory)
 
   const entries = await readdir(directory, { withFileTypes: true })
-  const files = entries.filter((entry) => entry.isFile()).map((entry) => entry.name)
+  const files = entries
+    .filter((entry) => entry.isFile() && !entry.name.startsWith('.'))
+    .map((entry) => entry.name)
   files.sort((a, b) => a.localeCompare(b, 'es-AR'))
 
   const inspected: InspectedFile[] = []
@@ -112,8 +114,14 @@ function knownChampionshipIds(): ReadonlySet<string> {
   )
 }
 
+// Looked up case-insensitively so an override survives a collection moved
+// between an `F8` and an `f8` folder.
+const OVERRIDES_BY_PATH = new Map(
+  Object.entries(GOAL_SOURCE_OVERRIDES).map(([path, override]) => [path.toLowerCase(), override]),
+)
+
 function resolveFile(file: InspectedFile, hash: string, championshipIds: ReadonlySet<string>) {
-  const override = GOAL_SOURCE_OVERRIDES[file.sourcePath]
+  const override = OVERRIDES_BY_PATH.get(file.sourcePath.toLowerCase())
   if (override?.skip === true) {
     return { kind: 'skipped' as const }
   }

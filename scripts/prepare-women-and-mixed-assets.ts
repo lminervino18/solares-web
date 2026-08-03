@@ -7,7 +7,7 @@ import sharp from 'sharp'
 // Crests use a connectivity flood fill seeded from the border: only the outer
 // background becomes transparent, so interior colors, text and shapes survive.
 
-const SOURCE_DIR = 'nuevos_archvios_fem_y_mixto'
+const SOURCE_DIR = '_originals/images/women-and-mixed'
 const OUTPUT_DIR = 'src/assets/solares'
 
 type PhotoJob = {
