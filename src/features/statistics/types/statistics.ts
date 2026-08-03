@@ -2,10 +2,6 @@ import type { FootballFormat } from '@/config/football-format'
 
 export type { FootballFormat }
 
-/**
- * The statistics scope. Only F8 and F5 exist; the two formats are never
- * combined into a single aggregate.
- */
 export type StatisticsScope = FootballFormat
 
 export type GeneralStatistics = {

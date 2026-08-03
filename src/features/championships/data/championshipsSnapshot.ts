@@ -16,12 +16,6 @@ function groupByFormat(championships: readonly Championship[]): ChampionshipsByF
   }
 }
 
-/**
- * Loads and validates the committed championships snapshot.
- *
- * The snapshot is a first-render and offline fallback only. If it is missing or
- * invalid the section still works and relies on the remote fetch.
- */
 export function loadChampionshipsSnapshot(): LoadedSnapshot {
   const parsed = championshipsSnapshotSchema.safeParse(snapshotJson)
   if (!parsed.success) {

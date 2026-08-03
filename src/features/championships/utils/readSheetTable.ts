@@ -16,13 +16,6 @@ function headerKey(value: string | undefined, fallbackIndex: number): string {
   return normalized ?? `col-${fallbackIndex}`
 }
 
-/**
- * Reads a gviz table into header-keyed rows.
- *
- * When `headerInColumns` is true the column labels are the headers and every
- * table row is data. Otherwise the first table row holds the headers and the
- * remaining rows are data. Fully empty rows are skipped.
- */
 export function readSheetTable(table: GvizTable, headerInColumns: boolean): SheetData {
   let headers: string[]
   let dataRows: GvizTable['rows']
@@ -70,10 +63,6 @@ export function readRawValue(row: SheetRow, header: string): unknown {
   return row.cells.get(header)?.v
 }
 
-/**
- * Reads a numeric cell, distinguishing a real zero from an empty or invalid
- * cell (which return `undefined`).
- */
 export function readNumber(row: SheetRow, header: string): number | undefined {
   const cell = row.cells.get(header)
   if (!cell) return undefined

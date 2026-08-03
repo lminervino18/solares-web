@@ -43,13 +43,6 @@ function count(data: ChampionshipsByFormat): number {
   return data.f8.length + data.f5.length
 }
 
-/**
- * Loads championship data with a snapshot-first, revalidate-on-load strategy.
- *
- * The committed snapshot renders immediately; the remote spreadsheet is then
- * fetched (with `cache: 'no-store'`) on every mount and replaces the data only
- * when it is valid. A failed refresh keeps the current data visible.
- */
 export function useChampionshipsData(): UseChampionshipsDataResult {
   const snapshot = useMemo(() => {
     const loaded = loadChampionshipsSnapshot()

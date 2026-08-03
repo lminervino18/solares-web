@@ -36,11 +36,6 @@ function RankBadge({ rank }: { rank: number }) {
   )
 }
 
-/**
- * Historical scorers table: the top ten by default, expandable to the full,
- * searchable list in a scroll container with a sticky header. Top three ranks
- * carry gold/silver/bronze accents, but the rank number always conveys position.
- */
 export function HistoricalScorersTable({ scorers, scopeLabel }: HistoricalScorersTableProps) {
   const [expanded, setExpanded] = useState(false)
   const [query, setQuery] = useState('')

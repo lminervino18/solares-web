@@ -83,13 +83,6 @@ export type Championship = {
   readonly slug: string
   readonly format: FootballFormat
   readonly name: string
-  /**
-   * Whether the championship is listed in the summary sheet. Published
-   * championships appear in the Campeonatos section and count as titles;
-   * unpublished ones (matches only, e.g. a "Verano" edition) are excluded from
-   * that section and from title counts, but their matches still feed the
-   * pooled statistics (goals, matches, streaks, etc.).
-   */
   readonly published: boolean
   readonly shortName?: string
   readonly year?: number

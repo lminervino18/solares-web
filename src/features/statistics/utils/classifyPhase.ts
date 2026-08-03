@@ -9,11 +9,6 @@ const KNOCKOUT_PHASES: ReadonlySet<TournamentPhase> = new Set([
   'playoff',
 ])
 
-/**
- * Classifies a match stage label into a normalized tournament phase. Only
- * explicitly recognized labels map to a phase; anything else is `unknown`, so
- * knockout statistics never rely on a loose match of the word "fase".
- */
 export function classifyPhase(stage: string | undefined): TournamentPhase {
   if (!stage) return 'unknown'
   const value = stage.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()

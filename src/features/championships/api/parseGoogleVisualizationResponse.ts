@@ -9,16 +9,7 @@ export class GoogleVisualizationError extends Error {
 
 const WRAPPER_START = /google\.visualization\.Query\.setResponse\(/
 
-/**
- * Safely parses a Google Visualization API response into its data table.
- *
- * The endpoint wraps a JSON object in a `google.visualization.Query.setResponse(...)`
- * call. This extracts the JSON slice by matching balanced braces (never `eval`
- * or `new Function`), runs `JSON.parse`, validates the shape with Zod and
- * rejects error responses.
- *
- * @throws {GoogleVisualizationError} when the wrapper, JSON or table is invalid.
- */
+/** Extracts the JSON by matching balanced braces — never `eval` or `new Function`. */
 export function parseGoogleVisualizationResponse(raw: string): GvizTable {
   const text = raw.trim()
   if (text.length === 0) {

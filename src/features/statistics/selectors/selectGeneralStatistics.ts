@@ -3,12 +3,6 @@ import type { GeneralStatistics } from '../types/statistics'
 import { collectPlayedMatches } from '../utils/collectMatches'
 import { selectAchievements } from './selectAchievements'
 
-/**
- * Aggregates the headline statistics for a format from its championships.
- *
- * Only played matches are counted, so `matchesPlayed === won + drawn + lost`.
- * Rates and averages are `undefined` when there are no matches (never `NaN`).
- */
 export function selectGeneralStatistics(
   all: readonly Championship[],
   published: readonly Championship[],

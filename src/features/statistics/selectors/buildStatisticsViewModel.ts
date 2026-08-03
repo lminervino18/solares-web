@@ -13,17 +13,10 @@ import { selectStreaks } from './selectStreaks'
 import { selectTournamentStatistics } from './selectTournamentStatistics'
 import { selectVenues } from './selectVenues'
 
-/**
- * Builds the full statistics view model for a single format from the shared
- * normalized championship data. Pure: computed once per (data, scope) pair.
- */
 export function buildStatisticsViewModel(
   data: ChampionshipsByFormat,
   scope: StatisticsScope,
 ): StatisticsViewModel {
-  // Pooled match statistics use all championships (including unpublished
-  // editions such as "Verano"); tournament counts, titles and the per-tournament
-  // comparison use only published championships.
   const all = data[scope]
   const published = all.filter((championship) => championship.published)
 

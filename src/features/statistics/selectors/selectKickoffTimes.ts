@@ -3,10 +3,6 @@ import type { KickoffTimeStatistics } from '../types/statistics'
 import { collectPlayedMatches } from '../utils/collectMatches'
 import { MIN_MATCHES_FOR_RATE_RANKING } from '../types/statistics'
 
-/**
- * Aggregates matches by kickoff time (`HH:mm`, as recorded), ordered by time.
- * A win rate is only provided once a slot has a meaningful sample.
- */
 export function selectKickoffTimes(
   championships: readonly Championship[],
 ): readonly KickoffTimeStatistics[] {

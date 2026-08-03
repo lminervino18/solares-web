@@ -24,11 +24,6 @@ const ITEM = cn(
   'data-[highlighted]:bg-surface-elevated data-[state=checked]:font-semibold',
 )
 
-/**
- * Tournament filter. Friendlies and preseason are listed alongside official
- * competitions because they are real sources of goals, and each option shows
- * how many goals it holds inside the active format.
- */
 export function GoalCompetitionFilter({
   options,
   value,

@@ -17,9 +17,7 @@ export type GoalFiltersProps = {
   scorerOptions: readonly GoalScorerOption[]
   competitionId: string
   scorerId: string
-  /** Goals matching the scorer filter, so the tournament totals follow it. */
   competitionScopeTotal: number
-  /** Goals matching the tournament filter, so the scorer totals follow it. */
   scorerScopeTotal: number
   filteredGoals: readonly GoalVideo[]
   density: GoalDensity
@@ -45,10 +43,6 @@ function buildSummary(
   return `${goals}${scorerPart}${competitionPart}`
 }
 
-/**
- * Filter bar for the gallery: tournament, scorer, grid density and the random
- * pick, plus a live summary of the current result. Filters combine with AND.
- */
 export function GoalFilters({
   competitionOptions,
   scorerOptions,

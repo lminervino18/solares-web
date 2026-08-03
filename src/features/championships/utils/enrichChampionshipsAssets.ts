@@ -14,13 +14,7 @@ function enrich(championship: Championship): Championship {
   return { ...championship, assets }
 }
 
-/**
- * Resolves static media for every championship at runtime.
- *
- * Kept separate from the pure data mappers because it imports build-time image
- * assets (browser only) and because asset URLs must not be baked into the
- * serialized snapshot. Applied to both the snapshot and remote data on load.
- */
+/** Kept out of the mappers: asset URLs are browser-only and must not enter the snapshot. */
 export function enrichChampionshipsAssets(data: ChampionshipsByFormat): ChampionshipsByFormat {
   return {
     f8: data.f8.map(enrich),

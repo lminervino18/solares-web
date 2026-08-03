@@ -17,12 +17,6 @@ export type ChampionshipCarouselProps = {
   onSelectionChange: (championshipId: string) => void
 }
 
-/**
- * Format-scoped tournament carousel. Centers the selected championship, shows
- * adjacent slides on wider viewports and keeps the selection in sync with the
- * URL-driven `selectedChampionshipId`. Programmatic scrolls jump when reduced
- * motion is preferred.
- */
 export function ChampionshipCarousel({
   format,
   championships,

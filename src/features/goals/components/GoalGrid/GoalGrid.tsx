@@ -16,14 +16,6 @@ export type GoalGridProps = {
   showFormat?: boolean
 }
 
-/**
- * The goal grid.
- *
- * Column counts grow with the viewport and never force a dense layout on a
- * narrow screen. Only `visibleCount` cards are rendered; the rest arrive
- * through "Mostrar más" so a large collection does not mount hundreds of
- * posters at once.
- */
 const DENSITY_COLUMNS: Record<GoalDensity, string> = {
   large: 'grid-cols-1 min-[420px]:grid-cols-2 md:grid-cols-2 lg:grid-cols-3',
   medium: 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4',

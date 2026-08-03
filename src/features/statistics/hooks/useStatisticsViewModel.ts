@@ -17,11 +17,6 @@ export type UseStatisticsViewModelResult = {
   readonly isRefreshing: boolean
 }
 
-/**
- * Provides the statistics view model for a scope, reusing the shared
- * championships data hook (snapshot-first, revalidate-on-load). The model is
- * recomputed only when the underlying data or the scope changes.
- */
 export function useStatisticsViewModel(scope: StatisticsScope): UseStatisticsViewModelResult {
   const { state, refresh, isRefreshing } = useChampionshipsData()
   const data = 'data' in state && state.data ? state.data : EMPTY_DATA

@@ -4,12 +4,6 @@ export type BuildGoogleSheetUrlOptions = {
   readonly cacheBust?: number
 }
 
-/**
- * Builds the public Google Visualization JSON endpoint for a sheet `gid`.
- *
- * An optional `cacheBust` timestamp is appended as `_ts` to defeat browser or
- * proxy caching when a fresh read is required.
- */
 export function buildGoogleSheetUrl(gid: string, options: BuildGoogleSheetUrlOptions = {}): string {
   const base = `https://docs.google.com/spreadsheets/d/${CHAMPIONSHIPS_SPREADSHEET_ID}/gviz/tq`
   const params = new URLSearchParams({ gid, tqx: 'out:json' })

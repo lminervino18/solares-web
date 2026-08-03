@@ -10,14 +10,7 @@ const SEASON_ORDER: Record<string, number> = {
   clausura: 2,
 }
 
-/**
- * Extracts the season label and year from a championship name such as
- * `Apertura 2022`, `Clausura 2025` or `Verano 2026`.
- *
- * `recency` is a sortable weight where a larger value is more recent. Within a
- * year the Argentine calendar order is Verano < Apertura < Clausura. Names that
- * do not match keep a recency of 0 so they never outrank a dated championship.
- */
+/** `recency` sorts newest first; within a year Verano < Apertura < Clausura. */
 export function parseSeasonName(name: string): ParsedSeason {
   const yearMatch = /(20\d{2})/.exec(name)
   const year = yearMatch ? Number(yearMatch[1]) : undefined

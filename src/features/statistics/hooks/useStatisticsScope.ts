@@ -9,11 +9,6 @@ export type StatisticsScopeState = {
   readonly setScope: (scope: StatisticsScope) => void
 }
 
-/**
- * Reads and writes the Statistics scope from the URL. Defaults to F8; an invalid
- * `modalidad` falls back to F8. To keep F8 URLs clean the param is only written
- * for F5. Scope changes push history so back/forward work.
- */
 export function useStatisticsScope(): StatisticsScopeState {
   const [searchParams, setSearchParams] = useSearchParams()
   const scope: StatisticsScope = readFormatParam(searchParams)

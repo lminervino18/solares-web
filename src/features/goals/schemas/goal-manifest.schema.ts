@@ -1,13 +1,5 @@
 import { z } from 'zod'
 
-/**
- * Runtime validation for the generated goals manifest.
- *
- * Entries are validated one by one so a single malformed goal is dropped
- * instead of breaking the whole gallery. Only public delivery fields are
- * accepted; anything else in the file is ignored.
- */
-
 const httpsUrl = z.string().url().startsWith('https://')
 
 export const goalVideoSchema = z.object({

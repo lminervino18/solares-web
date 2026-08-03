@@ -25,11 +25,6 @@ export type StatisticsChartProps = {
   toolbar?: ReactNode
 }
 
-/**
- * Accessible ECharts wrapper: a titled chart with a described SVG canvas and a
- * disclosure that reveals the same data as a semantic table. ECharts is loaded
- * dynamically, resizes with its container and honours reduced motion.
- */
 export function StatisticsChart({
   title,
   description,

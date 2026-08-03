@@ -22,14 +22,6 @@ function clamp(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max)
 }
 
-/**
- * Zoom and pan for the goal player.
- *
- * Zooming without panning is useless for inspecting a detail near an edge, so
- * the two go together: while zoomed the frame can be dragged with pointer or
- * touch, and the offset is clamped so the video never leaves its own frame.
- * The hook is mounted per clip, so a new goal always starts unzoomed.
- */
 export function useGoalZoom(): GoalZoom {
   const [scale, setScale] = useState(MIN_GOAL_ZOOM)
   const [offset, setOffset] = useState({ x: 0, y: 0 })
@@ -38,7 +30,6 @@ export function useGoalZoom(): GoalZoom {
     undefined,
   )
 
-  // The visible half-travel grows with the zoom, so the clamp has to follow it.
   const clampOffset = useCallback((next: { x: number; y: number }, nextScale: number) => {
     const limit = ((nextScale - 1) / 2) * 100
     return { x: clamp(next.x, -limit, limit), y: clamp(next.y, -limit, limit) }

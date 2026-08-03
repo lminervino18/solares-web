@@ -3,10 +3,6 @@ import type { CleanSheetStatistics } from '../types/statistics'
 import { collectPlayedMatches } from '../utils/collectMatches'
 import { selectStreaks } from './selectStreaks'
 
-/**
- * Computes clean sheet insights: total, rate, the tournament with the most and
- * the longest consecutive clean-sheet run.
- */
 export function selectCleanSheets(championships: readonly Championship[]): CleanSheetStatistics {
   const played = collectPlayedMatches(championships)
   const total = played.filter((entry) => entry.match.goalsAgainst === 0).length

@@ -104,12 +104,7 @@ function stageRank(stage: string | undefined): number {
   return 0
 }
 
-/**
- * Orders matches by competition stage first (Regular → Octavos → Cuartos →
- * Semifinal → Final), then by date within a stage. Stage takes precedence over
- * the date so a mis-dated knockout match (e.g. a final dated before its
- * semifinal in the sheet) still reads in the real tournament order.
- */
+/** Stage before date, so a mis-dated knockout match still reads in tournament order. */
 function sortMatches(a: Match, b: Match): number {
   const rankDelta = stageRank(a.stage) - stageRank(b.stage)
   if (rankDelta !== 0) return rankDelta
@@ -123,17 +118,6 @@ function sortMatches(a: Match, b: Match): number {
   return a.sourceOrder - b.sourceOrder
 }
 
-/**
- * Builds all championships for a football format from its summary and matches
- * sheets.
- *
- * The summary sheet is the source of truth for published championships (shown in
- * the Campeonatos section and counted as titles). A championship present only in
- * the matches sheet is kept as `published: false`: excluded from that section
- * and from title counts, but its matches still feed the pooled statistics.
- * Identifiers are namespaced by format to avoid collisions between formats that
- * share a championship name.
- */
 export function mapChampionships(
   format: FootballFormat,
   summarySheet: SheetData,

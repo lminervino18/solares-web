@@ -27,11 +27,6 @@ function resolveStyle(honorType: ChampionshipHonorType, trophyTier: TrophyTier):
   return { icon: Award, iconClass: 'text-muted' }
 }
 
-/**
- * Displays a championship's distinction as an accessible chip with a trophy or
- * medal icon and a Spanish label. The icon is decorative; the label carries the
- * meaning. Colors come from medal design tokens.
- */
 export function ChampionshipHonor({
   honorType,
   trophyTier,

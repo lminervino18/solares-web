@@ -43,10 +43,6 @@ function buildFormat(
   return mapChampionships(format, summarySheet, matchesSheet)
 }
 
-/**
- * Builds the format-grouped championship model from the four already-parsed
- * sheet tables. Pure: shared by the remote fetch path and the snapshot script.
- */
 export function buildChampionshipsByFormat(tables: ChampionshipSheetTables): ChampionshipsByFormat {
   return {
     f8: buildFormat('f8', tables),
@@ -60,10 +56,6 @@ export type FetchChampionshipsOptions = {
   readonly fetchImpl?: typeof fetch
 }
 
-/**
- * Fetches the four public sheets in parallel and builds the championship model.
- * Always revalidates the source (`cache: 'no-store'`).
- */
 export async function fetchChampionships(
   options: FetchChampionshipsOptions = {},
 ): Promise<ChampionshipsByFormat> {

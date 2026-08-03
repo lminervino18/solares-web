@@ -7,11 +7,6 @@ function isOwnGoal(name: string): boolean {
   return OWN_GOAL_MARKERS.has(name.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim())
 }
 
-/**
- * Parses a `Goleadores` cell (comma-separated, one entry per goal) into scorers
- * with goal counts. Own goals (`En Contra`) are excluded. Order preserves each
- * player's first appearance so a match reads in scoring order.
- */
 export function parseGoalscorers(raw: string | undefined): readonly MatchScorer[] {
   if (!raw) return []
   const order: string[] = []

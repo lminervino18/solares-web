@@ -13,10 +13,6 @@ export type OpponentAnalysisProps = {
 
 const TOP_COUNT = 5
 
-/**
- * Opponent analysis: the most-faced rival highlighted, plus a table of the top
- * rivals expandable to all. Names are already resolved through explicit aliases.
- */
 export function OpponentAnalysis({ opponents, scopeLabel }: OpponentAnalysisProps) {
   const [expanded, setExpanded] = useState(false)
 

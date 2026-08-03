@@ -29,13 +29,6 @@ const FALLBACK: ChartThemeTokens = {
   tooltip: '#121115',
 }
 
-/**
- * Resolves the chart design tokens to concrete color strings ECharts can use.
- *
- * CSS custom properties can reference other variables or `color-mix`, which
- * `getPropertyValue` returns unresolved, so each token is resolved through a
- * probe element whose computed color is a plain `rgb(...)` value.
- */
 function resolveTokens(): ChartThemeTokens {
   if (typeof document === 'undefined') return FALLBACK
   const probe = document.createElement('span')
@@ -57,8 +50,6 @@ function resolveTokens(): ChartThemeTokens {
 }
 
 export function useChartThemeTokens(): ChartThemeTokens {
-  // Resolved once on mount via a lazy initializer (the DOM exists in the
-  // browser); the app has no runtime theme switch so tokens are stable.
   const [tokens] = useState<ChartThemeTokens>(resolveTokens)
   return tokens
 }

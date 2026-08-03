@@ -16,15 +16,6 @@ import {
 } from './goals/goal-file-parser'
 import { GOAL_SOURCE_OVERRIDES } from './goals/goals-source-overrides'
 
-/**
- * Inspects the local goal clips and classifies them without uploading anything.
- *
- * Reads the web-ready clips, resolves each file's format, competition and
- * scorer, hashes its contents for a stable identity, and writes a deterministic
- * report separating resolved, ambiguous, unresolved, duplicate and unsupported
- * files. Source paths stay relative so the report never leaks a local path.
- */
-
 import {
   INSPECTION_REPORT_PATH as REPORT_PATH,
   resolveFormatDirectory,

@@ -1,10 +1,5 @@
 import type { SVGProps } from 'react'
 
-/**
- * Minimal soccer-ball glyph. Lucide v1 has no ball icon, so this follows the
- * repository convention of a small custom accessible SVG. Decorative by default
- * (`aria-hidden`); pass a `title`/role for a meaningful instance.
- */
 export function SoccerBallIcon({ className, ...props }: SVGProps<SVGSVGElement>) {
   return (
     <svg

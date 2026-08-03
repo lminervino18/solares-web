@@ -17,14 +17,6 @@ export type UseGoalFiltersOptions = {
   readonly fixedCompetitionId?: string
 }
 
-/**
- * Resolves the gallery state for both of its hosts.
- *
- * On the Goles page the state lives in the URL so any view can be shared. When
- * embedded in a page that already owns the query string, the same state is kept
- * locally instead, and a fixed format or competition simply pins those values.
- * The density preference is remembered across visits when storage is available.
- */
 export function useGoalFilters({
   goals,
   syncUrl,
@@ -37,14 +29,12 @@ export function useGoalFilters({
   const [localCompetitionId, setLocalCompetitionId] = useState(fixedCompetitionId ?? ALL_FILTER)
   const [localScorerId, setLocalScorerId] = useState(ALL_FILTER)
   const [localGoalId, setLocalGoalId] = useState<string | undefined>(undefined)
-  // Read once during initialisation: the page still works when storage is
-  // unavailable, it just falls back to the default density.
   const [storedDensity, setStoredDensity] = useState<GoalDensity>(() => {
     try {
       const saved = window.localStorage.getItem(DENSITY_STORAGE_KEY)
       if (saved === 'large' || saved === 'medium' || saved === 'compact') return saved
     } catch {
-      // Ignored on purpose.
+      // Storage can be blocked; the preference is then session-only.
     }
     return DEFAULT_GOAL_DENSITY
   })

@@ -39,11 +39,6 @@ function RecordCard({ label, record }: { label: string; record: MatchRecord }) {
   )
 }
 
-/**
- * Headline match records for a format: biggest win/loss, highest-scoring match,
- * most frequent scoreline and the first/most recent matches. Each links to its
- * championship.
- */
 export function MatchRecords({ records, scopeLabel }: MatchRecordsProps) {
   const cards: readonly { label: string; record: MatchRecord }[] = [
     ...(records.biggestWin ? [{ label: 'Mayor victoria', record: records.biggestWin }] : []),

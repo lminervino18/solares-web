@@ -28,13 +28,6 @@ const OPTION = cn(
   'text-[length:var(--font-size-sm)] text-primary',
 )
 
-/**
- * Scorer filter with forgiving search.
- *
- * The list can hold every player, so it is capped in height and scrollable with
- * the search field pinned above it. Typing uses fuzzy matching to help find a
- * name; it never reassigns a goal to a different scorer.
- */
 export function GoalScorerCombobox({
   options,
   value,

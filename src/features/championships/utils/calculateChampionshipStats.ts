@@ -10,13 +10,6 @@ const EMPTY_STATS: ChampionshipStats = {
   goalDifference: 0,
 }
 
-/**
- * Derives championship statistics from its matches.
- *
- * Only matches with a decided outcome (`win` / `draw` / `loss`) and numeric
- * goals for and against are counted. Pending, cancelled or unreadable matches
- * are excluded, so `played === won + drawn + lost` always holds.
- */
 export function calculateChampionshipStats(matches: readonly Match[]): ChampionshipStats {
   let won = 0
   let drawn = 0

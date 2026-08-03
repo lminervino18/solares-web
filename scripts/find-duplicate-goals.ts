@@ -12,28 +12,11 @@ import {
   resolveGoalsRoot,
 } from './goals/goal-paths'
 
-/**
- * Finds goals that show the same action but do not share a content hash.
- *
- * A re-encode — a different bitrate, or a burned-in watermark — produces
- * different bytes, so SHA-256 deduplication cannot see it. This compares what
- * the clips actually look like: several frames per clip are reduced to a
- * perceptual fingerprint and matched inside the same format, competition and
- * scorer, which is where a duplicate can plausibly live.
- *
- * It only reports. Removing a duplicate is a deliberate act: mark the file
- * `skip` in the overrides and run `npm run goals:prune`.
- *
- * Requires `ffmpeg` on the PATH; it is a local diagnostic, never part of the
- * build.
- */
-
 const run = promisify(execFile)
 
 const FRAME_COUNT = 6
 const FINGERPRINT_SIZE = 9
 const FRAME_CONCURRENCY = 4
-/** Bits that may differ across the whole fingerprint and still count as a match. */
 const MAX_DISTANCE = 12
 
 type ResolvedGoal = {
@@ -48,8 +31,6 @@ type ResolvedGoal = {
 async function fingerprint(sourcePath: string): Promise<string | undefined> {
   const filePath = join(resolveGoalsRoot(), sourcePath)
   try {
-    // A tiny grayscale strip is enough: the comparison only needs the shape of
-    // the action, not its colours or detail.
     const { stdout } = await run(
       'ffmpeg',
       [
@@ -142,8 +123,6 @@ async function main(): Promise<void> {
     (entry): entry is { goal: ResolvedGoal; value: string } => entry.value !== undefined,
   )
 
-  // Only clips credited to the same scorer in the same competition and format
-  // can be the same goal, so the comparison stays inside those groups.
   const groups = new Map<string, typeof usable>()
   for (const entry of usable) {
     const key = `${entry.goal.format}|${entry.goal.competition.id}|${entry.goal.scorer.id}`

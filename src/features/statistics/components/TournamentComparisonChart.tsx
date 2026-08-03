@@ -61,11 +61,6 @@ const METRICS: readonly Metric[] = [
   },
 ]
 
-/**
- * Compares championships of a format on a selectable metric with a horizontal
- * bar chart. Bars are keyed to championships; clicking one opens its Campeonatos
- * page. An accessible data table mirrors the chart.
- */
 export function TournamentComparisonChart({
   tournaments,
   scopeLabel,
@@ -76,8 +71,6 @@ export function TournamentComparisonChart({
   const selectId = useId()
   const metric = METRICS.find((item) => item.key === metricKey) ?? METRICS[0]!
 
-  // Chronological, not alphabetical: within a year Verano comes before Apertura
-  // and Apertura before Clausura. Undated names have no recency and go last.
   const ordered = useMemo(() => {
     const chronology = (name: string) => parseSeasonName(name).recency || Number.MAX_SAFE_INTEGER
     return [...tournaments].sort(

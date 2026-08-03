@@ -9,8 +9,6 @@ import {
 } from 'echarts/components'
 import { SVGRenderer } from 'echarts/renderers'
 
-// Register only the pieces the statistics charts use. Imported dynamically so
-// ECharts stays out of the initial bundle. SVG renderer suits this data volume.
 echarts.use([
   BarChart,
   LineChart,

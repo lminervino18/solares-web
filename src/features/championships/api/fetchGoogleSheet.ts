@@ -11,15 +11,6 @@ export type FetchGoogleSheetOptions = {
   readonly fetchImpl?: typeof fetch
 }
 
-/**
- * Fetches a single sheet from the public spreadsheet and returns its parsed
- * data table.
- *
- * Uses `cache: 'no-store'` so a reload always revalidates against the source.
- * The response is validated by {@link parseGoogleVisualizationResponse}.
- *
- * @throws {GoogleVisualizationError} on a non-OK HTTP status or invalid payload.
- */
 export async function fetchGoogleSheet(
   gid: string,
   options: FetchGoogleSheetOptions = {},

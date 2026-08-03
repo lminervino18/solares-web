@@ -5,14 +5,6 @@ import { config as loadEnv } from 'dotenv'
 
 import { readErrorMessage } from './goal-upload-utils'
 
-/**
- * Verifies that every goal the committed manifest publishes is really hosted.
- *
- * The manifest is what the site reads, so a missing remote asset is a broken
- * card in the gallery. This only reads: it never uploads, deletes or rewrites
- * anything. Requires `CLOUDINARY_URL`, so it is not part of `validate`.
- */
-
 const MANIFEST_PATH = 'src/features/goals/data/generated/goals.manifest.json'
 const GOALS_PREFIX = 'solares/goals'
 

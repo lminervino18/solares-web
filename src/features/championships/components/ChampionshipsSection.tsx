@@ -25,11 +25,6 @@ function selectChampionship(
   return list.find((c) => c.slug === slug) ?? list[0]
 }
 
-/**
- * Orchestrates the Championships experience: format tabs, per-format carousel
- * and the selected championship spotlight, driven by URL state and the
- * snapshot-first data hook.
- */
 export function ChampionshipsSection() {
   const { state, refresh, isRefreshing } = useChampionshipsData()
   const { format, torneoSlug, setFormat, setTorneo } = useChampionshipsUrlState()

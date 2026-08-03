@@ -11,10 +11,6 @@ export type KickoffTimeChartProps = {
   scopeLabel: string
 }
 
-/**
- * Matches by kickoff time as a vertical bar chart. Times are shown as recorded
- * (`HH:mm`); no time-zone conversion is applied.
- */
 export function KickoffTimeChart({ kickoffTimes, scopeLabel }: KickoffTimeChartProps) {
   const tokens = useChartThemeTokens()
 

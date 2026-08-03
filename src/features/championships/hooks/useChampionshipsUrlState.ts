@@ -11,15 +11,6 @@ export type ChampionshipsUrlState = {
   readonly setTorneo: (slug: string) => void
 }
 
-/**
- * Reads and writes the Championships URL state.
- *
- * `modalidad` selects the football format and defaults to F8; an invalid value
- * falls back to F8 without error. To keep F8 URLs clean the `modalidad` param is
- * only written for F5 (`/campeonatos` is canonical F8). `torneo` holds the
- * selected championship slug. Format and championship changes push history so
- * back/forward work.
- */
 export function useChampionshipsUrlState(): ChampionshipsUrlState {
   const [searchParams, setSearchParams] = useSearchParams()
 

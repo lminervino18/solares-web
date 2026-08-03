@@ -27,18 +27,11 @@ async function copyToClipboard(value: string): Promise<boolean> {
       return true
     }
   } catch {
-    // Falls through to the manual fallback below.
+    // Denied or unavailable: the manual fallback below takes over.
   }
   return false
 }
 
-/**
- * Sharing for a single goal.
- *
- * Uses the device's own share sheet when the browser exposes it, so installed
- * apps are available without embedding any social SDK. Otherwise it offers copy,
- * WhatsApp and email. Confirmation is inline, never a blocking dialog.
- */
 export function GoalShareMenu({ goal, shareUrl }: GoalShareMenuProps) {
   const [copied, setCopied] = useState(false)
   const text = buildGoalShareText(goal)

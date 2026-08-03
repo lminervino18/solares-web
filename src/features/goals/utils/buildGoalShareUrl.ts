@@ -12,13 +12,6 @@ export const DENSITY_PARAM = QUERY_PARAMS.density
 
 export const DEFAULT_GOAL_FORMAT = DEFAULT_FOOTBALL_FORMAT
 
-/**
- * Builds the canonical shareable URL for a goal.
- *
- * `/goles` is always the destination, even when the player was opened from a
- * championship, so a shared link lands on the section that owns the gallery.
- * Filters are only included when they add context.
- */
 export function buildGoalShareUrl(
   goal: GoalVideo,
   filters: Pick<GoalFilters, 'competitionId' | 'scorerId'>,

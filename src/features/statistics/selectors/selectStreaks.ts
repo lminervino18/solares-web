@@ -46,10 +46,6 @@ function longestStreak(
   }
 }
 
-/**
- * Computes the longest streaks of each type over the format's played matches in
- * chronological order. Streaks of length 0 are omitted.
- */
 export function selectStreaks(championships: readonly Championship[]): readonly StreakRecord[] {
   const entries = collectPlayedMatches(championships)
   const types: readonly StreakType[] = [

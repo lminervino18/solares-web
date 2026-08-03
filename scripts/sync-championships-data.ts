@@ -6,15 +6,6 @@ import { fetchChampionships } from '@/features/championships/api/championshipsDa
 import { championshipsSnapshotSchema } from '@/features/championships/schemas/championship.schema'
 import type { ChampionshipsSnapshot } from '@/features/championships/types/championships'
 
-/**
- * Rebuilds the local championships snapshot from the live spreadsheet.
- *
- * Writes a deterministic JSON file used for first render and offline fallback.
- * A live spreadsheet is never required by the build — this script is run on
- * demand. With `--check` it validates the current data without writing and
- * reports whether the committed snapshot is stale (ignoring the timestamp).
- */
-
 const SNAPSHOT_PATH = 'src/features/championships/data/generated/championships.snapshot.json'
 
 async function buildSnapshot(): Promise<ChampionshipsSnapshot> {

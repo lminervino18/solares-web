@@ -16,11 +16,6 @@ function emptyYear(): Accumulator {
   return { matches: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, titles: 0 }
 }
 
-/**
- * Aggregates played matches by calendar year (from each match date). Matches
- * without a date are excluded, so the series only reflects dated matches. Titles
- * are attributed by the championship year.
- */
 export function selectAnnual(championships: readonly Championship[]): readonly AnnualStatistics[] {
   const years = new Map<number, Accumulator>()
 

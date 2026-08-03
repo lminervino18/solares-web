@@ -1,29 +1,12 @@
 /**
- * Explicit resolutions for individual goal files, keyed by the source path
- * relative to the goals root (for example `F8/Apertura_2026-Lorenzo-0.mp4`).
- *
- * An override wins over the parser, so it covers three cases:
- *
- * 1. The parser reports the file as ambiguous or unresolved.
- * 2. The file name is wrong — the clip was exported under another player's name.
- *    Record who confirmed the correction; never guess a scorer.
- * 3. `skip` removes a clip from the collection without deleting the file, for a
- *    re-encode of a goal already published under another name.
- *
- * Never use an override to merge two spellings of the same name: that is an
- * alias (`src/features/goals/data/goal-scorer-aliases.ts`).
- *
- * Changing a scorer changes the Cloudinary public id, so the clip is uploaded
- * again under the new id and the old asset is left orphaned. Run
- * `npm run goals:verify` to see it and `npm run goals:prune` to review deleting
- * it. The goal id is content-derived and does not change, so shared links keep
- * working.
+ * Keyed by the source path relative to the goals root; wins over the parser.
+ * Changing a scorer changes the Cloudinary public id and orphans the old asset:
+ * run `npm run goals:verify`, then `npm run goals:prune`.
  */
 export type GoalSourceOverride = {
   readonly scorerName?: string
   readonly competitionName?: string
   readonly skip?: true
-  /** Why the entry exists, so a future reader does not have to guess. */
   readonly reason?: string
 }
 

@@ -8,12 +8,6 @@ export type GoalScorerOption = {
   readonly scorer: GoalScorer
 }
 
-/**
- * Scorer filter options for the goals already narrowed to one format.
- *
- * Ordered by how many goal videos each scorer has, then alphabetically, so the
- * players with the most footage are reachable without scrolling.
- */
 export function selectGoalScorerOptions(goals: readonly GoalVideo[]): readonly GoalScorerOption[] {
   const byId = new Map<string, { scorer: GoalScorer; goals: number }>()
 

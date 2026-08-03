@@ -8,21 +8,6 @@ import { FOOTBALL_FORMATS, type FootballFormat } from '@/config/football-format'
 import { loadChampionshipsSnapshot } from '@/features/championships/data/championshipsSnapshot'
 import { slugify } from '@/features/championships/utils/normalizeCellValue'
 
-/**
- * Processes championship media dropped into the intake folder and regenerates
- * the asset manifest.
- *
- * A team photo belongs to one championship. A tournament logo belongs to the
- * championship's *league*, which several championships share, so a logo dropped
- * into one championship folder is published for the whole league and a second,
- * conflicting logo for the same league is reported instead of silently winning.
- *
- * Slugs are validated against the normalized championships: an unknown folder is
- * reported and nothing is copied. The manifest is rebuilt from the committed
- * output folder, so photos added before this script existed keep working. Output
- * is deterministic and the run is idempotent — pass `--force` to re-encode.
- */
-
 const INTAKE_DIR = 'content/incoming/championships'
 const OUTPUT_DIR = 'src/assets/solares/championships'
 const LOGO_DIR = join(OUTPUT_DIR, 'logos')
@@ -130,6 +115,9 @@ async function encodeTeamPhoto(
   report.encoded.push(`${format}/${slug} team photo`)
 }
 
+// A tournament logo belongs to the championship's league, which several
+// championships share: one per league, and a conflicting second one is
+// reported instead of silently winning.
 async function encodeTournamentLogo(
   sourcePath: string,
   leagueSlug: string,

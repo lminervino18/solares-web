@@ -13,10 +13,6 @@ const sectionLinks = [
   { label: 'Mixto', href: '#mixto' },
 ]
 
-/**
- * The scroll restoration of the router cancels the browser jump to the fragment, so the
- * section is scrolled and focused explicitly while the address bar keeps the anchor.
- */
 function goToSection(event: MouseEvent<HTMLAnchorElement>, href: string) {
   const section = document.getElementById(href.slice(1))
   if (!section) {

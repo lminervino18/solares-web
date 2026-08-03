@@ -22,7 +22,6 @@ const groupVariants = {
   visible: { transition: { staggerChildren: 0.08 } },
 }
 
-/** The three crests share one square frame so the equation stays symmetric. */
 const crestProps = {
   size: 'md',
   shape: 'square',
@@ -62,7 +61,6 @@ function FusionSign({ animated, symbol }: { animated: boolean; symbol: string })
 
 export type FusionCrest = {
   crest: PictureSource
-  /** Optical correction so every crest reads at the same size inside its frame. */
   zoom?: CrestZoom
 }
 

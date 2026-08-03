@@ -10,11 +10,6 @@ export type GoalRandomButtonProps = {
   onPick: (goal: GoalVideo) => void
 }
 
-/**
- * Opens a random goal from the goals currently on screen, so the pick always
- * respects the active filters. With no results the button is disabled and says
- * why.
- */
 export function GoalRandomButton({ goals, currentGoalId, onPick }: GoalRandomButtonProps) {
   const disabled = goals.length === 0
 

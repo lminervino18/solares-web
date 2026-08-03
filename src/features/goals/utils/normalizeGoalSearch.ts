@@ -2,15 +2,6 @@ import Fuse, { type IFuseOptions } from 'fuse.js'
 
 import type { GoalScorerOption } from '../selectors/selectGoalScorerOptions'
 
-/**
- * Fuzzy scorer search for the combobox.
- *
- * Search is forgiving so `Lrorenzo` still finds `Lorenzo Minervino`, but it is
- * only ever used to help a person find a name: scorers are never merged or
- * reassigned through fuzzy matching. Exact and prefix matches always outrank
- * approximate ones, and goal count breaks remaining ties.
- */
-
 type SearchableScorer = GoalScorerOption & {
   readonly searchName: string
   readonly lastName: string

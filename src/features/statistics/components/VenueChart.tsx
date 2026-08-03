@@ -11,10 +11,6 @@ export type VenueChartProps = {
   scopeLabel: string
 }
 
-/**
- * Matches by venue as a horizontal bar chart with an accessible data table that
- * also lists each venue's win rate where the sample is large enough.
- */
 export function VenueChart({ venues, scopeLabel }: VenueChartProps) {
   const tokens = useChartThemeTokens()
 

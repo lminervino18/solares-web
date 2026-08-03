@@ -4,16 +4,8 @@ import { dirname, join } from 'node:path'
 
 import sharp from 'sharp'
 
-/**
- * Prepares the Femenino y Mixto media and the two new Historia photos.
- *
- * Photos are re-encoded to an optimized JPG plus a WebP sibling at their original
- * dimensions (no crop, no resize). Crests are extracted with a connectivity-based
- * flood fill seeded from the image border: only the outer background becomes
- * transparent, so interior colors, borders, text and shapes are preserved. No
- * automatic background removal is applied to the whole file and no source image is
- * modified. Idempotent: existing targets are skipped unless `--force` is passed.
- */
+// Crests use a connectivity flood fill seeded from the border: only the outer
+// background becomes transparent, so interior colors, text and shapes survive.
 
 const SOURCE_DIR = 'nuevos_archvios_fem_y_mixto'
 const OUTPUT_DIR = 'src/assets/solares'
@@ -26,7 +18,6 @@ type PhotoJob = {
 type CrestJob = {
   readonly source: string
   readonly target: string
-  /** Maximum RGB distance between a pixel and a border color to treat it as background. */
   readonly tolerance: number
 }
 
@@ -45,7 +36,6 @@ const PHOTOS: readonly PhotoJob[] = [
   { source: 'cambalares_1.jpeg', target: 'cambalares/team/team-2' },
   { source: 'cambalares_2.jpeg', target: 'cambalares/team/team-3' },
   { source: 'cambalares_4.jpeg', target: 'cambalares/team/team-4' },
-  // The newest photo was requested as the second to last one of the gallery.
   { source: 'cambalares_6.jpeg', target: 'cambalares/team/team-5' },
   { source: 'cambalares_5.jpeg', target: 'cambalares/team/team-6' },
 ]
@@ -64,7 +54,6 @@ function squaredDistance(pixels: Buffer, offset: number, color: Rgb): number {
   return dr * dr + dg * dg + db * db
 }
 
-/** Collects the distinct colors found along the image border, clustered by tolerance. */
 function collectBorderColors(
   pixels: Buffer,
   width: number,
@@ -92,10 +81,7 @@ function collectBorderColors(
   return colors
 }
 
-/**
- * Marks every pixel that matches a border color AND is connected to the border.
- * Interior areas sharing those colors stay opaque because the fill never reaches them.
- */
+/** Interior areas sharing a border color stay opaque: the fill never reaches them. */
 function findOuterBackground(
   pixels: Buffer,
   width: number,

@@ -8,13 +8,6 @@ export type GoalCompetitionOption = {
   readonly competition: GoalCompetition
 }
 
-/**
- * Tournament filter options for the goals already narrowed to one format.
- *
- * Only competitions that actually have goals are listed, so the filter can
- * never produce an empty result. Official competitions come first (most recent
- * first), then friendlies and preseason.
- */
 export function selectGoalCompetitionOptions(
   goals: readonly GoalVideo[],
 ): readonly GoalCompetitionOption[] {

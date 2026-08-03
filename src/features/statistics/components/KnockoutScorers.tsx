@@ -9,10 +9,6 @@ export type KnockoutScorersProps = {
 
 const TOP_COUNT = 5
 
-/**
- * Top scorers in knockout phases (octavos … final). Goals are attributed per
- * match, so this is only shown because the source records scorers per game.
- */
 export function KnockoutScorers({ scorers, scopeLabel }: KnockoutScorersProps) {
   const top = scorers.slice(0, TOP_COUNT)
 

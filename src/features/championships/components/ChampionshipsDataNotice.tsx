@@ -19,10 +19,6 @@ function statusMessage(state: ChampionshipsDataState): string {
   return 'Datos actualizados desde la planilla de Solares.'
 }
 
-/**
- * Discreet source-and-freshness notice with a link to the original spreadsheet
- * and a manual refresh. Shows a warning when a refresh failed but data remains.
- */
 export function ChampionshipsDataNotice({
   state,
   isRefreshing,

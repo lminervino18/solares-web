@@ -11,13 +11,6 @@ const PATTERNS: readonly RegExp[] = [
   /(?:youtube-nocookie\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
 ]
 
-/**
- * Extracts a validated YouTube video from a raw cell value.
- *
- * Recognizes watch, youtu.be, embed and shorts URLs. Returns `undefined` for
- * anything that is not a real YouTube link (for example a plain video title),
- * so the caller can omit the video section instead of embedding a bad URL.
- */
 export function parseYouTubeUrl(value: unknown): YouTubeVideo | undefined {
   const text = toCellString(value)?.trim()
   if (text === undefined || text.length === 0) return undefined

@@ -7,13 +7,6 @@ function pad(value: number): string {
   return String(value).padStart(2, '0')
 }
 
-/**
- * Parses a Google Visualization time-of-day cell into `HH:mm`.
- *
- * Accepts the raw gviz datetime (`Date(1899,11,30,22,0,0)`, whose date part is
- * the spreadsheet epoch and is ignored) and the formatted `H:mm:ss` fallback.
- * Returns `undefined` for empty or unparseable values; it never invents minutes.
- */
 export function parseSheetTime(value: unknown): string | undefined {
   const text = toCellString(value)?.trim()
   if (text === undefined || text.length === 0) return undefined

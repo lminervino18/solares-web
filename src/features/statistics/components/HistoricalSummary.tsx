@@ -14,10 +14,6 @@ export type HistoricalSummaryProps = {
   scopeLabel: string
 }
 
-/**
- * The headline summary: a few protagonist figures, a compact secondary grid and
- * the win/draw/loss distribution. All values belong to a single format.
- */
 export function HistoricalSummary({ general, scopeLabel }: HistoricalSummaryProps) {
   const heroes = [
     {

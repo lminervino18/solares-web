@@ -5,11 +5,6 @@ import type { VenueStatistics } from '../types/statistics'
 import { collectPlayedMatches } from '../utils/collectMatches'
 import { MIN_MATCHES_FOR_RATE_RANKING } from '../types/statistics'
 
-/**
- * Aggregates matches by venue, ordered by matches played. `share` is the venue's
- * fraction of all played matches. A win rate is only provided once the venue has
- * a meaningful sample ({@link MIN_MATCHES_FOR_RATE_RANKING}).
- */
 export function selectVenues(championships: readonly Championship[]): readonly VenueStatistics[] {
   const venues = new Map<string, { name: string; matches: number; wins: number }>()
   let total = 0

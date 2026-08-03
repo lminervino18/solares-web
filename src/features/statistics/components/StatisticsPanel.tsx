@@ -25,10 +25,6 @@ export type StatisticsPanelProps = {
   scope: StatisticsScope
 }
 
-/**
- * Renders every statistics block for a single format, in importance order. All
- * figures belong to one format; the two formats are never combined.
- */
 export function StatisticsPanel({ data, scope }: StatisticsPanelProps) {
   const viewModel = useMemo(() => buildStatisticsViewModel(data, scope), [data, scope])
   const scopeLabel = FOOTBALL_FORMAT_LONG_LABEL[scope]

@@ -5,12 +5,6 @@ import {
   type TournamentStatistics,
 } from '../types/statistics'
 
-/**
- * Derives extra insights from already-computed scorers and tournament stats:
- * the number of distinct scorers, how concentrated goals are among the top
- * scorers (over goals with a known author), the best tournament by win rate
- * (with a minimum sample) and the highest-scoring tournament.
- */
 export function selectExtra(
   scorers: readonly HistoricalScorer[],
   tournaments: readonly TournamentStatistics[],

@@ -12,11 +12,6 @@ import { StatisticsPanel } from './StatisticsPanel'
 
 const EMPTY_DATA: ChampionshipsByFormat = { f8: [], f5: [] }
 
-/**
- * Orchestrates the Statistics experience: the F8/F5 scope tabs and the
- * per-format statistics panel, over the shared snapshot-first data hook. The
- * two formats are never combined.
- */
 export function StatisticsSection() {
   const { state, refresh, isRefreshing } = useChampionshipsData()
   const { scope, setScope } = useStatisticsScope()

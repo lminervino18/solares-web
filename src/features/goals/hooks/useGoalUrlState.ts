@@ -27,14 +27,6 @@ export type GoalUrlState = ResolvedGoalUrlState & {
   readonly setDensity: (density: GoalDensity) => void
 }
 
-/**
- * Reads and writes the Goles URL state.
- *
- * `/goles` is canonical F8, so `modalidad` is only written for F5. Filters and
- * the open goal live in the URL so any view can be shared, and every change
- * pushes history so back and forward behave. Opening or closing the player
- * keeps the scroll position.
- */
 export function useGoalUrlState(
   goals: readonly GoalVideo[],
   options?: { enabled?: boolean },
@@ -42,18 +34,11 @@ export function useGoalUrlState(
   const enabled = options?.enabled ?? true
   const [searchParams, setSearchParams] = useSearchParams()
 
-  // When disabled the gallery is embedded in a page that owns the query string
-  // (Campeonatos), so the URL is neither read nor written here.
   const resolved = useMemo(
     () => parseGoalUrlState(goals, enabled ? searchParams : new URLSearchParams()),
     [goals, searchParams, enabled],
   )
 
-  // A tab click both focuses and activates its trigger, and those are separate
-  // events, so the same URL change arrives twice before React commits it.
-  // Writing it twice would push two history entries and make one back press
-  // look broken. The pending write is remembered until the URL actually
-  // changes, and a write that changes nothing never touches history at all.
   const pendingWrite = useRef<string | undefined>(undefined)
 
   useEffect(() => {
@@ -80,8 +65,6 @@ export function useGoalUrlState(
     [searchParams, setSearchParams, enabled],
   )
 
-  // A stale or unknown parameter is rewritten out of the URL without adding a
-  // history entry, so back still returns where the visitor came from.
   useEffect(() => {
     if (!enabled || !resolved.needsCleanup) return
     update(

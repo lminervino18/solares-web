@@ -3,12 +3,6 @@ import { slugify } from '../utils/normalizeCellValue'
 import { parseGoalscorers } from '../utils/parseGoalscorers'
 import type { RawMatch } from './mapMatches'
 
-/**
- * Aggregates scorers across a championship's matches.
- *
- * Own goals (`En Contra`) are excluded (handled by {@link parseGoalscorers}).
- * Ties are broken alphabetically for a deterministic order.
- */
 export function mapScorers(
   matches: readonly RawMatch[],
   championshipId: string,

@@ -6,7 +6,6 @@ import { VisuallyHidden } from '@/components/primitives/VisuallyHidden/VisuallyH
 
 export type TeamInstagramProps = {
   href: string
-  /** Accessible name of the icon-only link. */
   label: string
   description: string
   className?: string

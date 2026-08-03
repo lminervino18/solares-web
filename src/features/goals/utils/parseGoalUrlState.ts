@@ -21,9 +21,7 @@ export type ResolvedGoalUrlState = {
   readonly scorerId: string
   readonly goalId?: string
   readonly density?: GoalDensity
-  /** True when the URL named a goal that is not in the manifest. */
   readonly missingGoal: boolean
-  /** True when the URL must be rewritten because it held stale values. */
   readonly needsCleanup: boolean
 }
 
@@ -35,14 +33,6 @@ function isGoalDensity(value: string | null): value is GoalDensity {
   return value !== null && (GOAL_DENSITIES as readonly string[]).includes(value)
 }
 
-/**
- * Resolves the goals URL into the state the gallery should actually render.
- *
- * A shared `gol` link wins over the other parameters: the goal decides the
- * format, and any filter that would hide it is dropped instead of the goal. An
- * unknown goal id is reported so the caller can clean the URL and show a
- * discreet notice rather than an error.
- */
 export function parseGoalUrlState(
   goals: readonly GoalVideo[],
   params: URLSearchParams,
@@ -71,7 +61,6 @@ export function parseGoalUrlState(
   let competitionId = competitionExists ? `${format}-${competitionSlug}` : ALL_FILTER
   let scorerId = scorerExists && scorerSlug !== null ? scorerSlug : ALL_FILTER
 
-  // A shared goal must stay visible: only the filter that hides it is dropped.
   let droppedFilter = false
   if (goal !== undefined) {
     if (competitionId !== ALL_FILTER && goal.competition.id !== competitionId) {
@@ -97,10 +86,6 @@ export function parseGoalUrlState(
     ...(goal === undefined ? {} : { goalId: goal.id }),
     ...(isGoalDensity(densityParam) ? { density: densityParam } : {}),
     missingGoal,
-    // An unknown goal is deliberately left in the URL: removing it immediately
-    // would also remove the notice explaining what happened. Every filter and
-    // navigation action already drops the parameter, so it self-heals on the
-    // next interaction.
     needsCleanup: droppedFilter || staleFilter || staleFormat,
   }
 }

@@ -8,11 +8,6 @@ export type GoalFilters = {
   readonly scorerId: string
 }
 
-/**
- * Applies the gallery filters with AND logic: a goal is kept only when it
- * matches the active format and every non-`all` filter. F8 and F5 goals are
- * never mixed.
- */
 export function selectFilteredGoals(
   goals: readonly GoalVideo[],
   filters: GoalFilters,
@@ -48,10 +43,6 @@ export function selectGoalsByScorer(
   return goals.filter((goal) => goal.scorer.id === scorerId)
 }
 
-/**
- * Goals shown inside a championship: the format and the championship id must
- * both match, so a goal never leaks between formats or editions.
- */
 export function selectGoalsByChampionship(
   goals: readonly GoalVideo[],
   format: GoalFormat,

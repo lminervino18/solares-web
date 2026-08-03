@@ -1,8 +1,3 @@
-/**
- * Formats a duration in seconds as `m:ss`, used by cards and the player's time
- * readout. Values below a second still show `0:01` so a clip never reads as
- * having no length.
- */
 export function formatGoalDuration(seconds: number | undefined): string | undefined {
   if (seconds === undefined || !Number.isFinite(seconds) || seconds <= 0) return undefined
   const total = Math.max(1, Math.round(seconds))

@@ -29,10 +29,6 @@ const ITEM = cn(
   'data-[state=off]:hover:text-primary',
 )
 
-/**
- * Grid density switcher. Each option keeps a visible text label next to its
- * icon so the control never depends on icon recognition alone.
- */
 export function GoalDensityControl({ value, onChange }: GoalDensityControlProps) {
   return (
     <ToggleGroup.Root

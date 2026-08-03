@@ -12,31 +12,13 @@ import type {
 import { compareGoals } from '@/features/goals/utils/compareGoalCompetitions'
 import type { UploadState } from './goal-upload-state'
 
-/**
- * Builds the public goals manifest consumed by the frontend.
- *
- * Only public delivery data is written: cloud-hosted URLs, playback metadata
- * and the source identity needed for stable ordering. Credentials, signatures
- * and local paths never reach the manifest.
- */
-
 export const MANIFEST_PATH = 'src/features/goals/data/generated/goals.manifest.json'
 
-/**
- * The clips mix orientations (96 square, 78 landscape, 38 portrait), so no
- * source ratio fits them all. Cards use a single 4:3 frame — the balanced
- * compromise for that mix — and automatic gravity keeps the action in frame.
- * The player always renders the untouched original ratio.
- */
+/** Clips mix orientations, so cards use one 4:3 frame; the player keeps the original ratio. */
 const POSTER_WIDTH = 640
 const POSTER_ASPECT_RATIO = '4:3'
 
-/**
- * Width cap for the phone rendition. Clips are delivered up to their source
- * width, which on a phone means paying for pixels the screen cannot show:
- * capping at 720 roughly halves the transfer with no visible difference at that
- * size. `c_limit` never upscales, so a smaller clip is served untouched.
- */
+/** Halves the phone transfer. `c_limit` never upscales, so a smaller clip is untouched. */
 const COMPACT_PLAYBACK_WIDTH = 720
 
 type ManifestInput = {

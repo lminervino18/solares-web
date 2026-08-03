@@ -25,11 +25,6 @@ function initials(value: string): string {
   return letters.join('') || '·'
 }
 
-/**
- * Renders the league/tournament logo (PNG, contained, no filters) or an
- * accessible placeholder with the tournament initials. A missing logo never
- * borrows another tournament's image.
- */
 export function TournamentLogo({ championship, size = 'md', className }: TournamentLogoProps) {
   const { assets, league, name } = championship
 

@@ -3,14 +3,6 @@ import { goalVideoSchema, goalsManifestSchema } from '../schemas/goal-manifest.s
 import { compareGoals } from '../utils/compareGoalCompetitions'
 import manifest from './generated/goals.manifest.json'
 
-/**
- * The validated goal collection consumed by the UI.
- *
- * Invalid entries are dropped and reported in development only: a broken goal
- * never removes the rest of the gallery and never surfaces a technical error to
- * the user.
- */
-
 function parseGoals(input: unknown): readonly GoalVideo[] {
   const parsed = goalsManifestSchema.safeParse(input)
   if (!parsed.success) {

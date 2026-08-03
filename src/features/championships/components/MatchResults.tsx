@@ -107,11 +107,6 @@ function MatchRow({ match }: { match: Match }) {
   )
 }
 
-/**
- * Lists the championship matches, initially the first five, with an accessible
- * control to reveal the rest. Hovering (or focusing) a match reveals that game's
- * goalscorers, mapped to the exact match; a click keeps them open on touch.
- */
 export function MatchResults({ matches }: MatchResultsProps) {
   const [expanded, setExpanded] = useState(false)
 

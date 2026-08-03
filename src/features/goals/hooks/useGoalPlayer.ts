@@ -11,9 +11,7 @@ export type UseGoalPlayerOptions = {
   readonly containerRef: RefObject<HTMLDivElement | null>
   readonly initialRate: GoalPlaybackRate
   readonly onRateChange: (rate: GoalPlaybackRate) => void
-  /** Duration from the manifest, used until the element reports its own. */
   readonly fallbackDuration?: number
-  /** Start playing as soon as the clip can play. */
   readonly autoPlay?: boolean
 }
 
@@ -26,7 +24,6 @@ export type GoalPlayerState = {
   readonly rate: GoalPlaybackRate
   readonly fullscreen: boolean
   readonly failed: boolean
-  /** True once the clip can play, used to swap the loading state out. */
   readonly ready: boolean
   readonly canFullscreen: boolean
   readonly togglePlay: () => void
@@ -38,18 +35,6 @@ export type GoalPlayerState = {
   readonly toggleFullscreen: () => void
 }
 
-/**
- * Playback state for one clip.
- *
- * The hook is mounted per goal, so switching clips remounts it and the state
- * starts clean without any reset effect. The chosen rate is lifted to the
- * caller so it survives that remount for the length of the session, and a rate
- * the browser refuses falls back to 1x instead of leaving the player stuck.
- *
- * With `autoPlay` the clip starts as soon as it can play: opening a goal is an
- * explicit click, so sound is allowed. A browser that still refuses leaves it
- * paused, which is not treated as a failure.
- */
 export function useGoalPlayer({
   videoRef,
   containerRef,
@@ -85,10 +70,6 @@ export function useGoalPlayer({
     const onPlay = () => setPlaying(true)
     const onPause = () => setPlaying(false)
     const onTimeUpdate = () => setCurrentTime(video.currentTime)
-    // The manifest duration comes from Cloudinary's own metadata and never
-    // changes. A progressively downloaded transcode reports its length several
-    // times while it streams, so letting the element win would make the total
-    // visibly drift as the clip plays.
     const readDuration = () => {
       if (fallbackDuration !== undefined) return
       if (Number.isFinite(video.duration) && video.duration > 0) setDuration(video.duration)
@@ -177,8 +158,6 @@ export function useGoalPlayer({
             : 0
       const target = limit > 0 ? Math.min(Math.max(seconds, 0), limit) : Math.max(seconds, 0)
       video.currentTime = target
-      // Reflect the new position immediately so dragging the bar feels direct
-      // instead of waiting for the next `timeupdate`.
       setCurrentTime(target)
     },
     [videoRef, duration],

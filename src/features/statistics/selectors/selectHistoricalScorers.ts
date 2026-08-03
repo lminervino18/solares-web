@@ -11,14 +11,6 @@ type Accumulator = {
   tournaments: Set<string>
 }
 
-/**
- * Aggregates every recorded goal (with a known scorer) across a format into a
- * ranked historical scorers table.
- *
- * Player names are resolved through explicit aliases. Ties share a competitive
- * rank (1, 2, 2, 4) broken by goals, then tournaments scored in, then `es-AR`
- * alphabetical order. `knockoutGoals` counts goals in explicit knockout phases.
- */
 export function selectHistoricalScorers(
   championships: readonly Championship[],
 ): readonly HistoricalScorer[] {
@@ -68,9 +60,6 @@ export function selectHistoricalScorers(
   })
 }
 
-/**
- * Re-ranks scorers who scored in knockout phases, ordered by knockout goals.
- */
 export function selectKnockoutScorers(
   scorers: readonly HistoricalScorer[],
 ): readonly HistoricalScorer[] {

@@ -8,10 +8,6 @@ export type GoalEmptyStateProps = {
   onClearFilters?: () => void
 }
 
-/**
- * Empty states for the gallery. Filters stay on screen so the visitor can
- * adjust them, and no goal from another format is ever offered as a fallback.
- */
 export function GoalEmptyState({ variant, onClearFilters }: GoalEmptyStateProps) {
   if (variant === 'no-goals') {
     return (

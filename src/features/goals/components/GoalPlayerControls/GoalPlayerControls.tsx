@@ -41,10 +41,6 @@ const MENU_ITEM = cn(
   'text-[length:var(--font-size-sm)] text-primary outline-none data-[highlighted]:bg-surface-elevated',
 )
 
-/**
- * Player controls. Every essential action is a persistent, labelled control
- * rather than something that only appears on hover.
- */
 export function GoalPlayerControls({ goal, player, zoom, shareUrl }: GoalPlayerControlsProps) {
   const duration = player.duration > 0 ? player.duration : (goal.media.duration ?? 0)
 

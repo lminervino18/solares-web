@@ -19,11 +19,6 @@ export type ChampionshipSpotlightProps = {
   total: number
 }
 
-/**
- * Detailed view of the selected championship: identity, distinction, team
- * photo, statistics, scorers, results and the final video when available. All
- * data belongs to a single championship of a single format.
- */
 export function ChampionshipSpotlight({
   championship,
   position,

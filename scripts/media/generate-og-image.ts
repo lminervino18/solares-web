@@ -4,21 +4,12 @@ import { dirname, extname } from 'node:path'
 import { chromium } from '@playwright/test'
 import sharp from 'sharp'
 
-/**
- * Renders the Open Graph card shared on WhatsApp, Instagram and X.
- *
- * Composed rather than screenshotted: a social card is displayed a few hundred
- * pixels wide, where page text is unreadable. Rendered through a headless
- * browser so it uses the real brand fonts and the design tokens instead of
- * re-declaring the palette here.
- *
- * The output is committed under `public/` because a crawler needs an absolute,
- * static URL and never executes JavaScript.
- */
+// Composed rather than screenshotted: a social card renders a few hundred pixels
+// wide, where page text is unreadable. Committed under `public/` because a
+// crawler needs an absolute, static URL and never runs JavaScript.
 
 const OUTPUT_PATH = 'public/og-image.png'
 
-/** The size every social platform crops from. */
 const WIDTH = 1200
 const HEIGHT = 630
 
@@ -162,9 +153,6 @@ async function main(): Promise<void> {
     const png = await page.screenshot({ type: 'png' })
     await mkdir(dirname(OUTPUT_PATH), { recursive: true })
 
-    // Palette quantization: the card is a flat gradient plus the crest, so 256
-    // colours are indistinguishable and keep the file small enough for the
-    // crawlers that give up on a slow fetch.
     const optimized = await sharp(png)
       .png({ compressionLevel: 9, palette: true, quality: 90 })
       .toBuffer()

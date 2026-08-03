@@ -2,10 +2,6 @@ import type { Championship } from '@/features/championships/types/championships'
 import type { TournamentStatistics } from '../types/statistics'
 import { isPlayedMatch } from '../utils/collectMatches'
 
-/**
- * Builds per-championship statistics for a format, ordered most recent first
- * (as stored in the model). Clean sheets are counted from played matches.
- */
 export function selectTournamentStatistics(
   championships: readonly Championship[],
 ): readonly TournamentStatistics[] {

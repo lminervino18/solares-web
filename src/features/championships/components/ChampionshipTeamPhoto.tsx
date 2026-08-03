@@ -17,12 +17,6 @@ export type ChampionshipTeamPhotoProps = {
 const FRAME =
   'relative aspect-[4/3] w-full overflow-hidden rounded-(--radius-xl) border border-line bg-surface'
 
-/**
- * Renders the championship team photo, or an accessible placeholder that keeps
- * the same frame so no layout shift occurs when a real photo is added later.
- * The image is contained (never cropped) so faces are preserved, and it opens
- * full size in a lightbox.
- */
 export function ChampionshipTeamPhoto({
   championship,
   priority = false,

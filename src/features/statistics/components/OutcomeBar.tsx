@@ -13,11 +13,6 @@ type Segment = {
   token: string
 }
 
-/**
- * Segmented horizontal bar showing the win/draw/loss distribution with counts
- * and percentages. Colors come from chart tokens; each segment is also labelled
- * so the meaning does not rely on colour alone. A legend lists exact figures.
- */
 export function OutcomeBar({ won, drawn, lost }: OutcomeBarProps) {
   const total = won + drawn + lost
   const segments: readonly Segment[] = [

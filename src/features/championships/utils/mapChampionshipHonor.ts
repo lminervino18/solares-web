@@ -7,14 +7,6 @@ export type ChampionshipHonor = {
 
 const UNKNOWN: ChampionshipHonor = { honorType: 'unknown', trophyTier: 'none' }
 
-/**
- * Maps a spreadsheet result label to a championship honor and trophy tier.
- *
- * Editorial convention (confirmed with the club): the "Plata" (silver) bracket
- * is always explicit, so an unqualified `Campeón` / `Finalista` belongs to the
- * gold bracket. Only `Campeón` and `Campeón Plata` award a trophy tier;
- * finalists are runners-up without a cup.
- */
 export function mapChampionshipHonor(resultLabel: string | undefined): ChampionshipHonor {
   if (!resultLabel) return UNKNOWN
 

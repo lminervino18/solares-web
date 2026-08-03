@@ -17,7 +17,6 @@ export type EditorialGalleryProps = {
   photos: readonly EditorialGalleryPhoto[]
   label: string
   columns?: 1 | 2
-  /** Crops every photo to a shared 4:3 box. Disable to keep the original aspect ratio. */
   crop?: boolean
   withLightbox?: boolean
   loading?: 'lazy' | 'eager'

@@ -11,14 +11,6 @@ export type ChampionshipGoalsProps = {
   format: GoalFormat
 }
 
-/**
- * The goal gallery embedded in a championship.
- *
- * Goals are matched by format and championship id, never by display name. When
- * a championship has no goals the whole section is omitted — no heading, no
- * placeholder. The gallery keeps its own state here because the Campeonatos
- * page already owns the query string.
- */
 export function ChampionshipGoals({ championshipId, format }: ChampionshipGoalsProps) {
   const championshipGoals = useMemo(
     () => selectGoalsByChampionship(allGoals, format, championshipId),

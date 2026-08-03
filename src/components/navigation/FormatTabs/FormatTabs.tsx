@@ -13,9 +13,7 @@ export type FormatTabsProps = {
   format: FootballFormat
   onFormatChange: (format: FootballFormat) => void
   renderPanel: (format: FootballFormat) => ReactNode
-  /** Accessible name of the tab list, for example `Modalidades de campeonatos`. */
   listLabel: string
-  /** Accessible hint read after each tab label, scoped to the section content. */
   describeFormat: (format: FootballFormat) => string
 }
 
@@ -27,12 +25,6 @@ const TRIGGER = cn(
   'data-[state=inactive]:hover:text-primary',
 )
 
-/**
- * The accessible F8/F5 switcher shared by Campeonatos, Estadísticas and Goles.
- *
- * F8 is the default everywhere. Only the active panel mounts, so the inactive
- * format's media is never requested.
- */
 export function FormatTabs({
   format,
   onFormatChange,

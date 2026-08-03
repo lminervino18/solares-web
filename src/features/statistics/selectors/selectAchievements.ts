@@ -1,13 +1,6 @@
 import type { Championship } from '@/features/championships/types/championships'
 import type { AchievementStatistics } from '../types/statistics'
 
-/**
- * Counts final-standing achievements across a format's championships.
- *
- * Each championship contributes to exactly one bucket, representing the final
- * stage it reached. Titles and runner-up finishes keep their gold and silver
- * brackets apart, because they are different competitions.
- */
 export function selectAchievements(championships: readonly Championship[]): AchievementStatistics {
   let goldTitles = 0
   let silverTitles = 0

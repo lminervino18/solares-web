@@ -17,7 +17,6 @@ type Step = {
   value: number
   icon: LucideIcon
   iconClass: string
-  /** Relative height of the podium step, tallest for the champion. */
   stepClass: string
   valueClass: string
 }

@@ -1,15 +1,6 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname } from 'node:path'
 
-/**
- * Local, resumable upload state for the goal clips.
- *
- * Keyed by the file content hash so a renamed file is still recognised and a
- * changed file is re-uploaded. Resumption is guaranteed at file level: a clip
- * interrupted mid-transfer restarts from the beginning on the next run. The
- * state never stores credentials, signatures or absolute paths.
- */
-
 export const UPLOAD_STATE_PATH = '.cache/goals-upload-state.json'
 
 const STATE_VERSION = 1

@@ -23,17 +23,6 @@ import {
   sanitizeTag,
 } from './goals/goal-upload-utils'
 
-/**
- * Uploads the inspected goal clips to Cloudinary and rebuilds the public
- * manifest.
- *
- * Reads `CLOUDINARY_URL` from `.env.local` through the SDK's own environment
- * handling and never prints, stores or forwards it. Uploads run with a low
- * concurrency, resume from a local checkpoint, never overwrite an existing
- * asset and never modify or delete the local originals. `--dry-run` reports
- * exactly what would be uploaded without contacting the upload API.
- */
-
 const DEFAULT_CONCURRENCY = 2
 const CHUNK_SIZE_BYTES = 6 * 1024 * 1024
 const MAX_ATTEMPTS = 3

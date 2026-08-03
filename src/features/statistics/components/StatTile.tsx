@@ -10,10 +10,6 @@ export type StatTileProps = {
   className?: string
 }
 
-/**
- * A single statistic presented as label + prominent value, with an optional
- * hint. `emphasis` renders a larger, brand-accented protagonist tile.
- */
 export function StatTile({ label, value, hint, emphasis = false, className }: StatTileProps) {
   return (
     <div

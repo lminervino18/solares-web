@@ -35,10 +35,6 @@ const MONTHS = [
   'diciembre',
 ]
 
-/**
- * Formats an ISO `YYYY-MM-DD` date as a Spanish day-month label. Returns
- * `undefined` for a missing or malformed value.
- */
 export function formatMatchDate(date: string | undefined): string | undefined {
   if (!date) return undefined
   const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(date)

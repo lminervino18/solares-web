@@ -31,10 +31,6 @@ function formatValue(item: StatItem): string {
   return String(item.value)
 }
 
-/**
- * Shows the derived statistics for the active championship as a definition
- * list with abbreviated headers and accessible full names.
- */
 export function ChampionshipStats({ stats, hasMatches, className }: ChampionshipStatsProps) {
   const items = buildItems(stats)
 

@@ -9,12 +9,6 @@ export type FinalVideoProps = {
   championshipName: string
 }
 
-/**
- * Lazily embeds the final video after an explicit click (no autoplay), using
- * the privacy-friendly nocookie host. Shows the YouTube thumbnail as a poster
- * beforehand, with an external link fallback. The iframe unmounts when the
- * parent re-keys on a championship change.
- */
 export function FinalVideo({ video, championshipName }: FinalVideoProps) {
   const [active, setActive] = useState(false)
   const [posterFailed, setPosterFailed] = useState(false)

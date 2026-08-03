@@ -1,10 +1,5 @@
 import type { GoalCompetitionType, GoalFormat, GoalVideo } from '../types/goals'
 
-/**
- * Deterministic goal fixtures. Tests never touch the generated manifest or a
- * live Cloudinary account.
- */
-
 type GoalOverrides = {
   readonly id?: string
   readonly format?: GoalFormat

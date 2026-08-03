@@ -1,15 +1,9 @@
 import type { FootballFormat } from '@/config/football-format'
 
-/** A goal is scoped by the same football format as every other sports entity. */
 export type GoalFormat = FootballFormat
 
 export type GoalCompetitionType = 'official' | 'friendly' | 'preseason' | 'other'
 
-/**
- * A competition a goal belongs to. `official` competitions map to a published
- * championship through `championshipId`; friendly and preseason goals have no
- * championship and only ever appear on the Goles page.
- */
 export type GoalCompetition = {
   readonly id: string
   readonly slug: string
@@ -32,7 +26,6 @@ export type GoalCloudinaryAsset = {
   readonly resourceType: 'video'
   readonly secureUrl: string
   readonly playbackUrl: string
-  /** Width-capped rendition served to phones. Absent on manifests built before it existed. */
   readonly compactPlaybackUrl?: string
   readonly posterUrl: string
   readonly downloadUrl: string

@@ -17,14 +17,6 @@ const FORMAT_LABEL: Record<FootballFormat, string> = {
   f5: 'Fútbol 5',
 }
 
-/**
- * Resolves the static media for a championship.
- *
- * Returns the team photo and league logo when they exist in the manifest, plus
- * accessible alt text. It never throws and does not require the championship to
- * be present in the manifest: a championship discovered from the spreadsheet
- * with no committed assets simply resolves to placeholders (undefined media).
- */
 export function resolveChampionshipAssets(
   params: ResolveChampionshipAssetsParams,
 ): ChampionshipAssets {

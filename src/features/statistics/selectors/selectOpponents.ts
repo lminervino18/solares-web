@@ -15,10 +15,6 @@ type Accumulator = {
   lastDate?: string
 }
 
-/**
- * Aggregates results against each opponent, ordered by matches played (then
- * goal difference). Opponent names are resolved through explicit aliases.
- */
 export function selectOpponents(
   championships: readonly Championship[],
 ): readonly OpponentStatistics[] {

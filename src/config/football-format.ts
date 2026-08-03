@@ -1,11 +1,3 @@
-/**
- * The one football format union in the project.
- *
- * F8 and F5 are different sports: their championships, matches, goals and
- * statistics are never combined. Every feature that scopes content by format
- * imports this module instead of declaring its own union.
- */
-
 export type FootballFormat = 'f8' | 'f5'
 
 export const FOOTBALL_FORMATS = ['f8', 'f5'] as const

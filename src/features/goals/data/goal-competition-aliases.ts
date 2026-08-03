@@ -1,10 +1,5 @@
 import type { GoalCompetitionType } from '../types/goals'
 
-/**
- * Confirmed competition name aliases, keyed by a normalized spelling found in a
- * source file name and mapped to the canonical name used by the championships
- * data. Empty while every file name matches the spreadsheet spelling.
- */
 export const GOAL_COMPETITION_ALIASES: Readonly<Record<string, string>> = {}
 
 const FRIENDLY_PREFIX = 'amistoso'

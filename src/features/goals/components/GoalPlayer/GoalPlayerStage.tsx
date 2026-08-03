@@ -20,10 +20,8 @@ export type GoalPlayerStageProps = {
   onNext?: () => void
 }
 
-/** Tallest the video area may get, leaving room for the header and controls. */
 const MAX_STAGE_HEIGHT = '62vh'
 
-/** Below this width the stage is never wide enough to need the full rendition. */
 const COMPACT_VIEWPORT = '(max-width: 640px)'
 const DEFAULT_ASPECT_RATIO = 16 / 9
 
@@ -46,13 +44,6 @@ function isTypingTarget(target: EventTarget | null): boolean {
   )
 }
 
-/**
- * The video surface for one goal.
- *
- * Mounted with the goal id as its key, so every clip gets fresh playback and
- * zoom state without reset effects. The clip keeps its original aspect ratio —
- * the 4:3 poster crop is only a device for the grid.
- */
 export function GoalPlayerStage({
   goal,
   shareUrl,

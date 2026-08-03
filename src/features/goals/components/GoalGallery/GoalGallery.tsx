@@ -25,13 +25,6 @@ export type GoalGalleryProps = {
 const DEFAULT_VISIBLE = 24
 const PAGE_SIZE = 24
 
-/**
- * Reusable goal gallery: filters, grid and player.
- *
- * The same component serves the Goles page and a championship section. It keeps
- * data access, filtering, grid and player separated, and the player always
- * navigates the filtered collection it is given.
- */
 export function GoalGallery({
   goals,
   format,

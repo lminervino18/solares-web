@@ -33,9 +33,6 @@ function olderFirst(a: MatchWithContext, b: MatchWithContext): number {
   return 0
 }
 
-/**
- * Computes headline match records for a format from its played matches.
- */
 export function selectRecords(championships: readonly Championship[]): MatchRecords {
   const played = collectPlayedMatches(championships)
   if (played.length === 0) return {}

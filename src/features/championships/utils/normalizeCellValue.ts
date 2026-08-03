@@ -1,10 +1,5 @@
 const COMBINING_MARKS = /[̀-ͯ]/g
 
-/**
- * Converts a spreadsheet cell value (string, number or boolean) to a string.
- * Objects and other non-primitives return `undefined` rather than stringifying
- * to `[object Object]`.
- */
 export function toCellString(value: unknown): string | undefined {
   if (typeof value === 'string') return value
   if (typeof value === 'number' || typeof value === 'boolean') return String(value)

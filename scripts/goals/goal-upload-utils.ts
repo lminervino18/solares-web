@@ -1,11 +1,3 @@
-/**
- * Shared helpers for the Cloudinary goal upload.
- *
- * Nothing here reads, formats or logs credentials: the Cloudinary SDK picks up
- * `CLOUDINARY_URL` from the environment on its own and the value never travels
- * through this module.
- */
-
 const TAG_UNSAFE = /[^a-zA-Z0-9_:-]+/g
 const CONTEXT_UNSAFE = /[=|]/g
 
@@ -23,10 +15,7 @@ export function formatBytes(bytes: number): string {
   return `${(bytes / 1024 ** 3).toFixed(2)} GB`
 }
 
-/**
- * Authentication and permission failures are permanent: retrying them only
- * burns quota and risks locking the account, so they abort the file instead.
- */
+/** Auth and permission failures are permanent; retrying only burns quota. */
 export function isPermanentError(error: unknown): boolean {
   const status = readErrorStatus(error)
   return status === 401 || status === 403 || status === 420
@@ -42,10 +31,7 @@ export function readErrorStatus(error: unknown): number | undefined {
   return undefined
 }
 
-/**
- * Cloudinary errors can carry the signed request that produced them, so only a
- * short message is ever surfaced or written to the checkpoint.
- */
+/** Cloudinary errors can carry the signed request, so only a short message is surfaced. */
 export function readErrorMessage(error: unknown): string {
   if (error instanceof Error) return error.message.slice(0, 200)
   if (typeof error === 'object' && error !== null && 'message' in error) {

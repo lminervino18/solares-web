@@ -6,21 +6,6 @@ import {
 import { canonicalGoalScorerName } from '@/features/goals/data/goal-scorer-aliases'
 import type { GoalCompetition, GoalFormat, GoalScorer } from '@/features/goals/types/goals'
 
-/**
- * Deterministic parsing of local goal file names.
- *
- * Two conventions are supported and neither carries a goal number:
- *
- * - Canonical, for new clips: `competition__scorer__label`. Double underscores
- *   separate the three segments, so hyphens are free inside a competition or a
- *   scorer. The third segment only keeps sibling names unique and is discarded.
- * - Legacy, for the collection uploaded before the convention existed:
- *   `{Competition}_{Year}-{Scorer}-{index}`. The trailing index is likewise
- *   parsed and discarded.
- *
- * Four-digit years belong to the competition name and are preserved by both.
- */
-
 const CANONICAL_SEPARATOR = '__'
 const LEGACY_PATTERN = /^([^-]+)-([^-]+)-(\d+)$/
 const SHORT_HASH_LENGTH = 12
@@ -33,11 +18,6 @@ export type ParsedGoalFileName = {
   readonly convention: GoalFileNameConvention
 }
 
-/**
- * Turns a canonical slug segment into a display name. Canonical segments are
- * lowercase by construction, so each word is capitalised; an alias still wins
- * afterwards, which is how accents and irregular spellings are restored.
- */
 function readable(segment: string): string {
   return segment
     .replace(/[-_]+/g, ' ')

@@ -9,10 +9,6 @@ export type ScorersTableProps = {
 
 const INITIAL_COUNT = 5
 
-/**
- * Shows the championship top scorers, initially the top five, with an
- * accessible control to reveal the full list.
- */
 export function ScorersTable({ scorers }: ScorersTableProps) {
   const [expanded, setExpanded] = useState(false)
 

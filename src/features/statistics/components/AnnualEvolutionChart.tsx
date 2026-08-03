@@ -20,10 +20,6 @@ const METRICS: readonly Metric[] = [
   { key: 'titles', label: 'Títulos', value: (y) => y.titles },
 ]
 
-/**
- * Evolution of a metric by year for a format. Only dated matches contribute, so
- * the series reflects matches with a recorded date.
- */
 export function AnnualEvolutionChart({ annual, scopeLabel }: AnnualEvolutionChartProps) {
   const [metricKey, setMetricKey] = useState('matches')
   const tokens = useChartThemeTokens()

@@ -21,14 +21,6 @@ export type GoalPlayerProps = {
   onClose: () => void
 }
 
-/**
- * Modal goal player.
- *
- * Previous and next always move inside the filtered collection the gallery is
- * showing, and both ends are closed rather than circular so the position stays
- * unambiguous. The playback rate is held here so it survives moving between
- * clips for the length of the session.
- */
 export function GoalPlayer({ goal, goals, shareUrl, onNavigate, onClose }: GoalPlayerProps) {
   const [rate, setRate] = useState<GoalPlaybackRate>(1)
   const { index, total, previous, next } = selectAdjacentGoals(goals, goal.id)

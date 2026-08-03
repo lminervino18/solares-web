@@ -27,10 +27,6 @@ function context(streak: StreakRecord): string {
   return [dates, rivals].filter(Boolean).join(' · ')
 }
 
-/**
- * Longest historical streaks for a format, each shown with its length and
- * context (dates and opponents) rather than a bare number.
- */
 export function StreakRecords({ streaks, scopeLabel }: StreakRecordsProps) {
   if (streaks.length === 0) {
     return (

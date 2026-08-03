@@ -7,15 +7,6 @@ import { INSPECTION_REPORT_PATH as INSPECTION_PATH } from './goals/goal-paths'
 import { loadUploadState, saveUploadState } from './goals/goal-upload-state'
 import { readErrorMessage } from './goals/goal-upload-utils'
 
-/**
- * Deletes goal assets that the local collection no longer publishes.
- *
- * A clip removed from the source folder or marked `skip` in the overrides stays
- * on Cloudinary until this runs. Deletion is irreversible for the hosted asset,
- * so the script reports by default and only deletes with `--confirm`; the local
- * file is never touched, which is what makes the operation recoverable.
- */
-
 const GOALS_PREFIX = 'solares/goals'
 
 type InspectedGoal = { readonly publicId: string; readonly hash: string }

@@ -7,14 +7,6 @@ export type AdjacentGoals = {
   readonly next?: GoalVideo
 }
 
-/**
- * Locates a goal inside the currently filtered collection and resolves its
- * neighbours.
- *
- * Navigation never leaves the filtered set, and the ends are closed rather than
- * circular so the player's position stays unambiguous: at the first goal there
- * is no previous, at the last there is no next.
- */
 export function selectAdjacentGoals(
   goals: readonly GoalVideo[],
   goalId: string | undefined,

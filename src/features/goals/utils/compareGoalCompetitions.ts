@@ -1,18 +1,6 @@
 import { normalizeCompetitionKey } from '../data/goal-competition-aliases'
 import type { GoalCompetition, GoalCompetitionType, GoalVideo } from '../types/goals'
 
-/**
- * Competition and goal ordering.
- *
- * Source file timestamps only record when the clips were copied to disk, so
- * they cannot order goals across competitions that span several years. The real
- * chronology lives in the competition name, so competitions are ranked by
- * season and year, and file timestamps only break ties inside one competition.
- *
- * Official competitions come first (most recent first), then friendlies, then
- * preseason, matching the tournament filter order.
- */
-
 const TYPE_RANK: Record<GoalCompetitionType, number> = {
   official: 0,
   friendly: 1,
@@ -48,15 +36,9 @@ export function compareGoalCompetitions(a: GoalCompetition, b: GoalCompetition):
   const bySeason = competitionSeasonRank(b.name) - competitionSeasonRank(a.name)
   if (bySeason !== 0) return bySeason
 
-  // The id carries the format, so competitions sharing a name stay deterministic.
   return a.id.localeCompare(b.id, 'es-AR')
 }
 
-/**
- * Orders goals for the gallery: newest competition first, and inside a
- * competition the most recently added clip first. The stable id breaks ties so
- * the manifest and the rendered grid are deterministic.
- */
 export function compareGoals(a: GoalVideo, b: GoalVideo): number {
   const byCompetition = compareGoalCompetitions(a.competition, b.competition)
   if (byCompetition !== 0) return byCompetition

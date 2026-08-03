@@ -9,11 +9,6 @@ export type CleanSheetInsightsProps = {
   scopeLabel: string
 }
 
-/**
- * Clean sheet insights: total, share of matches, longest run and the tournament
- * with the most. A clean sheet is a match with no goals conceded; it is never
- * attributed to a specific goalkeeper since the source does not record one.
- */
 export function CleanSheetInsights({ cleanSheets, scopeLabel }: CleanSheetInsightsProps) {
   return (
     <section aria-label={`Arcos en cero de ${scopeLabel}`}>
