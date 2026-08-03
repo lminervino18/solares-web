@@ -230,7 +230,7 @@ export const historyChapters: readonly HistoryChapter[] = [
       },
       {
         type: 'paragraph',
-        text: 'En aquella etapa también se produjo uno de los viajes más importantes de la institución, cuando viajó a Buenos Aires para jugar contra Vélez. La experiencia reunió a jugadores de Solares y de otros equipos, y representó un hito que hasta poco tiempo atrás parecía imposible para un proyecto que había nacido con dos conos y una pelota.',
+        text: 'En aquella etapa también se produjo uno de los viajes más importantes de la institución: Solares fue a Buenos Aires para jugar contra Vélez. La experiencia reunió a jugadores de Solares y de otros equipos, y representó un hito que hasta poco tiempo atrás parecía imposible para un proyecto que había nacido con dos conos y una pelota.',
       },
       { type: 'figure', photoId: 'photo-2' },
     ],
