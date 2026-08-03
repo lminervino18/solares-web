@@ -19,13 +19,12 @@ import { GOAL_SOURCE_OVERRIDES } from './goals/goals-source-overrides'
 import {
   INSPECTION_REPORT_PATH as REPORT_PATH,
   resolveFormatDirectory,
-  resolveGoalsRoot,
+  GOALS_ROOT,
 } from './goals/goal-paths'
 
 const CHAMPIONSHIPS_SNAPSHOT_PATH =
   'src/features/championships/data/generated/championships.snapshot.json'
 
-const GOALS_ROOT = resolveGoalsRoot()
 const SUPPORTED_EXTENSIONS = new Set(['.mp4', '.mov', '.m4v', '.webm', '.avi', '.mkv'])
 const HASH_CONCURRENCY = 8
 

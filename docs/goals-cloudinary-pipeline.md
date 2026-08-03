@@ -15,11 +15,6 @@ content/incoming/goals/     the upload source
 └── f5/
 ```
 
-`scripts/goals/goal-paths.ts` still falls back to the former `Goles/web/` root if
-the intake folder holds no clips, so an older checkout keeps working. Emptiness
-matters, not existence: the intake folders are committed empty, and picking them
-while empty would silently hide an existing collection.
-
 Either casing of the format folder (`f8` or `F8`) works, and overrides are looked
 up case-insensitively so a move between the two does not orphan them. The format
 always comes from the folder, never from the file name.

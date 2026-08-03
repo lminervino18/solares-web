@@ -1,9 +1,7 @@
 import { existsSync, readdirSync } from 'node:fs'
-import { extname, join } from 'node:path'
+import { join } from 'node:path'
 
-export const GOALS_INTAKE_ROOT = 'content/incoming/goals'
-
-export const GOALS_LEGACY_ROOT = 'Goles/web'
+export const GOALS_ROOT = 'content/incoming/goals'
 
 export const INSPECTION_REPORT_PATH = 'data/goals/goals-inspection.generated.json'
 export const DUPLICATES_REPORT_PATH = 'data/goals/goals-duplicates.generated.json'
@@ -18,19 +16,7 @@ function formatFolders(root: string): readonly string[] {
     .map((entry) => entry.name)
 }
 
-function holdsClips(root: string): boolean {
-  return formatFolders(root).some((folder) =>
-    readdirSync(join(root, folder), { withFileTypes: true }).some(
-      (entry) => entry.isFile() && SUPPORTED_GOAL_EXTENSIONS.has(extname(entry.name).toLowerCase()),
-    ),
-  )
-}
-
-/** Emptiness matters, not existence: the intake folders are committed empty. */
-export function resolveGoalsRoot(): string {
-  return holdsClips(GOALS_INTAKE_ROOT) ? GOALS_INTAKE_ROOT : GOALS_LEGACY_ROOT
-}
-
+/** Either casing works, so a collection created as `F8` and one as `f8` both resolve. */
 export function resolveFormatDirectory(root: string, format: 'f8' | 'f5'): string | undefined {
   const match = formatFolders(root).find((name) => name.toLowerCase() === format)
   return match ? join(root, match) : undefined

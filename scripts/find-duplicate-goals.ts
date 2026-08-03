@@ -6,11 +6,7 @@ import { promisify } from 'node:util'
 
 import pLimit from 'p-limit'
 
-import {
-  DUPLICATES_REPORT_PATH,
-  INSPECTION_REPORT_PATH,
-  resolveGoalsRoot,
-} from './goals/goal-paths'
+import { DUPLICATES_REPORT_PATH, GOALS_ROOT, INSPECTION_REPORT_PATH } from './goals/goal-paths'
 
 const run = promisify(execFile)
 
@@ -29,7 +25,7 @@ type ResolvedGoal = {
 }
 
 async function fingerprint(sourcePath: string): Promise<string | undefined> {
-  const filePath = join(resolveGoalsRoot(), sourcePath)
+  const filePath = join(GOALS_ROOT, sourcePath)
   try {
     const { stdout } = await run(
       'ffmpeg',
