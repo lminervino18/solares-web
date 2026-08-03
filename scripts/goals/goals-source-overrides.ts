@@ -1,7 +1,8 @@
 /**
  * Keyed by the source path relative to the goals root; wins over the parser.
- * Changing a scorer changes the Cloudinary public id and orphans the old asset:
- * run `npm run goals:verify`, then `npm run goals:prune`.
+ * Use it only when the file itself cannot be fixed. A wrong scorer is a wrong
+ * file name: rename the file instead, which costs nothing because ids come from
+ * the content, not the name.
  */
 export type GoalSourceOverride = {
   readonly scorerName?: string
@@ -11,28 +12,6 @@ export type GoalSourceOverride = {
 }
 
 export const GOAL_SOURCE_OVERRIDES: Readonly<Record<string, GoalSourceOverride>> = {
-  // Four clips were exported under the wrong scorer's name. The parser read the
-  // file names correctly; the names themselves are wrong. Corrections confirmed
-  // by the club and consistent with the spreadsheet scorer tallies.
-  'F8/Apertura_2025-Pablo_Kunz-00.mp4': {
-    scorerName: 'Ariel Atienza',
-    reason:
-      'Exported under the wrong scorer. Ariel Atienza has one Apertura 2025 goal in the spreadsheet and had no video until this correction.',
-  },
-  'F8/Clausura_2024-Lorenzo_Minervino-07.mp4': {
-    scorerName: 'Lucas Pranteda',
-    reason: 'Exported under the wrong scorer. Confirmed by the club.',
-  },
-  'F5/Clausura_2025-Luca_Crivaro-00.mp4': {
-    scorerName: 'Agustin Di Yacovo',
-    reason: 'Exported under the wrong scorer. Confirmed by the club.',
-  },
-  'F5/Clausura_2025-Agustin_Di_Yacovo-06.mp4': {
-    scorerName: 'Mauro Gonzalez',
-    reason:
-      'Exported under the wrong scorer. Mauro Gonzalez has two Clausura 2025 F5 goals in the spreadsheet and only one video until this correction.',
-  },
-
   'F5/Apertura_2026-Lorenzo_Minervino-04.mp4': {
     skip: true,
     reason:

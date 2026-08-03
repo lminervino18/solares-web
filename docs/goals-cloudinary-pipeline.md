@@ -126,8 +126,15 @@ export const GOAL_SOURCE_OVERRIDES = {
 }
 ```
 
-Use an override only for a genuinely ambiguous name. A spelling that recurs
+Use an override only when the file itself cannot be fixed. A spelling that recurs
 belongs in an alias instead.
+
+**A clip credited to the wrong player is a wrong file name, not a case for an
+override.** Rename the file and the parser produces the right answer with no
+special case. That costs nothing: the goal id is the content hash, so a rename
+leaves the id, the public id and the shared links untouched, and re-running the
+upload has nothing to send. Patching it with an override instead leaves the lie
+in the file name and a permanent entry in this table.
 
 ## Goal identity
 
