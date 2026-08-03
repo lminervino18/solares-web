@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T23:36:00.577Z",
+  "generatedAt": "2026-08-03T21:39:10.927Z",
   "goals": [
     {
       "id": "f5-65a7936b0094",
@@ -1796,7 +1796,7 @@
         "aspectRatio": 0.5625
       },
       "source": {
-        "fileName": "Clausura_2025-Luca_Crivaro-00.mp4",
+        "fileName": "clausura-2025__agustin-di-yacovo__gol-01.mp4",
         "createdAt": "2026-07-30T22:52:10.516Z",
         "hash": "1ba2505f7df887eec55bf48788eb50deea74403396eb7c8b10f974316590c13a"
       }
@@ -3076,7 +3076,7 @@
         "aspectRatio": 1.295
       },
       "source": {
-        "fileName": "Clausura_2025-Agustin_Di_Yacovo-06.mp4",
+        "fileName": "clausura-2025__mauro-gonzalez__gol-01.mp4",
         "createdAt": "2026-07-30T22:51:23.849Z",
         "hash": "61917c71d79b88f7440bd92d94cb557c19adbac208f663dc204728183c6cc40a"
       }
@@ -3319,6 +3319,46 @@
         "fileName": "Clausura_2025-Agustin_Di_Yacovo-00.mp4",
         "createdAt": "2026-07-30T22:51:15.240Z",
         "hash": "afeb7dcde719c0f1e680647f6b8b9a80b10a37bdc68e5d05fc54f207fcd34a01"
+      }
+    },
+    {
+      "id": "f8-206bdaa43dca",
+      "format": "f8",
+      "scorer": {
+        "id": "lorenzo-minervino",
+        "slug": "lorenzo-minervino",
+        "name": "Lorenzo Minervino"
+      },
+      "competition": {
+        "id": "f8-clausura-2025",
+        "slug": "clausura-2025",
+        "name": "Clausura 2025",
+        "format": "f8",
+        "type": "official",
+        "championshipId": "f8-clausura-2025"
+      },
+      "cloudinary": {
+        "publicId": "solares/goals/f8/clausura-2025/lorenzo-minervino-206bdaa43dca",
+        "resourceType": "video",
+        "format": "mp4",
+        "secureUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/v1785793149/solares/goals/f8/clausura-2025/lorenzo-minervino-206bdaa43dca.mp4",
+        "playbackUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/f_auto,q_auto/v1785793149/solares/goals/f8/clausura-2025/lorenzo-minervino-206bdaa43dca.mp4",
+        "compactPlaybackUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/c_limit,f_auto,q_auto,w_720/v1785793149/solares/goals/f8/clausura-2025/lorenzo-minervino-206bdaa43dca.mp4",
+        "posterUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/ar_4:3,c_fill,f_auto,g_auto,q_auto,so_auto,w_640/v1785793149/solares/goals/f8/clausura-2025/lorenzo-minervino-206bdaa43dca.jpg",
+        "downloadUrl": "https://res.cloudinary.com/xpdkiduq/video/upload/fl_attachment:solares-f8-clausura-2025-lorenzo-minervino/v1785793149/solares/goals/f8/clausura-2025/lorenzo-minervino-206bdaa43dca.mp4",
+        "version": 1785793149
+      },
+      "media": {
+        "bytes": 4242662,
+        "width": 720,
+        "height": 720,
+        "duration": 20.066667,
+        "aspectRatio": 1
+      },
+      "source": {
+        "fileName": "clausura-2025__lorenzo-minervino__gol-00.mp4",
+        "createdAt": "2026-08-03T21:36:51.509Z",
+        "hash": "206bdaa43dcad2e2b99b54364dd462ca412b582d64019fccc7ae6363adf45cdc"
       }
     },
     {
@@ -3876,7 +3916,7 @@
         "aspectRatio": 0.7996
       },
       "source": {
-        "fileName": "Apertura_2025-Pablo_Kunz-00.mp4",
+        "fileName": "apertura-2025__ariel-atienza__gol-01.mp4",
         "createdAt": "2026-07-30T22:52:58.039Z",
         "hash": "dba1458f41b6e4b156a575c53dd9d00d778f9e1c79a40a01e12a19659015036b"
       }
@@ -4916,7 +4956,7 @@
         "aspectRatio": 1
       },
       "source": {
-        "fileName": "Clausura_2024-Lorenzo_Minervino-07.mp4",
+        "fileName": "clausura-2024__lucas-pranteda__gol-01.mp4",
         "createdAt": "2026-07-30T22:52:59.076Z",
         "hash": "e8d8d0b52ee6774483ba67146b4efbaa6936a03c347b0e8d98516ea49aa8812d"
       }
