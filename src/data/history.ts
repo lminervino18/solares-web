@@ -187,7 +187,7 @@ export const historyChapters: readonly HistoryChapter[] = [
     blocks: [
       {
         type: 'paragraph',
-        text: 'En 2015 comenzó una nueva etapa. Alrededor del equipo se desarrolló GEM, una escuela de entrenamiento que reunía jugadores de distintos clubes y tenía a Solares como una de sus bases principales.',
+        text: 'En 2015 comenzó una nueva etapa. Alrededor del equipo se desarrolló J.E.M, una escuela de entrenamiento que reunía jugadores de distintos clubes y tenía a Solares como una de sus bases principales.',
       },
       {
         type: 'paragraph',
