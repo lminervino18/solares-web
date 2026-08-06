@@ -6,6 +6,22 @@ export type GoalPlaybackRate = (typeof GOAL_PLAYBACK_RATES)[number]
 
 export const SEEK_STEP_SECONDS = 5
 
+// Safari on iPhone implements no element fullscreen: `document.fullscreenEnabled`
+// is undefined and `requestFullscreen` is missing. The video element itself is
+// the only thing that can go native, through this non-standard method.
+type NativeFullscreenVideo = HTMLVideoElement & {
+  readonly webkitEnterFullscreen?: () => void
+}
+
+function nativeVideoFullscreen(video: HTMLVideoElement): (() => void) | null {
+  const enter = (video as NativeFullscreenVideo).webkitEnterFullscreen
+  return typeof enter === 'function' ? enter.bind(video) : null
+}
+
+function supportsElementFullscreen(): boolean {
+  return typeof document !== 'undefined' && document.fullscreenEnabled === true
+}
+
 export type UseGoalPlayerOptions = {
   readonly videoRef: RefObject<HTMLVideoElement | null>
   readonly containerRef: RefObject<HTMLDivElement | null>
@@ -55,7 +71,13 @@ export function useGoalPlayer({
   const [failed, setFailed] = useState(false)
   const [ready, setReady] = useState(false)
 
-  const canFullscreen = typeof document !== 'undefined' && document.fullscreenEnabled === true
+  const [canFullscreen, setCanFullscreen] = useState(supportsElementFullscreen)
+
+  useEffect(() => {
+    if (canFullscreen) return
+    const video = videoRef.current
+    if (video !== null && nativeVideoFullscreen(video) !== null) setCanFullscreen(true)
+  }, [canFullscreen, videoRef])
 
   useEffect(() => {
     const onChange = () => setFullscreen(document.fullscreenElement !== null)
@@ -203,13 +225,25 @@ export function useGoalPlayer({
 
   const toggleFullscreen = useCallback(() => {
     const container = containerRef.current
-    if (container === null) return
-    if (document.fullscreenElement === null) {
-      void container.requestFullscreen().catch(() => undefined)
-    } else {
-      void document.exitFullscreen().catch(() => undefined)
+    if (container !== null && supportsElementFullscreen()) {
+      if (document.fullscreenElement === null) {
+        void container.requestFullscreen().catch(() => undefined)
+      } else {
+        void document.exitFullscreen().catch(() => undefined)
+      }
+      return
     }
-  }, [containerRef])
+
+    const video = videoRef.current
+    const enterNative = video === null ? null : nativeVideoFullscreen(video)
+    if (enterNative === null) return
+    try {
+      enterNative()
+    } catch {
+      // The element rejects the call until its metadata is loaded. The native
+      // player is not open, which is exactly what the paused clip already shows.
+    }
+  }, [containerRef, videoRef])
 
   return {
     playing,
