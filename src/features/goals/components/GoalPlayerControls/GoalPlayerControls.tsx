@@ -139,40 +139,41 @@ export function GoalPlayerControls({ goal, player, zoom, shareUrl }: GoalPlayerC
 
         <span className="mx-1 hidden h-6 w-px bg-(--color-border) sm:block" aria-hidden />
 
-        <IconButton
-          aria-label="Alejar"
-          tooltip="Alejar"
-          variant="ghost"
-          tone="neutral"
-          disabled={!zoom.isZoomed}
-          onClick={zoom.zoomOut}
-          icon={<ZoomOut aria-hidden className="size-5" />}
-        />
-        <span className="min-w-10 text-center text-[length:var(--font-size-xs)] text-secondary tabular-nums">
-          {zoom.scale.toFixed(1)}x
-        </span>
-        <IconButton
-          aria-label="Acercar"
-          tooltip="Acercar para ver un detalle"
-          variant="ghost"
-          tone="neutral"
-          onClick={zoom.zoomIn}
-          icon={<ZoomIn aria-hidden className="size-5" />}
-        />
-        {zoom.isZoomed && (
+        {/* The zoom controls read as one widget, so they wrap as one: letting the
+            row break between the minus, the value and the plus split them across
+            two lines on a phone. Fullscreen closes the group of playback icons —
+            the labelled pills below are a size smaller and left it off balance. */}
+        <div className="flex items-center gap-2">
           <IconButton
-            aria-label="Restablecer el zoom"
-            tooltip="Restablecer el zoom"
+            aria-label="Alejar"
+            tooltip="Alejar"
             variant="ghost"
             tone="neutral"
-            onClick={zoom.reset}
-            icon={<RotateCcw aria-hidden className="size-5" />}
+            disabled={!zoom.isZoomed}
+            onClick={zoom.zoomOut}
+            icon={<ZoomOut aria-hidden className="size-5" />}
           />
-        )}
-
-        {/* Full width on a phone: wrapped onto its own row, `ml-auto` alone left
-            these actions pinned to the right edge and visibly off balance. */}
-        <div className="flex w-full flex-wrap items-center justify-center gap-2 sm:ml-auto sm:w-auto sm:justify-end">
+          <span className="min-w-10 text-center text-[length:var(--font-size-xs)] text-secondary tabular-nums">
+            {zoom.scale.toFixed(1)}x
+          </span>
+          <IconButton
+            aria-label="Acercar"
+            tooltip="Acercar para ver un detalle"
+            variant="ghost"
+            tone="neutral"
+            onClick={zoom.zoomIn}
+            icon={<ZoomIn aria-hidden className="size-5" />}
+          />
+          {zoom.isZoomed && (
+            <IconButton
+              aria-label="Restablecer el zoom"
+              tooltip="Restablecer el zoom"
+              variant="ghost"
+              tone="neutral"
+              onClick={zoom.reset}
+              icon={<RotateCcw aria-hidden className="size-5" />}
+            />
+          )}
           {player.canFullscreen && (
             <IconButton
               aria-label={player.fullscreen ? 'Salir de pantalla completa' : 'Pantalla completa'}
@@ -189,7 +190,11 @@ export function GoalPlayerControls({ goal, player, zoom, shareUrl }: GoalPlayerC
               }
             />
           )}
+        </div>
 
+        {/* Full width on a phone: wrapped onto its own row, `ml-auto` alone left
+            these actions pinned to the right edge and visibly off balance. */}
+        <div className="flex w-full flex-wrap items-center justify-center gap-2 sm:ml-auto sm:w-auto sm:justify-end">
           <a
             href={goal.cloudinary.downloadUrl}
             download={buildGoalDownloadName(goal)}
