@@ -6,9 +6,8 @@ export type GoalPlaybackRate = (typeof GOAL_PLAYBACK_RATES)[number]
 
 export const SEEK_STEP_SECONDS = 5
 
-// Safari on iPhone implements no element fullscreen: `document.fullscreenEnabled`
-// is undefined and `requestFullscreen` is missing. The video element itself is
-// the only thing that can go native, through this non-standard method.
+// Safari on iPhone implements no element fullscreen: only the video element can
+// go native, through this non-standard method.
 type NativeFullscreenVideo = HTMLVideoElement & {
   readonly webkitEnterFullscreen?: () => void
 }
@@ -240,8 +239,7 @@ export function useGoalPlayer({
     try {
       enterNative()
     } catch {
-      // The element rejects the call until its metadata is loaded. The native
-      // player is not open, which is exactly what the paused clip already shows.
+      // The element rejects the call until its metadata is loaded.
     }
   }, [containerRef, videoRef])
 

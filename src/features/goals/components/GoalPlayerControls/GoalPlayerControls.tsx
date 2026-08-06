@@ -139,10 +139,7 @@ export function GoalPlayerControls({ goal, player, zoom, shareUrl }: GoalPlayerC
 
         <span className="mx-1 hidden h-6 w-px bg-(--color-border) sm:block" aria-hidden />
 
-        {/* The zoom controls read as one widget, so they wrap as one: letting the
-            row break between the minus, the value and the plus split them across
-            two lines on a phone. Fullscreen closes the group of playback icons —
-            the labelled pills below are a size smaller and left it off balance. */}
+        {/* Grouped so the row never wraps between the minus, the value and the plus. */}
         <div className="flex items-center gap-2">
           <IconButton
             aria-label="Alejar"
